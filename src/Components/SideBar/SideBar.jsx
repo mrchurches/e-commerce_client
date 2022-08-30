@@ -1,5 +1,5 @@
 import React from "react";
-import { getAllVideogames, filterByGenres } from '../../redux/actions';
+import { getAllVideogames, filterByGenres, filterByPlatforms} from '../../redux/actions';
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 
