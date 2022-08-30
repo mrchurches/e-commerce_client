@@ -4,7 +4,8 @@ export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const FILTER_BY_GENRES = "FILTER_BY_GENRES";
 export const GET_GENRES = "GET_GENRES";
 export const GET_PLATFORMS = "GET_PLATFORMS";
-export const SEARCH_PRODUCT = "SEARCH_PRODUCT"
+export const SEARCH_PRODUCT = "SEARCH_PRODUCT";
+export const FILTER_BY_PLATFORMS = "FILTER_BY_PLATFORMS";
 
 export function getAllVideogames(){
     return function(dispatch){
@@ -57,7 +58,15 @@ export function searchProduct(name){
 
 export function filterByGenres(value){
     return{
-        type:"FILTER_BY_GENRES",
+        type:FILTER_BY_GENRES,
+        payload: value
+    }
+}
+
+export function filterByPlatforms(value){
+    
+    return{
+        type:FILTER_BY_PLATFORMS,
         payload: value
     }
 }
