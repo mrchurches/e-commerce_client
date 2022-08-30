@@ -1,9 +1,16 @@
 import React from 'react'
+import NavBar from "./NavBar";
+import SideBar from '../SideBar/SideBar';
+
 
 const LandingPage = () => {
+
+
   return (
-    <div>LandingPage</div>
-    
+    <div>
+    <NavBar/>  
+    <SideBar/>
+    </div>
   )
 }
 
