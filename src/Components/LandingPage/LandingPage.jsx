@@ -27,7 +27,7 @@ export default function LandingPage(){
  
   return (
   <div>
-    <h1>hola soy landing</h1>
+    <h1 className='text-6xl font-bold underline'>hola soy landing</h1>
   <NavBar/>  
   {location.pathname === "/" && <CardContainer />}
   {/* <SideBar/> */}
