@@ -1,16 +1,36 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import SearchBar from "../SearchBar/SearchBar"
+import ShoppingCart from "../ShoppingCart/ShoppingCart"
+import Login from '../Login/Login'
+import "./NavBar.css"
+
 const NavBar = () => {
-  return (
-    <div>
+  let location = useLocation();
+  
+    return (
+    <div className='nav'>
         <div>
         <Link to="/">
-            <h4>E-commerce videogames</h4>
+            <span>E-commerce videogames</span>
         </Link>
         </div>
-        <div>
-            <SearchBar />
+        <div className='end'>
+            <div>
+                {location.pathname === "/" &&<SearchBar />}
+            </div>
+            <div>
+            {location.pathname === "/" &&
+                <Link to="/shopping_cart">
+                        <span>ShopCart</span>
+                </Link>
+            }
+            </div>
+            <div>
+                <Link to="/login">
+                    <span>Login</span>
+                </Link>
+            </div>
         </div>
     </div>
   )
