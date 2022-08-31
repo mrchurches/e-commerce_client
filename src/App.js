@@ -1,6 +1,7 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
 import LandingPage from './Components/LandingPage/LandingPage';
+import Footer from "./Components/Footer/Footer";
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route path="/login" component={Login} /> */}
       </Switch>
     </div>
+    <Footer/>
     </BrowserRouter>
   );
 }

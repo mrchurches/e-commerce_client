@@ -6,9 +6,11 @@ export const GET_GENRES = "GET_GENRES";
 export const GET_PLATFORMS = "GET_PLATFORMS";
 export const SEARCH_PRODUCT = "SEARCH_PRODUCT";
 export const FILTER_BY_PLATFORMS = "FILTER_BY_PLATFORMS";
+export const GET_USERS = "GET_USERS"
 export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 export const CLEAR_CART = "CLEAR_CART"
+
 
 const URL = "http://localhost:3001/";
 
@@ -52,6 +54,7 @@ export function getPlatforms(){
     }
 };
 
+
 export function searchProduct(name){
    if(name){
     return function (dispatch){
@@ -65,6 +68,27 @@ export function searchProduct(name){
         .catch(err=>console.log(err))
     }
 }else {return"No tiene nombre"}};
+
+
+export function getUsers(){
+    return function (dispatch){
+        axios.get(`${URL}users`)
+        .then((res)=>{
+            dispatch({
+                type: GET_USERS,
+                payload:res.data
+            })
+        })
+        .catch(err=>console.log(err))
+    }
+};
+
+export function postUsers(payload){
+    return async function(dispatch){
+        var createUsers= await axios.post(`${URL}users`);
+        return createUsers;
+    }
+};
 
 export function filterByGenres(value){
     return{

@@ -3,7 +3,8 @@ import { GET_ALL_PRODUCTS,
          GET_GENRES,
          GET_PLATFORMS,
          SEARCH_PRODUCT,
-         FILTER_BY_PLATFORMS
+         FILTER_BY_PLATFORMS,
+         GET_USERS
         } from "./actions.js";
 import { products } from "./products.js"
 
@@ -14,7 +15,8 @@ let initialState = {
     products2: products,
     platforms: [],
     genres: [],
-    searchered: []
+    searchered: [],
+    users: []
 }
 
 export default function rootReducer(state = initialState, action){
@@ -38,6 +40,11 @@ export default function rootReducer(state = initialState, action){
                 ...state,
                 platforms: action.payload
             }
+        case GET_USERS:
+            return{
+                ...state,
+                users: action.payload
+                }
 
         case FILTER_BY_GENRES:
             let filtered_genres = state.products2.filter(e=> e.genres.includes(action.payload));
