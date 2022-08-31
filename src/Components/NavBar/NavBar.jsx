@@ -1,8 +1,6 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import SearchBar from "../SearchBar/SearchBar"
-import ShoppingCart from "../ShoppingCart/ShoppingCart"
-import Login from '../Login/Login'
 import "./NavBar.css"
 
 const NavBar = () => {

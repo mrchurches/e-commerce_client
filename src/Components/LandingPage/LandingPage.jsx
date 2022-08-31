@@ -1,11 +1,12 @@
 import React from 'react'
-import {Route, useLocation} from "react-router-dom";
+import {useLocation, Route} from "react-router-dom";
 import NavBar from "../NavBar/NavBar.jsx";
-import ShoppingCart from '../ShoppingCart/ShoppingCart.jsx';
 import CardContainer from '../CardsContainers/CardContainer.jsx'
 import SideBar from '../SideBar/SideBar.jsx';
-import Login from "../Login/Login"
-import CreateUser from '../CreateUser/CreateUser.jsx';
+import CreateUser from '../CreateUser/CreateUser';
+import Login from '../Login/Login';
+import ShoppingCart from '../ShoppingCart/ShoppingCart';
+
 // const LandingPage = () => {
 
 
@@ -29,18 +30,10 @@ export default function LandingPage(){
     <h1>hola soy landing</h1>
   <NavBar/>  
   {location.pathname === "/" && <CardContainer />}
-  
-
   {/* <SideBar/> */}
-  <Route path="/shopping_cart">
-    <ShoppingCart />
-  </Route>
-  <Route path="/login">
-    <Login />
-  </Route>
-  <Route path="/create_user">
-    <CreateUser />
-  </Route>
+        <Route path="/shopping_cart" component={ShoppingCart} />
+        <Route path="/create_user"component={CreateUser} />
+        <Route path="/login" component={Login} />
   </div>
 )
 }

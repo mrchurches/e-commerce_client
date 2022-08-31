@@ -2,13 +2,13 @@ import "./ShoppingCart.css";
 
 import React from 'react'
 
-const ShoppingCart = () => {
+export default function ShoppingCart(){
     let hardcodeo = [{name: "gtav", price: Math.floor(Math.random() * 5)},{name: "bloodborne", price: Math.floor(Math.random() * 5)},{name: "taxi", price: Math.floor(Math.random() * 5)}];
     let total=0;
     for(let i=0; i<hardcodeo.length; i++){
         total = hardcodeo[i].price + total;
     }
-  return (
+  return(
     <div>
         <div>
             <h1>My shopping cart</h1>
@@ -33,5 +33,3 @@ const ShoppingCart = () => {
     </div>
   )
 }
-
-export default ShoppingCart
