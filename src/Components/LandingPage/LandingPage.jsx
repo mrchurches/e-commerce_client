@@ -26,8 +26,7 @@ export default function LandingPage(){
  let location = useLocation();
  
   return (
-  <div>
-    <h1 className='text-6xl font-bold underline'>hola soy landing</h1>
+  <div >
   <NavBar/>  
   {location.pathname === "/" && <CardContainer />}
   {/* <SideBar/> */}
