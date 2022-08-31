@@ -7,6 +7,10 @@ export const GET_PLATFORMS = "GET_PLATFORMS";
 export const SEARCH_PRODUCT = "SEARCH_PRODUCT";
 export const FILTER_BY_PLATFORMS = "FILTER_BY_PLATFORMS";
 export const GET_USERS = "GET_USERS"
+export const ADD_TO_CART = "ADD_TO_CART";
+export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
+export const CLEAR_CART = "CLEAR_CART"
+
 
 const URL = "http://localhost:3001/";
 
