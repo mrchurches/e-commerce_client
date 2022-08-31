@@ -1,0 +1,13 @@
+.nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.end{
+    display: flex;
+}
+
+div{
+    padding: 0.2rem;
+}
