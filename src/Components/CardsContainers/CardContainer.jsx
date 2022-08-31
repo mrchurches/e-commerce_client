@@ -9,14 +9,14 @@ const CardContainer = (props) => {
 
 const products = useSelector((state) => state.products)
 
+const x = ["inde", "Action", "Rpg"]
 const dispatch = useDispatch()
 
 const [start, setStart] = useState(0)
 const [finish, setFinish] = useState(5)
 
-
 const forSale = products.filter(e => e.released.slice(0, 4) > 2010).slice(4, 8)
-const genres = products.filter(e => e.genres.includes("Indie")).slice(start, finish)
+const genres = products.filter(e => e.genres.includes(x)).slice(start, finish)
 const platforms = products.filter(e => e.plataforms.includes("PlayStation 5")).slice(start, finish)
 
 
