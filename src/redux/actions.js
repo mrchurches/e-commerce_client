@@ -7,52 +7,59 @@ export const GET_PLATFORMS = "GET_PLATFORMS";
 export const SEARCH_PRODUCT = "SEARCH_PRODUCT";
 export const FILTER_BY_PLATFORMS = "FILTER_BY_PLATFORMS";
 
-export function getAllVideogames(){
+const URL = "http://localhost:3001/";
+
+export function getAllProducts(){
     return function(dispatch){
-        axios.get("ruta")
+        axios.get(`${URL}videogames`)
         .then((res)=>{
             dispatch({
                 type: GET_ALL_PRODUCTS,
-                payload:res
+                payload:res.data
             })
-        })
+        }
+        )
+        .catch(err=>console.log(err))
     }
 };
 
 export function getGenres(){
     return function (dispatch){
-        axios.get("ruta")
+        axios.get(`${URL}genres`)
         .then((res)=>{
             dispatch({
                 type: GET_GENRES,
                 payload:res.data
             })
         })
+        .catch(err=>console.log(err))
     }
 };
 
 export function getPlatforms(){
     return function (dispatch){
-        axios.get("ruta")
+        axios.get(`${URL}platforms`)
         .then((res)=>{
             dispatch({
                 type: GET_PLATFORMS,
                 payload:res.data
             })
         })
+        .catch(err=>console.log(err))
     }
 };
 
 export function searchProduct(name){
    if(name){
     return function (dispatch){
-        axios.get("ruta + name")
+        axios.get(`${URL}videogames?name=${name}`)
         .then((res)=>{
             dispatch({
                 type: SEARCH_PRODUCT,
                 payload:res.data
             })
         })
+        .catch(err=>console.log(err))
     }
 }else {return"No tiene nombre"}};
 
