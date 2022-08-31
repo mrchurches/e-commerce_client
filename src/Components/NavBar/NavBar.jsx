@@ -6,7 +6,7 @@ const NavBar = () => {
     <div>
         <div>
         <Link to="/">
-            <h4>Logo</h4>
+            <h4>E-commerce videogames</h4>
         </Link>
         </div>
         <div>
