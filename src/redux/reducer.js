@@ -13,7 +13,8 @@ let initialState = {
     products: products,
     products2: products,
     platforms: [],
-    genres: []
+    genres: [],
+    searchered: []
 }
 
 export default function rootReducer(state = initialState, action){
