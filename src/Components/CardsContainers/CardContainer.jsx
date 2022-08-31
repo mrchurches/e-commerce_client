@@ -4,7 +4,7 @@ import CardForSale from '../Cards/CardForSale/CardForSale'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
 import style from './cardsContainer.module.css'
-import { getAllProducts, searchProduct } from '../../redux/actions'
+import { getAllProducts, searchProduct } from '../../redux/actions.js'
 
 const CardContainer = (props) => {
 
