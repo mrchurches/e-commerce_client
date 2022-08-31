@@ -1,5 +1,5 @@
 import React from 'react'
-import {Route} from "react-router-dom";
+import {Route, useLocation} from "react-router-dom";
 import NavBar from "../NavBar/NavBar.jsx";
 import ShoppingCart from '../ShoppingCart/ShoppingCart.jsx';
 import CardContainer from '../CardsContainers/CardContainer.jsx'
@@ -21,11 +21,15 @@ import CreateUser from '../CreateUser/CreateUser.jsx';
 // export default LandingPage
 
 export default function LandingPage(){
+ 
+ let location = useLocation();
+ 
   return (
   <div>
     <h1>hola soy landing</h1>
   <NavBar/>  
-  <CardContainer/> 
+  {location.pathname === "/" && <CardContainer />}
+  
 
   {/* <SideBar/> */}
   <Route path="/shopping_cart">
