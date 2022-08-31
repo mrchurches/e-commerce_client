@@ -2,17 +2,15 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 
-function ProductCard(props) {
+export default function ProductCard({id, name, img}) {
 
   return (
-    <Link to={`/RUTA PARA BUSCAR POR EL DETALLE DEL JUEGO/${props.id}`}> 
+    <Link to={`/RUTA PARA BUSCAR POR EL DETALLE DEL JUEGO/${id}`}> 
       <div>
-        <p>{props.name}</p>
-        <img src={props.img} alt="Not Found"/>
-        <p>{props.prince}</p>
+        <img src={img} width='200' height='120' alt="Img de video Juego"/>
+        <p>{name}</p>
       </div>
   </Link>
   )
 }
 
-export default ProductCard

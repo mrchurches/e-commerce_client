@@ -2,6 +2,7 @@ import React from 'react'
 import {Route} from "react-router-dom";
 import NavBar from "../NavBar/NavBar.jsx";
 import ShoppingCart from '../ShoppingCart/ShoppingCart.jsx';
+import CardContainer from '../CardsContainers/CardContainer.jsx'
 import SideBar from '../SideBar/SideBar.jsx';
 import Login from "../Login/Login"
 import CreateUser from '../CreateUser/CreateUser.jsx';
@@ -24,6 +25,8 @@ export default function LandingPage(){
   <div>
     <h1>hola soy landing</h1>
   <NavBar/>  
+  <CardContainer/> 
+
   {/* <SideBar/> */}
   <Route path="/shopping_cart">
     <ShoppingCart />
