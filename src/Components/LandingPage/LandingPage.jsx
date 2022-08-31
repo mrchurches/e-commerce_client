@@ -1,5 +1,6 @@
 import React from 'react'
 import NavBar from "../NavBar/NavBar.jsx";
+import CardContainer from '../CardsContainers/CardContainer.jsx'
 import SideBar from '../SideBar/SideBar.jsx';
 
 
@@ -22,6 +23,8 @@ export default function LandingPage(){
   <div>
     <h1>hola soy landing</h1>
   <NavBar/>  
+  <CardContainer/> 
+
   {/* <SideBar/> */}
   </div>
 )
