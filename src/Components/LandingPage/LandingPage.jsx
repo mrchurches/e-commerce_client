@@ -7,26 +7,13 @@ import CreateUser from '../CreateUser/CreateUser';
 import Login from '../Login/Login';
 import ShoppingCart from '../ShoppingCart/ShoppingCart';
 
-// const LandingPage = () => {
-
-
-//   return (
-//     <div>
-//       <h1>hola soy landing</h1>
-//     {/* <NavBar/>  
-//     <SideBar/> */}
-//     </div>
-//   )
-// }
-
-// export default LandingPage
 
 export default function LandingPage(){
  
  let location = useLocation();
  
   return (
-  <div >
+  <div class="bg-slate-300">
   <NavBar/>  
   {location.pathname === "/" && <CardContainer />}
   {/* <SideBar/> */}
