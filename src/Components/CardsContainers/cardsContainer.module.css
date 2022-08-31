@@ -1,0 +1,10 @@
+.container {
+    display: flex;
+    width: 600px;
+}
+
+.ForSale {
+    display: flex;
+    flex-wrap: wrap;
+    width: 600px
+}
