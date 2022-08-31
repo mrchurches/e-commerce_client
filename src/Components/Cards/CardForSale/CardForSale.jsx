@@ -2,14 +2,14 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 
-function CardForSale(props) {
+function CardForSale({id, name, img, }) {
   return (
-    <Link to={`/RUTA PARA BUSCAR POR EL DETALLE DEL JUEGO/${props.id}`}> 
+    <Link to={`/RUTA PARA BUSCAR POR EL DETALLE DEL JUEGO/${id}`}> 
         <div>
-            <p>{props.name}</p>
-            <img src={props.img} alt="Not Found"/>
-            <p>{props.price}</p>
-            <p>{"PROPS.OFERTAS"}</p>
+            <img src={img} alt="Not Found" width='300' height='200'/>
+            <p>{name}</p>
+            <p>Price: {parseInt(Math.random() * 100)} U$d</p>
+            <p>{"20% descuento"}</p>
         </div>
     </Link>
   )
