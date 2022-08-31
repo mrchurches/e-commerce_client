@@ -49,7 +49,7 @@ export default function rootReducer(state = initialState, action){
             
             return{
                 ...state,
-                products: action.payload
+                searchered: action.payload
             }
 
         case FILTER_BY_PLATFORMS:
