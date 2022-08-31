@@ -4,7 +4,7 @@ import CardForSale from '../Cards/CardForSale/CardForSale'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
 import style from './cardsContainer.module.css'
-import { getAllProducts, searchProduct } from '../../redux/actions.jsx'
+// import { getAllProducts, searchProduct } from '../../redux/actions.jsx'
 
 const CardContainer = (props) => {
 
@@ -21,9 +21,9 @@ const genres = products.filter(e => e.genres.includes("Action")).slice(start, fi
 const platforms = products.filter(e => e.plataforms.includes("PlayStation 5")).slice(start, finish)
 
 
-useEffect(() => {
-    dispatch(getAllProducts())
-}, [dispatch,])
+// useEffect(() => {
+//     dispatch(getAllProducts())
+// }, [dispatch,])
 
   return (
 
