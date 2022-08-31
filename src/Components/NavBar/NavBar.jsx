@@ -7,26 +7,26 @@ const NavBar = () => {
   let location = useLocation();
   
     return (
-    <div className='nav'>
-        <div>
+    <div class="flex justify-between bg-slate-400 items-center">
+        <div class=" hover:text-white">
         <Link to="/">
             <span>E-commerce videogames</span>
         </Link>
         </div>
-        <div className='end'>
-            <div>
+        <div class='flex items-center'>
+            <div class="">
                 {location.pathname === "/" &&<SearchBar />}
             </div>
-            <div>
+            <div class=" hover:text-white">
             {location.pathname === "/" &&
                 <Link to="/shopping_cart">
                         <span>ShopCart</span>
                 </Link>
             }
             </div>
-            <div>
+            <div class=" hover:text-white">
                 <Link to="/login">
-                    <span>Login</span>
+                    <span >Login</span>
                 </Link>
             </div>
         </div>
