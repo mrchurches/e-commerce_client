@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
 import style from './cardsContainer.module.css'
 
-import { getAllProducts, searchProduct } from '../../redux/actions.js'
+import { getAllProducts, searchProduct, topSeller } from '../../redux/actions.js'
 
 
 const CardContainer = (props) => {
@@ -15,6 +15,7 @@ const CardContainer = (props) => {
   const AllGenres = /* useSelector((state) => state.genres) */  ["Action", "Adventure", "RPG", "Shooter", "Puzzle"]
   const AllPlataforms = /* useSelector((state) => state.plataforms) */ ["Xbox 360", "macOS", "Xbox One", "PlayStation 3", "PlayStation 5"]
   const years = [2011, 2013, 2014, 2015, 2016, 2017, 2018]
+  /* const topSeller = useSelector((state) => state.topSeller()) */ // más vendidos
 
   const dispatch = useDispatch()
 
@@ -28,19 +29,17 @@ const CardContainer = (props) => {
 const ramGen = () => {
     let randGen = Math.floor(Math.random() * AllGenres.length)
     return AllGenres[randGen]
-  }
+  };
 
  const ramPlat = () => {
     let randPlat = Math.floor(Math.random() * AllPlataforms.length)
     return AllPlataforms[randPlat]
-  }
+  };
 
   const ramYear = () => {
     let randYear = Math.floor(Math.random() * years.length)
     return years[randYear]
-  }
-
-  
+  };
 
 
   useEffect(() => {
