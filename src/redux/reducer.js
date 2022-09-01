@@ -6,13 +6,13 @@ import { GET_ALL_PRODUCTS,
          FILTER_BY_PLATFORMS,
          GET_USERS
         } from "./actions.js";
-import { products } from "./products.js"
+/* import { products } from "./products.js" */
 
 
 
 let initialState = {
-    products: products,
-    products2: products,
+    products: [],
+    products2: [],
     platforms: [],
     genres: [],
     searchered: [],
