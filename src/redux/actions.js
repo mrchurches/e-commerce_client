@@ -12,7 +12,8 @@ export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 export const CLEAR_CART = "CLEAR_CART"
 
 
-const URL = "http://localhost:3001/";
+
+const URL = "https://e-commerce-api-pf.herokuapp.com/";
 
 export function getAllProducts(){
     return function(dispatch){
@@ -47,7 +48,7 @@ export function getPlatforms(){
         .then((res)=>{
             dispatch({
                 type: GET_PLATFORMS,
-                payload:res.data
+                payload: res.data
             })
         })
         .catch(err=>console.log(err))
@@ -104,3 +105,4 @@ export function filterByPlatforms(value){
         payload: value
     }
 }
+
