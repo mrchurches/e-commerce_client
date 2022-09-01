@@ -14,9 +14,11 @@ export default function LandingPage(){
  
   return (
   <div class="bg-slate-300">
-  <NavBar/>  
-  {location.pathname === "/" && <CardContainer />}
-  {/* <SideBar/> */}
+  <NavBar/>
+  <div class="flex">
+      {location.pathname === "/" && <SideBar/>}
+      {location.pathname === "/" && <CardContainer />}
+  </div>
         <Route path="/shopping_cart" component={ShoppingCart} />
         <Route path="/create_user"component={CreateUser} />
         <Route path="/login" component={Login} />
