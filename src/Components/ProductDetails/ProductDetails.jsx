@@ -1,15 +1,19 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom'
 import { addToCart, addWish } from '../../redux/actions';
 const URL = "https://e-commerce-api-pf.herokuapp.com/";
 export default function ProductDetails() {
 const [game, setGame] = useState({});
+const [disabled, setDisabled] = useState(true); // si no esta logueado desabilita addwish
+let user = useSelector(state=>state.users); // se trae el usuario logueado para permitir agregar a wishlist
 let {id} = useParams();
 let dispatch = useDispatch(); 
   useEffect(()=>{
+    if(user.length)setDisabled(false); //si cuando se monta el componente hay usuario logueado habilita el addwish
     axios.get(`${URL}videogames/${id}`)
     .then(res=>setGame(res.data))
     .catch(err=>console.log(err))
@@ -50,10 +54,12 @@ let dispatch = useDispatch();
                 </button>
             </div>
             <div class="flex space-x-2 justify-center">
-              <button value="whish" onClick={handleClick} type="button" class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
+              <button value="whish" disabled={disabled} onClick={handleClick} type="button" class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
                 Add to wishlist
                 </button>
             </div>
+                <br/>
+                {!user.length&&(<span>You must be login in to add in a wishlist</span>)}
           </div>
           <div>
             <img src={game.background_image} alt="bg-img"/>
