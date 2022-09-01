@@ -1,22 +1,25 @@
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import './App.css';
 import LandingPage from './Components/LandingPage/LandingPage';
 import Footer from "./Components/Footer/Footer";
+import ProductDetails from './Components/ProductDetails/ProductDetails';
+import NavBar from './Components/NavBar/NavBar';
+import ShoppingCart from './Components/ShoppingCart/ShoppingCart';
+import CreateUser from './Components/CreateUser/CreateUser';
+import Login from './Components/Login/Login';
 
 
 function App() {
   return (
-    <BrowserRouter>
     <div className="App">
-      <Switch>
+        <Route path="/" component={NavBar}/>
         <Route path="/" component={LandingPage} />
-        {/* <Route path="/shopping_cart" component={ShoppingCart} />
+        <Route path="/detail:id" component={ProductDetails} />
+        <Route path="/shopping_cart" component={ShoppingCart} />
         <Route path="/create_user"component={CreateUser} />
-        <Route path="/login" component={Login} /> */}
-      </Switch>
+        <Route path="/login" component={Login} />
+        <Footer />
     </div>
-    <Footer/>
-    </BrowserRouter>
   );
 }
 
