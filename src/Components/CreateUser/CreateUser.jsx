@@ -21,8 +21,8 @@ function validate (user){
     if(!user.username){
         errors.username = "Los campos con (*) son obligatorios"
     }
-    if(!user.email){
-        errors.email = "Los campos con (*) son obligatorios"
+    if(!user.email || !user.email.includes("@")){
+        errors.email = "Los campos con (*) son obligatorios.El Email ingresado debe contener un (@)"
     }
 
     return errors
@@ -74,19 +74,24 @@ const dispatch = useDispatch()
     return (
     <div>
         <div>Create your account</div>
+        <div>Los campos marcados con * son obligatorios</div>
         <div>
             <form onSubmit={handleSubmit}>
                 <label>Name * </label>
-                <input type="text"  onChange={handleChange} value={user.name} name="name"/>{errors.name&&(<p>{errors.name}</p>)}
+                <input type="text"  onChange={handleChange} value={user.name} name="name"/>
+                {errors.name&&(<p>{errors.name}</p>)}
                 <br />
                 <label>Lastname </label>
-                <input type="text"  onChange={handleChange} value={user.lastname} name="lastname"/>{errors.lastname&&(<p>{errors.lastname}</p>)}
+                <input type="text"  onChange={handleChange} value={user.lastname} name="lastname"/>
+                {errors.lastname&&(<p>{errors.lastname}</p>)}
                 <br />
                 <label>Username * </label>
-                <input type="text" onChange={handleChange} value={user.username} name="username"/> {errors.username&&(<p>{errors.username}</p>)}
+                <input type="text" onChange={handleChange} value={user.username} name="username"/>
+                {errors.username&&(<p>{errors.username}</p>)}
                 <br />
                 <label>Email * </label>
                 <input type="email" placeholder=" example@examplemail.com" onChange={handleChange} value={user.email} name="email"/>
+                {errors.email&&(<p>{errors.email}</p>)}
                 <br />
                 <label>Password * </label>
                 <input type="password" onChange={handleChange} value={user.password} name="password"/> 
