@@ -9,7 +9,8 @@ export const FILTER_BY_PLATFORMS = "FILTER_BY_PLATFORMS";
 export const GET_USERS = "GET_USERS"
 export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
-export const CLEAR_CART = "CLEAR_CART"
+export const CLEAR_CART = "CLEAR_CART";
+export const ADD_WISH = "ADD_WISH";
 
 
 
@@ -91,18 +92,45 @@ export function postUsers(payload){
     }
 };
 
+// export function filterByGenres(value){
+//     return{
+//         type:FILTER_BY_GENRES,
+//         payload: value
+//     }
+// } //esto me parece que no funciona asi
+
 export function filterByGenres(value){
-    return{
-        type:FILTER_BY_GENRES,
-        payload: value
+    return function(dispatch){
+        dispatch({
+            type: FILTER_BY_GENRES,
+            payload: value
+        })
     }
 }
 
 export function filterByPlatforms(value){
-    
-    return{
-        type:FILTER_BY_PLATFORMS,
-        payload: value
+    return function(dispatch){
+        dispatch({
+            type: FILTER_BY_PLATFORMS,
+            payload: value
+        })
     }
 }
 
+export function addToCart(id){
+    return function(dispatch){
+        dispatch({
+            type: ADD_TO_CART,
+            payload: id
+        })
+}
+}
+
+export function addWish(id){
+    return function(dispatch){
+        dispatch({
+            type: ADD_WISH,
+            payload: id
+        })
+    }
+}
