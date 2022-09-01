@@ -16,7 +16,9 @@ let initialState = {
     platforms: [],
     genres: [],
     searchered: [],
-    users: []
+    users: [],
+    chart: [],
+    wishlist:[]
 }
 
 export default function rootReducer(state = initialState, action){
