@@ -2,9 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 
-function CardForSale({id, name, img, }) {
+
+function CardForSale({id, name, img,}) {
   return (
-    <Link to={`/RUTA PARA BUSCAR POR EL DETALLE DEL JUEGO/${id}`}> 
+    
+      <Link to={`/RUTA PARA BUSCAR POR EL DETALLE DEL JUEGO/${id}`}> 
         <div>
             <img src={img} alt="Not Found" width='300' height='200'/>
             <p>{name}</p>
@@ -12,6 +14,7 @@ function CardForSale({id, name, img, }) {
             <p>{"20% descuento"}</p>
         </div>
     </Link>
+
   )
 }
 
