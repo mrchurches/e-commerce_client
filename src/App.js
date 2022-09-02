@@ -15,7 +15,7 @@ function App() {
     <div className="App">
         <Route path="/" component={NavBar}/>
         <Route path="/" component={LandingPage} />
-        <Route path="/detail:id" component={ProductDetails} />
+        <Route path="/detail/:id" component={ProductDetails} />
         <Route path="/shopping_cart" component={ShoppingCart} />
         <Route path="/create_user"component={CreateUser} />
         <Route path="/login" component={Login} />

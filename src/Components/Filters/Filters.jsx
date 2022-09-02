@@ -45,7 +45,8 @@ function Filters() {
     <div class="flex justify-center">
       <div>
         <select>
-          <option>Price</option>
+          <option>Price</option> {/* en ProductCard Recibir la propiedad precio del api */}
+                                 {/* Propuesta de filtro rango */}
         </select>
       </div>
       <div>
@@ -72,7 +73,7 @@ function Filters() {
       </div>
       <div>
         <select>
-          <option>Release date</option>
+          <option>Release date</option> {/* crear filtro de rango */} 
         </select>
       </div>
     </div>
@@ -80,7 +81,6 @@ function Filters() {
 }
 
 export default Filters
-
 
 
 {/* <div class="flex justify-center"> 
