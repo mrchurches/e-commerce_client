@@ -47,14 +47,15 @@ const CreateUser = () => {
     }else{
       setDisabled(false)
     }
+
+    console.log(validate)
   }, [user, isChange])
 
   async function handleSubmit(e) {
     e.preventDefault()
     const getUser = await findEmail(user.email);
     if(!getUser){
-      console.log(getUser)
-      // await createNewUser(user)
+      await createNewUser(user)
     } else {
       setDisabled(true)
       setvalidate({
@@ -62,9 +63,10 @@ const CreateUser = () => {
         email : false
       });
     }
-    setChange(validatedFormat)
+    setChange(validatedFormat);
     setUser(userFormat);
-    setvalidate(validatedFormat)
+    setvalidate(validatedFormat);
+    setDisabled(true)
   };
 
   return (
