@@ -17,7 +17,7 @@ let dispatch = useDispatch();
     axios.get(`${URL}videogames/${id}`)
     .then(res=>setGame(res.data))
     .catch(err=>console.log(err))
-  },[id])
+  },[id, user])
   function handleClick(e){ // eso se ejecuta cuando se le hace click al boton de add to cart o wishlist
     e.preventDefault();
     if(e.target.value==="cart"){
