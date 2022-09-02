@@ -774,6 +774,10 @@ video {
   flex-wrap: wrap;
 }
 
+.content-around {
+  align-content: space-around;
+}
+
 .items-center {
   align-items: center;
 }

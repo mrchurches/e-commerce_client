@@ -1,5 +1,5 @@
 import React from "react";
-import { getAllVideogames, filterByGenres, filterByPlatforms, getGenres, getPlatforms} from '../../redux/actions';
+import { getAllVideogames, filterByGenres, filterByPlatforms, getGenres, getPlatforms, setCurrentPage} from '../../redux/actions';
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./SideBar.css"
@@ -18,28 +18,31 @@ export default function SideBar (){
 
 function handleFilterByGenre(e){
   e.preventDefault();
-  dispatch(filterByGenres(e.target.value));
-  console.log(e.target.value)
+  if(e.target.value!=="default"){
+    dispatch(filterByGenres(e.target.value));
+    dispatch(setCurrentPage(1))
+  }
 }
 function handleFilterByPlatforms(e){
     e.preventDefault();
-    dispatch(filterByPlatforms(e.target.value));
-    console.log(e.target.value)
+    if(e.target.value!=="default"){
+      dispatch(filterByPlatforms(e.target.value));
+      dispatch(setCurrentPage(1))
+    }
   }
 
     return (
         <div>
           <div>
-            <select onChange={handleFilterByGenre}>
+            <select onChange={(e)=>handleFilterByGenre(e)}>
               <option value="default">Genres</option>
               {genres.length&&genres.map(e=>(
                 <option key={e.name} value={e.name}>{e.name}</option>
               ))}
             </select>
           </div>
-          {console.log(platforms)}
           <div>
-            <select onChange={handleFilterByPlatforms}>
+            <select onChange={(e)=>handleFilterByPlatforms(e)}>
                 <option value="default">Platforms</option>
                 {platforms.length&&platforms.map(e=>(
                   <option key={e.name} value={e.name}>{e.name}</option>

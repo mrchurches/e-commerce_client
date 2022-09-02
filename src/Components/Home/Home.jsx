@@ -5,6 +5,8 @@ import { useSelector } from 'react-redux'
 import { getAllProducts, setCurrentPage } from '../../redux/actions';
 import ProductCard from '../Cards/ProductCard/ProductCard';
 import Pagination from '../Pagination/Pagination';
+import SideBar from '../SideBar/SideBar';
+import Filters from "../Filters/Filters"
 import "./Home.css"
 
 function Home() {
@@ -27,15 +29,23 @@ const paginado = (number) => {
     dispatch(getAllProducts())
   },[dispatch])
     return (
-        <div>
-            <Pagination currentPage={currentPage} gamesPerPage={gamesPerPage} games={searchered.length? searchered.length : games.length} paginado={paginado}/>
-            <div class="flex flex-wrap content-around justify-center">
-                {currentGames.length && currentGames.map(e=>(
-                    <div >
-                        <ProductCard name={e.name} id={e.id_api} img={e.background_image} rating={e.rating} platform={e.platform} />
-                    </div>
-                ))}
-                
+        <div class="flex">
+            <div>
+                <SideBar />
+            </div>
+            <div>
+                <Pagination currentPage={currentPage} gamesPerPage={gamesPerPage} games={searchered.length? searchered.length : games.length} paginado={paginado}/>
+                <Filters />
+                <div class="flex flex-wrap content-around justify-center">
+                    {currentGames.length && currentGames.map(e=>(
+                        <div >
+                            <ProductCard name={e.name} id={e.id_api} img={e.background_image} rating={e.rating} platform={e.platform} />
+                        </div>
+                    ))}
+                    {
+                        !currentGames.length&&<h4>Todavia no hay nada por aqui</h4>
+                    }
+                </div>
             </div>
         </div>
     

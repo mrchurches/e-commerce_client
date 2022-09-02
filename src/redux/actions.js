@@ -106,6 +106,7 @@ export function filterByGenres(value){
         dispatch({
             type: FILTER_BY_GENRES,
             payload: value
+            
         })
     }
 }

@@ -53,7 +53,17 @@ export default function rootReducer(state = initialState, action){
                 }
 
         case FILTER_BY_GENRES:
-            let filtered_genres = state.products2.filter(e=> e.genres.includes(action.payload));
+            let filtered_genres = state.products2.filter((e) => {
+                var arr = e.genres.map(e => {
+                    if (e.name === action.payload) {
+                        return true;
+                    }else{return false}
+                });
+                if (arr.includes(true)) {
+                    return true;
+                }else{return false}
+            });
+            console.log(state.products2)
         return{
                ...state,
                products: filtered_genres
@@ -66,7 +76,16 @@ export default function rootReducer(state = initialState, action){
             }
 
         case FILTER_BY_PLATFORMS:
-            let filtered_platforms = state.products2.filter(e=> e.platforms.includes(action.payload));
+            let filtered_platforms = state.products2.filter((e) => {
+                var arr = e.platforms.map(e => {
+                    if (e.name === action.payload) {
+                        return true;
+                    }else{return false}
+                });
+                if (arr.includes(true)) {
+                    return true;
+                }else{return false}
+            });
         
             return{
                 ...state,
