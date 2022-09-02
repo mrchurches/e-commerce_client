@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 function CardForSale({id, name, img,}) {
   return (
     
-      <Link to={`/videogames/${id}`}> 
+      <Link to={`/detail${id}`}> 
         <div>
             <img src={img} alt="Not Found" width='300' height='200'/>
             <p>{name}</p>

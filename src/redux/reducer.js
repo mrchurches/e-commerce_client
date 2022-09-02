@@ -6,7 +6,9 @@ import { GET_ALL_PRODUCTS,
          FILTER_BY_PLATFORMS,
          GET_USERS,
          ADD_TO_CART,
-         ADD_WISH
+         ADD_WISH,
+         SET_CURRENT_PAGE,
+         CLEAR
         } from "./actions.js";
 /* import { products } from "./products.js" */
 
@@ -20,7 +22,8 @@ let initialState = {
     searchered: [],
     users: [],
     cart: [],
-    wishlist:[]
+    wishlist:[],
+    currentPage: 1
 }
 
 export default function rootReducer(state = initialState, action){
@@ -51,20 +54,39 @@ export default function rootReducer(state = initialState, action){
                 }
 
         case FILTER_BY_GENRES:
-            let filtered_genres = state.products2.filter(e=> e.genres.includes(action.payload));
+            let filtered_genres = state.products2.filter((e) => {
+                var arr = e.genres.map(e => {
+                    if (e.name === action.payload) {
+                        return true;
+                    }else{return false}
+                });
+                if (arr.includes(true)) {
+                    return true;
+                }else{return false}
+            });
+            console.log(state.products2)
         return{
                ...state,
                products: filtered_genres
               }
         case SEARCH_PRODUCT:
-            
+            console.log(action.payload)
             return{
                 ...state,
                 searchered: action.payload
             }
 
         case FILTER_BY_PLATFORMS:
-            let filtered_platforms = state.products2.filter(e=> e.platforms.includes(action.payload));
+            let filtered_platforms = state.products2.filter((e) => {
+                var arr = e.platforms.map(e => {
+                    if (e.name === action.payload) {
+                        return true;
+                    }else{return false}
+                });
+                if (arr.includes(true)) {
+                    return true;
+                }else{return false}
+            });
         
             return{
                 ...state,
@@ -79,6 +101,16 @@ export default function rootReducer(state = initialState, action){
             return{
                 ...state,
                 wishlist: [...state.wishlist, action.payload]
+            }
+        case SET_CURRENT_PAGE:
+            return{
+                ...state,
+                currentPage: action.payload
+            }
+        case CLEAR:
+            return{
+                ...state,
+                searchered: []
             }
         default: 
         return state;

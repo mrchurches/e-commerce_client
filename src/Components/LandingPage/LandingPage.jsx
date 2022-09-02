@@ -15,7 +15,7 @@ export default function LandingPage(){
   return (
   <div class="bg-slate-300">
   <div class="flex">
-      {location.pathname === "/" && <SideBar/>}
+      {/* {location.pathname === "/" && <SideBar/>} */}
       {location.pathname === "/" && <CardContainer />}
   </div>
   </div>

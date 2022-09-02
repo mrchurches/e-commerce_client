@@ -11,10 +11,13 @@ export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 export const CLEAR_CART = "CLEAR_CART";
 export const ADD_WISH = "ADD_WISH";
+export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
+export const CLEAR = "CLEAR";
 
 
 
 const URL = "https://e-commerce-api-pf.herokuapp.com/";
+// const URL = "http://localhost:3001/"
 
 export function getAllProducts(){
     return function(dispatch){
@@ -104,6 +107,7 @@ export function filterByGenres(value){
         dispatch({
             type: FILTER_BY_GENRES,
             payload: value
+            
         })
     }
 }
@@ -131,6 +135,25 @@ export function addWish(id){
         dispatch({
             type: ADD_WISH,
             payload: id
+        })
+    }
+}
+
+
+export function setCurrentPage(number){
+    return function(dispatch){
+        dispatch({
+            type: SET_CURRENT_PAGE,
+            payload: number
+        })
+    }
+}
+
+export function clear(){
+    return function(dispatch){
+        dispatch({
+            type: CLEAR,
+            payload: []
         })
     }
 }

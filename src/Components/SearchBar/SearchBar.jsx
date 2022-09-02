@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux";
-import { searchProduct } from "../../redux/actions.js"
+import { clear, searchProduct } from "../../redux/actions.js"
 
 const SearchBar = () => {
   let [name, setName] = useState("");
@@ -15,9 +15,12 @@ const SearchBar = () => {
 
     function handleSubmit(e){
       e.preventDefault();
-      alert("buscando...")
-      // dispatch(searchProduct(name));
+      dispatch(searchProduct(name));
       setName("");
+    }
+
+    function handleClick(e){
+      dispatch(clear())
     }
   
     return (
@@ -34,9 +37,9 @@ const SearchBar = () => {
                   </div>
               </form>
         </div>
-            {/* <div className="clear">
+            <div className="clear">
             <button onClick={handleClick}>Clear</button>
-            </div> */}
+            </div>
 </div>
   )
 }
