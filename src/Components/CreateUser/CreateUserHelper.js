@@ -15,8 +15,7 @@ export const validatedFormat = {
   lastname: false,
   username: false,
   email: false,
-  password: false,
-  cPassword: false
+  password: false
 }
 
 export const validatedFunctions= {
