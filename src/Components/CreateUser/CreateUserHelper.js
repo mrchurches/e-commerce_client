@@ -1,24 +1,77 @@
-import axios from 'axios'
+import axios from 'axios';
 
-export async function  validateUserRegister(username, name, lastname, email, password){ 
-    
-    // const getEmail = await axios.get() get email and verify if exist on the DB
-    // const getUsername = await axios.get() get username ||
+const URL = 'localhost:3001';
 
-    // const usernameValidate = username === getUsername ? false : true,
+export const userFormat= {
+  name: "",
+  lastname: "",
+  username: "",
+  email: "",
+  password: "",
+  cPassword: ""
+};
 
-    // emailValidate = email === getEmail ? false:
-    // /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(email),
+export const validatedFormat = {
+  name: false,
+  lastname: false,
+  username: false,
+  email: false,
+  password: false,
+  cPassword: false
+}
 
-    const emailValidate = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(email),
+export const validatedFunctions= {
+  name: function(name) {
+    return /(^[a-zA-Z]{0,20}$)/.test(name)
+  },
 
-    nameValidate = /(^[a-zA-Z]{0,20}$)/.test(name),
+  lastname: function (lastname){
+    return /(^[a-zA-Z]{0,20}$)/.test(lastname);  
+  },
 
-    lastnameValidate = /(^[a-zA-Z]{0,20}$)/.test(lastname),
-    
-    passwordValidate = /^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-.]).{8,8}$/.test(password);
-    
-    if(usernameValidate && emailValidate && nameValidate && lastnameValidate && passwordValidate) return true
-    
-    return false
+  username:  function(usernames, username){
+    if(!usernames.includes(username)){
+    return /(^[\W\w][^\s@]{4,20}$)/.test(username)
+    }
+  return false;
+  },  
+
+  email: function(email){
+    return  /^[\w-.]+@([\w-]+.)+[\w-]{2,4}$/g.test(email);
+  },
+
+  password:function(password){
+  return /^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-.]).{8,8}$/.test(password)
+  },
+
+  cPassword: function(cPassword, password){
+    return cPassword === password;
+  }
+};
+
+export async function getUsers(){
+  const users = await axios.get(`http://${URL}/user/getusers`);
+  return users.data.users.map(e => e.username)
+};
+
+export async function findEmail(email){
+  const response = await axios.get(`http://${URL}/user/find/${email}`);
+  return response.data.user
+};
+
+export async function createNewUser({name, lastname, username, email, password,profile_pic}){
+  try {
+    const response = await axios.post(`http://${URL}/signup`,{
+      name,
+      lastname,
+      username,
+      email,
+      password,
+      profile_pic
+    })
+    console.log(response.data)
+  } catch (error) {
+    console.log(error.message)
+    return 'Cannot be created'
+  }
 }
