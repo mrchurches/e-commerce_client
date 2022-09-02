@@ -11,19 +11,42 @@ const NavBar = () => {
 
         <nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/">Videogames</a>
+    <Link to="/" className='link'>
+        <span class="navbar-brand">Videogames</span>
+    </Link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/home">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
+        <Link to="/home" className='link'>
+            <li class="nav-item">
+                <span class="nav-link active" aria-current="page" >Home</span>
+            </li>
+        </Link>
+        <Link to="/my_store" className='link'>
+            <li class="nav-item">
+                <span class="nav-link active" aria-current="page" >My store</span>
+            </li>
+        </Link>
+        <Link to="/wish_list" className='link'>
+            <li class="nav-item">
+                <span class="nav-link active" aria-current="page" >Wishlist</span>
+            </li>
+        </Link>
+        {location.pathname === "/home" && (
+                    <Link to="/shopping_cart" className='link'>
+                        <li class="nav-item">
+                        <span class="nav-link">Shopping Cart</span>
+                    </li>
+                    </Link>
+        )}
+        <Link to="/login" className='link'>
+            <li class="nav-item">
+            <span class="nav-link">Login</span>
+            </li>
+        </Link>
+        {/* <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Dropdown
           </a>
@@ -33,49 +56,12 @@ const NavBar = () => {
             <li><hr class="dropdown-divider"/></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled">Disabled</a>
-        </li>
+        </li> */}
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      {location.pathname === "/home" &&<SearchBar />}
     </div>
   </div>
 </nav>
-
-
-
-
-
-    // <div class="flex justify-between bg-slate-400 items-center">
-    //     <div class=" hover:text-white">
-    //     <Link to="/">
-    //         <span>E-commerce videogames</span>
-    //     </Link>
-    //     </div>
-    //     <div class='flex items-center'>
-    //         <div class="">
-    //             {location.pathname === "/" &&<SearchBar />}
-    //         </div>
-    //         <div class=" hover:text-white">
-    //         {location.pathname === "/" &&
-    //             <Link to="/shopping_cart">
-    //                     <span>ShopCart</span>
-    //             </Link>
-    //         }
-    //         </div>
-    //         <div class=" hover:text-white">
-    //             <Link to="/login">
-    //                 <span >Login</span>
-    //             </Link>
-    //         </div>
-    //     </div>
-    // </div>
-
-
 
 //     <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
 //         <div class="container flex flex-wrap justify-between items-center mx-auto">
