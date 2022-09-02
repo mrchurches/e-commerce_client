@@ -11,8 +11,10 @@ const CreateUser = () => {
   [usernames, setUserNames] = useState([]),
   [disabledBtn, setDisabled] = useState(true);
   
-  useEffect(async ()=>{
-    await setUserNames(getUsers())
+  useEffect( ()=>{
+     (async ()=> { 
+      setUserNames(await getUsers())
+    })()
   }, []);
   
   function handleChange(e) {
@@ -33,6 +35,10 @@ const CreateUser = () => {
       validatedFormat.cPassword = validatedFunctions.cPassword(user.cPassword, user.password);
     }
   }, [user.cPassword])
+
+  useEffect(()=>{
+    console.log(usernames)
+  }, [usernames])
 
   useEffect(()=>{
     if(Object.values(validatedFormat).includes(false)){
