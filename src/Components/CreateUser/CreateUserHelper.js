@@ -10,7 +10,6 @@ export const userFormat= {
   password: "",
   cPassword: ""
 };
-
 export const validatedFormat = {
   name: false,
   lastname: false,
@@ -37,15 +36,11 @@ export const validatedFunctions= {
   },  
 
   email: function(email){
-    return  /^[\w-.]+@([\w-]+.)+[\w-]{2,4}$/g.test(email);
+    return  /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(email);
   },
 
   password:function(password){
   return /^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-.]).{8,8}$/.test(password)
-  },
-
-  cPassword: function(cPassword, password){
-    return cPassword === password;
   }
 };
 
