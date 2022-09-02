@@ -7,7 +7,8 @@ import { GET_ALL_PRODUCTS,
          GET_USERS,
          ADD_TO_CART,
          ADD_WISH,
-         SET_CURRENT_PAGE
+         SET_CURRENT_PAGE,
+         CLEAR
         } from "./actions.js";
 /* import { products } from "./products.js" */
 
@@ -69,7 +70,7 @@ export default function rootReducer(state = initialState, action){
                products: filtered_genres
               }
         case SEARCH_PRODUCT:
-            
+            console.log(action.payload)
             return{
                 ...state,
                 searchered: action.payload
@@ -105,6 +106,11 @@ export default function rootReducer(state = initialState, action){
             return{
                 ...state,
                 currentPage: action.payload
+            }
+        case CLEAR:
+            return{
+                ...state,
+                searchered: []
             }
         default: 
         return state;
