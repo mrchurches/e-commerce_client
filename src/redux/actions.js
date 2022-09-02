@@ -13,7 +13,10 @@ export const CLEAR_CART = "CLEAR_CART";
 export const ADD_WISH = "ADD_WISH";
 export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 export const CLEAR = "CLEAR";
-
+export const ORDER_ASC = "ORDER_ASC"
+export const ORDER_DESC = "ORDER_DESC"
+export const ORDER_BY_RATING = "ORDER_BY_RATING"
+export const ORDER_BY_ESRB = "ORDER_BY_ESRB"
 
 
 const URL = "https://e-commerce-api-pf.herokuapp.com/";
@@ -156,4 +159,35 @@ export function clear(){
             payload: []
         })
     }
-}
+};
+
+export function asc(payload) {
+    return {
+        type: ORDER_ASC,
+        payload
+    }
+};
+
+export function desc(payload) {
+    return {
+        type: ORDER_DESC,
+        payload
+    }
+};
+
+export function orderRating(payload) {
+    return {
+        type: ORDER_BY_RATING,
+        payload
+    }
+};
+
+export function orderEsrb(payload) {
+    return {
+        type: ORDER_BY_ESRB,
+        payload
+    }
+};
+
+
+
