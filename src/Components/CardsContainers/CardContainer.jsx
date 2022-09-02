@@ -69,7 +69,7 @@ const CardContainer = () => {
   return (
 
     <section className={style.section}>
-
+{/* 
       {searchered && (
         <div>
           <div className={style.container}>
@@ -83,13 +83,13 @@ const CardContainer = () => {
             ))}
           </div>
         </div>
-      )}
+      )} */}
 
 
       {Allproducts && (
          <div className={style.bigContainer}>
 
-          <div className={style.ForSale}>
+          {/* <div className={style.ForSale}>
             {forSale && forSale.map((product, index) => (
               <CardForSale
                 key={index}
@@ -99,9 +99,9 @@ const CardContainer = () => {
               />
             ))}
 
-          </div>
+          </div> */}
 
-          <div className={style.box}>
+          {/* <div className={style.box}>
             <h6> {randomPlat} </h6>
             <div className={style.container}>
 
@@ -131,7 +131,7 @@ const CardContainer = () => {
                 />
               ))}
             </div>
-          </div>
+          </div> */}
       </div>
       )}
 
