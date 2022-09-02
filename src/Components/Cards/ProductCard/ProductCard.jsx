@@ -66,15 +66,13 @@ export default function ProductCard({ id, name, img, rating, platforms, /* price
               <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">{rating}</span>
             </div>
             <div class="flex justify-between items-center">
-
+            <span class="text-3xl font-bold text-gray-900 dark:text-white">{parseInt(Math.random() * 100)} U$d</span>
               <button onClick={(e) => handleClick(e)}  name={id}  class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add Favorite</button>
             </div>
           </div>
         </div>
     
       }
-
-
 
     </div>)
 }

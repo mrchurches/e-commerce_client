@@ -16,8 +16,6 @@ const CardContainer = () => {
 
   /* const topSeller = useSelector((state) => state.topSeller()) */ // más vendidos
 
-
-
   const [randomGen, SetRandomGen] = useState("Adventure")
   const [randomPlat, SetRandomPLat] = useState("PC")
   const [randomYear, SetRandomYear] = useState()
@@ -55,22 +53,18 @@ const CardContainer = () => {
     SetRandomPLat(y)
   }; */
   
-
   const ramYear = () => {
     let randYear = Math.floor(Math.random() * years.length)
     const x = years[randYear]
     SetRandomYear(x)
-    
+
   };
-
-  console.log(randomYear)
-
 
   const forSale = Allproducts.filter( (e) => e.released.slice(0, 4) > randomYear).slice(start, finish)
   const genres = Allproducts.filter(  (c) => c.genres.find( (c) =>  c.name === randomGen)).slice(start, finish)
   const platforms = Allproducts.filter(  (c) => c.platforms.find(  (c) =>  c.name === randomPlat)).slice(start, finish)
 
-  
+  console.log(Allproducts)
 
   return (
 
@@ -88,7 +82,6 @@ const CardContainer = () => {
               />
             ))}
           </div>
-
         </div>
       )}
 

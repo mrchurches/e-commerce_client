@@ -8,7 +8,11 @@ import { GET_ALL_PRODUCTS,
          ADD_TO_CART,
          ADD_WISH,
          SET_CURRENT_PAGE,
-         CLEAR
+         CLEAR,
+         ORDER_ASC,
+         ORDER_DESC,
+         ORDER_BY_RATING,
+         ORDER_BY_ESRB,
         } from "./actions.js";
 /* import { products } from "./products.js" */
 
@@ -23,7 +27,7 @@ let initialState = {
     users: [],
     cart: [],
     wishlist:[],
-    currentPage: 1
+    currentPage: 1,
 }
 
 export default function rootReducer(state = initialState, action){
@@ -111,7 +115,54 @@ export default function rootReducer(state = initialState, action){
             return{
                 ...state,
                 searchered: []
+            };
+
+        case ORDER_ASC: 
+            function ascend(a, b) {
+                if ( a.name < b.name ) { return -1; }
+                if ( a.name > b.name ) { return 1; }
+                return 0;
             }
+        let asc = state.products.sort(ascend)
+        
+            return {
+                ...state,
+                products: [...asc]
+            };
+
+        case ORDER_DESC:
+                function desc(a, b) {
+                    if ( a.name > b.name ) { return -1; }
+                    if ( a.name < b.name ) { return 1; }
+                    return 0;
+                }
+                let oderDesc = state.products.sort(desc)
+    
+            return {
+                    ...state,
+                    products: [...oderDesc]
+            };
+
+        case ORDER_BY_RATING:
+                let rat;
+                const producRating = state.products
+                
+                action.payload === 'High to Low'
+                ?  rat = producRating.sort((a, b) => b.rating - a.rating)
+                :  rat = producRating.sort((a, b) => a.rating - b.rating)
+                    return {
+                         ...state,
+                         products: [...rat]
+            };
+
+            case ORDER_BY_ESRB:
+               const esrb = state.products2.filter(e => e.esrb_rating === action.payload)
+                    return {
+                         ...state,
+                         products: [...esrb]
+            };
+
+
         default: 
         return state;
     }
