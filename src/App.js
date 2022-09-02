@@ -7,6 +7,7 @@ import NavBar from './Components/NavBar/NavBar';
 import ShoppingCart from './Components/ShoppingCart/ShoppingCart';
 import CreateUser from './Components/CreateUser/CreateUser';
 import Login from './Components/Login/Login';
+import Home from './Components/Home/Home';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="/shopping_cart" component={ShoppingCart} />
         <Route path="/create_user"component={CreateUser} />
         <Route path="/login" component={Login} />
+        <Route path="/home" component={Home} />
         <Footer />
     </div>
   );

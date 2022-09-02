@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 /* import { favorites } from '../../../redux/actions.jsx' */     // CREAR UNA ACTION QUE DEPLOYE FAVORITO AL USUARIO
 
 
-export default function ProductCard({ id, name, img, rating, plataforms, /* price */ }) {
+export default function ProductCard({ id, name, img, rating, platforms, /* price */ }) {
 
   const dispatch = useDispatch()
 
@@ -19,7 +19,7 @@ export default function ProductCard({ id, name, img, rating, plataforms, /* pric
     <div>
 
       {
-        id && name && img && rating && plataforms && (
+        id && name && img && rating && platforms && (
           <Link to={`/RUTA PARA BUSCAR POR EL DETALLE DEL JUEGO/${id}`}>
             <div class="w-full max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
               <a href="#">

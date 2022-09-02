@@ -1,31 +1,51 @@
 import React from "react";
-import { getAllVideogames, filterByGenres, filterByPlatforms} from '../../redux/actions';
+import { getAllVideogames, filterByGenres, filterByPlatforms, getGenres, getPlatforms} from '../../redux/actions';
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./SideBar.css"
 
 export default function SideBar (){
   const genres= useSelector((state=>state.genres));
-  const platforms = useSelector ((state =>state.plataforms));
+  const platforms = useSelector ((state =>state.platforms));
+
   const dispatch = useDispatch();
   
 
-//   useEffect(()=>{
-//     dispatch(("PLATFORMS"));
-//     dispatch(("GENEROS"))
-// },[dispatch])
+  useEffect(()=>{
+    dispatch(getGenres());
+    dispatch(getPlatforms());
+},[dispatch])
 
 function handleFilterByGenre(e){
   e.preventDefault();
   dispatch(filterByGenres(e.target.value));
+  console.log(e.target.value)
 }
 function handleFilterByPlatforms(e){
     e.preventDefault();
     dispatch(filterByPlatforms(e.target.value));
+    console.log(e.target.value)
   }
 
     return (
         <div>
+          <div>
+            <select onChange={handleFilterByGenre}>
+              <option value="default">Genres</option>
+              {genres.length&&genres.map(e=>(
+                <option key={e.name} value={e.name}>{e.name}</option>
+              ))}
+            </select>
+          </div>
+          {console.log(platforms)}
+          <div>
+            <select onChange={handleFilterByPlatforms}>
+                <option value="default">Platforms</option>
+                {platforms.length&&platforms.map(e=>(
+                  <option key={e.name} value={e.name}>{e.name}</option>
+                ))}
+            </select>
+          </div>
           {/* <div>
            <label>Genres</label> 
             <select onChange={e=> handleFilterByGenre(e)}>
@@ -39,7 +59,7 @@ function handleFilterByPlatforms(e){
             </select>
           </div> */}
           
-          <div class="w-48 text-gray-900 bg-white rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+          {/* <div class="w-48 text-gray-900 bg-white rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
     <button type="button" class="inline-flex relative items-center py-2 px-4 w-full text-sm font-medium rounded-t-lg border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
         <svg aria-hidden="true" class="mr-2 w-4 h-4 fill-current" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"></path></svg>
         Genero
@@ -70,9 +90,9 @@ function handleFilterByPlatforms(e){
       <button class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</button>
       </li>
     </ul>
-</div>
+</div> */}
 
-</div>
+{/* </div> */}
 
         </div>
     )

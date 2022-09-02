@@ -5,7 +5,8 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom'
 import { addToCart, addWish } from '../../redux/actions';
-const URL = "https://e-commerce-api-pf.herokuapp.com/";
+// const URL = "https://e-commerce-api-pf.herokuapp.com/";
+const URL = "http://localhost:3001/";
 export default function ProductDetails() {
 const [game, setGame] = useState({});
 const [disabled, setDisabled] = useState(true); // si no esta logueado desabilita addwish
