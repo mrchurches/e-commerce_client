@@ -50,6 +50,7 @@ const CreateUser = () => {
     } else {
       setDisabled(true)
     }
+    setUser(userFormat);
   };
   return (
     <div>
