@@ -12,7 +12,7 @@ const CreateUser = () => {
   [disabledBtn, setDisabled] = useState(true);
   
   useEffect(async ()=>{
-    setUserNames(await getUsers())
+    await setUserNames(getUsers())
   }, []);
   
   function handleChange(e) {
