@@ -4,7 +4,9 @@ import { GET_ALL_PRODUCTS,
          GET_PLATFORMS,
          SEARCH_PRODUCT,
          FILTER_BY_PLATFORMS,
-         GET_USERS
+         GET_USERS,
+         ADD_TO_CART,
+         ADD_WISH
         } from "./actions.js";
 /* import { products } from "./products.js" */
 
@@ -16,7 +18,9 @@ let initialState = {
     platforms: [],
     genres: [],
     searchered: [],
-    users: []
+    users: [],
+    cart: [],
+    wishlist:[]
 }
 
 export default function rootReducer(state = initialState, action){
@@ -65,6 +69,16 @@ export default function rootReducer(state = initialState, action){
             return{
                 ...state,
                 products: filtered_platforms
+            }
+        case ADD_TO_CART:
+            return{
+                ...state,
+                cart: [...state.cart, action.payload]
+            }
+        case ADD_WISH:
+            return{
+                ...state,
+                wishlist: [...state.wishlist, action.payload]
             }
         default: 
         return state;
