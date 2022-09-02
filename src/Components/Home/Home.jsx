@@ -34,7 +34,7 @@ const paginado = (number) => {
                 <SideBar />
             </div>
             <div>
-                <Pagination currentPage={currentPage} gamesPerPage={gamesPerPage} games={searchered.length? searchered.length : games.length} paginado={paginado}/>
+
                 <Filters />
                 <div class="flex flex-wrap content-around justify-center">
                     {currentGames.length && currentGames.map(e=>(
@@ -46,6 +46,13 @@ const paginado = (number) => {
                         !currentGames.length&&<h4>Todavia no hay nada por aqui</h4>
                     }
                 </div>
+                    <Pagination 
+                            currentPage={currentPage} 
+                            gamesPerPage={gamesPerPage} 
+                            games={searchered.length
+                            ? searchered.length 
+                            : games.length} paginado={paginado}
+                    />
             </div>
         </div>
     
