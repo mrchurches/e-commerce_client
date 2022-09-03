@@ -44,18 +44,18 @@ export const validatedFunctions= {
 };
 
 export async function getUsers(){
-  const users = await axios.get(`http://${REACT_APP_URL}/user/getusers`);
+  const users = await axios.get(`${REACT_APP_URL}/user/getusers`);
   return users.data.users.map(e => e.username)
 };
 
 export async function findEmail(email){
-  const response = await axios.get(`http://${REACT_APP_URL}/user/find/${email}`);
+  const response = await axios.get(`${REACT_APP_URL}/user/find/${email}`);
   return response.data.user
 };
 
 export async function createNewUser({name, lastname, username, email, password,profile_pic}){
   try {
-    const response = await axios.post(`http://${REACT_APP_URL}/signup`,{
+    const response = await axios.post(`${REACT_APP_URL}/signup`,{
       name,
       lastname,
       username,
