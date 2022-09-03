@@ -44,8 +44,8 @@ export const validatedFunctions= {
 };
 
 export async function getUsers(){
-  const users = await axios.get(`${REACT_APP_URL}/user/getusers`);
-  return users.data.users.map(e => e.username)
+  const users = await axios.get(`${REACT_APP_URL}/users/all`);
+  return users.data.map(e => e.username)
 };
 
 export async function findEmail(email){
