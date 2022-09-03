@@ -10,53 +10,53 @@ import Filters from "../Filters/Filters"
 import "./Home.css"
 
 function Home() {
-let games = useSelector(state=> state.products);
-let searchered = useSelector(state=> state.searchered);
-let dispatch = useDispatch();
-let currentPage = useSelector((state)=> state.currentPage);
-let [gamesPerPage, setgamesPerPage] = useState(10);
-const indexOfLastGame = currentPage * gamesPerPage;
-const indexOfFirstGame = indexOfLastGame - gamesPerPage;
-const currentGames = searchered.length? searchered.slice(indexOfFirstGame, indexOfLastGame): games.slice(indexOfFirstGame, indexOfLastGame);
-// const [show, setShow] = useState(false);
+    let games = useSelector(state => state.products);
+    let searchered = useSelector(state => state.searchered);
+    let dispatch = useDispatch();
+    let currentPage = useSelector((state) => state.currentPage);
+    let [gamesPerPage, setgamesPerPage] = useState(10);
+    const indexOfLastGame = currentPage * gamesPerPage;
+    const indexOfFirstGame = indexOfLastGame - gamesPerPage;
+    const currentGames = searchered.length ? searchered.slice(indexOfFirstGame, indexOfLastGame) : games.slice(indexOfFirstGame, indexOfLastGame);
+    // const [show, setShow] = useState(false);
 
-const paginado = (number) => {
-    dispatch(setCurrentPage(number))
-}
+    const paginado = (number) => {
+        dispatch(setCurrentPage(number))
+    }
 
 
-  useEffect(()=>{
-    dispatch(getAllProducts())
-  },[dispatch])
+    useEffect(() => {
+        dispatch(getAllProducts())
+    }, [dispatch])
     return (
         <div class="d-flex">
-            <div style={{marginRight: '15px', marginLeft: '10px'}}>
-                <SideBar/>
+            <div style={{ marginRight: '15px', marginLeft: '10px' }}>
+                <SideBar />
             </div>
             <div>
 
                 <Filters />
-                <div class="row pb-5 mb-4">
-                    {currentGames.length && currentGames.map(e=>(
+                <div class="row pb-5 mb-4" className="allCardsConteiner" >
+                    {currentGames.length && currentGames.map(e => (
                         <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
                             <ProductCard name={e.name} id={e.id_api} img={e.background_image} rating={e.rating} platform={e.platform} price={e.price} />
                         </div>
                     ))}
                     {
-                        !currentGames.length&&<h4>Todavia no hay nada por aqui</h4>
+                        !currentGames.length && <h4>Todavia no hay nada por aqui</h4>
                     }
                 </div>
-                    <Pagination 
-                            currentPage={currentPage} 
-                            gamesPerPage={gamesPerPage} 
-                            games={searchered.length
-                            ? searchered.length 
-                            : games.length} paginado={paginado}
-                    />
+                <Pagination
+                    currentPage={currentPage}
+                    gamesPerPage={gamesPerPage}
+                    games={searchered.length
+                        ? searchered.length
+                        : games.length} paginado={paginado}
+                />
             </div>
         </div>
-    
-  )
+
+    )
 }
 
 export default Home
