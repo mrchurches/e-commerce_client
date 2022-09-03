@@ -5,3 +5,7 @@
     margin: 0px;
     transform: translate(320px, 70px);
 }
+
+.sidebar-wrapper{
+    height: 100%;
+}

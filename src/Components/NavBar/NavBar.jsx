@@ -9,7 +9,7 @@ const NavBar = () => {
     return (
 
 
-        <nav class="navbar navbar-expand-lg bg-light">
+        <nav class="navbar navbar-expand-lg" style={{backgroundColor: "rgb(238, 245, 246)"}}>
   <div class="container-fluid">
     <Link to="/" className='link'>
         <span class="navbar-brand">Videogames</span>

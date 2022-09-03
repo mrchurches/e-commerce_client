@@ -32,9 +32,9 @@ function handleFilterByPlatforms(e){
   }
 
     return (
-        <div>
+        <div >
           <div>
-            <select onChange={(e)=>handleFilterByGenre(e)}>
+            <select  style={{marginTop: '15px',}} onChange={(e)=>handleFilterByGenre(e)}>
               <option value="default">Genres</option>
               {genres.length&&genres.map(e=>(
                 <option key={e.name} value={e.name}>{e.name}</option>
@@ -42,7 +42,7 @@ function handleFilterByPlatforms(e){
             </select>
           </div>
           <div>
-            <select onChange={(e)=>handleFilterByPlatforms(e)}>
+            <select style={{marginTop: '15px'}} onChange={(e)=>handleFilterByPlatforms(e)}>
                 <option value="default">Platforms</option>
                 {platforms.length&&platforms.map(e=>(
                   <option key={e.name} value={e.name}>{e.name}</option>

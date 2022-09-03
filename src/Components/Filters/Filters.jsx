@@ -1,6 +1,7 @@
 import React from 'react'
 import { asc, desc, orderRating, orderEsrb } from '../../redux/actions.js'
 import {useDispatch, useSelector} from 'react-redux'
+import styles from './filters.module.css'
 
 
 function Filters() {
@@ -42,7 +43,7 @@ function Filters() {
 
 
   return (
-    <div class="flex justify-center">
+    <div class="d-flex justify-content-center" style={{marginTop: '15px', marginBottom: '15px'}}>
       <div>
         <select>
           <option>Price</option> {/* en ProductCard Recibir la propiedad precio del api */}
@@ -50,7 +51,7 @@ function Filters() {
         </select>
       </div>
       <div>
-        <select onClick={(e) => abcOrder(e)}>
+        <select  onClick={(e) => abcOrder(e)}>
         <option disabled={false} value="default">Order by name</option>
           <option>A-Z</option>
           <option>Z-A</option>
