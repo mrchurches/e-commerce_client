@@ -9,7 +9,14 @@ export const FILTER_BY_PLATFORMS = "FILTER_BY_PLATFORMS";
 export const GET_USERS = "GET_USERS"
 export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
-export const CLEAR_CART = "CLEAR_CART"
+export const CLEAR_CART = "CLEAR_CART";
+export const ADD_WISH = "ADD_WISH";
+export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
+export const CLEAR = "CLEAR";
+export const ORDER_ASC = "ORDER_ASC"
+export const ORDER_DESC = "ORDER_DESC"
+export const ORDER_BY_RATING = "ORDER_BY_RATING"
+export const ORDER_BY_ESRB = "ORDER_BY_ESRB"
 
 
 const URL = "http://localhost:3001";
@@ -47,7 +54,7 @@ export function getPlatforms(){
         .then((res)=>{
             dispatch({
                 type: GET_PLATFORMS,
-                payload:res.data
+                payload: res.data
             })
         })
         .catch(err=>console.log(err))
@@ -105,17 +112,96 @@ export function postUsers({username, password}){
     }
 };
 
+// export function filterByGenres(value){
+//     return{
+//         type:FILTER_BY_GENRES,
+//         payload: value
+//     }
+// } //esto me parece que no funciona asi
+
 export function filterByGenres(value){
-    return{
-        type:FILTER_BY_GENRES,
-        payload: value
+    return function(dispatch){
+        dispatch({
+            type: FILTER_BY_GENRES,
+            payload: value
+            
+        })
     }
 }
 
 export function filterByPlatforms(value){
-    
-    return{
-        type:FILTER_BY_PLATFORMS,
-        payload: value
+    return function(dispatch){
+        dispatch({
+            type: FILTER_BY_PLATFORMS,
+            payload: value
+        })
     }
 }
+
+export function addToCart(id){
+    return function(dispatch){
+        dispatch({
+            type: ADD_TO_CART,
+            payload: id
+        })
+}
+}
+
+export function addWish(id){
+    return function(dispatch){
+        dispatch({
+            type: ADD_WISH,
+            payload: id
+        })
+    }
+}
+
+
+export function setCurrentPage(number){
+    return function(dispatch){
+        dispatch({
+            type: SET_CURRENT_PAGE,
+            payload: number
+        })
+    }
+}
+
+export function clear(){
+    return function(dispatch){
+        dispatch({
+            type: CLEAR,
+            payload: []
+        })
+    }
+};
+
+export function asc(payload) {
+    return {
+        type: ORDER_ASC,
+        payload
+    }
+};
+
+export function desc(payload) {
+    return {
+        type: ORDER_DESC,
+        payload
+    }
+};
+
+export function orderRating(payload) {
+    return {
+        type: ORDER_BY_RATING,
+        payload
+    }
+};
+
+export function orderEsrb(payload) {
+    return {
+        type: ORDER_BY_ESRB,
+        payload
+    }
+};
+
+
+

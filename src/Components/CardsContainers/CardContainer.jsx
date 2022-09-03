@@ -4,62 +4,72 @@ import CardForSale from '../Cards/CardForSale/CardForSale'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
 import style from './cardsContainer.module.css'
+import { getAllProducts, getGenres, getPlatforms } from '../../redux/actions.js'
 
-import { getAllProducts, searchProduct, topSeller } from '../../redux/actions.js'
 
+const CardContainer = () => {
 
-const CardContainer = (props) => {
-
-  const products = useSelector((state) => state.products)
+  const Allproducts = useSelector((state) => state.products)
   const searchered = useSelector((state) => state.searchered)
-  const AllGenres = /* useSelector((state) => state.genres) */  ["Action", "Adventure", "RPG", "Shooter", "Puzzle"]
-  const AllPlataforms = /* useSelector((state) => state.plataforms) */ ["Xbox 360", "macOS", "Xbox One", "PlayStation 3", "PlayStation 5"]
-  const years = [2011, 2013, 2014, 2015, 2016, 2017, 2018]
+  const AllGenres = useSelector((state) => state.genres).map(e => e.name)
+  const AllPlataforms = useSelector((state) => state.platforms).map(e => e.name)
+
   /* const topSeller = useSelector((state) => state.topSeller()) */ // más vendidos
 
-  const dispatch = useDispatch()
-
-  const [randomGen, SetRandomGen] = useState()
-  const [randomPlat, SetRandomPLat] = useState()
-  const [randimYear, SetRandomYear] = useState()
+  const [randomGen, SetRandomGen] = useState("Adventure")
+  const [randomPlat, SetRandomPLat] = useState("PC")
+  const [randomYear, SetRandomYear] = useState()
 
   const [start, setStart] = useState(0)
   const [finish, setFinish] = useState(5)
+
+  const years = [2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017]
+  const dispatch = useDispatch()
   
-const ramGen = () => {
-    let randGen = Math.floor(Math.random() * AllGenres.length)
-    return AllGenres[randGen]
-  };
-
- const ramPlat = () => {
-    let randPlat = Math.floor(Math.random() * AllPlataforms.length)
-    return AllPlataforms[randPlat]
-  };
-
-  const ramYear = () => {
-    let randYear = Math.floor(Math.random() * years.length)
-    return years[randYear]
-  };
-
-
-  useEffect(() => {
-    SetRandomGen(ramGen())
-    SetRandomPLat(ramPlat())
-    SetRandomYear(ramYear())
-  }, [])
-
   useEffect(() => {
        dispatch(getAllProducts())
-  }, [dispatch,])
+       dispatch(getGenres())
+       dispatch(getPlatforms())
+       ramYear()
+      /*  ramGen()
+       ramPlat() */
+  }, [dispatch])
 
-  const forSale = products.filter(e => e.released.slice(0, 4) > randimYear).slice(start, finish)
-  const platforms = products.filter(e => e.plataforms.includes(randomPlat)).slice(start, finish)
-  const genres = products.filter(e => e.genres.includes(randomGen)).slice(start, finish)
+  /* useEffect(() => {
+    ramGen()
+    ramPlat()
+    SetRandomYear(ramYear())
+  }, []) */
+
+/*   const ramGen = async () => {
+    let randGen = Math.floor(Math.random() * AllGenres.length)
+    const x = await AllGenres[randGen]
+    SetRandomGen(x)
+  };
+
+ const ramPlat = async () => {
+    let randPlat = Math.floor(Math.random() * AllPlataforms.length)
+    const y = await AllPlataforms[randPlat]
+    SetRandomPLat(y)
+  }; */
+  
+  const ramYear = () => {
+    let randYear = Math.floor(Math.random() * years.length)
+    const x = years[randYear]
+    SetRandomYear(x)
+
+  };
+
+  const forSale = Allproducts.filter( (e) => e.released.slice(0, 4) > randomYear).slice(start, finish)
+  const genres = Allproducts.filter(  (c) => c.genres.find( (c) =>  c.name === randomGen)).slice(start, finish)
+  const platforms = Allproducts.filter(  (c) => c.platforms.find(  (c) =>  c.name === randomPlat)).slice(start, finish)
+
+  console.log(Allproducts)
 
   return (
 
     <section className={style.section}>
-
+{/* 
       {searchered && (
         <div>
           <div className={style.container}>
@@ -67,33 +77,31 @@ const ramGen = () => {
               <ProductCard
                 key={index}
                 name={product.name}
-                img={product.img}
+                img={product.background_image}
               /// MOSTRAR PRECIO TAMBIEN
               />
             ))}
           </div>
-
         </div>
-      )}
+      )} */}
 
-      
 
-      {products && (
+      {Allproducts && (
          <div className={style.bigContainer}>
 
-          <div className={style.ForSale}>
+          {/* <div className={style.ForSale}>
             {forSale && forSale.map((product, index) => (
               <CardForSale
                 key={index}
                 id={product.id}
                 name={product.name}
-                img={product.img}
+                img={product.background_image}
               />
             ))}
 
-          </div>
+          </div> */}
 
-          <div className={style.box}>
+          {/* <div className={style.box}>
             <h6> {randomPlat} </h6>
             <div className={style.container}>
 
@@ -102,7 +110,7 @@ const ramGen = () => {
                   key={index}
                   id={product.id}
                   name={product.name}
-                  img={product.img}
+                  img={product.background_image}
                   rating={product.rating}
                 />
               ))}
@@ -118,16 +126,14 @@ const ramGen = () => {
                   key={index}
                   id={product.id}
                   name={product.name}
-                  img={product.img}
+                  img={product.background_image}
                   rating={product.rating}
                 />
               ))}
             </div>
-          </div>
+          </div> */}
       </div>
       )}
-
-
 
     </section>
   )

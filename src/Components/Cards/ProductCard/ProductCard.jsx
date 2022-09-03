@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 /* import { favorites } from '../../../redux/actions.jsx' */     // CREAR UNA ACTION QUE DEPLOYE FAVORITO AL USUARIO
 
 
-export default function ProductCard({ id, name, img, rating, plataforms, /* price */ }) {
+export default function ProductCard({ id, name, img, rating, platforms, /* price */ }) {
 
   const dispatch = useDispatch()
 
@@ -19,8 +19,8 @@ export default function ProductCard({ id, name, img, rating, plataforms, /* pric
     <div>
 
       {
-        id && name && img && rating && plataforms && (
-          <Link to={`/RUTA PARA BUSCAR POR EL DETALLE DEL JUEGO/${id}`}>
+        id && name && img && rating && platforms && (
+          <Link to={`/detail${id}`}>
             <div class="w-full max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
               <a href="#">
                 <img class="p-8 rounded-t-lg" src={img} alt="product image" />
@@ -50,11 +50,11 @@ export default function ProductCard({ id, name, img, rating, plataforms, /* pric
 
         
         <div class="w-full max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
-          <Link to={`/RUTA PARA BUSCAR POR EL DETALLE DEL JUEGO/${id}`}>
+          <Link to={`/detail/${id}`}>
             <img class="p-2 rounded-t-lg " src={img} alt="product image" />
           </Link>
           <div class="px-4 pb-5">
-            <Link to={`/RUTA PARA BUSCAR POR EL DETALLE DEL JUEGO/${id}`}>
+            <Link to={`/detail/${id}`}>
               <h5 class="text-sm font-semibold tracking-tight text-gray-900 dark:text-white">{name}</h5>
             </Link>
             <div class="flex items-center mt-2.5 mb-5">
@@ -66,15 +66,13 @@ export default function ProductCard({ id, name, img, rating, plataforms, /* pric
               <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">{rating}</span>
             </div>
             <div class="flex justify-between items-center">
-
+            <span class="text-3xl font-bold text-gray-900 dark:text-white">{parseInt(Math.random() * 100)} U$d</span>
               <button onClick={(e) => handleClick(e)}  name={id}  class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add Favorite</button>
             </div>
           </div>
         </div>
     
       }
-
-
 
     </div>)
 }
