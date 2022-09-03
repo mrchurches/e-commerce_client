@@ -30,8 +30,8 @@ const paginado = (number) => {
   },[dispatch])
     return (
         <div class="d-flex">
-            <div>
-                <SideBar />
+            <div style={{marginRight: '15px', marginLeft: '10px'}}>
+                <SideBar/>
             </div>
             <div>
 

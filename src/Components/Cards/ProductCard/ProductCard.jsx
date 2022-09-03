@@ -50,11 +50,11 @@ export default function ProductCard({ id, name, img, rating, platforms, /* price
       {
 
         
-        <div class="card">
+        <div class="card" style={{maxWidth: "18rem", marginBottom: '25px'}}>
           <Link to={`/detail/${id}`}>
-            <img class="card-img-top" style={{width: '18rem', height: '10rem'}} src={img} alt="product img" />
+            <img class="card-img-top" style={{maxWidth: '18rem', maxHeight: '10rem'}} src={img} alt="product img" />
           </Link>
-          <div class="card-body">
+          <div class="card-body" >
             <Link to={`/detail/${id}`} style={{textDecoration: "none"}}>
               <h5 class="card-title">{name}</h5>
             </Link>
