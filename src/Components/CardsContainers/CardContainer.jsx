@@ -137,6 +137,7 @@ const CardContainer = () => {
                   name={product.name}
                   img={product.background_image}
                   rating={product.rating}
+                  price={product.price}
                 />
                 </div>
               ))}
