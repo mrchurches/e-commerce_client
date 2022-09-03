@@ -47,8 +47,6 @@ const CreateUser = () => {
     }else{
       setDisabled(false)
     }
-
-    console.log(validate)
   }, [user, isChange])
 
   async function handleSubmit(e) {
