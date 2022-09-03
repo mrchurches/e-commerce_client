@@ -20,7 +20,7 @@ const Login = () => {
   }
   
   return (
-    <div class="d-flex justify-content-center ">
+    <div class="d-flex justify-content-center " style={{marginTop: '10vh'}}>
       <div class="card shadow-lg p-3 mb-5 bg-body rounded" style={{width: '18rem'}}>
           <form onSubmit={(e)=>handleSubmit(e)}>
             <div class="mb-3">
