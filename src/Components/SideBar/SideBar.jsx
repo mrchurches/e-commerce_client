@@ -1,8 +1,10 @@
 import React from "react";
-import { getAllVideogames, filterByGenres, filterByPlatforms, getGenres, getPlatforms, setCurrentPage} from '../../redux/actions';
+import { getAllVideogames, filterByGenres, filterByPlatforms, getGenres, getPlatforms, setCurrentPage, orderEsrb} from '../../redux/actions';
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./SideBar.css"
+
+const esrbMock = [ "Teen", "Mature", "Not rated", "Adults Only", "Everyone", "Everyone 10+", "Rating Pending" ]
 
 export default function SideBar (){
   const genres= useSelector((state=>state.genres));
@@ -31,6 +33,15 @@ function handleFilterByPlatforms(e){
     }
   }
 
+  function esrbContent(e) {
+    e.preventDefault()
+    let value = e.target.value
+    if(value !== "default"){
+      console.log(value)
+      dispatch(orderEsrb(value))
+    };
+  };
+
     return (
         <div >
           <div>
@@ -49,8 +60,16 @@ function handleFilterByPlatforms(e){
                 ))}
             </select>
           </div>
+          <div>
+            <select style={{marginTop: '15px'}} onChange={(e) => esrbContent(e)}>
+              <option value="default">ESRB Rating</option>
+              {esrbMock?.map((esrb, index) => (
+                    <option key={index} value={esrb}> {esrb} </option>
+                    ))}
+            </select>
+          </div>
           {/* <div>
-           <label>Genres</label> 
+          <label>Genres</label> 
             <select onChange={e=> handleFilterByGenre(e)}>
                 {genres?.map((g,index) => (<option key ={index} value={g.name}>{g.name}</option>))}
             </select>
