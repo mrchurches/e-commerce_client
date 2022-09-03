@@ -19,11 +19,12 @@ export const ORDER_BY_RATING = "ORDER_BY_RATING"
 export const ORDER_BY_ESRB = "ORDER_BY_ESRB"
 
 
-const URL = "http://localhost:3001";
+const URL = "https://e-commerce-api-pf.herokuapp.com/";
+// const URL = "http://localhost:3001/"
 
 export function getAllProducts(){
     return function(dispatch){
-        axios.get(`${URL}`)
+        axios.get(`${URL}videogames`)
         .then((res)=>{
             dispatch({
                 type: GET_ALL_PRODUCTS,
@@ -37,7 +38,7 @@ export function getAllProducts(){
 
 export function getGenres(){
     return function (dispatch){
-        axios.get(`${URL}`)
+        axios.get(`${URL}genres`)
         .then((res)=>{
             dispatch({
                 type: GET_GENRES,
@@ -50,7 +51,7 @@ export function getGenres(){
 
 export function getPlatforms(){
     return function (dispatch){
-        axios.get(`${URL}`)
+        axios.get(`${URL}platforms`)
         .then((res)=>{
             dispatch({
                 type: GET_PLATFORMS,
@@ -65,7 +66,7 @@ export function getPlatforms(){
 export function searchProduct(name){
    if(name){
     return function (dispatch){
-        axios.get(`${URL}`)
+        axios.get(`${URL}videogames?name=${name}`)
         .then((res)=>{
             dispatch({
                 type: SEARCH_PRODUCT,
@@ -79,7 +80,7 @@ export function searchProduct(name){
 
 export function getUsers(){
     return function (dispatch){
-        axios.get(`${URL}`)
+        axios.get(`${URL}users`)
         .then((res)=>{
             dispatch({
                 type: GET_USERS,
@@ -202,6 +203,3 @@ export function orderEsrb(payload) {
         payload
     }
 };
-
-
-
