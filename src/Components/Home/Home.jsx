@@ -39,7 +39,7 @@ const paginado = (number) => {
                 <div class="row pb-5 mb-4">
                     {currentGames.length && currentGames.map(e=>(
                         <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-                            <ProductCard name={e.name} id={e.id_api} img={e.background_image} rating={e.rating} platform={e.platform} />
+                            <ProductCard name={e.name} id={e.id_api} img={e.background_image} rating={e.rating} platform={e.platform} price={e.price} />
                         </div>
                     ))}
                     {

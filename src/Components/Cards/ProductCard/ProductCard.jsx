@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux'
 import './ProductCard.css'
 
 
-export default function ProductCard({ id, name, img, rating, platforms, /* price */ }) {
+export default function ProductCard({ id, name, img, rating, platforms, price}) {
 
   const dispatch = useDispatch()
 
@@ -67,7 +67,7 @@ export default function ProductCard({ id, name, img, rating, platforms, /* price
               <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">{rating}</span>
             </div>*/}
             {/*<div class="flex justify-between items-center">*/}
-            <span class="card-text">{parseInt(Math.random() * 100)} U$d</span>
+            <span class="card-text">{price} U$d</span>
               <button onClick={(e) => handleClick(e)}  name={id}  class="btn btn-primary">Add Favorite</button>
             {/*</div>*/}
           </div>
