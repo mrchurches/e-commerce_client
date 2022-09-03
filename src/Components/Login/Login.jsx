@@ -1,39 +1,47 @@
 import "./Login.css"
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import gLogo from './btn_google.svg'
 import { useDispatch } from "react-redux";
 
 import { postUsers } from "../../redux/actions";
 import { URL } from "../CreateUser/CreateUserHelper";
 import { findEmail } from "../CreateUser/CreateUserHelper";
+import { useSelector } from "react-redux";
 
 
 const Login = () => {
   let [user, setUser] = useState({ username: "", password: "" });
 
+  const {userAuth } = useSelector(state=>{
+    return {userAuth: state.users}  
+  })
+
+  useEffect(()=>{
+    console.log(userAuth)
+  }, [userAuth])
+
   function handleChange(e) {
-    if (e.target.value) {
-      setUser({ ...user, [e.target.id]: e.target.value })
-    }
+    setUser({ ...user, [e.target.id]: e.target.value })
   }
   const dispatch = useDispatch()
+
   async function handleSubmit(e) {
-    console.log(user)
     e.preventDefault();
-  /*   const banned = await findEmail(user.username);
-     if (banned) {
+    const userExist = await findEmail(user.username);
+     if (userExist.isBanned) {
       alert("you're banned");
       return;
-    } */
-     const dataUser = await dispatch(postUsers(user));
-    console.log(dataUser);
+    }
+     await dispatch(postUsers(user));
+     setUser({ username: "", password: "" })
   }
-
+  
   return (
     <section class="h-screen">
+      {userAuth.user && <Redirect to='/'/>}
       <div class="container px-6 py-12 h-full">
         <div class="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
           <div class="md:w-8/12 lg:w-6/12 mb-12 md:mb-0">
@@ -48,7 +56,7 @@ const Login = () => {
               {/* <!-- Email input -->  */}
               <div class="mb-6">
                 <input
-                  id="username"
+                  id="username" value={user.username}
                   type="text" onChange={(e)=>handleChange(e)}
                   class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   placeholder="Email address"
@@ -57,7 +65,7 @@ const Login = () => {
               {/*  <!-- Password input --> */}
               <div class="mb-6">
                 <input
-                  id="password"
+                  id="password" value={user.password}
                   type="password" onChange={(e)=>handleChange(e)}
                   class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                   placeholder="Password"
