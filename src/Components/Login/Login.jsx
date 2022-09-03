@@ -9,18 +9,14 @@ const Login = () => {
 
   function handleChange(e){
     e.preventDefault();
-    
-    if(e.target.value){
       setUser({...user, [e.target.name]: e.target.value})
-    
-    }
     if(user.email && user.password) setDisabled(false);
   }
 
   function handleSubmit(e){
     e.preventDefault();
     alert("Login ok");
-    setUser({});
+    setUser({email:"", password:""});
   }
   
   return (
