@@ -26,14 +26,14 @@ const CardContainer = () => {
 
   const years = [2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017]
   const dispatch = useDispatch()
-  
+
   useEffect(() => {
-       dispatch(getAllProducts())
-       dispatch(getGenres())
-       dispatch(getPlatforms())
-       ramYear()
-      /*  ramGen()
-       ramPlat() */
+    dispatch(getAllProducts())
+    dispatch(getGenres())
+    dispatch(getPlatforms())
+    ramYear()
+    /*  ramGen()
+     ramPlat() */
   }, [dispatch])
 
   /* useEffect(() => {
@@ -42,18 +42,18 @@ const CardContainer = () => {
     SetRandomYear(ramYear())
   }, []) */
 
-/*   const ramGen = async () => {
-    let randGen = Math.floor(Math.random() * AllGenres.length)
-    const x = await AllGenres[randGen]
-    SetRandomGen(x)
-  };
-
- const ramPlat = async () => {
-    let randPlat = Math.floor(Math.random() * AllPlataforms.length)
-    const y = await AllPlataforms[randPlat]
-    SetRandomPLat(y)
-  }; */
+  /*   const ramGen = async () => {
+      let randGen = Math.floor(Math.random() * AllGenres.length)
+      const x = await AllGenres[randGen]
+      SetRandomGen(x)
+    };
   
+   const ramPlat = async () => {
+      let randPlat = Math.floor(Math.random() * AllPlataforms.length)
+      const y = await AllPlataforms[randPlat]
+      SetRandomPLat(y)
+    }; */
+
   const ramYear = () => {
     let randYear = Math.floor(Math.random() * years.length)
     const x = years[randYear]
@@ -61,16 +61,16 @@ const CardContainer = () => {
 
   };
 
-  const forSale = Allproducts.filter( (e) => e.released.slice(0, 4) > randomYear).slice(start, finish)
-  const genres = Allproducts.filter(  (c) => c.genres.find( (c) =>  c.name === randomGen)).slice(start, finish)
-  const platforms = Allproducts.filter(  (c) => c.platforms.find(  (c) =>  c.name === randomPlat)).slice(start, finish)
+  const forSale = Allproducts.filter((e) => e.released.slice(0, 4) > randomYear).slice(start, finish)
+  const genres = Allproducts.filter((c) => c.genres.find((c) => c.name === randomGen)).slice(start, finish)
+  const platforms = Allproducts.filter((c) => c.platforms.find((c) => c.name === randomPlat)).slice(start, finish)
 
   console.log(Allproducts)
 
   return (
 
     <section className='section'>
-{/* 
+      {/* 
       {searchered && (
         <div>
           <div className={style.container}>
@@ -88,7 +88,7 @@ const CardContainer = () => {
 
 
       {Allproducts && (
-         <div className='bigContainer'>
+        <div className='bigContainer'>
 
           {/*<div className={style.ForSale}>
             {forSale && forSale.map((product, index) => (
@@ -102,49 +102,49 @@ const CardContainer = () => {
 
             </div>*/}
 
-            <CardForSale forSale={forSale}/>
-          
+          <CardForSale forSale={forSale} />
+
 
           <div className='box'>
             <h6> {randomPlat} </h6>
             <div class='d-flex justify-content-center'>
-            <div class="row pb-5 mb-4">
-              {platforms && platforms.map((product, index) => (
-                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-                <ProductCard
-                  key={index}
-                  id={product.id}
-                  name={product.name}
-                  img={product.background_image}
-                  rating={product.rating}
-                  price={product.price}
-                />
-                </div>
-              ))}
-            </div>
+              <div class="row pb-5 mb-4">
+                {platforms && platforms.map((product, index) => (
+                  <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <ProductCard
+                      key={index}
+                      id={product.id}
+                      name={product.name}
+                      img={product.background_image}
+                      rating={product.rating}
+                      price={product.price}
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
 
           <div className='box'>
             <h6> {randomGen} </h6>
             <div class='d-flex justify-content-center'>
-            <div class="row pb-5 mb-4">
-              {genres && genres.map((product, index) => (
-                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-                <ProductCard
-                  key={index}
-                  id={product.id}
-                  name={product.name}
-                  img={product.background_image}
-                  rating={product.rating}
-                  price={product.price}
-                />
-                </div>
-              ))}
-            </div>
+              <div class="row pb-5 mb-4">
+                {genres && genres.map((product, index) => (
+                  <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                    <ProductCard
+                      key={index}
+                      id={product.id}
+                      name={product.name}
+                      img={product.background_image}
+                      rating={product.rating}
+                      price={product.price}
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-      </div>
+        </div>
       )}
 
     </section>
