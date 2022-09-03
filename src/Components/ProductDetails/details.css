@@ -1,0 +1,80 @@
+.container {
+  margin-top: 20px;
+  max-width: 1700px;
+}
+
+.project-info-box {
+  margin: 15px 0;
+  background-color: rgb(238, 245, 246);
+  padding: 30px 40px;
+  border-radius: 5px;
+}
+
+.project-info-box p {
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+
+}
+
+.project-info-box p:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.description {
+  text-align: justify;
+  text-justify: inter-character;
+}
+
+img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    -webkit-backface-visibility: hidden;
+}
+
+.rounded {
+    border-radius: 5px !important;
+}
+
+button {
+    margin-left: 10px;
+}
+
+p {
+    font-family: "Barlow", sans-serif !important;
+    font-weight: 300;
+    font-size: 1rem;
+    color: #686c6d;
+    letter-spacing: 0.03rem;
+    margin-bottom: 10px;
+}
+
+b, strong {
+    font-weight: 700 !important;
+}
+
+.p1 {
+  display:inline;
+  word-wrap: break-word;
+  margin-left:10px;
+}
+
+.p2 {
+  display:inline;
+  word-wrap: break-word;
+  margin-left:10px;
+}
+
+.divp1 {
+  border-bottom: 1px solid #d5dadb;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 320px;
+}
+
+.p3 {
+  border-bottom: 1px solid #d5dadb;
+}

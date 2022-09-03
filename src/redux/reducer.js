@@ -13,6 +13,7 @@ import { GET_ALL_PRODUCTS,
          ORDER_DESC,
          ORDER_BY_RATING,
          ORDER_BY_ESRB,
+         Order_By
         } from "./actions.js";
 /* import { products } from "./products.js" */
 
@@ -70,9 +71,9 @@ export default function rootReducer(state = initialState, action){
             });
             console.log(state.products2)
         return{
-               ...state,
-               products: filtered_genres
-              }
+                ...state,
+                products: filtered_genres
+            }
         case SEARCH_PRODUCT:
             console.log(action.payload)
             return{
@@ -151,15 +152,20 @@ export default function rootReducer(state = initialState, action){
                 ?  rat = producRating.sort((a, b) => b.rating - a.rating)
                 :  rat = producRating.sort((a, b) => a.rating - b.rating)
                     return {
-                         ...state,
-                         products: [...rat]
+                        ...state,
+                        products: [...rat]
             };
-
+            case Order_By:
+                console.log(action.payload)
+                return{
+                    ...state,
+                    products:[...state.products].sort(action.payload)
+                };
             case ORDER_BY_ESRB:
-               const esrb = state.products2.filter(e => e.esrb_rating === action.payload)
+                const esrb = state.products2.filter(e => e.esrb_rating === action.payload)
                     return {
-                         ...state,
-                         products: [...esrb]
+                        ...state,
+                        products: [...esrb]
             };
 
 

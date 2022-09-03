@@ -19,6 +19,7 @@ export const ORDER_ASC = "ORDER_ASC"
 export const ORDER_DESC = "ORDER_DESC"
 export const ORDER_BY_RATING = "ORDER_BY_RATING"
 export const ORDER_BY_ESRB = "ORDER_BY_ESRB"
+export const Order_By = "Orderby"
 
 
 const URL = "https://e-commerce-api-pf.herokuapp.com/";
@@ -204,4 +205,13 @@ export function orderEsrb(payload) {
         type: ORDER_BY_ESRB,
         payload
     }
+
 };
+
+export function Orderby(payload){
+    return{
+        type: Order_By,
+        payload
+    };
+};
+
