@@ -3,8 +3,9 @@ import ProductCard from '../Cards/ProductCard/ProductCard.jsx'
 import CardForSale from '../Cards/CardForSale/CardForSale'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
-import style from './cardsContainer.module.css'
+import './cardsContainer.css'
 import { getAllProducts, getGenres, getPlatforms } from '../../redux/actions.js'
+import { Link } from 'react-router-dom'
 
 
 const CardContainer = () => {
@@ -68,8 +69,8 @@ const CardContainer = () => {
 
   return (
 
-    <section className={style.section}>
-
+    <section className='section'>
+{/* 
       {searchered && (
         <div>
           <div className={style.container}>
@@ -83,13 +84,13 @@ const CardContainer = () => {
             ))}
           </div>
         </div>
-      )}
+      )} */}
 
 
       {Allproducts && (
-         <div className={style.bigContainer}>
+         <div className='bigContainer'>
 
-          <div className={style.ForSale}>
+          {/*<div className={style.ForSale}>
             {forSale && forSale.map((product, index) => (
               <CardForSale
                 key={index}
@@ -99,13 +100,17 @@ const CardContainer = () => {
               />
             ))}
 
-          </div>
+            </div>*/}
 
-          <div className={style.box}>
+            <CardForSale forSale={forSale}/>
+          
+
+          <div className='box'>
             <h6> {randomPlat} </h6>
-            <div className={style.container}>
-
+            <div class='d-flex justify-content-center'>
+            <div class="row pb-5 mb-4">
               {platforms && platforms.map((product, index) => (
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
                 <ProductCard
                   key={index}
                   id={product.id}
@@ -113,15 +118,18 @@ const CardContainer = () => {
                   img={product.background_image}
                   rating={product.rating}
                 />
+                </div>
               ))}
+            </div>
             </div>
           </div>
 
-          <div className={style.box}>
+          <div className='box'>
             <h6> {randomGen} </h6>
-            <div className={style.container}>
-
+            <div class='d-flex justify-content-center'>
+            <div class="row pb-5 mb-4">
               {genres && genres.map((product, index) => (
+                <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
                 <ProductCard
                   key={index}
                   id={product.id}
@@ -129,7 +137,9 @@ const CardContainer = () => {
                   img={product.background_image}
                   rating={product.rating}
                 />
+                </div>
               ))}
+            </div>
             </div>
           </div>
       </div>

@@ -1,5 +1,19 @@
 .App {
   text-align: center;
+  background-image: linear-gradient(
+  0deg,
+  hsl(227deg 28% 51%) 0%,
+  hsl(214deg 38% 51%) 19%,
+  hsl(205deg 45% 50%) 32%,
+  hsl(198deg 51% 49%) 43%,
+  hsl(193deg 52% 49%) 54%,
+  hsl(188deg 49% 51%) 63%,
+  hsl(182deg 44% 54%) 72%,
+  hsl(174deg 43% 59%) 81%,
+  hsl(162deg 44% 65%) 90%,
+  hsl(147deg 43% 72%) 100%
+);
+  min-height: 100vh;
 }
 
 .App-logo {

@@ -29,16 +29,16 @@ const paginado = (number) => {
     dispatch(getAllProducts())
   },[dispatch])
     return (
-        <div class="flex">
-            <div>
-                <SideBar />
+        <div class="d-flex">
+            <div style={{marginRight: '15px', marginLeft: '10px'}}>
+                <SideBar/>
             </div>
             <div>
 
                 <Filters />
-                <div class="flex flex-wrap content-around justify-center">
+                <div class="row pb-5 mb-4">
                     {currentGames.length && currentGames.map(e=>(
-                        <div >
+                        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
                             <ProductCard name={e.name} id={e.id_api} img={e.background_image} rating={e.rating} platform={e.platform} />
                         </div>
                     ))}

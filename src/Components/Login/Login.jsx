@@ -1,8 +1,7 @@
-import "./Login.css"
 import React from 'react'
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
+import style from "./Login.module.css"
 
 const Login = () => {
   let [user,setUser] = useState({email:"", password:""});
@@ -10,43 +9,40 @@ const Login = () => {
 
   function handleChange(e){
     e.preventDefault();
-    
-    if(e.target.value){
       setUser({...user, [e.target.name]: e.target.value})
-    
-    }
     if(user.email && user.password) setDisabled(false);
   }
 
   function handleSubmit(e){
     e.preventDefault();
     alert("Login ok");
-    setUser({});
+    setUser({email:"", password:""});
   }
   
   return (
-    <div>
-      <div>
-        <h2>Login</h2>
+    <div class="d-flex justify-content-center " style={{marginTop: '10vh'}}>
+      <div class="card shadow-lg p-3 mb-5 bg-body rounded" style={{width: '18rem'}}>
+          <form onSubmit={(e)=>handleSubmit(e)}>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="example@examplemail.com" onChange={handleChange} value={user.email} name="email"/>
+              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" onChange={handleChange} value={user.password} name="password"/>
+            </div>
+            <input disabled={disabled} type="submit" class="btn btn-primary" value="Login"/>
+          </form>
+          <div>
+            <p class="form-label">don't have an account?</p>
+            <Link to="/create_user">
+              <span class="btn btn-primary">Create one!</span>
+            </Link>
+          </div>
       </div>
-      <div>
-        <form onSubmit={handleSubmit}>
-        <label>Email:</label>
-        <input type="email" placeholder="example@examplemail.com" onChange={handleChange} value={user.email} name="email"/>
-        <br />
-        <label>Password:</label>
-        <input type="password" onChange={handleChange} value={user.password} name="password"/> 
-        <br />
-        <input disabled={disabled} type="submit" value="Log in" />
-        </form>
-      </div>
-      <div>
-        <h4>don't have an account?</h4>
-        <Link to="/create_user"><span>Create one!</span></Link>
-      </div>
-    </div>
-    
-  )
+    </div> 
+    )
 }
 
 export default Login
