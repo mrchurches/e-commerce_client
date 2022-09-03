@@ -1,5 +1,7 @@
 import axios from "axios";
 
+import { REACT_APP_URL } from "../Components/CreateUser/CreateUserHelper";
+
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const FILTER_BY_GENRES = "FILTER_BY_GENRES";
 export const GET_GENRES = "GET_GENRES";
@@ -17,10 +19,11 @@ export const ORDER_ASC = "ORDER_ASC"
 export const ORDER_DESC = "ORDER_DESC"
 export const ORDER_BY_RATING = "ORDER_BY_RATING"
 export const ORDER_BY_ESRB = "ORDER_BY_ESRB"
+export const Order_By = "Orderby"
 
 
 const URL = "https://e-commerce-api-pf.herokuapp.com/";
-// const URL = "http://localhost:3001/"
+
 
 export function getAllProducts(){
     return function(dispatch){
@@ -91,10 +94,25 @@ export function getUsers(){
     }
 };
 
-export function postUsers(payload){
-    return async function(dispatch){
-        var createUsers= await axios.post(`${URL}users`);
-        return createUsers;
+export function postUsers({username, password}){
+    var options = {
+        method: 'POST',
+        url: `${REACT_APP_URL}/login`,
+        withCredentials: true,
+        data: {username, password}
+      };
+    try {     
+        return async function(dispatch){
+            const response = await axios.request(options)
+            dispatch({
+                type: GET_USERS,
+                payload:response.data
+            })
+            return true
+        }
+    } catch (error) {
+        console.log(error.response)
+        return false
     }
 };
 
@@ -187,7 +205,13 @@ export function orderEsrb(payload) {
         type: ORDER_BY_ESRB,
         payload
     }
+
 };
 
-
+export function Orderby(payload){
+    return{
+        type: Order_By,
+        payload
+    };
+};
 

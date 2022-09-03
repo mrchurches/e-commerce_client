@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux'
 import './ProductCard.css'
 
 
-export default function ProductCard({ id, name, img, rating, platforms, price}) {
+export default function ProductCard({ id, name, img, rating, platforms, price }) {
 
   const dispatch = useDispatch()
 
@@ -49,13 +49,13 @@ export default function ProductCard({ id, name, img, rating, platforms, price}) 
 
       {
 
-        
-        <div class="card hover-overlay hover-zoom" style={{maxWidth: "18rem", marginBottom: '25px'}}>
+
+        <div class="card hover-overlay hover-zoom" style={{ maxWidth: "18rem", marginBottom: '25px', maxHeight: '18rem' }}>
           <Link to={`/detail/${id}`}>
-            <img class="card-img-top" style={{maxWidth: '18rem', maxHeight: '10rem'}} src={img} alt="product img" />
+            <img class="card-img-top" style={{ maxWidth: '18rem', maxHeight: '10rem' }} src={img} alt="product img" />
           </Link>
           <div class="card-body" >
-            <Link to={`/detail/${id}`} style={{textDecoration: "none"}}>
+            <Link to={`/detail/${id}`} style={{ textDecoration: "none" }}>
               <h5 class="card-title">{name}</h5>
             </Link>
             {/*<div class="ratings">
@@ -68,11 +68,11 @@ export default function ProductCard({ id, name, img, rating, platforms, price}) 
             </div>*/}
             {/*<div class="flex justify-between items-center">*/}
             <span class="card-text">{price} U$d</span>
-              <button onClick={(e) => handleClick(e)}  name={id}  class="btn btn-primary">Add Favorite</button>
+            <button onClick={(e) => handleClick(e)} name={id} class="btn btn-primary">Add Favorite</button>
             {/*</div>*/}
           </div>
         </div>
-    
+
       }
 
     </div>)

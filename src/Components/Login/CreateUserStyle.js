@@ -1,0 +1,1 @@
+export const btnGLogo = "inline-block px-7 py-3 h-2 text-black font-medium text-xs bg-white leading-snug uppercase rounded shadow-md hover:bg-slate-200 hover:shadow-lg focus:bg-slate-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-slate-300 active:shadow-lg transition  duration-150 ease-in-out flex justify-center w-full"
