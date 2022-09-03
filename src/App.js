@@ -20,7 +20,9 @@ function App() {
         <Route path="/create_user"component={CreateUser} />
         <Route path="/login" component={Login} />
         <Route path="/home" component={Home} />
+        <div className='footer'>
         <Footer />
+        </div>
     </div>
   );
 }
