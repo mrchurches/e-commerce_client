@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const URL = 'localhost:3001';
+export const URL = 'localhost:3001';
 
 export const userFormat= {
   name: "",

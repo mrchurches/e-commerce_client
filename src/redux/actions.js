@@ -72,7 +72,7 @@ export function searchProduct(name){
 
 export function getUsers(){
     return function (dispatch){
-        axios.get(`${URL}users`)
+        axios.get(`${URL}user`)
         .then((res)=>{
             dispatch({
                 type: GET_USERS,
@@ -83,10 +83,23 @@ export function getUsers(){
     }
 };
 
-export function postUsers(payload){
-    return async function(dispatch){
-        var createUsers= await axios.post(`${URL}users`);
-        return createUsers;
+export function postUsers({username, password}){
+    try {     
+        return async function(dispatch){
+            const logUser= await axios.post(`${URL}login`,{
+                username,
+                password
+            });
+            dispatch({
+                type: GET_USERS,
+                payload:logUser.data
+            });
+            console.log(logUser.data)
+            return true
+        }
+    } catch (error) {
+        console.log(error.response)
+        return false
     }
 };
 
