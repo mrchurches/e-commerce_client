@@ -1,5 +1,7 @@
 import axios from "axios";
 
+import { REACT_APP_URL } from "../Components/CreateUser/CreateUserHelper";
+
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const FILTER_BY_GENRES = "FILTER_BY_GENRES";
 export const GET_GENRES = "GET_GENRES";
@@ -20,7 +22,7 @@ export const ORDER_BY_ESRB = "ORDER_BY_ESRB"
 
 
 const URL = "https://e-commerce-api-pf.herokuapp.com/";
-// const URL = "http://localhost:3001/"
+
 
 export function getAllProducts(){
     return function(dispatch){
@@ -94,7 +96,7 @@ export function getUsers(){
 export function postUsers({username, password}){
     var options = {
         method: 'POST',
-        url: `${URL}/login`,
+        url: `${REACT_APP_URL}/login`,
         withCredentials: true,
         data: {username, password}
       };
