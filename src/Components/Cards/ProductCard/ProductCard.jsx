@@ -50,7 +50,7 @@ export default function ProductCard({ id, name, img, rating, platforms, /* price
       {
 
         
-        <div class="card" style={{maxWidth: "18rem", marginBottom: '25px'}}>
+        <div class="card hover-overlay hover-zoom" style={{maxWidth: "18rem", marginBottom: '25px'}}>
           <Link to={`/detail/${id}`}>
             <img class="card-img-top" style={{maxWidth: '18rem', maxHeight: '10rem'}} src={img} alt="product img" />
           </Link>
