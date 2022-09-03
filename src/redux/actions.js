@@ -12,11 +12,11 @@ export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 export const CLEAR_CART = "CLEAR_CART"
 
 
-const URL = "http://localhost:3001/";
+const URL = "http://localhost:3001";
 
 export function getAllProducts(){
     return function(dispatch){
-        axios.get(`${URL}videogames`)
+        axios.get(`${URL}`)
         .then((res)=>{
             dispatch({
                 type: GET_ALL_PRODUCTS,
@@ -30,7 +30,7 @@ export function getAllProducts(){
 
 export function getGenres(){
     return function (dispatch){
-        axios.get(`${URL}genres`)
+        axios.get(`${URL}`)
         .then((res)=>{
             dispatch({
                 type: GET_GENRES,
@@ -43,7 +43,7 @@ export function getGenres(){
 
 export function getPlatforms(){
     return function (dispatch){
-        axios.get(`${URL}platforms`)
+        axios.get(`${URL}`)
         .then((res)=>{
             dispatch({
                 type: GET_PLATFORMS,
@@ -58,7 +58,7 @@ export function getPlatforms(){
 export function searchProduct(name){
    if(name){
     return function (dispatch){
-        axios.get(`${URL}videogames?name=${name}`)
+        axios.get(`${URL}`)
         .then((res)=>{
             dispatch({
                 type: SEARCH_PRODUCT,
@@ -72,7 +72,7 @@ export function searchProduct(name){
 
 export function getUsers(){
     return function (dispatch){
-        axios.get(`${URL}user`)
+        axios.get(`${URL}`)
         .then((res)=>{
             dispatch({
                 type: GET_USERS,
@@ -84,17 +84,19 @@ export function getUsers(){
 };
 
 export function postUsers({username, password}){
+    var options = {
+        method: 'POST',
+        url: `${URL}/login`,
+        withCredentials: true,
+        data: {username, password}
+      };
     try {     
         return async function(dispatch){
-            const logUser= await axios.post(`${URL}login`,{
-                username,
-                password
-            });
+            const response = await axios.request(options)
             dispatch({
                 type: GET_USERS,
-                payload:logUser.data
-            });
-            console.log(logUser.data)
+                payload:response.data
+            })
             return true
         }
     } catch (error) {
