@@ -1,6 +1,5 @@
 
 import style from "./Login.module.css"
-
 import React, { useEffect } from 'react'
 import { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
@@ -37,12 +36,12 @@ const Login = () => {
     await dispatch(postUsers(user));
     setUser({ username: "", password: "" })
   }
-  // {userAuth.user && <Redirect to='/'/>}
   function handleSubmit(e){
     e.preventDefault();
     alert("Login ok");
     setUser({email:"", password:""});
   }
+  // {userAuth.user && <Redirect to='/'/>}
   return (
     <div class="d-flex justify-content-center ">
       <div class="card shadow-lg p-3 mb-5 bg-body rounded" style={{width: '18rem'}}>
