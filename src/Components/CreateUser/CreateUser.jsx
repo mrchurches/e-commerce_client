@@ -4,7 +4,6 @@ import React from 'react'
 import { useState, useEffect } from "react";
 
 import { getUsers, userFormat, validatedFormat, validatedFunctions, findEmail, createNewUser } from "./CreateUserHelper";
-import { styleInput, submit } from "./CreateUserStyles";
 import { Redirect } from "react-router-dom";
 
 const CreateUser = () => {
