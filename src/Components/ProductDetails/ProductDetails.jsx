@@ -76,6 +76,7 @@ export default function ProductDetails() {
                 </button>
               </div>
             </div>
+            <div style={{height: '15px'}}></div>
 
           </div>
 
