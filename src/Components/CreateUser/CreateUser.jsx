@@ -21,11 +21,7 @@ const CreateUser = () => {
       setUserNames((i) => ({ ...i, usernames: users }))
     })()
   }, []);
-
-  useEffect(() => {
-    console.log(userGet)
-  }, [userGet]);
-
+  
   function handleChange(e) {
     setUserNames((i) => ({
       ...i, userExist: false, usernameExists: false
