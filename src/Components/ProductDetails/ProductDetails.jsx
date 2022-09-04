@@ -116,9 +116,6 @@ export default function ProductDetails() {
               <p className='p3'><b>Genres:</b> {game.genres?.map(e => (<span> {e.name} </span>))} </p>
             </div>
 
-            <NavLink to="/home">
-            <input class="btn btn-secondary" type="button" value="Back" />
-            </NavLink>
           </div>
 
         </div>

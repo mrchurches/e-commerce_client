@@ -8,18 +8,22 @@ import ProductCard from '../ProductCard/ProductCard'
 function CardSlider({platforms, i}) {
   return (
     
-    <div class='container-carr-slide'>
+    <div class='container-carr-slide' style={{display: 'flex', justifyContent: 'center'}}>
     <div id={`carouselExampleCaptions${i}`} class="carousel slide" data-bs-ride="false">
-      <div class="carousel-indicators">
+      {/*<div class="carousel-indicators">
         <button type="button" data-bs-target={`#carouselExampleCaptions${i}`} data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        { platforms && platforms?.map((e,i) => {
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to={`1`} aria-label={`Slide 2`}></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to={`2`} aria-label={`Slide 3`}></button>
+        {/* platforms && platforms?.map((e,i) => {
                     return ( <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to={`${i+1}`} aria-label={`Slide ${i+2}`}></button> )
-                  }) }
-      </div>
+                  }) /}
+      </div>*/}
       <div className='carr' class="carousel-inner">
 
         { platforms && platforms.map((product, i) => (
-                <div class={`carousel-item ${i === 0 ? "active" : ""}`}>
+          i < 3 ? 
+          <div class={`carousel-item ${i === 0 ? "active" : ""}`} >
+                  <span style={{display: 'none'}}>{i === 1 ? i*=3 : ''}{i === 2 ? i*=3 : ''}</span>
                     <div className='slideCardContainer'>
                     <div className='slideCard'>
                         <ProductCard
@@ -58,11 +62,12 @@ function CardSlider({platforms, i}) {
                     : ''
                     }
                     </div>
-                    
+          
                 </div>
+              : ''
         ))}
       </div>
-    
+      <div style={{backgroundColor: 'black'}}>
       <button class="carousel-control-prev" type="button" data-bs-target={`#carouselExampleCaptions${i}`} data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
@@ -71,6 +76,7 @@ function CardSlider({platforms, i}) {
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
       </button>
+      </div>
     </div>
   </div>
 
