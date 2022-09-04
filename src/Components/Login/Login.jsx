@@ -34,9 +34,7 @@ const Login = () => {
       setDisabled(true)
     }
   }, [user])
-  useEffect(() => {
-    console.log(userAuth)
-  }, [userAuth])
+
   function handleChange(e) {
     setUser({ ...user, [e.target.id]: e.target.value })
     if (e.target.id === 'email') {
@@ -81,7 +79,6 @@ const Login = () => {
 
         <div>
           <small class="form-label">don't have an account?</small><br />
-
           <Link to="/create_user">
             <span class="btn btn-primary">Create one!</span>
           </Link>
