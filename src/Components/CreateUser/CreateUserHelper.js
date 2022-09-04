@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const { REACT_APP_URL } = process.env
 
-export const userFormat= {
+export const userFormat = {
   name: "",
   lastname: "",
   username: "",
@@ -18,44 +18,47 @@ export const validatedFormat = {
   password: false
 }
 
-export const validatedFunctions= {
-  name: function(name) {
+export const validatedFunctions = {
+  name: function (name) {
     return /(^[a-zA-Z]{0,20}$)/.test(name)
   },
 
-  lastname: function (lastname){
-    return /(^[a-zA-Z]{0,20}$)/.test(lastname);  
+  lastname: function (lastname) {
+    return /(^[a-zA-Z]{0,20}$)/.test(lastname);
   },
 
-  username:  function(usernames, username){
-    if(!usernames.includes(username)){
-    return /(^[\W\w][^\s@]{4,20}$)/.test(username)
+  username: {
+    existsUsername: function (usernames, username) {
+      if (!usernames.includes(username)) return true
+      return false
+    },
+    validateUsername: function (username) {
+        return /(^[\W\w][^\s@]{4,20}$)/.test(username)
     }
-  return false;
-  },  
-
-  email: function(email){
-    return  /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(email);
   },
 
-  password:function(password){
-  return /^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-.]).{8,8}$/.test(password)
+  email: function (email) {
+    return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(email);
+  },
+
+  password: function (password) {
+    return /^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-.]).{8,}$/.test(password)
   }
 };
 
-export async function getUsers(){
-  const users = await axios.get(`${REACT_APP_URL}/user/getusers`);
-  return users.data.users.map(e => e.username)
+export async function getUsers() {
+  const users = await axios.get(`${REACT_APP_URL}/users/all`);
+  return users.data.map(e => e.username)
 };
 
-export async function findEmail(email){
+export async function findEmail(email) {
   const response = await axios.get(`${REACT_APP_URL}/user/find/${email}`);
   return response.data.user
 };
 
-export async function createNewUser({name, lastname, username, email, password,profile_pic}){
+export async function createNewUser({ name, lastname, username, email, password, profile_pic }) {
   try {
-    const response = await axios.post(`${REACT_APP_URL}/signup`,{
+    const response = await axios.post(`${REACT_APP_URL}/signin`,{
       name,
       lastname,
       username,

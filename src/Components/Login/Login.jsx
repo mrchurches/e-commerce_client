@@ -1,6 +1,6 @@
 
-import "./Login.css"
-import { btnGLogo } from "./CreateUserStyle";
+import style from "./Login.module.css"
+import { btnGLogo } from "./LoginStyle";
 
 import React, { useEffect } from 'react'
 import { useState } from "react";
@@ -32,13 +32,15 @@ const Login = () => {
   }, [userAuth])
 
   function handleChange(e) {
-    setUser({ ...user, [e.target.id]: e.target.value });
-    setDisabled(false)
+    setUser({ ...user, [e.target.id]: e.target.value })
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
     const userExist = await findEmail(user.username);
+    if(!userExist){
+      alert('this user not exist')
+    }
     if (userExist.isBanned) {
       alert("you're banned");
     } else {
