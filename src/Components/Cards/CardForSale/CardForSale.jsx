@@ -21,7 +21,7 @@ function CardForSale({forSale}) {
             return (
               <div class={`carousel-item ${i === 0 ? "active" : ""}`}>
                 <Link to={`/detail/${e.id}`}> 
-                <img src={e?.background_image} class="d-block w-100 rounded" style={{height: '40rem', width: 'auto'}} alt="..." />
+                <img src={e?.background_image} class="d-block w-100 rounded" style={{maxHeight: '40rem', maxWidth: 'auto'}} alt="..." />
                 </Link>
                 <div class="carousel-caption d-none d-md-block">
                   <h4>{e.name}</h4>

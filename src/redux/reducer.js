@@ -59,7 +59,7 @@ export default function rootReducer(state = initialState, action){
                 }
 
         case FILTER_BY_GENRES:
-            let filtered_genres = state.products2.filter((e) => {
+            let filtered_genres = state.products.filter((e) => {
                 var arr = e.genres.map(e => {
                     if (e.name === action.payload) {
                         return true;
@@ -82,7 +82,7 @@ export default function rootReducer(state = initialState, action){
             }
 
         case FILTER_BY_PLATFORMS:
-            let filtered_platforms = state.products2.filter((e) => {
+            let filtered_platforms = state.products.filter((e) => {
                 var arr = e.platforms.map(e => {
                     if (e.name === action.payload) {
                         return true;
@@ -115,7 +115,8 @@ export default function rootReducer(state = initialState, action){
         case CLEAR:
             return{
                 ...state,
-                searchered: []
+                searchered: [],
+                products: state.products2
             };
 
         case ORDER_ASC: 

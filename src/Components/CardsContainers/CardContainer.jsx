@@ -1,6 +1,7 @@
 import React from 'react'
 import ProductCard from '../Cards/ProductCard/ProductCard.jsx'
 import CardForSale from '../Cards/CardForSale/CardForSale'
+import CardSlider from '../Cards/CardsSlider/CardsSlider.jsx'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
 import './cardsContainer.css'
@@ -100,13 +101,23 @@ const CardContainer = () => {
               />
             ))}
 
-            </div>*/}
+          </div>*/}
 
-          <CardForSale forSale={forSale} />
-
+          <CardForSale forSale={forSale}/>
+          
+          <div className='box'>
+          <h5> {randomPlat} </h5>
+            <CardSlider platforms={platforms} i={1}/>
+          </div>
 
           <div className='box'>
-            <h6> {randomPlat} </h6>
+          <h5> {randomGen} </h5>
+            <CardSlider platforms={genres} i={2}/>
+          </div>
+
+
+          {/*<div className='box'>
+            <h5> {randomPlat} </h5>
             <div class='d-flex justify-content-center'>
               <div class="row pb-5 mb-4">
                 {platforms && platforms.map((product, index) => (
@@ -123,10 +134,10 @@ const CardContainer = () => {
                 ))}
               </div>
             </div>
-          </div>
+              </div>*/}
 
-          <div className='box'>
-            <h6> {randomGen} </h6>
+          {/*<div className='box'>
+            <h5> {randomGen} </h5>
             <div class='d-flex justify-content-center'>
               <div class="row pb-5 mb-4">
                 {genres && genres.map((product, index) => (
@@ -143,8 +154,8 @@ const CardContainer = () => {
                 ))}
               </div>
             </div>
-          </div>
-        </div>
+          </div>*/}
+      </div>
       )}
 
     </section>
