@@ -108,7 +108,7 @@ export function postUsers({username, password}){
                 type: GET_USERS,
                 payload:response.data
             })
-            return true
+            return response.data.message
         }
     } catch (error) {
         console.log(error.response)
