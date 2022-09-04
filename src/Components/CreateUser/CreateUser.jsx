@@ -91,6 +91,7 @@ const CreateUser = () => {
           <small for="exampleInputEmail1" class="form-label">Email address</small>
             <input type="email" onChange={e => handleChange(e)} value={user.email} name="email" id="email" class={`form-control`} placeholder="your@email.com" required="" />
             {isChange.email && !validate.email && <small>Email Address is incorrect</small>}
+            {userGet.userExist && <small>Email Address already exists</small>}
           </div>
           <div class="relative z-0 mb-6 w-full group">
           <small for="password" class="form-label">Password</small><br />
@@ -117,6 +118,7 @@ const CreateUser = () => {
             <small for="username" class="form-label">Username:  </small>
               <input type="text" onChange={(e) => handleChange(e)} value={user.username} name="username" id="username" class="form-control" placeholder="Username" required="" />
               {isChange.username && !validate.username && <small>Username Invalid</small>}
+              {userGet.usernameExists && <small>Username already exists</small>}
             </div>
           </div>
           <div>All fields are required</div>

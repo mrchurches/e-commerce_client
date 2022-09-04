@@ -26,7 +26,7 @@ const Login = () => {
     setUser({ username: "", password: "" });
     setDisabled(true)
   }
-
+ 
   useEffect(() => {
     if (user.username && user.password) {
       setDisabled(false)
@@ -34,7 +34,9 @@ const Login = () => {
       setDisabled(true)
     }
   }, [user])
-
+  useEffect(() => {
+    console.log(userAuth)
+  }, [userAuth])
   function handleChange(e) {
     setUser({ ...user, [e.target.id]: e.target.value })
     if (e.target.id === 'email') {
