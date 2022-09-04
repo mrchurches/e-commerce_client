@@ -21,7 +21,7 @@ const CreateUser = () => {
       setUserNames((i) => ({ ...i, usernames: users }))
     })()
   }, []);
-  
+
   function handleChange(e) {
     setUserNames((i) => ({
       ...i, userExist: false, usernameExists: false
@@ -108,8 +108,8 @@ const CreateUser = () => {
             </div>
             <div class="relative z-0 mb-6 w-full group">
               <input type="text" onChange={(e) => handleChange(e)} value={user.username} name="username" id="username" class={`${styleInput}`} placeholder="Username" required="" />
+              {userGet.usernameExists && <p>Username already exists</p>}
               {isChange.username && !validate.username && <p>Username Invalid</p>}
-              {userGet.userExist && <p>Username already exists</p>}
             </div>
           </div>
           <div>All fields are required</div>

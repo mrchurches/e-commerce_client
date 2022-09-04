@@ -29,7 +29,7 @@ export const validatedFunctions = {
 
   username: {
     existsUsername: function (usernames, username) {
-      if (!usernames.includes(username)) return true
+      if (usernames.includes(username)) return true
       return false
     },
     validateUsername: function (username) {
