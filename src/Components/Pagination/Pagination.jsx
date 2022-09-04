@@ -17,7 +17,7 @@ export default function Pagination({ gamesPerPage, games, paginado, currentPage 
     return (
         <nav>
             <ul className="pages">
-                <button onClick={previous} disabled={currentPage === pageNums[0] ? true : false}>{"<"}</button>
+                <button onClick={previous} className="arrowsPag" disabled={currentPage === pageNums[0] ? true : false}>{"<"}</button>
                 {
                     pageNums && pageNums.map(e => {
                         return (
@@ -27,7 +27,7 @@ export default function Pagination({ gamesPerPage, games, paginado, currentPage 
                         )
                     })
                 }
-                <button onClick={next} disabled={currentPage === pageNums.length ? true : false}>{">"}</button>
+                <button className="arrowsPag" onClick={next} disabled={currentPage === pageNums.length ? true : false}>{">"}</button>
             </ul>
         </nav>
     )
