@@ -59,14 +59,13 @@ export async function findEmail(email) {
 export async function createNewUser({ name, lastname, username, email, password, profile_pic }) {
   try {
     const response = await axios.post(`${REACT_APP_URL}/signin`,{
-      name,
-      lastname,
-      username,
-      email,
-      password,
-      profile_pic
+      name: name,
+      lastname: lastname,
+      username: username,
+      email: email,
+      password: password,
+      profile_pic: profile_pic
     })
-    console.log(response.data)
   } catch (error) {
     console.log(error.message)
     return 'Cannot be created'
