@@ -59,7 +59,7 @@ export default function ProductDetails() {
               <h4>${game.price}</h4>
 
               <div >
-                <button value="cart" onClick={handleClick} type="button" class="btn btn-info">
+              <button value="cart" onClick={handleClick} type="button" class="btn btn-info">
                   Add to cart
                 </button>
 
@@ -109,7 +109,7 @@ export default function ProductDetails() {
             </div>
 
             <NavLink to="/home">
-              <input class="btn btn-secondary" type="button" value="Back" />
+            <input class="btn btn-secondary" type="button" value="Back" />
             </NavLink>
           </div>
 

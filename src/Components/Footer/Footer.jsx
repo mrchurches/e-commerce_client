@@ -1,11 +1,9 @@
 import React from "react";
 import "./Footer.css";
 
-export default function About() {
+export default function About (){
 
-    return (
-        // <div className="footer-div" >
-        // </div>
+    return(
         <nav class="navbar bg-light fixed-bottom">
             <div class="container-fluid d-flex justify-content-center">
                 <span class="navbar-text">
@@ -17,6 +15,7 @@ export default function About() {
                 </span>
             </div>
         </nav>
-
+    
+    
     )
 }

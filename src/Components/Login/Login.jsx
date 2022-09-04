@@ -1,5 +1,5 @@
 
-import style from "./Login.module.css"
+import "./Login.css"
 import { btnGLogo } from "./LoginStyle";
 
 import React, { useEffect } from 'react'
@@ -15,14 +15,14 @@ import { useSelector } from "react-redux";
 
 const Login = () => {
   const [user, setUser] = useState({ username: "", password: "" }),
-    [disabled, setDisabled] = useState(true),
-    dispatch = useDispatch()
+  [disabled, setDisabled] = useState(true),
+   dispatch = useDispatch()
 
   const { userAuth } = useSelector(state => {
     return { userAuth: state.users }
   })
 
-  function resetStates() {
+  function resetStates(){
     setUser({ username: "", password: "" });
     setDisabled(true)
   }
@@ -43,14 +43,14 @@ const Login = () => {
     }
     if (userExist.isBanned) {
       alert("you're banned");
-    } else {
+    }else{
       await dispatch(postUsers(user));
     }
     resetStates()
   }
   return (
     <div class="mt-5 d-flex justify-content-center ">
-      {userAuth.user && <Redirect to='/' />}
+    {userAuth.user && <Redirect to='/' />}
       <div class="card shadow-lg p-3 mb-5 bg-body rounded" style={{ width: '18rem' }}>
         <form onSubmit={(e) => handleSubmit(e)}>
           <div class="mb-3">
@@ -63,9 +63,10 @@ const Login = () => {
             <input type="password" class="form-control" id="password" onChange={handleChange} value={user.password} name="password" />
           </div>
           <input disabled={disabled} type="submit" class="btn btn-primary" value="Login" />
-        </form><br />
+          </form><br/>
+        
         <div>
-          <small class="form-label">don't have an account?</small><br />
+        <small class="form-label">don't have an account?</small><br />
           <Link to="/create_user">
             <span class="btn btn-primary">Create one!</span>
           </Link>
@@ -73,13 +74,9 @@ const Login = () => {
         <p>OR</p>
         <div class="btnLogo">
           <a class={"linkA"} href={`${REACT_APP_URL}/login/auth/google`}>
-
-
             <img src={gLogo} class="" id='' alt='googleButton' />
             <small class="form-label">Sign in with google</small><br />
             <br />
-
-
           </a>
         </div>
       </div>
