@@ -4,7 +4,7 @@ import "./Footer.css";
 export default function About (){
 
     return(
-        <nav class="navbar bg-light fixed-bottom">
+        <nav class="navbar bg-light">
             <div class="container-fluid d-flex justify-content-center">
                 <span class="navbar-text">
 
