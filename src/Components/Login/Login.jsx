@@ -79,6 +79,7 @@ const Login = () => {
 
         <div>
           <small class="form-label">don't have an account?</small><br />
+
           <Link to="/create_user">
             <span class="btn btn-primary">Create one!</span>
           </Link>
