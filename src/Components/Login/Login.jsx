@@ -1,5 +1,5 @@
 
-import style from "./Login.module.css"
+import "./Login.css"
 import { btnGLogo } from "./LoginStyle";
 
 import React, { useEffect } from 'react'
@@ -49,34 +49,34 @@ const Login = () => {
     resetStates()
   }
   return (
-    <div class="d-flex justify-content-center ">
-      {userAuth.user && <Redirect to='/'/>}
+    <div class="mt-5 d-flex justify-content-center ">
+    {userAuth.user && <Redirect to='/' />}
       <div class="card shadow-lg p-3 mb-5 bg-body rounded" style={{ width: '18rem' }}>
         <form onSubmit={(e) => handleSubmit(e)}>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Email address</label>
             <input type="email" id="username" class="form-control" aria-describedby="emailHelp" placeholder="example@examplemail.com" onChange={handleChange} value={user.username} name="username" />
-            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            <small id="emailHelp" class="form-text">We'll never share your email with anyone else.</small>
           </div>
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Password</label>
             <input type="password" class="form-control" id="password" onChange={handleChange} value={user.password} name="password" />
           </div>
           <input disabled={disabled} type="submit" class="btn btn-primary" value="Login" />
-        </form>
+          </form><br/>
+        
         <div>
-          <p class="form-label">don't have an account?</p>
+        <small class="form-label">don't have an account?</small><br />
           <Link to="/create_user">
             <span class="btn btn-primary">Create one!</span>
           </Link>
         </div>
         <p>OR</p>
-        <div>
-          <a href={`${REACT_APP_URL}/login/auth/google`} class={btnGLogo} >
-            <button type="button"
-              viewBox="0 0 320 512"><img src={gLogo} class="h-px inline-block" id='' />
-              Sign in with google
-            </button>
+        <div class="btnLogo">
+          <a class={"linkA"} href={`${REACT_APP_URL}/login/auth/google`}>
+            <img src={gLogo} class="" id='' alt='googleButton' />
+            <small class="form-label">Sign in with google</small><br />
+            <br />
           </a>
         </div>
       </div>

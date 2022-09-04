@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import SearchBar from "../SearchBar/SearchBar"
+import logo from "../../images/logo.png"
 import "./NavBar.css"
 
 const NavBar = () => {
@@ -9,23 +10,25 @@ const NavBar = () => {
     return (
 
 
-        <nav class="navbar navbar-expand-lg" style={{backgroundColor: "rgb(238, 245, 246)"}}>
-  <div class="container-fluid">
-    <Link to="/" className='link'>
-        <span class="navbar-brand">Videogames</span>
+<nav class="navbar navbar-expand-lg" style={{ backgroundColor: "rgb(238, 245, 246)" }}>
+
+<div class="container-fluid">
+  <Link to="/" className='link'>
+    <img class="logo" src={logo} />
+    <span class="navbar-brand">Games Market</span>
     </Link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <Link to="/home" className='link'>
-            <li class="nav-item">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <Link to="/home" className='link'>
+              <li class="nav-item">
                 <span class="nav-link active" aria-current="page" >Home</span>
-            </li>
-        </Link>
-        <Link to="/my_store" className='link'>
-            <li class="nav-item">
+              </li>
+            </Link>
+            <Link to="/my_store" className='link'>
+              <li class="nav-item">
                 <span class="nav-link active" aria-current="page" >My store</span>
             </li>
         </Link>
