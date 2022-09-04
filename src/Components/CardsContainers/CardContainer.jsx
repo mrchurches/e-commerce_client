@@ -23,7 +23,7 @@ const CardContainer = () => {
   const [randomYear, SetRandomYear] = useState()
 
   const [start, setStart] = useState(0)
-  const [finish, setFinish] = useState(5)
+  const [finish, setFinish] = useState(9)
 
   const years = [2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017]
   const dispatch = useDispatch()
@@ -33,7 +33,6 @@ const CardContainer = () => {
     dispatch(getGenres())
     dispatch(getPlatforms())
     ramYear()
-
     /*  ramGen()
      ramPlat() */
   }, [dispatch])
@@ -87,54 +86,9 @@ const CardContainer = () => {
           </div>
         </div>
       )} */}
-        <div >
-        <div class="modal fade"  id="exampleModal" tabindex="1" aria-labelledby="exampleModalLabel" aria-hidden="false">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-        </div>
-      {!Allproducts.length && (
-        <div class="mx-auto my-auto ">
-        <div class="spinner-grow text-primary" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-      <div class="spinner-grow text-secondary" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-      <div class="spinner-grow text-success" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-      <div class="spinner-grow text-danger" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-      <div class="spinner-grow text-warning" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-      <div class="spinner-grow text-info" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-      <div class="spinner-grow text-light" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-      <div class="spinner-grow text-dark" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-        </div>
-      )}
-      {(Allproducts.length>0)&&(
+
+
+      {Allproducts && (
         <div className='bigContainer'>
 
           {/*<div className={style.ForSale}>

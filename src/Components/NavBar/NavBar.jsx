@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import SearchBar from "../SearchBar/SearchBar"
 import logo from "../../images/logo.png"
 import "./NavBar.css"
@@ -62,6 +62,10 @@ const NavBar = () => {
         </li> */}
       </ul>
       {location.pathname === "/home" &&<SearchBar />}
+      {location.pathname.includes('/detail') &&
+            <NavLink to="/home">
+              <input class="btn btn-secondary" type="button" value="Go Back" />
+            </NavLink>}
     </div>
   </div>
 </nav>
