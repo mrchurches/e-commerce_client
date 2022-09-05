@@ -222,8 +222,23 @@ export function Orderby(payload){
     };
 };
 
+export function Post_Game(payload){
+    return async function (dispatch){
+        try{
+            let json = await axios.post("https://e-commerce-api-pf.herokuapp.com/videogames/create", payload)
+            console.log(json)
+            alert("Recipe Created Succesfully!")
+            return json;
+        }catch(e){
+            console.error(e);
+            alert(e.message)
+        };
+    };
+};
+
 export function resetUser(){
     return{
         type: RESET_USER
     };
 };
+
