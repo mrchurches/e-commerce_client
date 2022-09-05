@@ -25,7 +25,7 @@ let initialState = {
     platforms: [],
     genres: [],
     searchered: [],
-    users: [],
+    users: {},
     cart: [],
     wishlist:[],
     currentPage: 1,
