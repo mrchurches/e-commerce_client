@@ -32,7 +32,16 @@ export default function PostGame(){
     });
     useEffect(()=>{
         dispatch(getGenres())
-    },[]);
+        const llaves = Object.keys(input)
+        for (const key of llaves) {
+            if (input[key] && !error[key]) { //si hay input y no hay errores --false
+                SetactiveSubmit(false)
+            }else {
+                SetactiveSubmit(true)
+                break;
+            };
+        };
+    }, [input, error])
 
     function handlersubmit (e){
         e.preventDefault();
@@ -74,48 +83,49 @@ export default function PostGame(){
 
     
     return(
-        <div class="mt-5 d-flex justify-content-center ">
-      <div class="card shadow-lg p-3 mb-5 bg-body rounded" style={{ width: '25rem' }}>
-        <form onSubmit={(e)=>handlersubmit(e)}>
-          <div class="mb-3">
-            <label  class="form-label">Name</label>
-            <input type="text"  aria-describedby="" placeholder="title of the game" onChange={handleChange} value={input.name} name="name" />
-            {/* <small class="form-text">We'll never share your email with anyone else.</small> */}
-          </div>
-          <div class="mb-3">
-            <label  class="form-label">Description</label>
-            <input type="text" class="form-control"  onChange={handleChange}  value={input.description} name="description" />
-          </div>
-          <div class="mb-3">
-            <label  class="form-label">Image</label>
-            <input type="text" class="form-control"  onChange={handleChange} value={input.background_image} name="background_image" />
-          </div>
-          <div class="mb-3">
-            <label  class="form-label">Release Date</label>
-            <input type="date" class="form-control"  onChange={handleChange} value={input.released} name="released" />
-          </div>
-          <div class="mb-3">
-            <label  class="form-label">Price</label>
-            <input type="interger" class="form-control"  onChange={handleChange} value={input.price} name="price" />
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Genres</label>
-            <select  placeholder="Select at least one Genre"   name="genres" value={input.genres} onChange={(e)=>handleSelectGenres(e)}>
-                <option>Select Genres</option > 
-                {genres && genres.map((e, pos)=>{ return <option id={pos} key={pos} value={e.genres}>{e.name}</option>})}
-            </select>  
-            {error.genres ? <label>Select at leats one diet</label> : null}
-          </div>
-          <input disabled={activeSubmit} type="submit" class="btn btn-primary" value="Create" />
-        </form><br />
-        {input.genres.map((genre, pos)=>
-                            <div>
-                                <p id={pos}>{genre}</p>
-                                <button onClick={()=>handleDelete(genre)}>X</button>
-                            </div>
-                        )}  
-      </div>
+
+    <div class="mt-5 d-flex justify-content-center ">
+        <div class="card shadow-lg p-3 mb-5 bg-body rounded" style={{ width: '25rem' }}>
+            <form onSubmit={(e)=>handlersubmit(e)}>
+            <div class="mb-3">
+                <label  class="form-label">Name</label>
+                <input type="text"  aria-describedby="" placeholder="title of the game" onChange={handleChange} value={input.name} name="name" />
+                {/* <small class="form-text">We'll never share your email with anyone else.</small> */}
+            </div>
+            <div class="mb-3">
+                <label  class="form-label">Description</label>
+                <input type="text" class="form-control"  onChange={handleChange}  value={input.description} name="description" />
+            </div>
+            <div class="mb-3">
+                <label  class="form-label">Image</label>
+                <input type="text" class="form-control"  onChange={handleChange} value={input.background_image} name="background_image" />
+            </div>
+            <div class="mb-3">
+                <label  class="form-label">Release Date</label>
+                <input type="date" class="form-control"  onChange={handleChange} value={input.released} name="released" />
+            </div>
+            <div class="mb-3">
+                <label  class="form-label">Price</label>
+                <input type="interger" class="form-control"  onChange={handleChange} value={input.price} name="price" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Genres</label>
+                <select  placeholder="Select at least one Genre"   name="genres" value={input.genres} onChange={(e)=>handleSelectGenres(e)}>
+                    <option>Select Genres</option > 
+                    {genres && genres.map((e, pos)=>{ return <option id={pos} key={pos} value={e.genres}>{e.name}</option>})}
+                </select>  
+                {error.genres ? <label>Select at leats one diet</label> : null}
+            </div>
+            <input disabled={activeSubmit} type="submit" class="btn btn-primary" value="Create" />
+            </form><br />
+            {input.genres.map((genre, pos)=>
+                <div>
+                    <p id={pos}>{genre}</p>
+                    <button onClick={()=>handleDelete(genre)}>X</button>
+                </div>
+            )}  
+            </div>
     </div>
-  )
+    )
 }
 
