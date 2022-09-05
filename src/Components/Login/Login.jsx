@@ -8,9 +8,10 @@ import { useDispatch } from "react-redux";
 
 import gLogo from './btn_google.svg'
 import { postUsers } from "../../redux/actions";
-import { REACT_APP_URL } from "../CreateUser/CreateUserHelper";
+//import { REACT_APP_URL } from "../CreateUser/CreateUserHelper";
 import { findEmail } from "../CreateUser/CreateUserHelper";
 import { useSelector } from "react-redux";
+const REACT_APP_URL = 'https://e-commerce-api-pf.herokuapp.com'
 
 const Login = () => {
   const [user, setUser] = useState({ username: "", password: "" }),
@@ -26,7 +27,7 @@ const Login = () => {
     setUser({ username: "", password: "" });
     setDisabled(true)
   }
-
+ 
   useEffect(() => {
     if (user.username && user.password) {
       setDisabled(false)
@@ -34,6 +35,10 @@ const Login = () => {
       setDisabled(true)
     }
   }, [user])
+
+  useEffect(() => {
+    return () => resetStates()
+  }, [])
 
   function handleChange(e) {
     setUser({ ...user, [e.target.id]: e.target.value })
@@ -59,7 +64,7 @@ const Login = () => {
   }
   return (
     <div class="mt-5 d-flex justify-content-center ">
-      {userAuth.user && <Redirect to='/' />}
+      {userAuth.user && <Redirect to='/home' />}
       <div class="card shadow-lg p-3 mb-5 bg-body rounded" style={{ width: '18rem' }}>
         <form onSubmit={(e) => handleSubmit(e)}>
           <div class="mb-3">
@@ -76,10 +81,8 @@ const Login = () => {
           </div>
           <input disabled={disabled} type="submit" class="btn btn-primary" value="Login" />
         </form><br />
-
         <div>
           <small class="form-label">don't have an account?</small><br />
-
           <Link to="/create_user">
             <span class="btn btn-primary">Create one!</span>
           </Link>

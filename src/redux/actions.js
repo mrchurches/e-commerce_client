@@ -1,6 +1,7 @@
 import axios from "axios";
 
-import { REACT_APP_URL } from "../Components/CreateUser/CreateUserHelper";
+//import { REACT_APP_URL } from "../Components/CreateUser/CreateUserHelper";
+const REACT_APP_URL = 'https://e-commerce-api-pf.herokuapp.com'
 
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const FILTER_BY_GENRES = "FILTER_BY_GENRES";
@@ -19,7 +20,9 @@ export const ORDER_ASC = "ORDER_ASC"
 export const ORDER_DESC = "ORDER_DESC"
 export const ORDER_BY_RATING = "ORDER_BY_RATING"
 export const ORDER_BY_ESRB = "ORDER_BY_ESRB"
-export const Order_By = "Orderby"
+export const Order_By = "Orderby", 
+RESET_USER = 'RESET_USER';
+
 
 
 const URL = "https://e-commerce-api-pf.herokuapp.com/";
@@ -82,15 +85,19 @@ export function searchProduct(name){
 
 
 export function getUsers(){
-    return function (dispatch){
-        axios.get(`${URL}users`)
-        .then((res)=>{
+    return async function (dispatch){
+        try {
+            const response = await axios.get(`${REACT_APP_URL}/user`, { withCredentials: true })
             dispatch({
                 type: GET_USERS,
-                payload:res.data
+                payload:response.data
             })
-        })
-        .catch(err=>console.log(err))
+            return response.data.message
+        } catch (error) {
+            console.log(error.response)
+            return;
+        }
+
     }
 };
 
@@ -228,3 +235,10 @@ export function Post_Game(payload){
         };
     };
 };
+
+export function resetUser(){
+    return{
+        type: RESET_USER
+    };
+};
+
