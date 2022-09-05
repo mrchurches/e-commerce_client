@@ -8,6 +8,7 @@ import ShoppingCart from './Components/ShoppingCart/ShoppingCart';
 import CreateUser from './Components/CreateUser/CreateUser';
 import Login from './Components/Login/Login';
 import Home from './Components/Home/Home';
+import PostGame from './CreateGame/CreateGame';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path="/create_user"component={CreateUser} />
         <Route path="/login" component={Login} />
         <Route path="/home" component={Home} />
+        <Route path="/admin/create" component={PostGame}/>
         <div className='footer'>
         <Footer />
         </div>
