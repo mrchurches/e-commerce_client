@@ -165,7 +165,7 @@ switch(action.type){
                products:[...state.products].sort(action.payload)
            };
        case ORDER_BY_ESRB:
-           const esrb = state.products2.filter(e => e.esrb_rating === action.payload)
+           const esrb = state.products.filter(e => e.esrb_rating === action.payload)
                return {
                    ...state,
                    products: [...esrb]
