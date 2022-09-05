@@ -19,7 +19,9 @@ export const ORDER_ASC = "ORDER_ASC"
 export const ORDER_DESC = "ORDER_DESC"
 export const ORDER_BY_RATING = "ORDER_BY_RATING"
 export const ORDER_BY_ESRB = "ORDER_BY_ESRB"
-export const Order_By = "Orderby"
+export const Order_By = "Orderby", 
+RESET_USER = 'RESET_USER';
+
 
 
 const URL = "https://e-commerce-api-pf.herokuapp.com/";
@@ -215,3 +217,8 @@ export function Orderby(payload){
     };
 };
 
+export function resetUser(){
+    return{
+        type: RESET_USER
+    };
+};
