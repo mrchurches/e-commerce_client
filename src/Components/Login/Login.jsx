@@ -35,6 +35,10 @@ const Login = () => {
     }
   }, [user])
 
+  useEffect(() => {
+    return () => resetStates()
+  }, [])
+
   function handleChange(e) {
     setUser({ ...user, [e.target.id]: e.target.value })
     if (e.target.id === 'email') {
@@ -59,7 +63,7 @@ const Login = () => {
   }
   return (
     <div class="mt-5 d-flex justify-content-center ">
-      {userAuth.user && <Redirect to='/' />}
+      {userAuth.user && <Redirect to='/home' />}
       <div class="card shadow-lg p-3 mb-5 bg-body rounded" style={{ width: '18rem' }}>
         <form onSubmit={(e) => handleSubmit(e)}>
           <div class="mb-3">

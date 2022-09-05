@@ -27,14 +27,8 @@ export const validatedFunctions = {
     return /(^[a-zA-Z]{0,20}$)/.test(lastname);
   },
 
-  username: {
-    existsUsername: function (usernames, username) {
-      if (usernames.includes(username)) return true
-      return false
-    },
-    validateUsername: function (username) {
-        return /(^[\W\w][^\s@]{4,20}$)/.test(username)
-    }
+  username:function (username) {
+    return /(^[\W\w][^\s@]{4,20}$)/.test(username)
   },
 
   email: function (email) {
@@ -46,27 +40,30 @@ export const validatedFunctions = {
   }
 };
 
-export async function getUsers() {
-  const users = await axios.get(`${REACT_APP_URL}/users/all`);
-  return users.data.map(e => e.username)
+export async function existsUsername(username) {
+  try {
+    const users = await axios.get(`${REACT_APP_URL}/user/find/username/${username}`);
+      return users.data.user
+  } catch (error) {
+    console.log(error)
+  }
 };
 
 export async function findEmail(email) {
-  const response = await axios.get(`${REACT_APP_URL}/user/find/${email}`);
+  const response = await axios.get(`${REACT_APP_URL}/user/find/email/${email}`);
   return response.data.user
 };
 
 export async function createNewUser({ name, lastname, username, email, password, profile_pic }) {
   try {
-    const response = await axios.post(`${REACT_APP_URL}/signin`,{
-      name,
-      lastname,
-      username,
-      email,
-      password,
-      profile_pic
+    await axios.post(`${REACT_APP_URL}/signin`,{
+      name: name,
+      lastname: lastname,
+      username: username,
+      email: email,
+      password: password,
+      profile_pic: profile_pic
     })
-    console.log(response.data)
   } catch (error) {
     console.log(error.message)
     return 'Cannot be created'
