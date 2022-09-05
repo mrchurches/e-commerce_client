@@ -26,7 +26,7 @@ const Login = () => {
     setUser({ username: "", password: "" });
     setDisabled(true)
   }
-
+ 
   useEffect(() => {
     if (user.username && user.password) {
       setDisabled(false)
@@ -80,10 +80,8 @@ const Login = () => {
           </div>
           <input disabled={disabled} type="submit" class="btn btn-primary" value="Login" />
         </form><br />
-
         <div>
           <small class="form-label">don't have an account?</small><br />
-
           <Link to="/create_user">
             <span class="btn btn-primary">Create one!</span>
           </Link>
