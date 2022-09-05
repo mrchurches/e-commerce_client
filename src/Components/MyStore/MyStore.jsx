@@ -3,8 +3,8 @@ import React from 'react'
 const MyStore = () => {
   return (
     <div class="d-flex p-2  justify-content-center">
-      <div class="list-group align-self-center">
-        <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+      <div class="list-group align-self-center d-grid gap-3">
+        <a href="#" class="list-group-item list-group-item-action" aria-current="true">
           <div class="d-flex w-100 justify-content-between">
             <h5 class="mb-1">Assesins creed</h5>
             <small>3 days ago</small>
