@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux'
 import './ProductCard.css'
 
 
-export default function ProductCard({ id, name, img, rating, platforms, price }) {
+export default function ProductCard({ id, name, img, rating, platforms, price, inStock}) {
 
   const dispatch = useDispatch()
 
@@ -19,7 +19,7 @@ export default function ProductCard({ id, name, img, rating, platforms, price })
   return (
     <div>
 
-      {
+      {/* {
         id && name && img && rating && platforms && (
           <Link to={`/detail${id}`}>
             <div class="w-full max-w-sm bg-white rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
@@ -45,13 +45,13 @@ export default function ProductCard({ id, name, img, rating, platforms, price })
               </div>
             </div>
           </Link>
-        )}
+        )} */}
 
       {
 
 
         <div class="card hover-overlay hover-zoom" style={{ maxWidth: "18rem", marginBottom: '25px', maxHeight: '18rem' }}>
-          <Link to={`/detail/${id}`}>
+          <Link  to={price?`/detail/${id}`:`/home`}>
             <img class="card-img-top" style={{ maxWidth: '18rem', maxHeight: '10rem' }} src={img} alt="product img" />
           </Link>
           <div class="card-body" >
@@ -67,8 +67,8 @@ export default function ProductCard({ id, name, img, rating, platforms, price })
               <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">{rating}</span>
             </div>*/}
             {/*<div class="flex justify-between items-center">*/}
-            <span class="card-text">{price} U$d</span>
-            <button onClick={(e) => handleClick(e)} name={id} class="btn btn-primary">Add Favorite</button>
+            {price?<span class="card-text">{price} U$d</span>:<span>No stock</span>}
+            <button disabled={price?false:true} onClick={(e) => handleClick(e)} name={id} class="btn btn-primary">Add Favorite</button>
             {/*</div>*/}
           </div>
         </div>
