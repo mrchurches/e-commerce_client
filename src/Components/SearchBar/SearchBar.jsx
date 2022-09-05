@@ -8,9 +8,7 @@ const SearchBar = () => {
 
   function handleChange(e) {
     e.preventDefault();
-    if (e.target.value) {
       setName(e.target.value)
-    }
   }
 
   function handleSubmit(e) {

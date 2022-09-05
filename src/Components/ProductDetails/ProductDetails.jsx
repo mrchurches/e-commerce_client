@@ -20,10 +20,11 @@ export default function ProductDetails() {
 
   useEffect(() => {
     if (user.length) setDisabled(false); //si cuando se monta el componente hay usuario logueado habilita el addwish
-    axios.get(`${URL}videogames/${id}`)
-      .then(res => setGame(res.data))
-      .catch(err => console.log(err))
-    console.log(game)
+    setTimeout(() => {
+      axios.get(`${URL}videogames/${id}`)
+        .then(res => setGame(res.data))
+        .catch(err => console.log(err))
+    }, "500");
   }, [id, user])
 
   function handleClick(e) { // eso se ejecuta cuando se le hace click al boton de add to cart o wishlist
@@ -37,7 +38,14 @@ export default function ProductDetails() {
 
   return (
     <div class="container">
-      {game && (
+      {
+        !game.name &&(
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        )
+      }
+      {game.name && (
         <div class="row">
           <div class="col-md-5">
 
@@ -68,6 +76,7 @@ export default function ProductDetails() {
                 </button>
               </div>
             </div>
+            <div style={{height: '15px'}}></div>
 
           </div>
 
@@ -108,9 +117,6 @@ export default function ProductDetails() {
               <p className='p3'><b>Genres:</b> {game.genres?.map(e => (<span> {e.name} </span>))} </p>
             </div>
 
-            <NavLink to="/home">
-            <input class="btn btn-secondary" type="button" value="Back" />
-            </NavLink>
           </div>
 
         </div>

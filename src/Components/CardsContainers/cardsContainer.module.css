@@ -41,10 +41,7 @@
   scroll-snap-align: center;
 }
 
-.container-carr {
-  justify-content: center;
-  margin-right: auto;
-  margin-left: auto;
-  margin-top: 20px;
-  max-width: 1200px;
+.box h5 {
+  margin-top: 15px;
+  margin-bottom: 15px;
 }

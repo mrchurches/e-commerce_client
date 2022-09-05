@@ -37,14 +37,19 @@ function Home() {
 
                 <Filters />
                 <div class="row pb-5 mb-4" className="allCardsConteiner" >
-                    {currentGames.length && currentGames.map(e => (
+                    {currentGames.length>0 && currentGames.map(e => (
                         <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-                            <ProductCard name={e.name} id={e.id_api} img={e.background_image} rating={e.rating} platform={e.platform} price={e.price} />
+                            <ProductCard name={e.name} id={e.id} img={e.background_image} rating={e.rating} platform={e.platform} price={e.price} />
                         </div>
                     ))}
+    
                     {
-                        !currentGames.length && <h4>Todavia no hay nada por aqui</h4>
+                        (currentGames.length<1) && <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
                     }
+
+
                 </div>
                 <Pagination
                     currentPage={currentPage}

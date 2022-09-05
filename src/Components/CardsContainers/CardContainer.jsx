@@ -4,7 +4,7 @@ import CardForSale from '../Cards/CardForSale/CardForSale'
 import CardSlider from '../Cards/CardsSlider/CardsSlider.jsx'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
-import './cardsContainer.css'
+import styles from './cardsContainer.module.css'
 import { getAllProducts, getGenres, getPlatforms } from '../../redux/actions.js'
 import { Link } from 'react-router-dom'
 
@@ -23,7 +23,7 @@ const CardContainer = () => {
   const [randomYear, SetRandomYear] = useState()
 
   const [start, setStart] = useState(0)
-  const [finish, setFinish] = useState(5)
+  const [finish, setFinish] = useState(9)
 
   const years = [2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017]
   const dispatch = useDispatch()
@@ -105,12 +105,12 @@ const CardContainer = () => {
 
           <CardForSale forSale={forSale}/>
           
-          <div className='box'>
+          <div className={styles.box} >
           <h5> {randomPlat} </h5>
             <CardSlider platforms={platforms} i={1}/>
           </div>
 
-          <div className='box'>
+          <div className={styles.box}>
           <h5> {randomGen} </h5>
             <CardSlider platforms={genres} i={2}/>
           </div>

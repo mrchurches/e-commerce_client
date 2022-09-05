@@ -64,7 +64,7 @@ const Login = () => {
         <form onSubmit={(e) => handleSubmit(e)}>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input type="email" id="username" class="form-control" aria-describedby="emailHelp" placeholder="example@examplemail.com" onChange={handleChange} value={user.username} name="username" />
+            <input type="email" id="username" class={`form-control ${(userGet.userNExists ||userGet.userBan )&&"is-invalid"}`} aria-describedby="emailHelp" placeholder="example@examplemail.com" onChange={handleChange} value={user.username} name="username" />
             {userGet.userNExists && <p>Email addres invalid</p>}
             {userGet.userBan && <p>Email addres are banned</p>}
             <small id="emailHelp" class="form-text">We'll never share your email with anyone else.</small>
