@@ -84,15 +84,19 @@ export function searchProduct(name){
 
 
 export function getUsers(){
-    return function (dispatch){
-        axios.get(`${URL}users`)
-        .then((res)=>{
+    return async function (dispatch){
+        try {
+            const response = await axios.get(`${REACT_APP_URL}/user`, { withCredentials: true })
             dispatch({
                 type: GET_USERS,
-                payload:res.data
+                payload:response.data
             })
-        })
-        .catch(err=>console.log(err))
+            return response.data.message
+        } catch (error) {
+            console.log(error.response)
+            return;
+        }
+
     }
 };
 
