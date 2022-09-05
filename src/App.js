@@ -8,16 +8,24 @@ import ShoppingCart from './Components/ShoppingCart/ShoppingCart';
 import CreateUser from './Components/CreateUser/CreateUser';
 import Login from './Components/Login/Login';
 import Home from './Components/Home/Home';
+import MyStore from './Components/MyStore/MyStore';
+import Account from './Components/Account/Account';
+import WishList from "./Components/WishList/WishList.jsx";
+import { useSelector } from 'react-redux';
 
 
 function App() {
+let users = useSelector(state=>state.users);
   return (
     <div className="App">
         <Route path="/" component={NavBar}/>
         <Route path="/" component={LandingPage} />
         <Route path="/detail/:id" component={ProductDetails} />
         <Route path="/shopping_cart" component={ShoppingCart} />
+        <Route path="/my_store" component={MyStore} />
         <Route path="/create_user"component={CreateUser} />
+        <Route path="/wish_list" component={WishList}/>
+        <Route path="/account" component={Account}/>
         <Route path="/login" component={Login} />
         <Route path="/home" component={Home} />
         <div className='footer'>
