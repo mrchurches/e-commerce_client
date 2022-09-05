@@ -30,10 +30,6 @@ function Home() {
     }, [])
 
     useEffect(() => {
-        console.log(user)
-    }, [user])
-
-    useEffect(() => {
         dispatch(getAllProducts())
     }, [dispatch])
 
