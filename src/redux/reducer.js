@@ -30,6 +30,7 @@ users: {},
 cart: [],
 wishlist:[],
 currentPage: 1,
+
 }
 
 export default function rootReducer(state = initialState, action){
