@@ -1,6 +1,7 @@
 import axios from "axios";
 
-import { REACT_APP_URL } from "../Components/CreateUser/CreateUserHelper";
+//import { REACT_APP_URL } from "../Components/CreateUser/CreateUserHelper";
+const REACT_APP_URL = 'https://e-commerce-api-pf.herokuapp.com'
 
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const FILTER_BY_GENRES = "FILTER_BY_GENRES";
