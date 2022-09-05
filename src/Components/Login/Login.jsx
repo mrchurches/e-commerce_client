@@ -8,9 +8,10 @@ import { useDispatch } from "react-redux";
 
 import gLogo from './btn_google.svg'
 import { postUsers } from "../../redux/actions";
-import { REACT_APP_URL } from "../CreateUser/CreateUserHelper";
+//import { REACT_APP_URL } from "../CreateUser/CreateUserHelper";
 import { findEmail } from "../CreateUser/CreateUserHelper";
 import { useSelector } from "react-redux";
+const REACT_APP_URL = 'https://e-commerce-api-pf.herokuapp.com'
 
 const Login = () => {
   const [user, setUser] = useState({ username: "", password: "" }),
