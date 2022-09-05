@@ -3,24 +3,17 @@ import "./CreateUser.css"
 import React from 'react'
 import { useState, useEffect } from "react";
 
-import { getUsers, userFormat, validatedFormat, validatedFunctions, findEmail, createNewUser } from "./CreateUserHelper";
+import { existsUsername, userFormat, validatedFormat, validatedFunctions, findEmail, createNewUser } from "./CreateUserHelper";
 import { Redirect } from "react-router-dom";
 
 const CreateUser = () => {
   const [user, setUser] = useState(userFormat),
-    [userGet, setUserNames] = useState({ usernames: [], userExist: false, usernameExists: false }),
+    [userGet, setUserNames] = useState({ userExist: false, usernameExists: false }),
     [disabledBtn, setDisabled] = useState(true),
     [isChange, setChange] = useState(validatedFormat),
     [isSubmit, setIsSubmit] = useState(false),
     [validate, setvalidate] = useState(validatedFormat);
 
-  useEffect(() => {
-    (async () => {
-      const users = await getUsers()
-      setUserNames((i) => ({ ...i, usernames: users }))
-    })()
-  }, []);
-  
   function handleChange(e) {
     setUserNames((i) => ({
       ...i, userExist: false, usernameExists: false
@@ -34,10 +27,9 @@ const CreateUser = () => {
       [e.target.id]: e.target.value
     });
     if (e.target.id === 'username') {
-      setUserNames((i) => ({ ...i, usernameExists: validatedFunctions.username.existsUsername(userGet.usernames, e.target.value) }))
       setvalidate({
         ...validate,
-        [e.target.id]: validatedFunctions.username.validateUsername(e.target.value)
+        [e.target.id]: validatedFunctions.username(e.target.value)
       })
     } else if (e.target.id !== 'cPassword') {
       setvalidate({
@@ -48,7 +40,7 @@ const CreateUser = () => {
   };
 
   useEffect(() => {
-    if (Object.values(validate).includes(false) || userGet.usernameExists) {
+    if (Object.values(validate).includes(false) || userGet.usernameExists ||userGet.userExist ) {
       setDisabled(true)
     } else {
       setDisabled(false)
@@ -57,6 +49,11 @@ const CreateUser = () => {
 
   async function handleSubmit(e) {
     e.preventDefault()
+    const response = await existsUsername(user.username);
+    if (response) {
+      setUserNames((i)=>({...i,usernameExists: true}))
+      return
+    }
     const getUser = await findEmail(user.email);
     if (getUser) {
       setUserNames((i) => ({ ...i, userExist: true }));
