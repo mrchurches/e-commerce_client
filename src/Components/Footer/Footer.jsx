@@ -1,10 +1,17 @@
 import React from "react";
 import "./Footer.css";
+import { useLocation } from "react-router-dom";
 
 export default function About (){
+let location = useLocation()
+
+var display = 'block'
+if (location.pathname === "/admin") {
+    display = 'none'
+  }
 
     return(
-        <nav class="navbar" style={{ backgroundColor: "rgb(238, 245, 246)"}} className='footer-nav'>
+        <nav class="navbar" style={{ backgroundColor: "rgb(238, 245, 246)", display: display }} className='footer-nav'>
             <div class="container-fluid d-flex justify-content-center">
                 <span class="navbar-text">
 
