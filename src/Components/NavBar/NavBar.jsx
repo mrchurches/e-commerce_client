@@ -10,11 +10,10 @@ import { resetUser } from '../../redux/actions'
 
 const NavBar = () => {
   let location = useLocation();
-  //const {user} = useSelector(state => state.users);
-let  user = {id:1, email:"laureano@gotmail.com", password: "asdasdasd"}
+  const {user} = useSelector(state => state.users);
   let dispatch = useDispatch();
-  function handleLogout() {
-    logout()
+  async function handleLogout() {
+    await logout()
     dispatch(resetUser());
   }
   return (
