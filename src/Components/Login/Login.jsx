@@ -8,10 +8,10 @@ import { useDispatch } from "react-redux";
 
 import gLogo from './btn_google.svg'
 import { postUsers } from "../../redux/actions";
-//import { REACT_APP_URL } from "../CreateUser/CreateUserHelper";
+import { REACT_APP_URL } from "../CreateUser/CreateUserHelper";
 import { findEmail } from "../CreateUser/CreateUserHelper";
 import { useSelector } from "react-redux";
-const REACT_APP_URL = 'https://e-commerce-api-pf.herokuapp.com'
+// const REACT_APP_URL = 'https://e-commerce-api-pf.herokuapp.com'
 
 const Login = () => {
   const [user, setUser] = useState({ username: "", password: "" }),
@@ -42,7 +42,7 @@ const Login = () => {
 
   function handleChange(e) {
     setUser({ ...user, [e.target.id]: e.target.value })
-    if (e.target.id === 'email') {
+    if (e.target.id === 'username') {
       setUserGet((i) => ({ ...i, userNExists: false, userBan: false }))
     } else {
       setUserGet((i) => ({ ...i, failedLog: false }))
@@ -58,7 +58,7 @@ const Login = () => {
       setUserGet((i) => ({ ...i, userBan: true }));
     } else {
       const info = await dispatch(postUsers(user));
-      !info.includes('Welcome') && setUserGet((i) => ({ ...i, failedLog: true }));
+      info === 'Not Autheticaded' && setUserGet((i) => ({ ...i, failedLog: true }));
     }
     resetStates()
   }

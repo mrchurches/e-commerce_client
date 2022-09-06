@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-//export const { REACT_APP_URL } = process.env
-const REACT_APP_URL = 'https://e-commerce-api-pf.herokuapp.com'
+//export const REACT_APP_URL = 'https://e-commerce-api-pf.herokuapp.com'
+export const REACT_APP_URL = 'http://localhost:3001'
 
 export const userFormat = {
   name: "",

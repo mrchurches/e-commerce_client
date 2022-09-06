@@ -1,7 +1,7 @@
 import axios from "axios";
 
-//import { REACT_APP_URL } from "../Components/CreateUser/CreateUserHelper";
-const REACT_APP_URL = 'https://e-commerce-api-pf.herokuapp.com'
+import { REACT_APP_URL } from "../Components/CreateUser/CreateUserHelper";
+// const REACT_APP_URL = 'https://e-commerce-api-pf.herokuapp.com'
 
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const FILTER_BY_GENRES = "FILTER_BY_GENRES";
@@ -25,7 +25,8 @@ RESET_USER = 'RESET_USER';
 
 
 
-const URL = "https://e-commerce-api-pf.herokuapp.com/";
+// const URL = "https://e-commerce-api-pf.herokuapp.com/";
+const URL = "http://localhost:3001/";
 
 
 export function getAllProducts(){
