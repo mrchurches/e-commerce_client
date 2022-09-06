@@ -111,7 +111,7 @@ export default function ProductDetails() {
             </div>
 
             <div class="project-info-box">
-              <p className='p3'><b>Platforms:</b>{game.platforms?.map(e => (<span> {e.name}</span>))} </p>
+              <p className='p3'u><b>Platforms:</b>{game.platforms?.map(e => (<span> {e.name}</span>))} </p>
               <p className='p3'><b>Genres:</b> {game.genres?.map(e => (<span> {e.name} </span>))} </p>
             </div>
 
