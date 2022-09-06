@@ -12,6 +12,7 @@ import PostGame from './CreateGame/CreateGame';
 import MyStore from './Components/MyStore/MyStore';
 import Account from './Components/Account/Account';
 import WishList from "./Components/WishList/WishList.jsx";
+import Pasarela from "./Components/Pasarela/Pasarela";
 import { useSelector } from 'react-redux';
 
 
@@ -20,6 +21,7 @@ function App() {
 let users = useSelector(state=>state.users);
   return (
     <div className="App">
+
         <Route path="/" component={NavBar}/>
         <Route path="/" component={LandingPage} />
         <Route path="/detail/:id" component={ProductDetails} />
@@ -31,6 +33,7 @@ let users = useSelector(state=>state.users);
         <Route path="/login" component={Login} />
         <Route path="/home" component={Home} />
         <Route path="/admin/create" component={PostGame}/>
+        <Route path="/checkout/:id" component={Pasarela}/>
         <div className='footer'>
         <Footer />
         </div>

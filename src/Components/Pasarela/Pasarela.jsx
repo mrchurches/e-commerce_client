@@ -1,14 +1,25 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import { useParams } from "react-router-dom";
+import axios from "axios"
+import MercadoPago from "mercadopago"
+const { PUBLIC_KEY } = process.env
 
-function Pasarela() {
+const FORM_ID = 'payment-form';
+const mp = new MercadoPago(PUBLIC_KEY);
 
-    useEffect(() => {
+export default function Pasarela() {
+    const { id } = useParams(); // id de producto
+    const [preferenceId, setPreferenceId] = useState(null);
 
-    }, [input])
+    const mp = new MercadoPago(PUBLIC_KEY);
+    console.log("mp")
+    console.log(mp)
+    const bricksBuilder = mp.bricks();
+
+
+
 
     return (
-        <form id={FORM_ID} method="GET" />
-    )
+        <div id="cardPaymentBrick_container"></div>
+    );
 }
-
-export default Pasarela
