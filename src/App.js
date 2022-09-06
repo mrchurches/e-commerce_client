@@ -12,12 +12,15 @@ import PostGame from './CreateGame/CreateGame';
 import MyStore from './Components/MyStore/MyStore';
 import Account from './Components/Account/Account';
 import WishList from "./Components/WishList/WishList.jsx";
+import Admin from './Components/Admin/Admin';
 import { useSelector } from 'react-redux';
 
 
 
 function App() {
 let users = useSelector(state=>state.users);
+
+console.log(users)
   return (
     <div className="App">
         <Route path="/" component={NavBar}/>
@@ -30,6 +33,7 @@ let users = useSelector(state=>state.users);
         <Route path="/account" component={Account}/>
         <Route path="/login" component={Login} />
         <Route path="/home" component={Home} />
+        <Route path="/admin" component={Admin}/>
         <Route path="/admin/create" component={PostGame}/>
         <div className='footer'>
         <Footer />
