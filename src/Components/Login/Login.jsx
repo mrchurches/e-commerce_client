@@ -10,7 +10,6 @@ import { findEmail } from "../CreateUser/CreateUserHelper";
 import { useSelector } from "react-redux";
 const {REACT_APP_URL} = process.env;
 
-console.log(REACT_APP_URL)
 const Login = () => {
   const [user, setUser] = useState({ username: "", password: "" }),
     [userGet, setUserGet] = useState({ userNExists: false, failedLog: false, userBan: false }),
