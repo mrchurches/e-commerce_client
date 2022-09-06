@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const { REACT_APP_URL } = process.env
+const { REACT_APP_URL } = process.env
 
 export const userFormat = {
   name: "",
@@ -50,7 +50,7 @@ export async function existsUsername(username) {
 };
 
 export async function findEmail(email) {
-  const response = await axios.get(`${REACT_APP_URL}/user/find/email/${email}`);
+  const response = await axios.get(`${REACT_APP_URL}user/find/email/${email}`);
   return response.data.user
 };
 
