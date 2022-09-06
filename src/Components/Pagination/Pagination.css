@@ -1,0 +1,37 @@
+.pages {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    list-style: none;
+}
+
+.pages li {
+    cursor: pointer;
+    padding: 5px;
+}
+
+
+.pages li:hover {
+    background-color: rgb(148, 148, 148);
+}
+
+.actual {
+    background-color: rgba(0, 0, 0, 0.02);
+    color: white;
+    font-size: large;
+}
+
+.non {
+    color: rgb(183, 183, 183);
+    text-shadow: 0px 4px 10px rgba(9, 9, 9, 0.89);
+    -webkit-text-stroke: 0.002px rgb(165, 165, 165);
+
+}
+
+.arrowsPag {
+    background-color: rgba(0, 0, 0, 0.02);
+    color: white;
+    font-size: large;
+    border: none;
+
+}

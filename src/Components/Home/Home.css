@@ -1,0 +1,7 @@
+.allCardsConteiner {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    /* background-color: black; */
+    width: 90vw;
+}

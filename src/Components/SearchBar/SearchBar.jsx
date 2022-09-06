@@ -1,28 +1,39 @@
-
 import { useState } from "react"
+import { useDispatch } from "react-redux";
+import { clear, searchProduct, setCurrentPage } from "../../redux/actions.js"
+
 const SearchBar = () => {
-  let [name, setName] = useState()
-    function handleChange(e){
-        e.preventDefault();
-        setName(e.target.value)
-    }
+  let [name, setName] = useState("");
+  let dispatch = useDispatch();
 
-    function handleSubmit(){
+  function handleChange(e) {
+    e.preventDefault();
+      setName(e.target.value)
+  }
 
-    }
-  
-    return (
-    <div className="search">
-        <div className="form">
-            <form onSubmit={handleSubmit}>
-                <input type="text" placeholder="Search a country..." value={name} onChange={handleChange}/>
-                <button type="submit" >Search</button>
-            </form>
-        </div>
-            {/* <div className="clear">
-            <button onClick={handleClick}>Clear</button>
-            </div> */}
-</div>
+  function handleSubmit(e) {
+    e.preventDefault();
+    dispatch(searchProduct(name));
+    dispatch(setCurrentPage(1));
+    setName("");
+  }
+
+  function handleClick(e) {
+    dispatch(clear())
+  }
+
+  return (
+    <div class="d-flex">
+      <div>
+        <form class="d-flex" role="search" onSubmit={handleSubmit}>
+          <input class="form-control me-2" type="search" placeholder="Search a videogame..." required aria-label="Search" value={name} onChange={handleChange} />
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+      <div className="clear">
+        <button class="btn btn-outline-success" onClick={handleClick}>Clear</button>
+      </div>
+    </div>
   )
 }
 
