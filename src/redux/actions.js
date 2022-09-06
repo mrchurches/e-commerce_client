@@ -84,7 +84,7 @@ export function searchProduct(name){
 export function getUsers(){
     return async function (dispatch){
         try {
-            const response = await axios.get(`${REACT_APP_URL}/user`, { withCredentials: true })
+            const response = await axios.get(`${REACT_APP_URL}user`, { withCredentials: true })
             dispatch({
                 type: GET_USERS,
                 payload:response.data
@@ -101,7 +101,7 @@ export function getUsers(){
 export function postUsers({username, password}){
     var options = {
         method: 'POST',
-        url: `${REACT_APP_URL}/login`,
+        url: `${REACT_APP_URL}login`,
         withCredentials: true,
         data: {username, password}
       };
