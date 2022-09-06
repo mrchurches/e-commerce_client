@@ -1,8 +1,5 @@
 import axios from "axios";
-
-import { REACT_APP_URL } from "../Components/CreateUser/CreateUserHelper";
-// const REACT_APP_URL = 'https://e-commerce-api-pf.herokuapp.com'
-
+//import { REACT_APP_URL } from "../Components/CreateUser/CreateUserHelper";
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const FILTER_BY_GENRES = "FILTER_BY_GENRES";
 export const GET_GENRES = "GET_GENRES";
@@ -22,16 +19,15 @@ export const ORDER_BY_RATING = "ORDER_BY_RATING"
 export const ORDER_BY_ESRB = "ORDER_BY_ESRB"
 export const Order_By = "Orderby", 
 RESET_USER = 'RESET_USER';
+const {REACT_APP_URL} = process.env;
 
 
-
-// const URL = "https://e-commerce-api-pf.herokuapp.com/";
-const URL = "http://localhost:3001/";
+//const URL = "https://e-commerce-api-pf.herokuapp.com/";
 
 
 export function getAllProducts(){
     return function(dispatch){
-        axios.get(`${URL}videogames`)
+        axios.get(`${REACT_APP_URL}videogames`)
         .then((res)=>{
             dispatch({
                 type: GET_ALL_PRODUCTS,
@@ -45,7 +41,7 @@ export function getAllProducts(){
 
 export function getGenres(){
     return function (dispatch){
-        axios.get(`${URL}genres`)
+        axios.get(`${REACT_APP_URL}genres`)
         .then((res)=>{
             dispatch({
                 type: GET_GENRES,
@@ -58,7 +54,7 @@ export function getGenres(){
 
 export function getPlatforms(){
     return function (dispatch){
-        axios.get(`${URL}platforms`)
+        axios.get(`${REACT_APP_URL}platforms`)
         .then((res)=>{
             dispatch({
                 type: GET_PLATFORMS,
@@ -73,7 +69,7 @@ export function getPlatforms(){
 export function searchProduct(name){
    if(name){
     return function (dispatch){
-        axios.get(`${URL}videogames?name=${name}`)
+        axios.get(`${REACT_APP_URL}videogames?name=${name}`)
         .then((res)=>{
             dispatch({
                 type: SEARCH_PRODUCT,
@@ -88,7 +84,7 @@ export function searchProduct(name){
 export function getUsers(){
     return async function (dispatch){
         try {
-            const response = await axios.get(`${REACT_APP_URL}/user`, { withCredentials: true })
+            const response = await axios.get(`${REACT_APP_URL}user`, { withCredentials: true })
             dispatch({
                 type: GET_USERS,
                 payload:response.data
@@ -105,7 +101,7 @@ export function getUsers(){
 export function postUsers({username, password}){
     var options = {
         method: 'POST',
-        url: `${REACT_APP_URL}/login`,
+        url: `${REACT_APP_URL}login`,
         withCredentials: true,
         data: {username, password}
       };
@@ -118,9 +114,8 @@ export function postUsers({username, password}){
             })
             return response.data.message
         }
-    } catch (error) {
-        console.log(error.response)
-        return false
+    }catch(error){
+        console.log(error);
     }
 };
 

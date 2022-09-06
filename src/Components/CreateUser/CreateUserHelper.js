@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-//export const REACT_APP_URL = 'https://e-commerce-api-pf.herokuapp.com'
-export const REACT_APP_URL = 'http://localhost:3001'
+const { REACT_APP_URL } = process.env
 
 export const userFormat = {
   name: "",
@@ -43,7 +42,7 @@ export const validatedFunctions = {
 
 export async function existsUsername(username) {
   try {
-    const users = await axios.get(`${REACT_APP_URL}/user/find/username/${username}`);
+    const users = await axios.get(`${REACT_APP_URL}user/find/username/${username}`);
       return users.data.user
   } catch (error) {
     console.log(error)
@@ -51,13 +50,13 @@ export async function existsUsername(username) {
 };
 
 export async function findEmail(email) {
-  const response = await axios.get(`${REACT_APP_URL}/user/find/email/${email}`);
+  const response = await axios.get(`${REACT_APP_URL}user/find/email/${email}`);
   return response.data.user
 };
 
 export async function createNewUser({ name, lastname, username, email, password, profile_pic }) {
   try {
-    await axios.post(`${REACT_APP_URL}/signin`,{
+    await axios.post(`${REACT_APP_URL}signin`,{
       name: name,
       lastname: lastname,
       username: username,

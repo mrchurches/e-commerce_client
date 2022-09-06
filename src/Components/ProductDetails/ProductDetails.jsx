@@ -6,9 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useParams, NavLink } from 'react-router-dom'
 import { addToCart, addWish } from '../../redux/actions';
 import './details.css'
-
-const URL = "https://e-commerce-api-pf.herokuapp.com/";
-/* const URL = "http://localhost:3001/"; */
+const {REACT_APP_URL} = process.env;
 export default function ProductDetails() {
 
   const [game, setGame] = useState({});
@@ -21,7 +19,7 @@ export default function ProductDetails() {
   useEffect(() => {
     if (user.length) setDisabled(false); //si cuando se monta el componente hay usuario logueado habilita el addwish
     setTimeout(() => {
-      axios.get(`${URL}videogames/${id}`)
+      axios.get(`${REACT_APP_URL}videogames/${id}`)
         .then(res => setGame(res.data))
         .catch(err => console.log(err))
     }, "500");
@@ -113,7 +111,7 @@ export default function ProductDetails() {
             </div>
 
             <div class="project-info-box">
-              <p className='p3'><b>Platforms:</b>{game.platforms?.map(e => (<span> {e.name}</span>))} </p>
+              <p className='p3'u><b>Platforms:</b>{game.platforms?.map(e => (<span> {e.name}</span>))} </p>
               <p className='p3'><b>Genres:</b> {game.genres?.map(e => (<span> {e.name} </span>))} </p>
             </div>
 
