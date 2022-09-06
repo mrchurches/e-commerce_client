@@ -50,7 +50,7 @@ export async function existsUsername(username) {
 };
 
 export async function findEmail(email) {
-  const response = await axios.get(`${REACT_APP_URL}user/find/email/${email}`);
+  const response = await axios.get(`http://localhost:3001/user/find/email/${email}`);
   return response.data.user
 };
 

@@ -22,7 +22,7 @@ RESET_USER = 'RESET_USER';
 const {REACT_APP_URL} = process.env;
 
 //const URL = "https://e-commerce-api-pf.herokuapp.com/";
-
+console.log(REACT_APP_URL)
 
 export function getAllProducts(){
     return function(dispatch){
@@ -100,7 +100,7 @@ export function getUsers(){
 export function postUsers({username, password}){
     var options = {
         method: 'POST',
-        url: `${REACT_APP_URL}login`,
+        url: `${REACT_APP_URL}/login`,
         withCredentials: true,
         data: {username, password}
       };
