@@ -6,11 +6,11 @@ import { Link, Redirect } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import gLogo from './btn_google.svg'
 import { postUsers } from "../../redux/actions";
-//import { REACT_APP_URL } from "../CreateUser/CreateUserHelper";
 import { findEmail } from "../CreateUser/CreateUserHelper";
 import { useSelector } from "react-redux";
 const {REACT_APP_URL} = process.env;
 
+console.log(REACT_APP_URL)
 const Login = () => {
   const [user, setUser] = useState({ username: "", password: "" }),
     [userGet, setUserGet] = useState({ userNExists: false, failedLog: false, userBan: false }),
@@ -87,7 +87,7 @@ const Login = () => {
         </div>
         <p>OR</p>
         <div class="btnLogo">
-          <a class={"linkA"} href={`${REACT_APP_URL}login/auth/google`}>
+          <a class={"linkA"} href={`http://localhost:3001/login/auth/google`}>
             <img src={gLogo} class="" id='' alt='googleButton' />
             <small class="form-label">Sign in with google</small><br />
             <br />

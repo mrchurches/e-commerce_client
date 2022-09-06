@@ -20,7 +20,7 @@ export const ORDER_BY_ESRB = "ORDER_BY_ESRB"
 export const Order_By = "Orderby", 
 RESET_USER = 'RESET_USER';
 const {REACT_APP_URL} = process.env;
-
+console.log(REACT_APP_URL)
 
 //const URL = "https://e-commerce-api-pf.herokuapp.com/";
 
@@ -101,7 +101,7 @@ export function getUsers(){
 export function postUsers({username, password}){
     var options = {
         method: 'POST',
-        url: `${REACT_APP_URL}login`,
+        url: `${REACT_APP_URL}/login`,
         withCredentials: true,
         data: {username, password}
       };
