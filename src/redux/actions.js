@@ -20,7 +20,6 @@ export const ORDER_BY_ESRB = "ORDER_BY_ESRB"
 export const Order_By = "Orderby", 
 RESET_USER = 'RESET_USER';
 const {REACT_APP_URL} = process.env;
-console.log(REACT_APP_URL)
 
 //const URL = "https://e-commerce-api-pf.herokuapp.com/";
 
