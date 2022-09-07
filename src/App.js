@@ -8,7 +8,7 @@ import ShoppingCart from './Components/ShoppingCart/ShoppingCart';
 import CreateUser from './Components/CreateUser/CreateUser';
 import Login from './Components/Login/Login';
 import Home from './Components/Home/Home';
-import PostGame from './CreateGame/CreateGame';
+import PostGame from './Components/CreateGame/CreateGame';
 import MyStore from './Components/MyStore/MyStore';
 import Account from './Components/Account/Account';
 import WishList from "./Components/WishList/WishList.jsx";
