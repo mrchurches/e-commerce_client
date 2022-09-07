@@ -42,8 +42,7 @@ export const validatedFunctions = {
 
 export async function existsUsername(username) {
   try {
-    // const users = await axios.get(`${REACT_APP_URL}user/find/username/${username}`);
-    const users = await axios.get('http://localhost:3001/'+`user/find/username/${username}`);
+    const users = await axios.get(`${REACT_APP_URL}user/find/username/${username}`);
       return users.data.user
   } catch (error) {
     console.log(error)
