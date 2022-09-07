@@ -12,6 +12,21 @@ cart.forEach(e=>{
 let fg = games.filter((f)=>e===f.id);
 filterGames.push(fg[0])
 })
+// asitiene que se el juego= {
+//     title: "Mi producto",
+//     unit_price: 100,
+//     quantity: 1,
+//   };
+let gamesCO= filterGames.map(e=>{
+    return {
+        title: e.name,
+        unit_price: e.price,
+        quantity: 1
+    }
+});
+
+let forCheckout = { items: gamesCO };
+
 console.log(filterGames)
     return (
         <div>
@@ -28,7 +43,7 @@ console.log(filterGames)
             </div>
             <div>
                 <h1>pagar</h1>
-                <Checkout />
+                <Checkout games={forCheckout}/>
             </div>
         </div>
     )
