@@ -100,10 +100,12 @@ switch(action.type){
            products: filtered_platforms
        }
    case ADD_TO_CART:
-       return{
-           ...state,
-           cart: [...state.cart, action.payload]
-       }
+
+   
+            return{
+                ...state,
+                cart: [...state.cart, action.payload]
+            }
    case ADD_WISH:
        return{
            ...state,
