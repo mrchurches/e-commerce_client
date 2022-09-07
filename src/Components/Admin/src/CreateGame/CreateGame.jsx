@@ -11,8 +11,8 @@ function validate(input){
     if(!input.name) error.name="Name required"
     if(!input.description) error.description ="Description required"
     if(!input.background_image) error.background_image="an image is required"
-    if(!input.rating)error.rating = "Must rate the product"
-    if(!input.price)error.price = "Must put a price"
+    if(!input.rating || input.rating < 0 || input.rating > 100 || input.rating.includes("."))error.rating = "Must rate the product with a number between 1 and 100"
+    if(!input.price || input.price <= 0 )error.price = "Must put a price with a value higher than 0"
     if(!input.genres.length) error.genres="Must select at least one Genre"
     if(!input.released) error.released="Must select the release date of the product"
     if(!input.platforms.length) error.platforms="Must select at least one platform"
@@ -111,14 +111,13 @@ export default function PostGame(){
     };
     
     return(
-
-    <div class="mt-5 d-flex justify-content-center ">
-        <div class="card shadow-lg p-3 mb-5 bg-body rounded" style={{ width: '25rem'/* , height: "40rem" */}}>
+        <div class="mt-5 d-flex justify-content-center ">
+        <div class="card shadow-lg p-3 mb-5 bg-body rounded" style={{ width: '25rem'}}>
             <form onSubmit={(e)=>handlersubmit(e)}>
-                <h2>Post Game</h2>
+                <p>Add a new Game:</p>
                 <div class="mb-3 w-100">
                 {/*  <label  class="form-label">Name</label> */}
-                    <input type="text" className={style.name} style={{width:"100%"}} placeholder="title of the game..." onChange={handleChange} value={input.name} name="name" />
+                    <input type="text" class="form-control" className={style.name} style={{width:"100%"}} placeholder="title of the game..." onChange={handleChange} value={input.name} name="name" />
                     {/* <small class="form-text">We'll never share your email with anyone else.</small> */}
                     {error.name? <label className={style.labelError}>{error.name}</label>:null}
                 </div>
@@ -139,33 +138,26 @@ export default function PostGame(){
                 </div>
                 <div class="mb-3">
                 {/*  <label  class="form-label">Rating</label> */}
-                    <input type="number" class="form-control" placeholder="Rating of the game..." onChange={handleChange} value={input.rating} name="rating" />
+                    <input type="number" class="form-control" placeholder="Rating of the game..." onChange={handleChange} min="1" max="100" value={input.rating} name="rating" />
                     {error.rating ? <label className={style.labelError}>{error.rating}</label> : null}
                 </div>
                 <div class="mb-3">
                     {/* <label  class="form-label">Price</label> */}
-                    <input type="number" class="form-control" placeholder="Price..." onChange={handleChange} value={input.price} name="price" />
+                    <input type="number" class="form-control" placeholder="Price..." onChange={handleChange}  min="1" max="100" value={input.price} name="price" />
                     {error.price ? <label className={style.labelError}>{error.price}</label> : null}
                 </div>
                 <div class="mb-3">
                 {/*  <label class="form-label">Genres</label> */}
-                    <select  placeholder="Select at least one Genre..."   name="genres" value={input.genres} onChange={(e)=>handleSelectGenres(e)}>
+                    <select  placeholder="Select at least one Genre..." class="form-select"  name="genres" value={input.genres} onChange={(e)=>handleSelectGenres(e)}>
                         <option>Select Genres</option > 
                         {genres && genres.map((e, pos)=>{ return <option id={pos} key={e.id} value={e.genres}>{e.name}</option>})}
                     </select>  
                     {error.genres ? <label className={style.labelError}>Select a Genre</label> : null}
                 </div>
-                <br />
-                {input.genres.map((genre, pos)=>
-                    <div className={style.flex}>
-                        <p id={pos}>{genre}</p>
-                        <button onClick={()=>handleDeleteGenre(genre)}>X</button>
-                    </div>
-                )}  
-                <br />
+       
                 <div class="mb-3">
                     {/* <label class="form-label">Platform</label> */}
-                    <select placeholder="Select at least one Platform" name="platforms" value={input.platforms} onChange={(e)=>handleSelectPlat(e)}>
+                    <select placeholder="Select at least one Platform" class="form-select" name="platforms" value={input.platforms} onChange={(e)=>handleSelectPlat(e)}>
                         <option>Select Platforms</option>
                         {platform && platform.map((consola, pos)=>{
                             return <option id={consola.id} key={consola.id} value={consola.platforms}>{consola.name}</option>
@@ -174,14 +166,20 @@ export default function PostGame(){
                     {error.platforms ? <label className={style.labelError}>{error.platforms}</label>:null}
                 </div>
                 <br></br>
+                        {input.genres.map((genre, pos)=>
+                            <div className={style.flex}>
+                                <p id={pos} onClick={()=>handleDeleteGenre(genre)} class="font-family: fantasy">{genre}</p>
+                                {/* <button onClick={()=>handleDeleteGenre(genre)}>X</button> */}
+                            </div>
+                        )}  
                 {input.platforms.map((plataforma,pos)=>
                     <div className={style.flex}>
-                        <p id={pos}>{plataforma}</p>
-                        <button onClick={()=>handleDeletePlat(plataforma)}>X</button>
+                        <p id={pos} onClick={()=>handleDeletePlat(plataforma)}>{plataforma}</p>
                     </div>
                 )}
                 <br></br>
-                <button type="submit" disabled={activeSubmit}>Create!!</button> 
+                {/* <button type="submit" disabled={activeSubmit}>Create!!</button> */} 
+                <button type="submit" class="btn btn-primary" disabled={activeSubmit}>Create</button>
             </form>
         </div>
     </div>
