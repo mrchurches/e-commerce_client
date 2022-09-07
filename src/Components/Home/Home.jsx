@@ -8,6 +8,7 @@ import Pagination from '../Pagination/Pagination';
 import SideBar from '../SideBar/SideBar';
 import Filters from "../Filters/Filters"
 import "./Home.css"
+import { getCookie } from './HomeHelper';
 
 function Home() {
     let games = useSelector(state => state.products);
@@ -26,7 +27,8 @@ function Home() {
     }
 
     useEffect(() => {
-        user === undefined && dispatch(getUsers())
+        const token = getCookie('token')
+        token && user === undefined && dispatch(getUsers(token))
     }, [])
 
     useEffect(() => {

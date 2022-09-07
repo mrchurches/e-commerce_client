@@ -12,3 +12,9 @@ export function logout(){
         console.log(error)
     }
 }
+
+export function eliminarCookies() {
+    document.cookie.split(";").forEach(function (c) {
+        document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+    });
+}
