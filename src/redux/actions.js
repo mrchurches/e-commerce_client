@@ -80,10 +80,10 @@ export function searchProduct(name){
 }else {return"No tiene nombre"}};
 
 
-export function getUsers(){
+export function getUsers(token){
     return async function (dispatch){
         try {
-            const response = await axios.get(`${REACT_APP_URL}user`, { withCredentials: true })
+            const response = await axios.get(`${REACT_APP_URL}/user?tkn=${token}`, { withCredentials: true })
             dispatch({
                 type: GET_USERS,
                 payload:response.data
@@ -94,27 +94,6 @@ export function getUsers(){
             return;
         }
 
-    }
-};
-
-export function postUsers({username, password}){
-    var options = {
-        method: 'POST',
-        url: `${REACT_APP_URL}/login`,
-        withCredentials: true,
-        data: {username, password}
-      };
-    try {     
-        return async function(dispatch){
-            const response = await axios.request(options)
-            dispatch({
-                type: GET_USERS,
-                payload:response.data
-            })
-            return response.data.message
-        }
-    }catch(error){
-        console.log(error);
     }
 };
 

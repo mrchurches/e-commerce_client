@@ -5,9 +5,10 @@ import { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import gLogo from './btn_google.svg'
-import { postUsers } from "../../redux/actions";
+import { postUsers } from "./LoginHelper";
 import { findEmail } from "../CreateUser/CreateUserHelper";
 import { useSelector } from "react-redux";
+import { getUsers } from "../../redux/actions";
 const {REACT_APP_URL} = process.env;
 
 const Login = () => {
@@ -19,11 +20,6 @@ const Login = () => {
   const { userAuth } = useSelector(state => {
     return { userAuth: state.users }
   })
-
-  function resetStates() {
-    setUser({ username: "", password: "" });
-    setDisabled(true)
-  }
  
   useEffect(() => {
     if (user.username && user.password) {
@@ -32,10 +28,6 @@ const Login = () => {
       setDisabled(true)
     }
   }, [user])
-
-  useEffect(() => {
-    return () => resetStates()
-  }, [])
 
   function handleChange(e) {
     setUser({ ...user, [e.target.id]: e.target.value })
@@ -54,11 +46,12 @@ const Login = () => {
     } else if (userExist.isBanned) {
       setUserGet((i) => ({ ...i, userBan: true }));
     } else {
-      const info = await dispatch(postUsers(user));
-      info === 'Not Autheticaded' && setUserGet((i) => ({ ...i, failedLog: true }));
+      const info = await postUsers(user);
+      info.message === 'Not Autheticaded' && setUserGet((i) => ({ ...i, failedLog: true }));
+      info.token && dispatch(getUsers(info.token));
     }
-    resetStates()
   }
+
   return (
     <div class="mt-5 d-flex justify-content-center ">
       {userAuth.user && <Redirect to='/home' />}
@@ -86,7 +79,7 @@ const Login = () => {
         </div>
         <p>OR</p>
         <div class="btnLogo">
-          <a class={"linkA"} href={`${REACT_APP_URL}login/auth/google`}>
+          <a class={"linkA"} href={`${REACT_APP_URL}/login/auth/google`}>
             <img src={gLogo} class="" id='' alt='googleButton' />
             <small class="form-label">Sign in with google</small><br />
             <br />
