@@ -5,6 +5,9 @@ import Users from '../Users/Users.jsx'
 import CreateGame from '../CreateGame/CreateGame.jsx'
 
 export default function infoContainter({render}) {
+
+  
+
   return (
     <div>
       {render.dash && (<Dashboard/>)}

@@ -1,13 +1,18 @@
 .infocontainer {
+    border-radius: 10px;
     margin-top: 30px;
-    margin-left: 50px;
+    margin-left: 20px;
     background-color: rgb(68, 100, 109);
     min-height: 80vh;
     width: 80%;
 }
 
 .options{
-    margin-top: 20px;
-    margin-left: 10px;
+    display: flex;
+    border-radius: 10px;
+    background-color: rgb(68, 100, 109);
+    width: 13%;
+    margin-top: 30px;
+    margin-left: 20px;
     margin-right: 20px;
 }
