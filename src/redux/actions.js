@@ -221,8 +221,8 @@ export function Post_Game(payload){
     return async function (dispatch){
         try{
             let json = await axios.post(`${REACT_APP_URL}videogames/create`, payload)
-            //console.log(json)
-            alert("Recipe Created Succesfully!")
+            console.log(json)
+            alert("Videogame Created Succesfully!")
             return json;
         }catch(e){
             console.error(e);

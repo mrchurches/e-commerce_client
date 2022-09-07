@@ -1,18 +1,18 @@
 import React from 'react'
 
 
-function Optios({render, setRender}) {
+function Optios({setRender}) {
   
   function handleClick(e) {
     e.preventDefault();
     if(e.target.value === 'dash'){
-      setRender({dash: true, add: false, edit: false, user: false,})
+      setRender({dash: true, add: false, edit: false, user: false, editForm: false})
     }else if(e.target.value ===  'add'){
-      setRender({dash: false, add: true, edit: false, user: false,})
+      setRender({dash: false, add: true, edit: false, user: false, editForm: false})
     }else if(e.target.value === 'edit'){
-      setRender({dash: false, add: false, edit: true, user: false,})
+      setRender({dash: false, add: false, edit: true, user: false, editForm: false})
     }else if(e.target.value === 'user'){
-      setRender({dash: false, add: false, edit: false, user: true,})
+      setRender({dash: false, add: false, edit: false, user: true, editForm: false})
     }
   }
 

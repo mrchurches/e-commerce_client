@@ -1,6 +1,29 @@
 .flex{
     display: flex;
+    justify-content: space-evenly;
+    align-content: stretch;
+    flex-direction: column-reverse;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
+  
+  .labelError {
+    margin-left: 6%;
+    font-size: 0.8rem;
+    color: #ff0606;
+    text-align: right;
+    font-family: Georgia;
+    font-weight: bold;
+  }
+  
+.name{
+    display: flex;
     flex-direction: row-reverse;
     flex-wrap: wrap;
     justify-content: flex-end;
+    size: 20%;
+}
+
+.font{
+    font-family:fantasy
 }

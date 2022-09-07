@@ -1,12 +1,15 @@
 import React from 'react'
+import axios from 'axios';
 import style from './editProducts.module.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { getAllProducts, filterByGenres, filterByPlatforms } from '../../../../redux/actions.js'
 import { products } from '../../../../redux/products.js'
 import SearchBar from '../../../SearchBar/SearchBar'
+import { Link } from 'react-router-dom'
+const {REACT_APP_URL} = process.env;
 
-function EditProducts() {
+function EditProducts({setRender, setGame}) {
 
   const dispatch = useDispatch()
 
@@ -16,7 +19,11 @@ function EditProducts() {
 
   const handleClick = (event) => {
     event.preventDefault()
-    alert(event.target.value)
+    /*setTimeout(() => {
+      axios.get(`${REACT_APP_URL}videogames/${id}`)
+        .then(res => setGame(res.data))
+        .catch(err => console.log(err))
+    }, "500");*/
   };
 
   const filterPlatforms = (event) => {
@@ -31,21 +38,33 @@ function EditProducts() {
       dispatch(filterByGenres(event.target.value))
   };
 
+  const handleEdit = async (event) => {
+    console.log(event.target.id)
+    setTimeout(() => {
+      axios.get(`${REACT_APP_URL}videogames/${event.target.id}`)
+        .then(res => {
+          setGame(res.data)
+          setRender({dash: false, add: false, edit: false, user: false, editForm: true});
+        })
+        .catch(err => console.log(err))
+    }, "500");
+  }
 
-   const products = useSelector((state) => state.products)
-   let platforms = [...new Set(products.map(e => e.platforms).flat().map(e => e.name))]
-   let genres = [...new Set(products.map(e => e.genres).flat().map(e => e.name))]
-   //console.log(products);
-   const searchered = useSelector((state) => state.searchered);
-   const games = searchered.length ? searchered : products
-   console.log(platforms);
+
+  const products = useSelector((state) => state.products)
+  let platforms = [...new Set(products.map(e => e.platforms).flat().map(e => e.name))]
+  let genres = [...new Set(products.map(e => e.genres).flat().map(e => e.name))]
+  //console.log(products);
+  const searchered = useSelector((state) => state.searchered);
+  const games = searchered.length ? searchered : products
+  console.log(platforms);
 
 
-
+  var color = 'white'
 
   return (
-    <div className={style.container}>
-
+    <div class='container' className={style.bigContainer}>
+      
       <h1> Edit Product </h1>
       
       
@@ -108,7 +127,7 @@ function EditProducts() {
 
       </div>
 
-      <div className={style.text}>
+      {/*<div className={style.text}>
 
         <select class="form-select" multiple aria-label="multiple select example" className={style.games}>
           {games.length && games.map((product, index) => {
@@ -116,14 +135,27 @@ function EditProducts() {
               key={index}
               onClick={(e) => handleClick(e)}
               value={product.id}>
-              {product.name} 
+              {product.name}
             </option>
           })};
         </select>
 
+      </div>*/}
+
+      <div className={style.verticalScrollable}>
+        {games.length && games.map((product, index) => {
+          if (color === 'white') {
+            color = 'rgba(140, 144, 147, 0.138)'
+          }else{color = 'white'}
+            return <div className={style.productName} style={{backgroundColor:  color}} class='d-flex'>
+              <div id={product.id} className={style.name} onClick={(e) => handleEdit(e)}>{product.name}</div>
+              {product.price ? <div className={style.iconContainer} onClick={(e) => handleEdit(e)}><i id={product.id} class="bi bi-pencil"></i></div> :
+              <div className={style.iconContainer} onClick={(e) => handleEdit(e)}><i id={product.id} class="bi bi-plus-circle"></i></div>}
+            </div>
+        })}
       </div>
 
-    </div>
+      </div>
   )
 }
 
