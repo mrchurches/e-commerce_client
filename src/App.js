@@ -8,7 +8,7 @@ import ShoppingCart from './Components/ShoppingCart/ShoppingCart';
 import CreateUser from './Components/CreateUser/CreateUser';
 import Login from './Components/Login/Login';
 import Home from './Components/Home/Home';
-import PostGame from './Components/CreateGame/CreateGame';
+import PostGame from './Components/Admin/src/CreateGame/CreateGame';
 import MyStore from './Components/MyStore/MyStore';
 import Account from './Components/Account/Account';
 import WishList from "./Components/WishList/WishList.jsx";
@@ -34,7 +34,6 @@ console.log(users)
         <Route path="/login" component={Login} />
         <Route path="/home" component={Home} />
         <Route path="/admin" component={Admin}/>
-        <Route path="/admin/create" component={PostGame}/>
         <div className='footer'>
         <Footer />
         </div>

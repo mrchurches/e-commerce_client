@@ -2,7 +2,7 @@ import React, {useEffect} from "react"
 import {useState} from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import {getGenres, getPlatforms, Post_Game}  from "../../redux/actions";
+import {getGenres, getPlatforms, Post_Game}  from "../../../../redux/actions";
 import style from "./CreateGame.module.css";
 //import {   useNavigate, NavLink } from "react-router-dom";
 
