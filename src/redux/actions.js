@@ -11,6 +11,7 @@ export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 export const CLEAR_CART = "CLEAR_CART";
 export const ADD_WISH = "ADD_WISH";
+export const REMOVE_WISH= "REMOVE_WISH";
 export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 export const CLEAR = "CLEAR";
 export const ORDER_ASC = "ORDER_ASC"
@@ -153,6 +154,15 @@ export function addToCart(id){
 }
 }
 
+export function removeFromCart(id){
+    return function(dispatch){
+        dispatch({
+            type: REMOVE_FROM_CART,
+            payload: id
+        })
+    }
+}
+
 export function addWish(id){
     return function(dispatch){
         dispatch({
@@ -237,3 +247,9 @@ export function resetUser(){
     };
 };
 
+export function removeWish(id){
+    return{
+        type: REMOVE_WISH,
+        payload: id
+    }
+};

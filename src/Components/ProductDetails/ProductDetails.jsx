@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useParams, NavLink } from 'react-router-dom'
 import { addToCart, addWish } from '../../redux/actions';
+import FavouriteButton from '../FavouriteButton/FavouriteBurron';
 import './details.css'
 const {REACT_APP_URL} = process.env;
 export default function ProductDetails() {
@@ -42,8 +43,6 @@ export default function ProductDetails() {
       //   alert("Juego ya agregado al carrito!")
       // }
 
-    } else {
-      dispatch(addWish(game.id))
     }
   }
 
@@ -81,10 +80,7 @@ export default function ProductDetails() {
               <button value="cart" onClick={handleClick} type="button" class="btn btn-info">
                   Add to cart
                 </button>
-
-                <button value="whish" disabled={disabled} onClick={handleClick} type="button" class="btn btn-secondary">
-                  Add to wishlist
-                </button>
+                <FavouriteButton id={id} />
               </div>
             </div>
             <div style={{height: '15px'}}></div>
