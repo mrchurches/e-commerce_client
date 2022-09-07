@@ -20,7 +20,7 @@ import { useSelector } from 'react-redux';
 function App() {
 let users = useSelector(state=>state.users);
 
-console.log(users)
+//console.log(users)
   return (
     <div className="App">
         <Route path="/" component={NavBar}/>

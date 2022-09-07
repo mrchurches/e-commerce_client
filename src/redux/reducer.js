@@ -71,13 +71,13 @@ switch(action.type){
                return true;
            }else{return false}
        });
-       console.log(state.products2)
+       //console.log(state.products2)
    return{
            ...state,
            products: filtered_genres
        }
    case SEARCH_PRODUCT:
-       console.log(action.payload)
+       //console.log(action.payload)
        return{
            ...state,
            searchered: action.payload
@@ -159,7 +159,7 @@ switch(action.type){
                    products: [...rat]
        };
        case Order_By:
-           console.log(action.payload)
+           //console.log(action.payload)
            return{
                ...state,
                products:[...state.products].sort(action.payload)
