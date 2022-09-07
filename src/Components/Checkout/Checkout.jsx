@@ -28,13 +28,24 @@ import axios from "axios"
 
 const FORM_ID = 'payment-form';
 
-export default function Product() {
+export default function Checkout() {
     const { id } = useParams(); // id de producto
     const [preferenceId, setPreferenceId] = useState(null);
 
+    // let game = useSelector(state.cart)
+
     useEffect(() => {
         // luego de montarse el componente, le pedimos al backend el preferenceId
-        axios.post('http://localhost:3001/payment', { productId: id })
+        axios.post('http://localhost:3001/payment', {
+            items: [
+                {
+                    title: "Mi producto",
+                    unit_price: 100,
+                    quantity: 1,
+                },
+            ],
+        })
+
             .then((order) => {
                 console.log(order)
                 order = order.data
