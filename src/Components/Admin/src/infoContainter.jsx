@@ -2,13 +2,15 @@ import React from 'react'
 import AddProducts from './AddProducts.jsx'
 import Dashboard from './Dashboard.jsx'
 import Users from './Users'
+import CreateGame from '../../../CreateGame/CreateGame.jsx'
 
 export default function infoContainter() {
   return (
     <div>
-      
-      <AddProducts/>
-
+        <Dashboard/>
+        <AddProducts/>
+        <Users/>
+        <CreateGame/>
     </div>
   )
 }
