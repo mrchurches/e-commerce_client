@@ -1,5 +1,4 @@
 import axios from "axios";
-//import { REACT_APP_URL } from "../Components/CreateUser/CreateUserHelper";
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const FILTER_BY_GENRES = "FILTER_BY_GENRES";
 export const GET_GENRES = "GET_GENRES";
@@ -20,9 +19,6 @@ export const ORDER_BY_ESRB = "ORDER_BY_ESRB"
 export const Order_By = "Orderby", 
 RESET_USER = 'RESET_USER';
 const {REACT_APP_URL} = process.env;
-
-//const URL = "https://e-commerce-api-pf.herokuapp.com/";
-console.log(REACT_APP_URL)
 
 export function getAllProducts(){
     return function(dispatch){
@@ -83,14 +79,14 @@ export function searchProduct(name){
 export function getUsers(token){
     return async function (dispatch){
         try {
-            const response = await axios.get(`${REACT_APP_URL}/user?tkn=${token}`, { withCredentials: true })
+            const response = await axios.get(`${REACT_APP_URL}user?tkn=${token}`)
             dispatch({
                 type: GET_USERS,
                 payload:response.data
             })
-            return response.data.message
+            return response.data
         } catch (error) {
-            console.log(error.response)
+            console.log(error)
             return;
         }
 
