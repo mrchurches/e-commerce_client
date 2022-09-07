@@ -115,75 +115,76 @@ export default function PostGame(){
     <div class="mt-5 d-flex justify-content-center ">
         <div class="card shadow-lg p-3 mb-5 bg-body rounded" style={{ width: '25rem'/* , height: "40rem" */}}>
             <form onSubmit={(e)=>handlersubmit(e)}>
-            <div class="mb-3">
-                <label  class="form-label">Name</label>
-                <input type="text"  aria-describedby="" placeholder="title of the game" onChange={handleChange} value={input.name} name="name" />
-                {/* <small class="form-text">We'll never share your email with anyone else.</small> */}
-                {error.name? <label>{error.name}</label>:null}
-            </div>
-            <div class="mb-3">
-                <label  class="form-label">Description</label>
-                <input type="text" class="form-control"  onChange={handleChange}  value={input.description} name="description" />
-                {error.description ? <label>{error.description}</label>:null}
-            </div>
-            <div class="mb-3">
-                <label  class="form-label">Image</label>
-                <input type="text" class="form-control"  onChange={handleChange} value={input.background_image} name="background_image" />
-                {error.background_image ? <label>{error.background_image}</label> : null}
-            </div>
-            <div class="mb-3">
-                <label  class="form-label">Release Date</label>
-                <input type="date" class="form-control"  onChange={handleChange} value={input.released} name="released" />
-                {error.released ? <label>{error.released}</label> : null}
-            </div>
-            <div class="mb-3">
-                <label  class="form-label">Rating</label>
-                <input type="number" class="form-control"  onChange={handleChange} value={input.rating} name="rating" />
-                {error.rating ? <label>{error.rating}</label> : null}
-            </div>
-            <div class="mb-3">
-                <label  class="form-label">Price</label>
-                <input type="number" class="form-control"  onChange={handleChange} value={input.price} name="price" />
-                {error.price ? <label>{error.price}</label> : null}
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Genres</label>
-                <select  placeholder="Select at least one Genre"   name="genres" value={input.genres} onChange={(e)=>handleSelectGenres(e)}>
-                    <option>Select Genres</option > 
-                    {genres && genres.map((e, pos)=>{ return <option id={pos} key={e.id} value={e.genres}>{e.name}</option>})}
-                </select>  
-                {error.genres ? <label>Select a Genre</label> : null}
-            </div>
-            <br />
-            {input.genres.map((genre, pos)=>
-                <div className={style.flex}>
-                    <p id={pos}>{genre}</p>
-                    <button onClick={()=>handleDeleteGenre(genre)}>X</button>
+                <h2>Post Game</h2>
+                <div class="mb-3 w-100">
+                {/*  <label  class="form-label">Name</label> */}
+                    <input type="text" className={style.name} style={{width:"100%"}} placeholder="title of the game..." onChange={handleChange} value={input.name} name="name" />
+                    {/* <small class="form-text">We'll never share your email with anyone else.</small> */}
+                    {error.name? <label className={style.labelError}>{error.name}</label>:null}
                 </div>
-            )}  
-            <br />
-            <div class="mb-3">
-                <label class="form-label">Platform:</label>
-                <select placeholder="Select at least one Platform" name="platforms" value={input.platforms} onChange={(e)=>handleSelectPlat(e)}>
-                    <option>Select Platforms</option>
-                    {platform && platform.map((consola, pos)=>{
-                        return <option id={consola.id} key={consola.id} value={consola.platforms}>{consola.name}</option>
-                    })}
-                </select>
-                {error.platforms ? <label>{error.platforms}</label>:null}
-            </div>
-            <br></br>
-            {input.platforms.map((plataforma,pos)=>
-                <div className={style.flex}>
-                    <p id={pos}>{plataforma}</p>
-                    <button onClick={()=>handleDeletePlat(plataforma)}>X</button>
+                <div class="mb-3">
+                {/*  <label  class="form-label">Description</label> */}
+                    <input type="text" class="form-control"  placeholder="a brief summary..." onChange={handleChange}  value={input.description} name="description" />
+                    {error.description ? <label className={style.labelError}>{error.description}</label>:null}
                 </div>
-            )}
-            <br></br>
-            <button type="submit" disabled={activeSubmit}>Create!!</button> 
+                <div class="mb-3">
+                    {/* <label  class="form-label">Image</label> */}
+                    <input type="text" class="form-control" placeholder="an image url..." onChange={handleChange} value={input.background_image} name="background_image" />
+                    {error.background_image ? <label className={style.labelError}>{error.background_image}</label> : null}
+                </div>
+                <div class="mb-3">
+                    {/* <label  class="form-label">Release Date</label> */}
+                    <input type="date" class="form-control"  placeholder="Realese date..." onChange={handleChange} value={input.released} name="released" />
+                    {error.released ? <label className={style.labelError}>{error.released}</label> : null}
+                </div>
+                <div class="mb-3">
+                {/*  <label  class="form-label">Rating</label> */}
+                    <input type="number" class="form-control" placeholder="Rating of the game..." onChange={handleChange} value={input.rating} name="rating" />
+                    {error.rating ? <label className={style.labelError}>{error.rating}</label> : null}
+                </div>
+                <div class="mb-3">
+                    {/* <label  class="form-label">Price</label> */}
+                    <input type="number" class="form-control" placeholder="Price..." onChange={handleChange} value={input.price} name="price" />
+                    {error.price ? <label className={style.labelError}>{error.price}</label> : null}
+                </div>
+                <div class="mb-3">
+                {/*  <label class="form-label">Genres</label> */}
+                    <select  placeholder="Select at least one Genre..."   name="genres" value={input.genres} onChange={(e)=>handleSelectGenres(e)}>
+                        <option>Select Genres</option > 
+                        {genres && genres.map((e, pos)=>{ return <option id={pos} key={e.id} value={e.genres}>{e.name}</option>})}
+                    </select>  
+                    {error.genres ? <label className={style.labelError}>Select a Genre</label> : null}
+                </div>
+                <br />
+                {input.genres.map((genre, pos)=>
+                    <div className={style.flex}>
+                        <p id={pos}>{genre}</p>
+                        <button onClick={()=>handleDeleteGenre(genre)}>X</button>
+                    </div>
+                )}  
+                <br />
+                <div class="mb-3">
+                    {/* <label class="form-label">Platform</label> */}
+                    <select placeholder="Select at least one Platform" name="platforms" value={input.platforms} onChange={(e)=>handleSelectPlat(e)}>
+                        <option>Select Platforms</option>
+                        {platform && platform.map((consola, pos)=>{
+                            return <option id={consola.id} key={consola.id} value={consola.platforms}>{consola.name}</option>
+                        })}
+                    </select>
+                    {error.platforms ? <label className={style.labelError}>{error.platforms}</label>:null}
+                </div>
+                <br></br>
+                {input.platforms.map((plataforma,pos)=>
+                    <div className={style.flex}>
+                        <p id={pos}>{plataforma}</p>
+                        <button onClick={()=>handleDeletePlat(plataforma)}>X</button>
+                    </div>
+                )}
+                <br></br>
+                <button type="submit" disabled={activeSubmit}>Create!!</button> 
             </form>
-            </div>
+        </div>
     </div>
     )
-}
+};
 
