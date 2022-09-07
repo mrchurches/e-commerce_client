@@ -15,9 +15,12 @@ const NavBar = () => {
   async function handleLogout() {
     await logout()
     dispatch(resetUser());
-  }
+  };
+
+ 
+
   return (
-    <nav class="navbar navbar-expand-lg" style={{ backgroundColor: "rgb(238, 245, 246)" }}>
+    <nav class="navbar navbar-expand-lg" style={{ backgroundColor: "rgb(238, 245, 246)"}}>
       <div class="container-fluid">
         <Link to="/" className='link'>
           <img class="logo" src={logo} />
@@ -41,6 +44,11 @@ const NavBar = () => {
             {user && (<Link to="/wish_list" className='link'>
               <li class="nav-item">
                 <span class="nav-link active" aria-current="page" >Wishlist</span>
+              </li>
+            </Link>)}
+            {/* user.isAdmin */ true && (<Link to="/admin" className='link'>
+              <li class="nav-item">
+                <span class="nav-link active" aria-current="page" >Admin</span>
               </li>
             </Link>)}
             {location.pathname === "/home" && (
