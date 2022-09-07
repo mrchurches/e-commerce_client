@@ -26,7 +26,7 @@ console.log(REACT_APP_URL)
 
 export function getAllProducts(){
     return function(dispatch){
-        axios.get(`${REACT_APP_URL}videogames`)
+        axios.get(`${REACT_APP_URL}videogames/`)
         .then((res)=>{
             dispatch({
                 type: GET_ALL_PRODUCTS,
