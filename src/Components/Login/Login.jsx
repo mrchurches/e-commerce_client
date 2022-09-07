@@ -80,8 +80,7 @@ const Login = () => {
         </div>
         <p>OR</p>
         <div class="btnLogo">
-          {/* <a class={"linkA"} href={`${REACT_APP_URL}login/auth/google`}> */}
-          <a class={"linkA"} href={'http://localhost:3001/' + `login/auth/google`}>
+          <a class={"linkA"} href={`${REACT_APP_URL}login/auth/google`}>
             <img src={gLogo} class="" id='' alt='googleButton' />
             <small class="form-label">Sign in with google</small><br />
             <br />

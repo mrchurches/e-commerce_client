@@ -3,8 +3,7 @@ const {REACT_APP_URL} = process.env;
 export async function postUsers({username, password}){
     var options = {
         method: 'POST',
-        // url: REACT_APP_URL +`login`,
-        url: 'http://localhost:3001/' +`login`,
+        url: `${REACT_APP_URL}login`,
         withCredentials: true,
         data: {username, password}
       };
