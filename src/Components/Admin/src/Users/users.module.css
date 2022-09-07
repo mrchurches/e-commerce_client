@@ -1,5 +1,4 @@
 .container {
-    /* display: flex; */
     background-color: rgb(238, 245, 246);
     max-width: 1300px;
     height: 600px;
@@ -7,8 +6,4 @@
     margin-left: auto;
     margin-right: auto;
     margin-bottom: auto;
-}
-
-.text {
-    width: 50%;
-}
+};
