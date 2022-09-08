@@ -11,19 +11,24 @@ const {REACT_APP_URL} = process.env;
 
 function EditProducts({setRender, setGame}) {
 
+  const [render, setRender1] = useState('');
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(getAllProducts())
   }, [dispatch])
 
-  const handleClick = (event) => {
+  const addToDb = (event) => {
     event.preventDefault()
-    /*setTimeout(() => {
-      axios.get(`${REACT_APP_URL}videogames/${id}`)
-        .then(res => setGame(res.data))
+    setRender1('game added')
+    setTimeout(() => {
+      axios.get(`${REACT_APP_URL}videogames/add_api/${event.target.id}`)
+        .then(res => {
+          console.log(event.target.className)
+          event.target.className = 'bi bi-pencil'
+        })
         .catch(err => console.log(err))
-    }, "500");*/
+    }, "500");
   };
 
   const filterPlatforms = (event) => {
@@ -57,7 +62,6 @@ function EditProducts({setRender, setGame}) {
   //console.log(products);
   const searchered = useSelector((state) => state.searchered);
   const games = searchered.length ? searchered : products
-  console.log(platforms);
 
 
   var color = 'white'
@@ -150,7 +154,7 @@ function EditProducts({setRender, setGame}) {
             return <div className={style.productName} style={{backgroundColor:  color}} class='d-flex'>
               <div id={product.id} className={style.name} onClick={(e) => handleEdit(e)}>{product.name}</div>
               {product.price ? <div className={style.iconContainer} onClick={(e) => handleEdit(e)}><i id={product.id} class="bi bi-pencil"></i></div> :
-              <div className={style.iconContainer} onClick={(e) => handleEdit(e)}><i id={product.id} class="bi bi-plus-circle"></i></div>}
+              <div className={style.iconContainer} onClick={(e) => addToDb(e)}><i id={product.id} class="bi bi-plus-circle"></i></div>}
             </div>
         })}
       </div>
