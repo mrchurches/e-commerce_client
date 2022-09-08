@@ -27,7 +27,7 @@ const {REACT_APP_URL} = process.env;
 
 export function getAllProducts(){
     return function(dispatch){
-        axios.get(`${REACT_APP_URL}videogames`)
+        axios.get(`${REACT_APP_URL}videogames/`)
         .then((res)=>{
             dispatch({
                 type: GET_ALL_PRODUCTS,
@@ -230,9 +230,9 @@ export function Orderby(payload){
 export function Post_Game(payload){
     return async function (dispatch){
         try{
-            let json = await axios.post("https://e-commerce-api-pf.herokuapp.com/videogames/create", payload)
+            let json = await axios.post(`${REACT_APP_URL}videogames/create`, payload)
             console.log(json)
-            alert("Recipe Created Succesfully!")
+            alert("Videogame Created Succesfully!")
             return json;
         }catch(e){
             console.error(e);
