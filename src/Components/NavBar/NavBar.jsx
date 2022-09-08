@@ -3,7 +3,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom'
 import SearchBar from "../SearchBar/SearchBar"
 import logo from "../../images/logo.png"
 import "./NavBar.css"
-import { eliminarCookies, logout } from './NavBarHelper'
+import { deleteCookies, logout } from './NavBarHelper'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { resetUser } from '../../redux/actions'
@@ -13,7 +13,8 @@ const NavBar = () => {
   const {user} = useSelector(state => state.users);
   let dispatch = useDispatch();
   async function handleLogout() {
-    eliminarCookies()
+    window.sessionStorage.removeItem('token')
+    deleteCookies()
     await logout()
     dispatch(resetUser());
   };

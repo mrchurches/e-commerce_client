@@ -7,10 +7,8 @@ export function getCookie(cname) {
             let end = document.cookie.indexOf(";", start);
             if (end == -1)
                 end = document.cookie.length;
-            return unescape(document.cookie.substring(start, end));
+            return document.cookie.substring(start, end);
         }
     }
     return "";
 }
-
-

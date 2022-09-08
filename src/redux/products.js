@@ -2703,56 +2703,5 @@ export const products = [
             "https://media.rawg.io/media/screenshots/d8d/d8da5b7bae3c8084d30745ba6e17f1ef.jpg",
             "https://media.rawg.io/media/screenshots/793/7939b2e64a9520894c51696c2eed1c34.jpg"
         ]
-    },
-    {
-        "id": "9b33e99d-65ad-487e-82d9-3e2c45ad7de9",
-        "name": "dfsd",
-        "description": "dsfsdsd",
-        "released": "2022-08-02",
-        "rating": 3,
-        "plataforms": [
-            "PC",
-            "Play Station",
-            "Wii"
-        ],
-        "img": "dsds.jpg",
-        "screenShots": null,
-        "createdInDb": true,
-        "createdAt": "2022-08-11T14:06:06.642Z",
-        "updatedAt": "2022-08-11T14:06:06.642Z",
-        "genres": [
-            {
-                "id": "3ec8a43c-204d-46d0-a8d1-bc894f7e5b5f",
-                "name": "Shooter",
-                "createdAt": "2022-07-29T10:17:33.426Z",
-                "updatedAt": "2022-07-29T10:17:33.426Z"
-            },
-            {
-                "id": "2cfe99c5-c568-469c-a487-21d665bd69d0",
-                "name": "Family",
-                "createdAt": "2022-07-29T10:17:33.453Z",
-                "updatedAt": "2022-07-29T10:17:33.453Z"
-            },
-            {
-                "id": "2f3eb295-97b3-4116-9159-5d4dd415ea42",
-                "name": "Simulation",
-                "createdAt": "2022-07-29T10:17:33.433Z",
-                "updatedAt": "2022-07-29T10:17:33.433Z"
-            }
-        ]
-    },
-    {
-        "id": "87a38654-6512-4300-9cd0-66bc1e14390a",
-        "name": "dsf",
-        "description": "sdsfsds",
-        "released": "2022-08-09",
-        "rating": 3,
-        "plataforms": [],
-        "img": "sdsd.jpg",
-        "screenShots": null,
-        "createdInDb": true,
-        "createdAt": "2022-08-11T14:06:49.072Z",
-        "updatedAt": "2022-08-11T14:06:49.072Z",
-        "genres": []
     }
 ]

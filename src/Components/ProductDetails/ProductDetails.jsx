@@ -5,32 +5,44 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useParams, NavLink } from 'react-router-dom'
 import { addToCart, addWish } from '../../redux/actions';
+import FavouriteButton from '../FavouriteButton/FavouriteBurron';
 import './details.css'
 const {REACT_APP_URL} = process.env;
 export default function ProductDetails() {
 
   const [game, setGame] = useState({});
   const [disabled, setDisabled] = useState(true); // si no esta logueado desabilita addwish
-
+  let cart = useSelector(state=>state.cart);
+  
   let user = useSelector(state => state.users); // se trae el usuario logueado para permitir agregar a wishlist
   let { id } = useParams();
   let dispatch = useDispatch();
-
+  
   useEffect(() => {
     if (user.length) setDisabled(false); //si cuando se monta el componente hay usuario logueado habilita el addwish
     setTimeout(() => {
       axios.get(`${REACT_APP_URL}videogames/${id}`)
-        .then(res => setGame(res.data))
-        .catch(err => console.log(err))
+      .then(res => setGame(res.data))
+      .catch(err => console.log(err))
     }, "500");
   }, [id, user])
-
+  
   function handleClick(e) { // eso se ejecuta cuando se le hace click al boton de add to cart o wishlist
     e.preventDefault();
     if (e.target.value === "cart") {
-      dispatch(addToCart(game.id)) // dispacha al carrito de compras con el id del game en la db
-    } else {
-      dispatch(addWish(game.id))
+      console.log(cart[0], id)
+       let fC = cart.filter(e=>e===id);
+       if(fC.length>0){
+        alert("Juego ya agregado al carrito anteriormente!")
+       }else{
+         dispatch(addToCart(game.id)) // dispacha al carrito de compras con el id del game en la db
+       }
+       
+      // if(fC.length>0){
+      // }else{
+      //   alert("Juego ya agregado al carrito!")
+      // }
+
     }
   }
 
@@ -68,10 +80,7 @@ export default function ProductDetails() {
               <button value="cart" onClick={handleClick} type="button" class="btn btn-info">
                   Add to cart
                 </button>
-
-                <button value="whish" disabled={disabled} onClick={handleClick} type="button" class="btn btn-secondary">
-                  Add to wishlist
-                </button>
+                <FavouriteButton id={id} />
               </div>
             </div>
             <div style={{height: '15px'}}></div>

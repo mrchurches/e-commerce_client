@@ -14,8 +14,13 @@ import { GET_ALL_PRODUCTS,
     ORDER_BY_RATING,
     ORDER_BY_ESRB,
     Order_By,
-    RESET_USER
+    RESET_USER,
+    REMOVE_FROM_CART,
+    REMOVE_WISH,
+    GET_ALL_USERS,
+    USER_BY_NAME
    } from "./actions.js";
+import { products } from "./products.js";
 /* import { products } from "./products.js" */
 
 
@@ -30,6 +35,7 @@ users: {},
 cart: [],
 wishlist:[],
 currentPage: 1,
+allUsers: []
 
 }
 
@@ -71,16 +77,32 @@ switch(action.type){
                return true;
            }else{return false}
        });
-       console.log(state.products2)
+       
+       console.log(state.searchered)
+
+       let filtered_searchered = state.searchered.filter((e) => {
+        var arr = e.genres && e.genres.map(e => {
+            if (e.name === action.payload) {
+                return true;
+            }else{return false}
+        });
+        console.log(arr)
+        if (arr.includes(true)) {
+            return true;
+        }else{return false}
+    });
+       //console.log(state.products2)
    return{
            ...state,
-           products: filtered_genres
+           products: filtered_genres,
+           searchered: filtered_searchered
        }
    case SEARCH_PRODUCT:
-       console.log(action.payload)
+       //console.log(action.payload)
        return{
            ...state,
-           searchered: action.payload
+           searchered: action.payload,
+           //products: action.payload
        }
 
    case FILTER_BY_PLATFORMS:
@@ -94,16 +116,30 @@ switch(action.type){
                return true;
            }else{return false}
        });
-   
+    
+       let filtered_searchered_plat = state.searchered.filter((e) => {
+        var arr = e.platforms.map(e => {
+            if (e.name === action.payload) {
+                return true;
+            }else{return false}
+        });
+        if (arr.includes(true)) {
+            return true;
+        }else{return false}
+    });
+
        return{
            ...state,
-           products: filtered_platforms
+           products: filtered_platforms,
+           searchered: filtered_searchered_plat
        }
    case ADD_TO_CART:
-       return{
-           ...state,
-           cart: [...state.cart, action.payload]
-       }
+
+   
+            return{
+                ...state,
+                cart: [...state.cart, action.payload]
+            }
    case ADD_WISH:
        return{
            ...state,
@@ -159,7 +195,7 @@ switch(action.type){
                    products: [...rat]
        };
        case Order_By:
-           console.log(action.payload)
+           //console.log(action.payload)
            return{
                ...state,
                products:[...state.products].sort(action.payload)
@@ -175,6 +211,32 @@ switch(action.type){
           ...state,
           users: {}
        }
+    case REMOVE_FROM_CART:
+    let cartF= state.cart.filter(e=>e!==action.payload); //filtrados sin el id pasado
+        return{
+            ...state,
+            cart: cartF
+        }
+    case REMOVE_WISH:
+    let wishF = state.wishlist.filter(e=>e!==action.payload); // filtra con el id del juego de favs
+        return{
+            ...state,
+            wishlist: wishF
+        };
+
+    case GET_ALL_USERS: 
+        return {
+            ...state,
+            allUsers: action.payload
+        };
+
+    case USER_BY_NAME:
+        const userSearchered = state.allUsers.filter(e => e.username === action.payload)
+        return {
+            ...state,
+            allUsers: [...userSearchered]
+        }
+
    default: 
    return state;
 }

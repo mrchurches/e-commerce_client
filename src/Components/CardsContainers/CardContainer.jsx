@@ -66,7 +66,6 @@ const CardContainer = () => {
   const genres = Allproducts.filter((c) => c.genres.find((c) => c.name === randomGen)).slice(start, finish)
   const platforms = Allproducts.filter((c) => c.platforms.find((c) => c.name === randomPlat)).slice(start, finish)
 
-  // console.log(Allproducts)
 
   return (
 
