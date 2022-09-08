@@ -4,7 +4,8 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useParams, NavLink } from 'react-router-dom'
-import { addToCart, addWish } from '../../redux/actions';
+import { addToCart, addWish, getAllUsers } from '../../redux/actions';
+import ReviewCard from '../Cards/Reviews/ReviewCard';
 import FavouriteButton from '../FavouriteButton/FavouriteBurron';
 import './details.css'
 const {REACT_APP_URL} = process.env;
@@ -13,20 +14,27 @@ export default function ProductDetails() {
   const [game, setGame] = useState({});
   const [disabled, setDisabled] = useState(true); // si no esta logueado desabilita addwish
   let cart = useSelector(state=>state.cart);
+  const [reviews, setReviews] = useState();
   
   let user = useSelector(state => state.users); // se trae el usuario logueado para permitir agregar a wishlist
   let { id } = useParams();
   let dispatch = useDispatch();
-  
+  let allUsers = useSelector(state => state.allUsers);
+
   useEffect(() => {
     if (user.length) setDisabled(false); //si cuando se monta el componente hay usuario logueado habilita el addwish
+    dispatch(getAllUsers())
     setTimeout(() => {
       axios.get(`${REACT_APP_URL}videogames/${id}`)
-      .then(res => setGame(res.data))
+      .then(res => {
+        setGame(res.data)
+        axios.get(`${REACT_APP_URL}reviews/${id}`)
+        .then(res => setReviews(res.data))
+        .catch(err => console.log(err))
+      })
       .catch(err => console.log(err))
     }, "500");
   }, [id, user])
-  
   function handleClick(e) { // eso se ejecuta cuando se le hace click al boton de add to cart o wishlist
     e.preventDefault();
     if (e.target.value === "cart") {
@@ -123,8 +131,16 @@ export default function ProductDetails() {
               <p className='p3'u><b>Platforms:</b>{game.platforms?.map(e => (<span> {e.name}</span>))} </p>
               <p className='p3'><b>Genres:</b> {game.genres?.map(e => (<span> {e.name} </span>))} </p>
             </div>
+            
+            <div className='verticalScrollable1'>
+              {reviews && reviews.map((e) => {
+                let profile_pic = allUsers.filter((f) => f.username === e.username)[0].profile_pic;
+                return(<ReviewCard username={e.username} rating={e.rating} description={e.description} userImg={profile_pic}/>)
+              })}
+            </div>
 
           </div>
+
 
         </div>
       )}
