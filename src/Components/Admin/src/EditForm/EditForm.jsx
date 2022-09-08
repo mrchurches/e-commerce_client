@@ -22,6 +22,7 @@ function getPayload(game,input){
     let payload = {}
     payload.id = game.id
     if (input.name !== game.name) payload.name =  input.name;
+    if (input.released !== game.released) payload.released =  input.released;
     if (input.description !== game.description) payload.description =  input.description;
     if (input.background_image !== game.background_image) payload.background_image =  input.background_image;
     if (''+input.rating !== ''+game.rating) payload.rating =  input.rating;
@@ -29,11 +30,29 @@ function getPayload(game,input){
     let gameGenres = game.genres.map(e => e.name);
     const array2Sorted = gameGenres.slice().sort();
     const array1Sorted = input.genres.slice().sort();
-    if (array1Sorted.length !== array2Sorted.length || array1Sorted.every((value, index) => value !== array2Sorted[index])) payload.genres =  input.genres;
+    if (array1Sorted.length !== array2Sorted.length || array1Sorted.every((value, index) => value !== array2Sorted[index])){
+        payload.addGenre = [];
+        payload.rmvGenre = [];
+        input.genres.forEach((e) => {
+            if (!gameGenres.includes(e)) payload.addGenre.push(e);
+        });
+        gameGenres.forEach((e) => {
+            if (!input.genres.includes(e)) payload.rmvGenre.push(e);
+        });
+    }
     let gamePlatforms = game.platforms.map(e => e.name);
     const plat2Sorted = gamePlatforms.slice().sort();
     const plat1Sorted = input.platforms.slice().sort();
-    if (plat1Sorted.length !== plat2Sorted.length || plat1Sorted.every((value, index) => value !== plat2Sorted[index])) payload.platforms =  input.platforms;
+    if (plat1Sorted.length !== plat2Sorted.length || plat1Sorted.every((value, index) => value !== plat2Sorted[index])){
+        payload.addPlat = [];
+        payload.rmvPlat = [];
+        input.platforms.forEach((e) => {
+            if (!gamePlatforms.includes(e)) payload.addPlat.push(e);
+        });
+        gamePlatforms.forEach((e) => {
+            if (!input.platforms.includes(e)) payload.rmvPlat.push(e);
+        });
+    }
     return payload;
 }
 
@@ -80,7 +99,7 @@ export default function EditForm({setRender, game}) {
     function handlersubmit (e){
         e.preventDefault();
         console.log(getPayload(game,input))
-        //dispatch(Edit_Game(getPayload(game,input)));
+        dispatch(Edit_Game(getPayload(game,input)));
         console.log("se edito el juego")
         /* ver si uso un dispatch para volver a cargar los juegos */
         //navigate("/home")
@@ -162,7 +181,7 @@ export default function EditForm({setRender, game}) {
                     </div>
                     <div class="mb-3">
                     {/*  <label  class="form-label">Description</label> */}
-                        <input type="text" class="form-control"  placeholder="a brief summary..." onChange={handleChange}  value={input.description} name="description" />
+                        <textarea type="text" class="form-control"  placeholder="a brief summary..." onChange={handleChange}  value={input.description} name="description" />
                         {error.description ? <label className={style.labelError}>{error.description}</label>:null}
                     </div>
                     <div class="mb-3">
@@ -219,7 +238,7 @@ export default function EditForm({setRender, game}) {
                     <br></br>
                     <div style={{display: display, color:'red', marginBottom: '5px'}}>Must change at least one parameter</div>
                     {/* <button type="submit" disabled={activeSubmit}>Create!!</button> */} 
-                    <button type="submit" class="btn btn-primary" disabled={activeSubmit}>Create</button>
+                    <button type="submit" class="btn btn-primary" disabled={activeSubmit}>EDIT</button>
                 </form>
             </div>
         </div>
