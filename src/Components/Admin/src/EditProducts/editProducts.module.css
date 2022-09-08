@@ -6,6 +6,8 @@
     margin-left: auto;
     margin-right: auto;
     margin-bottom: auto;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 
@@ -20,7 +22,7 @@
     background-color: white;
     overflow-y: scroll;
     height: 350px;
-    width: 800px;
+    max-width: 800px;
     border-style: solid;
     border-width: thin;
     border-color: rgb(184, 184, 184);

@@ -231,6 +231,20 @@ export function Post_Game(payload){
     };
 };
 
+export function Edit_Game(payload){
+    return async function (dispatch){
+        try{
+            let json = await axios.put(`${REACT_APP_URL}videogames/edit`, payload)
+            console.log(json)
+            alert("Videogame Edited Succesfully!")
+            return json;
+        }catch(e){
+            console.error(e);
+            alert(e.message)
+        };
+    };
+};
+
 export function resetUser(){
     return{
         type: RESET_USER

@@ -12,7 +12,7 @@ export default function ProductCard({ id, name, img, rating, platforms, price, i
 
   const handleClick = (event) => {
     event.preventDefault()
-    //console.log("Este es el target", event.target.name)
+    console.log("Este es el target", event.target.name)
     /* dispatch(favorites(id)) */
   }
 

@@ -5,13 +5,14 @@ import Dashboard from '../Dashboard/Dashboard.jsx'
 import Users from '../Users/Users.jsx'
 import CreateGame from '../CreateGame/CreateGame.jsx'
 import EditForm from '../EditForm/EditForm.jsx'
+import style from './infoContainer.module.css'
 
 export default function InfoContainter({render, setRender}) {
 
   const [game, setGame] = useState({});
 
   return (
-    <div>
+    <div className={style.container}>
       {render.dash && (<Dashboard/>)}
       {render.edit && (<EditProducts setRender={setRender} setGame={setGame}/>)}
       {render.editForm && (<EditForm setRender={setRender} game={game}/>)}
