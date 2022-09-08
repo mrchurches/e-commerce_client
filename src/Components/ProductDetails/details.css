@@ -78,3 +78,9 @@ b, strong {
 .p3 {
   border-bottom: 1px solid #d5dadb;
 }
+
+.verticalScrollable1 {
+  overflow-y: scroll;
+  max-height: 200px;
+  margin-bottom: 15px;
+}
