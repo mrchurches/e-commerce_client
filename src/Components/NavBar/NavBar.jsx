@@ -22,11 +22,11 @@ const NavBar = () => {
  
 
   return (
-    <nav class="navbar navbar-expand-lg" style={{ backgroundColor: "rgb(238, 245, 246)"}}>
+    <nav className="navbar navbar-expand-lg text-light" style={{backgroundColor: "#191D2A"}}>
       <div class="container-fluid">
         <Link to="/" className='link'>
           <img class="logo" src={logo} />
-          <span class="navbar-brand">Games Market</span>
+          <span class="navbar-brand text-light">Games Market</span>
         </Link>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -35,41 +35,41 @@ const NavBar = () => {
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <Link to="/home" className='link'>
               <li class="nav-item">
-                <span class="nav-link active" aria-current="page" >Home</span>
+                <span class="nav-link active text-light" aria-current="page" >Home</span>
               </li>
             </Link>
             {user && (<Link to="/my_store" className='link'>
               <li class="nav-item">
-                <span class="nav-link active" aria-current="page" >My store</span>
+                <span class="nav-link active text-light" aria-current="page" >My store</span>
               </li>
             </Link>)}
             {user && (<Link to="/wish_list" className='link'>
               <li class="nav-item">
-                <span class="nav-link active" aria-current="page" >Wishlist</span>
+                <span class="nav-link active text-light" aria-current="page" >Wishlist</span>
               </li>
             </Link>)}
             {/* user.isAdmin */ true && (<Link to="/admin" className='link'>
               <li class="nav-item">
-                <span class="nav-link active" aria-current="page" >Admin</span>
+                <span class="nav-link active text-light" aria-current="page" >Admin</span>
               </li>
             </Link>)}
             {location.pathname === "/home" && (
               <Link to="/shopping_cart" className='link'>
                 <li class="nav-item">
-                  <span class="nav-link">Shopping Cart</span>
+                  <span class="nav-link text-light">Shopping Cart</span>
                 </li>
               </Link>
             )}
             {user ?
               (<Link to='/home' className='link'>
                 <li class="nav-item">
-                  <span onClick={() => handleLogout()} class="nav-link">Logout</span>
+                  <span onClick={() => handleLogout()} class="nav-link text-light">Logout</span>
                 </li>
               </Link>
               ) :
               (<Link to="/login" className='link'>
                 <li class="nav-item">
-                  <span class="nav-link">Login</span>
+                  <span class="nav-link text-light">Login</span>
                 </li>
               </Link>)
             }
