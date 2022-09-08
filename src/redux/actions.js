@@ -1,5 +1,5 @@
 import axios from "axios";
-//import { REACT_APP_URL } from "../Components/CreateUser/CreateUserHelper";
+import { deleteCookies } from "../Components/NavBar/NavBarHelper";
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const FILTER_BY_GENRES = "FILTER_BY_GENRES";
 export const GET_GENRES = "GET_GENRES";
@@ -23,9 +23,6 @@ RESET_USER = 'RESET_USER';
 export const GET_ALL_USERS = "GET_ALL_USERS"
 export const USER_BY_NAME = "USER_BY_NAME"
 const {REACT_APP_URL} = process.env;
-
-//const URL = "https://e-commerce-api-pf.herokuapp.com/";
-
 
 export function getAllProducts(){
     return function(dispatch){
@@ -83,41 +80,20 @@ export function searchProduct(name){
 }else {return"No tiene nombre"}};
 
 
-export function getUsers(){
+export function getUsers(token){
     return async function (dispatch){
         try {
-            const response = await axios.get(`${REACT_APP_URL}user`, { withCredentials: true })
+            const response = await axios.get(`${REACT_APP_URL}user?tkn=${token}`)
             dispatch({
                 type: GET_USERS,
                 payload:response.data
             })
-            return response.data.message
+            return response.data
         } catch (error) {
-            console.log(error.response)
+            window.sessionStorage.removeItem('token');
             return;
         }
 
-    }
-};
-
-export function postUsers({username, password}){
-    var options = {
-        method: 'POST',
-        url: `${REACT_APP_URL}login`,
-        withCredentials: true,
-        data: {username, password}
-      };
-    try {     
-        return async function(dispatch){
-            const response = await axios.request(options)
-            dispatch({
-                type: GET_USERS,
-                payload:response.data
-            })
-            return response.data.message
-        }
-    }catch(error){
-        console.log(error);
     }
 };
 
