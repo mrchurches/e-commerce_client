@@ -21,14 +21,37 @@ function EditProducts({setRender, setGame}) {
   const addToDb = (event) => {
     event.preventDefault()
     setRender1('game added')
-    setTimeout(() => {
-      axios.get(`${REACT_APP_URL}videogames/add_api/${event.target.id}`)
-        .then(res => {
-          console.log(event.target.className)
-          event.target.className = 'bi bi-pencil'
-        })
-        .catch(err => console.log(err))
-    }, "500");
+    let add = event.currentTarget.querySelector('#add')
+    let icon = add.querySelector('i')
+    if (icon.className === 'bi bi-pencil') {
+      handleEdit(event)
+    }else{
+      let loading = event.currentTarget.querySelector('#loading')
+      add.style.display = 'none'
+      loading.style.display = 'block'
+      let sus = event.currentTarget.id
+      console.log(sus)
+      setTimeout(() => {
+        axios.get(`${REACT_APP_URL}videogames/add_api/${sus}`)
+          .then(res => {
+            console.log(res);
+            icon.className = 'bi bi-pencil'
+            add.style.display = 'block'
+            loading.style.display = 'none'
+          })
+          .catch(err => {
+            console.log(err);
+            if (err.response.data === 'Game already in DB') {
+              icon.className = 'bi bi-pencil'
+              add.style.display = 'block'
+              loading.style.display = 'none'
+            }else{
+              add.style.display = 'block'
+              loading.style.display = 'none'
+            }
+          });
+      }, "500");
+    }
   };
 
   const filterPlatforms = (event) => {
@@ -44,14 +67,20 @@ function EditProducts({setRender, setGame}) {
   };
 
   const handleEdit = async (event) => {
-    console.log(event.target.id)
+    let id;
+    if (event.currentTarget.id) {
+      id = event.currentTarget.id
+    }else{
+      id = event.target.id
+    }
+    console.log(id)
     setTimeout(() => {
-      axios.get(`${REACT_APP_URL}videogames/${event.target.id}`)
+      axios.get(`${REACT_APP_URL}videogames/${id}`)
         .then(res => {
           setGame(res.data)
           setRender({dash: false, add: false, edit: false, user: false, editForm: true});
         })
-        .catch(err => console.log(err))
+        .catch(err => console.log(err));
     }, "500");
   }
 
@@ -153,8 +182,8 @@ function EditProducts({setRender, setGame}) {
           }else{color = 'white'}
             return <div className={style.productName} style={{backgroundColor:  color}} class='d-flex'>
               <div id={product.id} className={style.name} onClick={(e) => handleEdit(e)}>{product.name}</div>
-              {product.price ? <div className={style.iconContainer} onClick={(e) => handleEdit(e)}><i id={product.id} class="bi bi-pencil"></i></div> :
-              <div className={style.iconContainer} onClick={(e) => addToDb(e)}><i id={product.id} class="bi bi-plus-circle"></i></div>}
+              {product.price ? <div className={style.iconContainer1} onClick={(e) => handleEdit(e)}><i id={product.id} class="bi bi-pencil"></i></div> :
+              <div id={product.id} className={style.bigIconContainer} onClick={(e) => addToDb(e)} ><div id='add' className={style.iconContainer} style={{display: 'block'}}><i class="bi bi-plus-circle"></i></div><div id='loading' className={style.ldsDualRing} style={{display: 'none'}}></div></div>}
             </div>
         })}
       </div>
