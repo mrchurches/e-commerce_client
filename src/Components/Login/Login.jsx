@@ -9,6 +9,7 @@ import { postUsers } from "./LoginHelper";
 import { findEmail } from "../CreateUser/CreateUserHelper";
 import { useSelector } from "react-redux";
 import { getUsers } from "../../redux/actions";
+import { deleteCookies } from "../NavBar/NavBarHelper";
 const {REACT_APP_URL} = process.env;
 
 const Login = () => {
@@ -40,6 +41,7 @@ const Login = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    deleteCookies();
     const userExist = await findEmail(user.username);
     if (!userExist) {
       setUserGet((i) => ({ ...i, userNExists: true }));
@@ -47,12 +49,11 @@ const Login = () => {
       setUserGet((i) => ({ ...i, userBan: true }));
     } else {
       const info = await postUsers(user);
-      console.log(info)
       info.message === 'Not Autheticaded' && setUserGet((i) => ({ ...i, failedLog: true }));
-      info.token && dispatch(getUsers(info.token));
+      info.token && dispatch(getUsers(info.token)) && window.sessionStorage.setItem('token', info.token);
     }
   }
-
+ 
   return (
     <div class="mt-5 d-flex justify-content-center ">
       {userAuth.user && <Redirect to='/home' />}

@@ -27,8 +27,11 @@ function Home() {
     }
 
     useEffect(() => {
-        const token = getCookie('token')
-        token && user === undefined && dispatch(getUsers(token))
+        const authToken = getCookie('token');
+        authToken && (user === undefined) && dispatch(getUsers(authToken));
+        console.log(authToken)
+        const token = window.sessionStorage.getItem('token');
+        token && (user === undefined) && dispatch(getUsers(token));   
     }, [])
 
     useEffect(() => {

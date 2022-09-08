@@ -1,4 +1,5 @@
 import axios from "axios";
+import { deleteCookies } from "../Components/NavBar/NavBarHelper";
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const FILTER_BY_GENRES = "FILTER_BY_GENRES";
 export const GET_GENRES = "GET_GENRES";
@@ -86,7 +87,7 @@ export function getUsers(token){
             })
             return response.data
         } catch (error) {
-            console.log(error)
+            window.sessionStorage.removeItem('token');
             return;
         }
 
