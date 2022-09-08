@@ -7,3 +7,16 @@
     margin-right: auto;
     margin-bottom: auto;
 };
+
+.verticalScrollable {
+      height:200px;
+    overflow-y:scroll;
+    
+}
+
+.tablefixed {
+    font-size: 12px ;
+    display: block;
+    height: 400px;
+    overflow-y: auto ;
+}
