@@ -2,7 +2,7 @@
     border-radius: 10px;
     margin-top: 30px;
     margin-left: 20px;
-    background-color: rgb(68, 100, 109);
+    background-color: rgb(68, 100, 109, 0.5);
     min-height: 80vh;
     width: 80%;
 }
@@ -10,7 +10,7 @@
 .options{
     display: flex;
     border-radius: 10px;
-    background-color: rgb(68, 100, 109);
+    background-color: rgb(68, 100, 109, 0.5);
     width: 13%;
     margin-top: 30px;
     margin-left: 20px;
