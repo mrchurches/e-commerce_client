@@ -11,7 +11,7 @@ function validate(input){
     if(!input.name) error.name="Title required"
     if(!input.description) error.description ="Description required"
     if(!input.background_image) error.background_image="an image is required"
-    if(!input.rating || input.rating < 0 || input.rating > 100 || input.rating.includes("."))error.rating = "Must rate the product with a number between 1 and 100"
+    if(!input.rating || input.rating < 0 || input.rating > 100)error.rating = "Must rate the product with a number between 1 and 100"
     if(!input.price || input.price <= 0 )error.price = "Must put a price with a value higher than 0"
     if(!input.genres.length) error.genres="Must select at least one Genre"
     if(!input.released) error.released="Must select the release date of the product"
