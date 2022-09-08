@@ -1,35 +1,50 @@
 import "./ShoppingCart.css";
-
+import { useSelector } from "react-redux";
 import React from 'react'
+import Checkout from '../Checkout/Checkout'
+import ProductCard from "../Cards/ProductCard/ProductCard";
 
-export default function ShoppingCart(){
-    let hardcodeo = [{name: "gtav", price: Math.floor(Math.random() * 5)},{name: "bloodborne", price: Math.floor(Math.random() * 5)},{name: "taxi", price: Math.floor(Math.random() * 5)}];
-    let total=0;
-    for(let i=0; i<hardcodeo.length; i++){
-        total = hardcodeo[i].price + total;
+export default function ShoppingCart() {
+let cart = useSelector(state=>state.cart);
+let games = useSelector(state=>state.products2);
+let filterGames=[];
+cart.forEach(e=>{
+let fg = games.filter((f)=>e===f.id);
+filterGames.push(fg[0])
+})
+// asitiene que se el juego= {
+//     title: "Mi producto",
+//     unit_price: 100,
+//     quantity: 1,
+//   };
+let gamesCO= filterGames.map(e=>{
+    return {
+        title: e.name,
+        unit_price: e.price,
+        quantity: 1
     }
-  return(
-    <div>
+});
+
+let forCheckout = { items: gamesCO };
+
+console.log(filterGames)
+    return (
         <div>
-            <h1>My shopping cart</h1>
+            <div>
+                <h1>My shopping cart</h1>
+            </div>
+            <div>
+                {
+                    filterGames.map(e=>(
+                        <ProductCard id={e.id} name={e.name} img={e.background_image} rating={e.rating} platforms={e.platforms} price={e.price}
+                        inStock={e.inStock}/>
+                    ))
+                }
+            </div>
+            <div>
+                <h1>pagar</h1>
+                <Checkout games={forCheckout}/>
+            </div>
         </div>
-        <div>
-            {
-                hardcodeo&&hardcodeo.map(e=>(
-                    <div>
-                        <h4>{e.name}</h4>
-                        <h4>{e.price}</h4>
-                    </div>
-                ))
-            }
-        </div>
-        <div>
-            <h4>Total: ${total}</h4>
-            
-        </div>
-        <div>
-            <button>Purchase</button>
-        </div>
-    </div>
-  )
+    )
 }

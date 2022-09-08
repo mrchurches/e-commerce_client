@@ -8,7 +8,7 @@ import style from "./CreateGame.module.css";
 
 function validate(input){
     let error={};
-    if(!input.name) error.name="Name required"
+    if(!input.name) error.name="Title required"
     if(!input.description) error.description ="Description required"
     if(!input.background_image) error.background_image="an image is required"
     if(!input.rating || input.rating < 0 || input.rating > 100 || input.rating.includes("."))error.rating = "Must rate the product with a number between 1 and 100"
@@ -117,7 +117,7 @@ export default function PostGame(){
                 <p>Add a new Game:</p>
                 <div class="mb-3 w-100">
                 {/*  <label  class="form-label">Name</label> */}
-                    <input type="text" class="form-control" className={style.name} style={{width:"100%"}} placeholder="title of the game..." onChange={handleChange} value={input.name} name="name" />
+                    <input type="text" class="form-control" style={{width:"100%"}} placeholder="title of the game..." onChange={handleChange} value={input.name} name="name" />
                     {/* <small class="form-text">We'll never share your email with anyone else.</small> */}
                     {error.name? <label className={style.labelError}>{error.name}</label>:null}
                 </div>

@@ -14,7 +14,9 @@ import { GET_ALL_PRODUCTS,
     ORDER_BY_RATING,
     ORDER_BY_ESRB,
     Order_By,
-    RESET_USER
+    RESET_USER,
+    REMOVE_FROM_CART,
+    REMOVE_WISH
    } from "./actions.js";
 import { products } from "./products.js";
 /* import { products } from "./products.js" */
@@ -129,10 +131,12 @@ switch(action.type){
            searchered: filtered_searchered_plat
        }
    case ADD_TO_CART:
-       return{
-           ...state,
-           cart: [...state.cart, action.payload]
-       }
+
+   
+            return{
+                ...state,
+                cart: [...state.cart, action.payload]
+            }
    case ADD_WISH:
        return{
            ...state,
@@ -204,6 +208,18 @@ switch(action.type){
           ...state,
           users: {}
        }
+    case REMOVE_FROM_CART:
+    let cartF= state.cart.filter(e=>e!==action.payload); //filtrados sin el id pasado
+        return{
+            ...state,
+            cart: cartF
+        }
+    case REMOVE_WISH:
+    let wishF = state.wishlist.filter(e=>e!==action.payload); // filtra con el id del juego de favs
+        return{
+            ...state,
+            wishlist: wishF
+        }
    default: 
    return state;
 }
