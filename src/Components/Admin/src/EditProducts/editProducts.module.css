@@ -37,10 +37,50 @@
     text-align: left;
 }
 
+.bigIconContainer{
+    margin-left:auto;
+    margin-right:0;
+}
+.iconContainer1{
+    margin-left:auto;
+    margin-right:0;
+    cursor: pointer;
+    width: 40px;
+    font-size: 15px;
+}
+
 .iconContainer{
     cursor: pointer;
     width: 40px;
-    margin-left:auto;
-    margin-right:0;
     font-size: 15px;
 }
+
+
+
+.ldsDualRing {
+    display: inline-block;
+    width: 10px;
+    height: 9px;
+
+    margin-right: 20px;
+    margin-top: 5px;
+  }
+  .ldsDualRing:after {
+    content: " ";
+    display: block;
+    width: 15px;
+    height: 15px;
+    border-radius: 90%;
+    border: 3px solid rgb(193, 164, 164);
+    border-color: rgb(193, 164, 164) transparent rgb(193, 164, 164) transparent;
+    animation: ldsDualRing 1.2s linear infinite;
+  }
+  @keyframes ldsDualRing {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
