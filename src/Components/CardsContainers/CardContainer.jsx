@@ -69,27 +69,23 @@ const CardContainer = () => {
 
 
   return (
-
-    <section className='section'>
-      
-        <div className='bigContainer'>
+        <div className='d-flex flex-column'>
 
           {Allproducts.length>0?<CardForSale forSale={forSale}/>:<Spinner />}
           
+          {/* Plataforms */}
            {platforms.length>0?(<div className={styles.box} >
           <h5 className="text-light"> {randomPlat} </h5>
             <CardSlider platforms={platforms} i={1}/>
           </div>): <Spinner />}
-
+          
+          {/* Genres */}
           {genres.length>0?(<div className={styles.box}>
           <h5 className="text-light"> {randomGen} </h5>
             <CardSlider platforms={genres} i={2}/>
           </div>): <Spinner />}
 
       </div>
-      
-
-    </section>
   )
 }
 
