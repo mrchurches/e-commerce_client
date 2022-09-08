@@ -25,7 +25,7 @@ import Checkout from './Components/Checkout/Checkout';
 function App() {
 let users = useSelector(state=>state.users);
 
-console.log(users)
+//console.log(users)
   return (
     <div className="App">
 

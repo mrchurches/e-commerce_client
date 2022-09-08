@@ -20,15 +20,16 @@ export default function Admin() {
     add: false,
     edit: false,
     user: false,
+    editForm: false
   });
 
   return (
     <div class='d-flex'>
         <div className={styles.options}>
-        <Options render={render} setRender={setRender}/>
+        <Options setRender={setRender}/>
         </div>
         <div className={styles.infocontainer}>
-        <InfoContainter render={render}/>
+        <InfoContainter render={render} setRender={setRender}/>
         </div>
     </div>
   )

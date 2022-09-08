@@ -59,7 +59,7 @@ export default function PostGame(){
         //navigate("/home")
     };
     function handleChange(e){
-        console.log(input)
+        //console.log(input)
         setInput({
             ...input,
             [e.target.name]: e.target.value,
@@ -68,8 +68,8 @@ export default function PostGame(){
             ...input,
             [e.target.name]: e.target.value
         }))
-        console.log(input)
-        console.log(error)
+        //console.log(input)
+        //console.log(error)
     };
     function handleSelectGenres(e) {
         if (!input.genres.includes(e.target.value)) //evitar repetidos
@@ -81,8 +81,8 @@ export default function PostGame(){
             ...input,
             genres: [...input.genres, e.target.value]
         }));
-        console.log(e.target.value)
-        console.log(input.genres)
+        //console.log(e.target.value)
+        //console.log(input.genres)
     }
     function handleSelectPlat(e) {
         if (!input.platforms.includes(e.target.value)) //evitar repetidos
@@ -94,8 +94,8 @@ export default function PostGame(){
             ...input,
             platforms: [...input.platforms, e.target.value]
         }));
-        console.log(e.target.value)
-        console.log(input.platforms)
+        //console.log(e.target.value)
+        //console.log(input.platforms)
     };
     function handleDeleteGenre(e){
         setInput({

@@ -1,9 +1,46 @@
-.container {
+.bigContainer {
     background-color: rgb(238, 245, 246);
-    max-width: 1300px;
+    max-width: 1200px;
     height: 600px;
-    margin-top: 20px;
+    margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+.games{
+    width: 800px;
+    height: 350px;
+}
+
+.verticalScrollable {
+    margin-right: auto;
+    margin-left: auto;
+    background-color: white;
+    overflow-y: scroll;
+    height: 350px;
+    max-width: 800px;
+    border-style: solid;
+    border-width: thin;
+    border-color: rgb(184, 184, 184);
+}
+
+.productName {
+    border-radius:0px;
+}
+.name{
+    cursor: pointer;
+    margin-left: 10px;
+    text-align: left;
+}
+
+.iconContainer{
+    cursor: pointer;
+    width: 40px;
+    margin-left:auto;
+    margin-right:0;
+    font-size: 15px;
 }
