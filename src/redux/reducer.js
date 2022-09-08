@@ -16,7 +16,9 @@ import { GET_ALL_PRODUCTS,
     Order_By,
     RESET_USER,
     REMOVE_FROM_CART,
-    REMOVE_WISH
+    REMOVE_WISH,
+    GET_ALL_USERS,
+    USER_BY_NAME
    } from "./actions.js";
 import { products } from "./products.js";
 /* import { products } from "./products.js" */
@@ -33,6 +35,7 @@ users: {},
 cart: [],
 wishlist:[],
 currentPage: 1,
+allUsers: []
 
 }
 
@@ -219,7 +222,21 @@ switch(action.type){
         return{
             ...state,
             wishlist: wishF
+        };
+
+    case GET_ALL_USERS: 
+        return {
+            ...state,
+            allUsers: action.payload
+        };
+
+    case USER_BY_NAME:
+        const userSearchered = state.allUsers.filter(e => e.username === action.payload)
+        return {
+            ...state,
+            allUsers: [...userSearchered]
         }
+
    default: 
    return state;
 }
