@@ -10,8 +10,7 @@ function CardForSale({forSale}) {
 
       <div class="m-2">
       <button className={styles.button}type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-        {/* <span class="carousel-control-prev-icon" aria-hidden="true"></span> */}
-        <i class="bi bi-arrow-left-square-fill"></i>
+        <span class="carousel-control-prev-icon" ></span>
       </button>
       </div>
 
@@ -59,7 +58,7 @@ function CardForSale({forSale}) {
   
   <div>
   <button className={styles.button} type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-  <i class="bi bi-arrow-right-square-fill"></i>
+  <span class="carousel-control-next-icon" aria-hidden="true"></span>
       </button>
   </div>
   </div>
