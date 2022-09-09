@@ -6,9 +6,9 @@ import styles from './CardForSale.module.css'
 
 function CardForSale({forSale}) {
   return (
-    <div className={styles.containerCarr} class="d-flex justify-content-center align-items-center">
+    <div className={styles.containerCarr} class="d-flex justify-content-center align-items-center mt-3">
 
-      <div >
+      <div class="m-2">
       <button className={styles.button}type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
         {/* <span class="carousel-control-prev-icon" aria-hidden="true"></span> */}
         <i class="bi bi-arrow-left-square-fill"></i>

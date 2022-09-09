@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 import styles from './cardsContainer.module.css'
 import { getAllProducts, getGenres, getPlatforms } from '../../redux/actions.js'
 import { Link } from 'react-router-dom'
-import Spinner from '../../Spinner/Spinner.jsx'
+import Spinner from '../Spinner/Spinner.jsx'
 
 
 const CardContainer = () => {
