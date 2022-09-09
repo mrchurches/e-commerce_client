@@ -6,9 +6,16 @@ import styles from './CardForSale.module.css'
 
 function CardForSale({forSale}) {
   return (
+    <div className={styles.containerCarr} class="d-flex justify-content-center align-items-center mt-3">
+
+      <div class="m-2">
+      <button className={styles.button}type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" ></span>
+      </button>
+      </div>
+
     
-    <div className={styles.containerCarr}>
-    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+    <div id="carouselExampleCaptions" class="carousel slide w-50" data-bs-ride="false">
       <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -26,7 +33,7 @@ function CardForSale({forSale}) {
             return (
               <div class={`carousel-item ${i === 0 ? "active" : ""}`}>
                 <Link to={`/detail/${e.id}`}> 
-                <img src={e?.background_image} class="d-block w-100 rounded" style={{maxHeight: '40rem', maxWidth: 'auto'}} alt="..." />
+                <img src={e?.background_image} class="d-block w-100 rounded" style={{maxHeight: '40rem', maxWidth: '100vw'}} alt="..." />
                 </Link>
                 <div class="carousel-caption d-none d-md-block">
                   <h4>{e.name}</h4>
@@ -39,17 +46,22 @@ function CardForSale({forSale}) {
         }
       </div>
     
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      {/* <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      </button> */}
+      {/* <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
-      </button>
+      </button> */}
     </div>
+  
+  <div>
+  <button className={styles.button} type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      </button>
   </div>
-
+  </div>
   )
 }
 

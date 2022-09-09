@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import heart from "../../images/heart.png"
 import { addWish, removeWish } from '../../redux/actions';
+import styles from "./FavouriteButton.module.css"
 
 function FavouriteButton({id}) {
   let dispatch= useDispatch();
@@ -32,7 +33,9 @@ function FavouriteButton({id}) {
   }
 
   return (
-    <input type="image" onClick={(e)=>handleClick(e)} value="favourite"  src={heart} class="m-2" style={{width:"2vw", filter:`${brigthness}`}}  alt="heart"/>
+  <div className={styles.button}>
+    <input type="image" onClick={(e)=>handleClick(e)} value="favourite"  src={heart} class="" style={{width:"1.5vw", filter:`${brigthness}`}}  alt="heart"/>
+  </div>
   )
 }
 

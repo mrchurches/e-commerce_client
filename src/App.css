@@ -1,6 +1,10 @@
 .App {
   text-align: center;
-  background-image: linear-gradient(
+  background: #141E30;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to bottom, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to bottom, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  /* background-image: linear-gradient(
   0deg,
   hsl(227deg 28% 51%) 0%,
   hsl(214deg 38% 51%) 19%,
@@ -12,45 +16,10 @@
   hsl(174deg 43% 59%) 81%,
   hsl(162deg 44% 65%) 90%,
   hsl(147deg 43% 72%) 100%
-);
+); */
   min-height: 100vh;
   margin: 0;
   position: relative;
-}
-
-.App::after {
-  content: '';
-  display: block;
-  height: 100px; /* Set same as footer's height */
-}
-
-.footer-nav{
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 100px;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 .App-link {
