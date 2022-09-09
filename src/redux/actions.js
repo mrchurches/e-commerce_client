@@ -271,3 +271,17 @@ export function byUserName(payload) {
         })
     }
 }
+
+export function PostReview(payload){
+    return async function (dispatch){
+        try{
+            let json = await axios.post(`${REACT_APP_URL}reviews`, payload)
+            console.log(json)
+            alert("Reviw Posted Succesfully!")
+            return json;
+        }catch(e){
+            console.error(e);
+            alert(e.message)
+        };
+    };
+};

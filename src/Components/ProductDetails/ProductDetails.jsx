@@ -92,9 +92,13 @@ export default function ProductDetails() {
                 <FavouriteButton id={id} />
               </div>
             </div>
+            <div className='reviewContainer'>
+              <Review_box productId={id} reviews={reviews} setReviews={setReviews}/>
+            </div>
             <div style={{height: '15px'}}></div>
 
           </div>
+          
 
           <div class="col-md-7">
 
@@ -145,12 +149,6 @@ export default function ProductDetails() {
 
         </div>
       )}
-      <br />
-      <br />
-            <div>
-              <Review_box></Review_box>
-            </div>
-            <br />
     </div>
   )
 }

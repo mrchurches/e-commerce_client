@@ -1,12 +1,27 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-//import {PostReview} from "../../redux/actions";
+import {PostReview} from "../../redux/actions";
+import { useSelector } from 'react-redux';
+import style from './Review.module.css'
 
-export default function Review_box(){
+export default function Review_box({productId, reviews, setReviews}){
+
+    let user = useSelector(state => state.users);
+    console.log(user)
+    var disabledBtn = false;
+    var username;
+    if (user.user) {
+        username = user.user.username
+    }
+    if(!user.user){
+        disabledBtn = true
+    }
     let [input , setInput] = useState({
-        review:"",
-        rating:""
+        rating:"",
+        description:"",
+        username: username,
+        productId: productId
     });
     let [error, setError] = useState("");
     let dispatch = useDispatch();
@@ -29,12 +44,16 @@ export default function Review_box(){
             ...input,
             [e.target.name]:review,
         }));
+        console.log(input)
+        console.log(user)
     };
 
     function handlerSubmit(e){
         e.preventDefault();
-        /* dispatch(PostReview(input)) */
-        console.log("review enviado")
+        console.log(input)
+        dispatch(PostReview(input));
+        console.log("review enviado");
+        setReviews([...reviews,...[input]])
     };
     //rating y review 
 
@@ -42,15 +61,15 @@ export default function Review_box(){
             <div class="mt-5 d-flex justify-content-center">
                 <div>
                     <form onSubmit={(e)=>handlerSubmit(e)}>
-                        <div class= "mb-3">
+                        <div class= "mb-3 mt-2">
                             <label>Rating:</label>
                             <input type="number" /* placeholder="Rating" */ class="form-control" name="rating" value={input.rating} onChange={(e)=>handleChange(e)} required/>
                         </div>
                         <div class="mb-3">
                             <label>Review:</label>
-                            <textarea placeholder="Review" class="form-control" name = "review" value={input.review} onChange={(e)=>handleChange(e)} required></textarea>
+                            <textarea placeholder="Review" class="form-control" name = "description" value={input.review} onChange={(e)=>handleChange(e)} required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Post Review</button>
+                        <button type="submit" class="btn btn-primary mb-3" disabled={disabledBtn} >Post Review</button>
                     </form>
                 </div>
             </div>
