@@ -78,7 +78,7 @@ function EditProducts({setRender, setGame}) {
       axios.get(`${REACT_APP_URL}videogames/${id}`)
         .then(res => {
           setGame(res.data)
-          setRender({dash: false, add: false, edit: false, user: false, editForm: true});
+          setRender({editForm: true});
         })
         .catch(err => console.log(err));
     }, "500");

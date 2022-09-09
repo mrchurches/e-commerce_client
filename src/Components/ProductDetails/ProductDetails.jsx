@@ -30,7 +30,7 @@ export default function ProductDetails() {
       .then(res => {
         setGame(res.data)
         axios.get(`${REACT_APP_URL}reviews/${id}`)
-        .then(res => setReviews(res.data))
+        .then(res => setReviews(res.data.filter((e)=> !e.reported)))
         .catch(err => console.log(err))
       })
       .catch(err => console.log(err))
@@ -82,14 +82,18 @@ export default function ProductDetails() {
               <p className='p2'><b>Released:</b> {game.released}</p>
             </div>
 
-            <div class="project-info-box mt-0 mb-0">
+            <div class="project-info-box mt-0 mb-0 d-flex flex-row justify-content-center align-items-center">
+              <div class="pt-2">
               <h4>${game.price}</h4>
-
+              </div>
               <div >
               <button value="cart" onClick={handleClick} type="button" class="btn btn-info">
                   Add to cart
                 </button>
+              </div>
+              <div class="m-2">
                 <FavouriteButton id={id} />
+
               </div>
             </div>
             <div className='reviewContainer'>

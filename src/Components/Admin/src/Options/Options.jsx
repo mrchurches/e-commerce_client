@@ -6,23 +6,23 @@ function Optios({setRender}) {
   function handleClick(e) {
     e.preventDefault();
     if(e.target.value === 'dash'){
-      setRender({dash: true, add: false, edit: false, user: false, editForm: false})
+      setRender({dash: true})
     }else if(e.target.value ===  'add'){
-      setRender({dash: false, add: true, edit: false, user: false, editForm: false})
+      setRender({add: true})
     }else if(e.target.value === 'edit'){
-      setRender({dash: false, add: false, edit: true, user: false, editForm: false})
+      setRender({edit: true})
     }else if(e.target.value === 'user'){
-      setRender({dash: false, add: false, edit: false, user: true, editForm: false})
+      setRender({user: true})
     }
   }
 
   return (
     <div>
-      <button value='dash' class="btn btn-secondary mr-4 mt-4 btn-sm" type="button" aria-expanded="false" style={{ marginBottom: '15px'}} onClick={(e) => {handleClick(e)}}>
+      <button value='dash' class="btn btn-secondary mt-4 mb-3 btn-sm" type="button" aria-expanded="false"  onClick={(e) => {handleClick(e)}}>
           Dashboard
       </button>
       <div class="dropdown1">
-        <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style={{ marginBottom: '15px'}}>
+        <button class="btn btn-secondary dropdown-toggle mb-3 btn-sm" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
           Products
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">

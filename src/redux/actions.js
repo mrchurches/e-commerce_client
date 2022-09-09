@@ -151,7 +151,7 @@ export function addWish(id){
             payload: id
         })
     }
-}
+};
 
 
 export function setCurrentPage(number){
@@ -161,7 +161,7 @@ export function setCurrentPage(number){
             payload: number
         })
     }
-}
+};
 
 export function clear(){
     return function(dispatch){
@@ -279,7 +279,7 @@ export function bann_unBann(payload){
     return async function (dispatch){
         try{
             const url = payload.typeOfEdit
-            let changeBaned = await axios.put(`${REACT_APP_URL}${url}/${payload.id}`, /* REVISAR SI DEBE SER PUNTO O BARRA payload */)
+            let changeBaned = await axios.put(`${REACT_APP_URL}users/${url}/${payload.id}`, /* REVISAR SI DEBE SER PUNTO O BARRA payload */)
             return changeBaned;
 
         }
@@ -310,7 +310,7 @@ export function PostReview(payload){
 export function makeAdmin(payload){
     return async function (dispatch){
         try{
-            let changeAdmin = await axios.put(`${REACT_APP_URL}${"admin"}/${payload.id}`, /* REVISAR SI ES PUNTO O BARRA  payload */)
+            let changeAdmin = await axios.put(`${REACT_APP_URL}${"users/admin"}/${payload}`, )
             return changeAdmin;
         }catch(e){
             console.error(e);
@@ -324,5 +324,18 @@ export function filter_bannedAdmin(payload){
         type: USERS_FILTRED,
         payload
     };
+};
+
+export function addRemoveReview(payload){
+    return async function (dispatch){
+        try{
+            const url = payload.typeOfEdit
+            let changeReview = await axios.put(`${REACT_APP_URL}reviews/${url}/${payload.id}`)
+            return changeReview;
+        }
+        catch(error) {
+            console.log(error)
+        }
+    }
 };
 
