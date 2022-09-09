@@ -59,7 +59,7 @@ function getPayload(game,input){
 export default function EditForm({setRender, game}) {
 
     const goBack = () => {
-        setRender({dash: false, add: false, edit: true, user: false, editForm: false});
+        setRender({edit: true});
     }
 
     const dispatch = useDispatch();

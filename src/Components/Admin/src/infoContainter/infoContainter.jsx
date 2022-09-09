@@ -6,6 +6,7 @@ import Users from '../Users/Users.jsx'
 import CreateGame from '../CreateGame/CreateGame.jsx'
 import EditForm from '../EditForm/EditForm.jsx'
 import style from './infoContainer.module.css'
+import ReviewsPanel from '../ReviewsPanel/ReviewsPanel.jsx';
 
 export default function InfoContainter({render, setRender}) {
 
@@ -16,8 +17,9 @@ export default function InfoContainter({render, setRender}) {
       {render.dash && (<Dashboard/>)}
       {render.edit && (<EditProducts setRender={setRender} setGame={setGame}/>)}
       {render.editForm && (<EditForm setRender={setRender} game={game}/>)}
-      {render.user && (<Users/>)}
+      {render.user && (<Users setRender={setRender}/>)}
       {render.add && (<CreateGame/>)}
+      {render.reviews && (<ReviewsPanel setRender={setRender} render={render}/>)}
     </div>
   )
 }

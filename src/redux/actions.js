@@ -326,3 +326,16 @@ export function filter_bannedAdmin(payload){
     };
 };
 
+export function addRemoveReview(payload){
+    return async function (dispatch){
+        try{
+            const url = payload.typeOfEdit
+            let changeReview = await axios.put(`${REACT_APP_URL}reviews/${url}/${payload.id}`)
+            return changeReview;
+        }
+        catch(error) {
+            console.log(error)
+        }
+    }
+};
+
