@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addToCart, removeFromCart, removeWish, addWish} from '../../../redux/actions.js' // CREAR UNA ACTION QUE DEPLOYE FAVORITO AL USUARIO
 import './ProductCard.css'
 import FavouriteButton from '../../FavouriteButton/FavouriteBurron.jsx'
-
+import Swal from 'sweetalert2'
 
 
 export default function ProductCard({ id, name, img, rating, platforms, price, inStock}) {
@@ -13,7 +13,13 @@ export default function ProductCard({ id, name, img, rating, platforms, price, i
   let foundCart=false;   //aca encontraria el juego si esta agregado al carrito
   const dispatch = useDispatch()
   
-  
+  const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+      confirmButton: 'btn btn-success',
+      cancelButton: 'btn btn-danger'
+    },
+    buttonsStyling: false
+  })
   
   const handleClick = (e) => {
     e.preventDefault();
@@ -23,9 +29,42 @@ export default function ProductCard({ id, name, img, rating, platforms, price, i
         alert("Juego ya agregado al carrito anteriormente!")
        }else{
          dispatch(addToCart(id)) // dispacha al carrito de compras con el id del game en la db
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Succesfully added to your cart',
+            showConfirmButton: false,
+            timer: 1500
+          })
        }
     }else if(e.target.value==="remove"){
-      dispatch(removeFromCart(id))
+      swalWithBootstrapButtons.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, cancel!',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          swalWithBootstrapButtons.fire(
+            'Deleted!',
+            'Your product has been deleted from the cart.',
+            'success'
+          );
+          dispatch(removeFromCart(id))
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire(
+            'Cancelled',
+            'Your product is still in the cart ',
+            'error'
+          )
+        }
+      })
     }
 }
 
@@ -59,7 +98,7 @@ export default function ProductCard({ id, name, img, rating, platforms, price, i
               ${price}
               </span>
               :<span>No stock</span>}
-            <button disabled={price?false:true} onClick={(e) => handleClick(e)} value="cart" class="btn btn-primary">Carrito</button>
+            <button disabled={price?false:true} onClick={(e) => handleClick(e)} value="cart" class="btn btn-primary">Cart</button>
             {foundCart&&<button onClick={(e) => handleClick(e)} type="button" class="btn-close" value="remove" aria-label="Close"></button>}
           </div>
         </div>
