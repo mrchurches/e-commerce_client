@@ -7,7 +7,7 @@ import { useParams, NavLink } from 'react-router-dom'
 import { addToCart, addWish, getAllUsers } from '../../redux/actions';
 import ReviewCard from '../Cards/Reviews/ReviewCard';
 import FavouriteButton from '../FavouriteButton/FavouriteBurron';
-import Review_box from '../Review/Review';
+import Review_box from '../Reviews/Review';
 import './details.css'
 const {REACT_APP_URL} = process.env;
 export default function ProductDetails() {
@@ -149,6 +149,12 @@ export default function ProductDetails() {
 
         </div>
       )}
+      <br />
+      <br />
+            <div>
+              <Review_box></Review_box>
+            </div>
+            <br />
     </div>
   )
 }
