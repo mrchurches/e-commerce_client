@@ -7,6 +7,7 @@ import { deleteCookies, logout } from './NavBarHelper'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { resetUser } from '../../redux/actions'
+import profilePic from "../../images/profile21.png"
 
 const NavBar = () => {
   let location = useLocation();
@@ -19,7 +20,7 @@ const NavBar = () => {
     dispatch(resetUser());
   };
 
-
+  console.log(user)
 
   return (
     <nav class="navbar navbar-expand-lg" style={{ backgroundColor: "rgb(238, 245, 246)" }}>
@@ -45,6 +46,13 @@ const NavBar = () => {
                 <span class="nav-link active" aria-current="page" >My store</span>
               </li>
             </Link>)}
+
+
+
+
+
+
+
 
             {user && (<Link to="/wish_list" className='link'>
               <li class="nav-item">
@@ -92,6 +100,11 @@ const NavBar = () => {
           </ul>
         </li> */}
           </ul>
+          {(<Link to="/userprofile" className='link'>
+            <li class="nav-item">
+              <img class="logo" src={profilePic} />
+            </li>
+          </Link>)}
           {location.pathname === "/home" && <SearchBar />}
           {location.pathname.includes('/detail') &&
             <NavLink to="/home">
