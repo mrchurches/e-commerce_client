@@ -1,5 +1,37 @@
 import "./CreateUser.css"
 
+
+
+
+// import { AdvancedImage } from '@cloudinary/react';
+import { Cloudinary } from "@cloudinary/url-gen";
+// import { Transformation } from "@cloudinary/url-gen";
+
+// // Import required actions.
+// import { thumbnail, scale } from "@cloudinary/url-gen/actions/resize";
+// import { byRadius } from "@cloudinary/url-gen/actions/roundCorners";
+// import { sepia } from "@cloudinary/url-gen/actions/effect";
+// import { source } from "@cloudinary/url-gen/actions/overlay";
+// import { opacity, brightness } from "@cloudinary/url-gen/actions/adjust";
+// import { byAngle } from "@cloudinary/url-gen/actions/rotate"
+
+// // Import required qualifiers.
+// import { image } from "@cloudinary/url-gen/qualifiers/source";
+// import { Position } from "@cloudinary/url-gen/qualifiers/position";
+// import { compass } from "@cloudinary/url-gen/qualifiers/gravity";
+// import { focusOn } from "@cloudinary/url-gen/qualifiers/gravity";
+// import { FocusOn } from "@cloudinary/url-gen/qualifiers/focusOn";
+// import CloudinaryUploadWidget from "./CloudinaryUploadWidget";
+
+
+
+
+
+
+
+
+
+
 import React from 'react'
 // import cloudinary from 'cloudinary'
 // cloudinary = cloudinary.v2
@@ -18,6 +50,12 @@ const CreateUser = () => {
         [validate, setvalidate] = useState(validatedFormat);
 
     let userState = useSelector(state => state.user)
+
+    const cld = new Cloudinary({
+        cloud: {
+            cloudName: `${process.env.CLOUDINARY_CLOUD_NAME}`
+        }
+    });
 
     function handleChange(e) {
         setUserNames((i) => ({
@@ -79,29 +117,59 @@ const CreateUser = () => {
         setIsSubmit(true);
     };
 
+
     let [profilePic, setProfilePic] = useState("");
     let [picPreview, setPicPreview] = useState("");
+
     async function handleFile(e) {
         let file = e.target.files[0];
         preview(file)
         const data = new FormData();
         data.append('file', file)
-        data.append('upload_preset', '')
+        data.append('upload_preset', 'videogamespf')
 
-        // fetch(`https://api.cloudinary.com/v1_1/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload`, {
-        //     method: "POST",
-        //     body: data
-        // }).then((response) => {
+        fetch(`https://api.cloudinary.com/v1_1/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload`, {
+            method: "POST",
+            body: data
+        })
+        // .then((response) => {
         //     console.log(response.json())
         //     return response.text();
         // })
 
-
-
-
-
-
     }
+
+    let [path, setPath] = useState("");
+    function showWidget() {
+
+        let widget = window.cloudinary.openUploadWidget({
+            cloudName: `vgpf`,
+            uploadPreset: `videogamespf`,
+            sources: ['local', 'url']
+        }, (error, result) => {
+            if (!error && result.event === "show-completed") {
+                result.info.items.forEach((item) => {
+                    console.log(`show completed for item with id:
+                    ${item.uploadInfo.public_id}`); //uploadInfo is the data returned in the upload response
+
+                    setPath(result.info.path);
+
+                    document.getElementById("uploadedImage").src = "https://res.cloudinary.com/vgpf/image/upload/" + path;
+                });
+                // setProfilePic(result.info.items)
+
+            }
+        });
+        widget.open()
+        // console.log(profilePic)
+    };
+
+
+
+
+
+
+
 
     function preview(p) {
         const reader = new FileReader();
@@ -128,11 +196,18 @@ const CreateUser = () => {
                         <input type="file"
                             onChange={e => handleFile(e)}
                             value={profilePic}
-                            name="file" id="email" class={`form-control ${isChange.email && !validate.email && "is-invalid"}`} />
+                            name="file"
+                            class={`form-control`}
+                        />
 
                         {picPreview && <img src={picPreview} onClick={e => handlePic(e)} alt={"selectedPic"} />}
-
                         <small>Click on Pic to Delete</small>
+
+                        <button class={'form-control'} onClick={showWidget}> Upload Image </button>
+                        <img src={"https://res.cloudinary.com/vgpf/image/upload/" + path} id={"uploadedImage"} alt={"selectedPic"} />
+
+
+
 
                     </div>
 
