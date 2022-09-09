@@ -73,14 +73,18 @@ export default function ProductDetails() {
               <p className='p2'><b>Released:</b> {game.released}</p>
             </div>
 
-            <div class="project-info-box mt-0 mb-0">
+            <div class="project-info-box mt-0 mb-0 d-flex flex-row justify-content-center align-items-center">
+              <div class="pt-2">
               <h4>${game.price}</h4>
-
+              </div>
               <div >
               <button value="cart" onClick={handleClick} type="button" class="btn btn-info">
                   Add to cart
                 </button>
+              </div>
+              <div class="m-2">
                 <FavouriteButton id={id} />
+
               </div>
             </div>
             <div style={{height: '15px'}}></div>

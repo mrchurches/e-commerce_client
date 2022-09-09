@@ -91,15 +91,20 @@ export default function ProductCard({ id, name, img, rating, platforms, price, i
             </div> */}
 
             {/* <input type="image" onClick={(e)=>handleClick(e)} value="favourite"  src={heart} class="m-2" style={{width:"2vw", filter:`${brigthness}`}}  alt="heart"/> */}
-            <FavouriteButton id={id}/>
-            {price?
-            
-            <span class="card-text m-4 bg-secondary p-2 text-light">
-              ${price}
-              </span>
-              :<span>No stock</span>}
-            <button disabled={price?false:true} onClick={(e) => handleClick(e)} value="cart" class="btn btn-primary">Cart</button>
-            {foundCart&&<button onClick={(e) => handleClick(e)} type="button" class="btn-close" value="remove" aria-label="Close"></button>}
+            <div class="d-flex flex-row align-items-center justify-content-center">
+                <FavouriteButton id={id}/>
+                <div>
+                  {price?
+                  <span class="card-text bg-secondary m-2 p-2 text-light">
+                  ${price}
+                  </span>
+                  :<span>No stock</span>}
+                </div>
+                <div>
+                  <button disabled={price?false:true} onClick={(e) => handleClick(e)} value="cart" class="btn btn-primary">Cart</button>
+                </div>
+              {foundCart&&<button onClick={(e) => handleClick(e)} type="button" class="btn-close" value="remove" aria-label="Close"></button>}
+            </div>
           </div>
         </div>
 
