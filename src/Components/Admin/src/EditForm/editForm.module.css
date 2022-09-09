@@ -60,6 +60,24 @@
   size: 20%;
 }
 
-.font{
-  font-family:fantasy
+.isDisabled {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+.enabled{
+  margin-right: 10px;
+}
+
+.genresContainer{
+  padding: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color:  rgb(255, 255, 255);
+  filter: drop-shadow(0px 0px 5px rgba(189, 188, 188, 0.763));
+}
+.type{
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 10px;
 }

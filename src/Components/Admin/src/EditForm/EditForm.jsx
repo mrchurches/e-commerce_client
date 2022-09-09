@@ -22,6 +22,7 @@ function getPayload(game,input){
     let payload = {}
     payload.id = game.id
     if (input.name !== game.name) payload.name =  input.name;
+    if (input.isDisabled !== game.isDisabled) payload.isDisabled =  input.isDisabled;
     if (input.released !== game.released) payload.released =  input.released;
     if (input.description !== game.description) payload.description =  input.description;
     if (input.background_image !== game.background_image) payload.background_image =  input.background_image;
@@ -61,7 +62,7 @@ export default function EditForm({setRender, game}) {
     const goBack = () => {
         setRender({dash: false, add: false, edit: true, user: false, editForm: false});
     }
-
+    //console.log(game);
     const dispatch = useDispatch();
     //const navigate = useNavigate();
     const [activeSubmit, SetactiveSubmit] = useState(true);
@@ -75,10 +76,11 @@ export default function EditForm({setRender, game}) {
         released:game.released,
         price:game.price,
         rating:game.rating,
-        //isDisabled:false,
+        isDisabled:game.isDisabled,
         platforms:game.platforms.map(e => e.name),
         genres:game.genres.map(e => e.name),
     });
+    console.log()
 
     useEffect(()=>{
         dispatch(getGenres())
@@ -104,6 +106,13 @@ export default function EditForm({setRender, game}) {
         /* ver si uso un dispatch para volver a cargar los juegos */
         //navigate("/home")
     };
+    function handleSwitch(e){
+        setInput({
+            ...input,
+            isDisabled: !input.isDisabled,
+        });
+        console.log(input.isDisabled)
+    }
     function handleChange(e){
         //console.log(input)
         setInput({
@@ -114,7 +123,7 @@ export default function EditForm({setRender, game}) {
             ...input,
             [e.target.name]: e.target.value
         }))
-        //console.log(input)
+        console.log(input)
         //console.log(error)
     };
     function handleSelectGenres(e) {
@@ -161,7 +170,6 @@ export default function EditForm({setRender, game}) {
         display = 'none'
     }
 
-
   return (
     <div className={style.container}>
         <button value='test' class="btn btn-secondary" type="button" aria-expanded="false" style={{ marginBottom: '15px'}} onClick={goBack} className={style.goBack}>Go Back</button>
@@ -172,7 +180,16 @@ export default function EditForm({setRender, game}) {
         <div class="d-flex justify-content-center mt-3">
             <div class="card shadow-lg p-3 mb-5 bg-body rounded" style={{ width: '25rem'}}>
                 <form onSubmit={(e)=>handlersubmit(e)}>
-                    <p>Add a new Game:</p>
+
+                    <div class="d-flex" className={style.isDisabled}>
+                        <div className={style.enabled}>Enabled:</div>
+                    <div class="form-check form-switch ml-1">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" onChange={handleSwitch} name="isDisabled" checked={!input.isDisabled}/>
+                        {/* <label class="form-check-label" for="flexSwitchCheckDefault"></label> */}
+                    </div>
+                    </div>
+                    
+
                     <div class="mb-3 w-100">
                     {/*  <label  class="form-label">Name</label> */}
                         <input type="text" class="form-control" className={style.name} style={{width:"100%"}} placeholder="title of the game..." onChange={handleChange} value={input.name} name="name" />
@@ -223,19 +240,26 @@ export default function EditForm({setRender, game}) {
                         </select>
                         {error.platforms ? <label className={style.labelError}>{error.platforms}</label>:null}
                     </div>
-                    <br></br>
-                            {input.genres.map((genre, pos)=>
-                                <div className={style.flex}>
-                                    <p id={pos} onClick={()=>handleDeleteGenre(genre)} class="font-family: fantasy">{genre}</p>
-                                    {/* <button onClick={()=>handleDeleteGenre(genre)}>X</button> */}
-                                </div>
-                            )}  
+                    <div class='d-flex just justify-content-center'><div className={style.type}>Genres:</div><div className={style.type}>Platforms:</div></div>
+                    <div class='d-flex just justify-content-center'>
+                    <div className={style.genresContainer}>
+                    {input.genres.map((genre, pos)=>
+                        <div className={style.flex}>
+                            <p id={pos} onClick={()=>handleDeleteGenre(genre)} class="font-family: fantasy">{genre} X</p>
+                            {/* <button onClick={()=>handleDeleteGenre(genre)}>X</button> */}
+                        </div>
+                    )}  
+                    </div>
+                    <div className={style.genresContainer}>
                     {input.platforms.map((plataforma,pos)=>
                         <div className={style.flex}>
-                            <p id={pos} onClick={()=>handleDeletePlat(plataforma)}>{plataforma}</p>
+                            <p id={pos} onClick={()=>handleDeletePlat(plataforma)}>{plataforma} X</p>
                         </div>
                     )}
+                    </div>
+                    </div>
                     <br></br>
+
                     <div style={{display: display, color:'red', marginBottom: '5px'}}>Must change at least one parameter</div>
                     {/* <button type="submit" disabled={activeSubmit}>Create!!</button> */} 
                     <button type="submit" class="btn btn-primary" disabled={activeSubmit}>EDIT</button>
