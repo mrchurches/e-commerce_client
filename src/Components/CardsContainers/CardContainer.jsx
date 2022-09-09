@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import styles from './cardsContainer.module.css'
 import { getAllProducts, getGenres, getPlatforms } from '../../redux/actions.js'
 import { Link } from 'react-router-dom'
+import Spinner from '../Spinner/Spinner.jsx'
 
 
 const CardContainer = () => {
@@ -68,80 +69,23 @@ const CardContainer = () => {
 
 
   return (
+        <div className='d-flex flex-column'>
 
-    <section className='section'>
-
-      {Allproducts && (
-        <div className='bigContainer'>
-
-          {/*<div className={style.ForSale}>
-            {forSale && forSale.map((product, index) => (
-              <CardForSale
-                key={index}
-                id={product.id}
-                name={product.name}
-                img={product.background_image}
-              />
-            ))}
-
-          </div>*/}
-
-          <CardForSale forSale={forSale}/>
+          {Allproducts.length>0?<CardForSale forSale={forSale}/>:<Spinner />}
           
-          <div className={styles.box} >
-          <h5> {randomPlat} </h5>
+          {/* Plataforms */}
+           {platforms.length>0?(<div className={styles.box} >
+          <h5 className="text-light"> {randomPlat} </h5>
             <CardSlider platforms={platforms} i={1}/>
-          </div>
-
-          <div className={styles.box}>
-          <h5> {randomGen} </h5>
+          </div>): <Spinner />}
+          
+          {/* Genres */}
+          {genres.length>0?(<div className={styles.box}>
+          <h5 className="text-light"> {randomGen} </h5>
             <CardSlider platforms={genres} i={2}/>
-          </div>
+          </div>): <Spinner />}
 
-
-          {/*<div className='box'>
-            <h5> {randomPlat} </h5>
-            <div class='d-flex justify-content-center'>
-              <div class="row pb-5 mb-4">
-                {platforms && platforms.map((product, index) => (
-                  <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-                    <ProductCard
-                      key={index}
-                      id={product.id}
-                      name={product.name}
-                      img={product.background_image}
-                      rating={product.rating}
-                      price={product.price}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-              </div>*/}
-
-          {/*<div className='box'>
-            <h5> {randomGen} </h5>
-            <div class='d-flex justify-content-center'>
-              <div class="row pb-5 mb-4">
-                {genres && genres.map((product, index) => (
-                  <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-                    <ProductCard
-                      key={index}
-                      id={product.id}
-                      name={product.name}
-                      img={product.background_image}
-                      rating={product.rating}
-                      price={product.price}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>*/}
       </div>
-      )}
-
-    </section>
   )
 }
 

@@ -18,7 +18,9 @@ import { GET_ALL_PRODUCTS,
     REMOVE_FROM_CART,
     REMOVE_WISH,
     GET_ALL_USERS,
-    USER_BY_NAME
+    USER_BY_NAME,
+    USERS_FILTRED,
+
    } from "./actions.js";
 import { products } from "./products.js";
 /* import { products } from "./products.js" */
@@ -35,7 +37,8 @@ users: {},
 cart: [],
 wishlist:[],
 currentPage: 1,
-allUsers: []
+allUsers: [],
+allUsersCopy: []
 
 }
 
@@ -227,15 +230,37 @@ switch(action.type){
     case GET_ALL_USERS: 
         return {
             ...state,
-            allUsers: action.payload
+            allUsers: action.payload,
+            allUsersCopy: action.payload
         };
 
     case USER_BY_NAME:
-        const userSearchered = state.allUsers.filter(e => e.username === action.payload)
+        const userSearchered = state.allUsersCopy.filter(e => e.username === action.payload)
         return {
             ...state,
             allUsers: [...userSearchered]
+        };
+
+    case USERS_FILTRED: {
+        let user_filtred;
+
+        if (action.payload === "All") {
+            user_filtred = state.allUsersCopy 
+
         }
+        else if (action.payload === 'Admin') {
+            user_filtred = state.allUsersCopy.filter(e => e.isAdmin === true)
+        }
+
+        else {
+            user_filtred = state.allUsersCopy.filter(e => e.isBanned === true)
+        }
+
+        return {
+            ...state,
+            allUsers: [...user_filtred]
+        }
+    };
 
    default: 
    return state;
