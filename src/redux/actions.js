@@ -282,7 +282,13 @@ export function bann_unBann(payload){
             let changeBaned = await axios.put(`${REACT_APP_URL}${url}/${payload.id}`, /* REVISAR SI DEBE SER PUNTO O BARRA payload */)
             return changeBaned;
 
-}
+        }
+
+        catch(error) {
+            console.log(error)
+        }
+
+}};
 
 export function PostReview(payload){
     return async function (dispatch){
@@ -318,7 +324,5 @@ export function filter_bannedAdmin(payload){
         type: USERS_FILTRED,
         payload
     };
-};
-
 };
 
