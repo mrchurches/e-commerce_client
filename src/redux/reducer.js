@@ -18,7 +18,9 @@ import { GET_ALL_PRODUCTS,
     REMOVE_FROM_CART,
     REMOVE_WISH,
     GET_ALL_USERS,
-    USER_BY_NAME
+    USER_BY_NAME,
+    USERS_FILTRED,
+
    } from "./actions.js";
 import { products } from "./products.js";
 /* import { products } from "./products.js" */
@@ -235,7 +237,19 @@ switch(action.type){
         return {
             ...state,
             allUsers: [...userSearchered]
+        };
+
+    case USERS_FILTRED: {
+         
+        let users_filtred = action.payload === "Admin" 
+        ?  state.allUsers.filter(e => e.isAdmin === true)
+        :  state.allUsers.filter(e => e.isBanned === true)
+        
+        return {
+            ...state,
+            allUsers: [...users_filtred]
         }
+    };
 
    default: 
    return state;

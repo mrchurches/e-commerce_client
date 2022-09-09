@@ -22,6 +22,9 @@ export const Order_By = "Orderby",
 RESET_USER = 'RESET_USER';
 export const GET_ALL_USERS = "GET_ALL_USERS"
 export const USER_BY_NAME = "USER_BY_NAME"
+export const USERS_FILTRED = "USERS_FILTRED"
+export const ORDER_USERS_ASC = "ORDER_USERS_ASC"
+export const ORDER_USERS_DESC = "ORDER_USERS_DESC"
 const {REACT_APP_URL} = process.env;
 
 export function getAllProducts(){
@@ -246,11 +249,10 @@ export function removeWish(id){
     }
 };
 
-export function getAllUsers(id){
-    let url = id ? url = id : "all"
+export function getAllUsers(id){    
     return async function (dispatch){
         try {
-            const response = await axios.get(`${REACT_APP_URL}users/${url}`)
+            const response = await axios.get(`${REACT_APP_URL}users/all`)
             dispatch({
                 type: GET_ALL_USERS,
                 payload:response.data
@@ -270,6 +272,16 @@ export function byUserName(payload) {
             payload
         })
     }
+
+};
+
+export function bann_unBann(payload){
+    return async function (dispatch){
+        try{
+            const url = payload.typeOfEdit
+            let changeBaned = await axios.put(`${REACT_APP_URL}${url}/${payload.id}`, /* REVISAR SI DEBE SER PUNTO O BARRA payload */)
+            return changeBaned;
+
 }
 
 export function PostReview(payload){
@@ -279,9 +291,34 @@ export function PostReview(payload){
             console.log(json)
             alert("Reviw Posted Succesfully!")
             return json;
+
+        }catch(e){
+            console.error(e);
+            alert(e.message)
+        };
+    };
+
+};
+
+
+export function makeAdmin(payload){
+    return async function (dispatch){
+        try{
+            let changeAdmin = await axios.put(`${REACT_APP_URL}${"admin"}/${payload.id}`, /* REVISAR SI ES PUNTO O BARRA  payload */)
+            return changeAdmin;
         }catch(e){
             console.error(e);
             alert(e.message)
         };
     };
 };
+
+export function filter_bannedAdmin(payload){
+    return{
+        type: USERS_FILTRED,
+        payload
+    };
+};
+
+};
+
