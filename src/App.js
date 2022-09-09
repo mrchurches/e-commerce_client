@@ -8,21 +8,27 @@ import ShoppingCart from './Components/ShoppingCart/ShoppingCart';
 import CreateUser from './Components/CreateUser/CreateUser';
 import Login from './Components/Login/Login';
 import Home from './Components/Home/Home';
-import PostGame from './Components/CreateGame/CreateGame';
+import PostGame from './Components/Admin/src/CreateGame/CreateGame';
 import MyStore from './Components/MyStore/MyStore';
 import Account from './Components/Account/Account';
 import WishList from "./Components/WishList/WishList.jsx";
+
+import Pasarela from "./Components/Checkout/Checkout";
+
 import Admin from './Components/Admin/Admin';
+
 import { useSelector } from 'react-redux';
+import Checkout from './Components/Checkout/Checkout';
 
 
 
 function App() {
 let users = useSelector(state=>state.users);
 
-console.log(users)
+//console.log(users)
   return (
     <div className="App">
+
         <Route path="/" component={NavBar}/>
         <Route path="/" component={LandingPage} />
         <Route path="/detail/:id" component={ProductDetails} />
@@ -33,8 +39,12 @@ console.log(users)
         <Route path="/account" component={Account}/>
         <Route path="/login" component={Login} />
         <Route path="/home" component={Home} />
-        <Route path="/admin" component={Admin}/>
+
         <Route path="/admin/create" component={PostGame}/>
+        {/* <Route path="/checkout/:id" component={Checkout}/> */}
+
+        <Route path="/admin" component={Admin}/>
+
         <div className='footer'>
         <Footer />
         </div>

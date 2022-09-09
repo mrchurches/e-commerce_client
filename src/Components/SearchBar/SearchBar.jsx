@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useDispatch } from "react-redux";
 import { clear, searchProduct, setCurrentPage } from "../../redux/actions.js"
 
-const SearchBar = () => {
+const SearchBar = ({button}) => {
   let [name, setName] = useState("");
   let dispatch = useDispatch();
 
@@ -21,17 +21,21 @@ const SearchBar = () => {
   function handleClick(e) {
     dispatch(clear())
   }
+  var buttonStyle = 'btn-outline-success'
+  if(button === 'admin'){
+    buttonStyle = 'btn-secondary'
+  }
 
   return (
     <div class="d-flex">
       <div>
         <form class="d-flex" role="search" onSubmit={handleSubmit}>
           <input class="form-control me-2" type="search" placeholder="Search a videogame..." required aria-label="Search" value={name} onChange={handleChange} />
-          <button class="btn btn-outline-success" type="submit">Search</button>
+          <button class={`btn ${buttonStyle}`} type="submit">Search</button>
         </form>
       </div>
       <div className="clear">
-        <button class="btn btn-outline-success" onClick={handleClick}>Clear</button>
+        <button class={`btn ${buttonStyle}`} onClick={handleClick}>Clear</button>
       </div>
     </div>
   )

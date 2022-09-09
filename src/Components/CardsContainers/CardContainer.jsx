@@ -66,27 +66,10 @@ const CardContainer = () => {
   const genres = Allproducts.filter((c) => c.genres.find((c) => c.name === randomGen)).slice(start, finish)
   const platforms = Allproducts.filter((c) => c.platforms.find((c) => c.name === randomPlat)).slice(start, finish)
 
-  console.log(Allproducts)
 
   return (
 
     <section className='section'>
-      {/* 
-      {searchered && (
-        <div>
-          <div className={style.container}>
-            {searchered && searchered.map((product, index) => (
-              <ProductCard
-                key={index}
-                name={product.name}
-                img={product.background_image}
-              /// MOSTRAR PRECIO TAMBIEN
-              />
-            ))}
-          </div>
-        </div>
-      )} */}
-
 
       {Allproducts && (
         <div className='bigContainer'>

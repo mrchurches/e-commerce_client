@@ -1,0 +1,86 @@
+.bigContainer {
+    background-color: rgb(238, 245, 246);
+    max-width: 1200px;
+    height: 600px;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+.games{
+    width: 800px;
+    height: 350px;
+}
+
+.verticalScrollable {
+    margin-right: auto;
+    margin-left: auto;
+    background-color: white;
+    overflow-y: scroll;
+    height: 350px;
+    max-width: 800px;
+    border-style: solid;
+    border-width: thin;
+    border-color: rgb(184, 184, 184);
+}
+
+.productName {
+    border-radius:0px;
+}
+.name{
+    cursor: pointer;
+    margin-left: 10px;
+    text-align: left;
+}
+
+.bigIconContainer{
+    margin-left:auto;
+    margin-right:0;
+}
+.iconContainer1{
+    margin-left:auto;
+    margin-right:0;
+    cursor: pointer;
+    width: 40px;
+    font-size: 15px;
+}
+
+.iconContainer{
+    cursor: pointer;
+    width: 40px;
+    font-size: 15px;
+}
+
+
+
+.ldsDualRing {
+    display: inline-block;
+    width: 10px;
+    height: 9px;
+
+    margin-right: 20px;
+    margin-top: 5px;
+  }
+  .ldsDualRing:after {
+    content: " ";
+    display: block;
+    width: 15px;
+    height: 15px;
+    border-radius: 90%;
+    border: 3px solid rgb(193, 164, 164);
+    border-color: rgb(193, 164, 164) transparent rgb(193, 164, 164) transparent;
+    animation: ldsDualRing 1.2s linear infinite;
+  }
+  @keyframes ldsDualRing {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  

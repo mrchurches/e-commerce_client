@@ -10,6 +10,7 @@ export const ADD_TO_CART = "ADD_TO_CART";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 export const CLEAR_CART = "CLEAR_CART";
 export const ADD_WISH = "ADD_WISH";
+export const REMOVE_WISH= "REMOVE_WISH";
 export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 export const CLEAR = "CLEAR";
 export const ORDER_ASC = "ORDER_ASC"
@@ -18,6 +19,8 @@ export const ORDER_BY_RATING = "ORDER_BY_RATING"
 export const ORDER_BY_ESRB = "ORDER_BY_ESRB"
 export const Order_By = "Orderby", 
 RESET_USER = 'RESET_USER';
+export const GET_ALL_USERS = "GET_ALL_USERS"
+export const USER_BY_NAME = "USER_BY_NAME"
 const {REACT_APP_URL} = process.env;
 
 export function getAllProducts(){
@@ -128,6 +131,15 @@ export function addToCart(id){
 }
 }
 
+export function removeFromCart(id){
+    return function(dispatch){
+        dispatch({
+            type: REMOVE_FROM_CART,
+            payload: id
+        })
+    }
+}
+
 export function addWish(id){
     return function(dispatch){
         dispatch({
@@ -197,7 +209,21 @@ export function Post_Game(payload){
         try{
             let json = await axios.post(`${REACT_APP_URL}videogames/create`, payload)
             console.log(json)
-            alert("Recipe Created Succesfully!")
+            alert("Videogame Created Succesfully!")
+            return json;
+        }catch(e){
+            console.error(e);
+            alert(e.message)
+        };
+    };
+};
+
+export function Edit_Game(payload){
+    return async function (dispatch){
+        try{
+            let json = await axios.put(`${REACT_APP_URL}videogames/edit`, payload)
+            console.log(json)
+            alert("Videogame Edited Succesfully!")
             return json;
         }catch(e){
             console.error(e);
@@ -212,3 +238,35 @@ export function resetUser(){
     };
 };
 
+export function removeWish(id){
+    return{
+        type: REMOVE_WISH,
+        payload: id
+    }
+};
+
+export function getAllUsers(id){
+    let url = id ? url = id : "all"
+    return async function (dispatch){
+        try {
+            const response = await axios.get(`${REACT_APP_URL}users/${url}`)
+            dispatch({
+                type: GET_ALL_USERS,
+                payload:response.data
+            });
+        }
+        catch (error) {
+            console.log(error.response)
+        }
+
+    };
+};
+
+export function byUserName(payload) {
+    return function(dispatch){
+        dispatch({
+            type: USER_BY_NAME,
+            payload
+        })
+    }
+}
