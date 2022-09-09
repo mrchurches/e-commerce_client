@@ -12,6 +12,7 @@ import PostGame from './Components/Admin/src/CreateGame/CreateGame';
 import MyStore from './Components/MyStore/MyStore';
 import Account from './Components/Account/Account';
 import WishList from "./Components/WishList/WishList.jsx";
+import UserProfile from "./Components/UserProfile/UserProfile.jsx";
 
 import Pasarela from "./Components/Checkout/Checkout";
 
@@ -39,6 +40,7 @@ let users = useSelector(state=>state.users);
         <Route path="/account" component={Account}/>
         <Route path="/login" component={Login} />
         <Route path="/home" component={Home} />
+        <Route path="/userprofile" component={UserProfile} />
 
         <Route path="/admin/create" component={PostGame}/>
         {/* <Route path="/checkout/:id" component={Checkout}/> */}
