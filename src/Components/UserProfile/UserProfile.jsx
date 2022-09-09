@@ -147,19 +147,16 @@ const CreateUser = () => {
             uploadPreset: `videogamespf`,
             sources: ['local', 'url']
         }, (error, result) => {
-            if (!error && result.event === "show-completed") {
-                result.info.items.forEach((item) => {
-                    console.log(`show completed for item with id:
-                    ${item.uploadInfo.public_id}`); //uploadInfo is the data returned in the upload response
-
-                    setPath(result.info.path);
-
-                    document.getElementById("uploadedImage").src = "https://res.cloudinary.com/vgpf/image/upload/" + path;
-                });
-                // setProfilePic(result.info.items)
-
+            // console.log("----------------------------------------ERROR")
+            // console.log(error)
+            // console.log("----------------------------------------RESULT")
+            // console.log(result.event)
+            // console.log(result.info)
+            if(!error && result.event === "success"){
+                setPath(result.info.url)
             }
         });
+
         widget.open()
         // console.log(profilePic)
     };
@@ -204,7 +201,7 @@ const CreateUser = () => {
                         <small>Click on Pic to Delete</small>
 
                         <button class={'form-control'} onClick={showWidget}> Upload Image </button>
-                        <img src={"https://res.cloudinary.com/vgpf/image/upload/" + path} id={"uploadedImage"} alt={"selectedPic"} />
+                        <img src={path} id={"uploadedImage"} alt={"selectedPic"} />
 
 
 
