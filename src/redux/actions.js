@@ -1,5 +1,5 @@
 import axios from "axios";
-//import { REACT_APP_URL } from "../Components/CreateUser/CreateUserHelper";
+import { deleteCookies } from "../Components/NavBar/NavBarHelper";
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const FILTER_BY_GENRES = "FILTER_BY_GENRES";
 export const GET_GENRES = "GET_GENRES";
@@ -26,9 +26,6 @@ export const USERS_FILTRED = "USERS_FILTRED"
 export const ORDER_USERS_ASC = "ORDER_USERS_ASC"
 export const ORDER_USERS_DESC = "ORDER_USERS_DESC"
 const {REACT_APP_URL} = process.env;
-
-//const URL = "https://e-commerce-api-pf.herokuapp.com/";
-
 
 export function getAllProducts(){
     return function(dispatch){
@@ -86,41 +83,20 @@ export function searchProduct(name){
 }else {return"No tiene nombre"}};
 
 
-export function getUsers(){
+export function getUsers(token){
     return async function (dispatch){
         try {
-            const response = await axios.get(`${REACT_APP_URL}user`, { withCredentials: true })
+            const response = await axios.get(`${REACT_APP_URL}user?tkn=${token}`)
             dispatch({
                 type: GET_USERS,
                 payload:response.data
             })
-            return response.data.message
+            return response.data
         } catch (error) {
-            console.log(error.response)
+            window.sessionStorage.removeItem('token');
             return;
         }
 
-    }
-};
-
-export function postUsers({username, password}){
-    var options = {
-        method: 'POST',
-        url: `${REACT_APP_URL}login`,
-        withCredentials: true,
-        data: {username, password}
-      };
-    try {     
-        return async function(dispatch){
-            const response = await axios.request(options)
-            dispatch({
-                type: GET_USERS,
-                payload:response.data
-            })
-            return response.data.message
-        }
-    }catch(error){
-        console.log(error);
     }
 };
 
@@ -296,6 +272,7 @@ export function byUserName(payload) {
             payload
         })
     }
+
 };
 
 export function bann_unBann(payload){
@@ -304,11 +281,23 @@ export function bann_unBann(payload){
             const url = payload.typeOfEdit
             let changeBaned = await axios.put(`${REACT_APP_URL}${url}/${payload.id}`, /* REVISAR SI DEBE SER PUNTO O BARRA payload */)
             return changeBaned;
+
+}
+
+export function PostReview(payload){
+    return async function (dispatch){
+        try{
+            let json = await axios.post(`${REACT_APP_URL}reviews`, payload)
+            console.log(json)
+            alert("Reviw Posted Succesfully!")
+            return json;
+
         }catch(e){
             console.error(e);
             alert(e.message)
         };
     };
+
 };
 
 
@@ -330,3 +319,6 @@ export function filter_bannedAdmin(payload){
         payload
     };
 };
+
+};
+
