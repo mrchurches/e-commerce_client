@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useParams, NavLink } from 'react-router-dom'
 import { addToCart, addWish } from '../../redux/actions';
 import FavouriteButton from '../FavouriteButton/FavouriteBurron';
-import Review_box from '../Review/Review';
+import Review_box from '../Reviews/Review';
 import './details.css'
 const {REACT_APP_URL} = process.env;
 export default function ProductDetails() {
