@@ -20,6 +20,7 @@ import { GET_ALL_PRODUCTS,
     GET_ALL_USERS,
     USER_BY_NAME,
     USERS_FILTRED,
+    GET_USER_REVIEWS
 
    } from "./actions.js";
 import { products } from "./products.js";
@@ -38,7 +39,8 @@ cart: [],
 wishlist:[],
 currentPage: 1,
 allUsers: [],
-allUsersCopy: []
+allUsersCopy: [],
+reviewsUser: [],
 
 }
 
@@ -261,6 +263,12 @@ switch(action.type){
             allUsers: [...user_filtred]
         }
     };
+
+    case GET_USER_REVIEWS:
+        return{
+            ...state,
+            reviewsUser: action.payload
+        }
 
    default: 
    return state;

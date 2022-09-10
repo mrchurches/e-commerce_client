@@ -1,22 +1,37 @@
 .container {
     background-color: rgb(238, 245, 246);
-    max-width: 1300px;
-    height: 600px;
+    max-width: 1500px;
+    height: 700px;
     margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: auto;
+    padding-top: 20px;
 };
 
 .verticalScrollable {
-      height:200px;
+    height:200px;
     overflow-y:scroll;
     
 }
 
 .tablefixed {
+    margin-top: 15px;
     font-size: 12px ;
     display: block;
     height: 440px;
     overflow-y: auto ;
+    overflow-x: hidden;
+}
+
+.reviews{
+    cursor: pointer;
+}
+
+td,th{
+    cursor: default;
+}
+.filter{
+    margin-left:auto;
+    margin-right:30px;
 }

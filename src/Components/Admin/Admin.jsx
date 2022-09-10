@@ -15,13 +15,7 @@ export default function Admin() {
     localStorage.setItem('items', JSON.stringify(items));
   }, [items]); */
 
-  const [render, setRender] = useState({ 
-    dash: true,
-    add: false,
-    edit: false,
-    user: false,
-    editForm: false
-  });
+  const [render, setRender] = useState({dash: true});
 
   return (
     <div class='d-flex'>
