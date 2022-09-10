@@ -28,6 +28,7 @@ export const USERS_FILTRED = "USERS_FILTRED"
 export const ORDER_USERS_ASC = "ORDER_USERS_ASC"
 export const ORDER_USERS_DESC = "ORDER_USERS_DESC"
 export const GET_USER_REVIEWS = "GET_USER_REVIEWS"
+export const GET_USER_REPORTED_REVIEWS = "GET_USER_REPORTED_REVIEWS"
 const {REACT_APP_URL} = process.env;
 
 export function getAllProducts(){
@@ -379,4 +380,19 @@ export function getUserReviews(payload){
         .catch(err=>console.log(err))
     }
 };
+
+export function getUserReportedReviews(payload){
+    return function(dispatch){
+        axios.get(`${REACT_APP_URL}reviews?username=${payload}`)
+        .then((res)=>{
+            dispatch({
+                type: GET_USER_REPORTED_REVIEWS,
+                payload:res.data
+            })
+        }
+        )
+        .catch(err=>console.log(err))
+    }
+};
+
 
