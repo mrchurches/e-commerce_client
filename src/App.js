@@ -12,7 +12,7 @@ import PostGame from './Components/Admin/src/CreateGame/CreateGame';
 import MyStore from './Components/MyStore/MyStore';
 import Account from './Components/Account/Account';
 import WishList from "./Components/WishList/WishList.jsx";
-
+import NotFound from "./Components/NotFound/NotFound.jsx";
 import Pasarela from "./Components/Checkout/Checkout";
 
 import Admin from './Components/Admin/Admin';
@@ -25,7 +25,7 @@ import Checkout from './Components/Checkout/Checkout';
 function App() {
 let users = useSelector(state=>state.users);
 
-//console.log(users)
+console.log(users)
   return (
     <div className="App">
 
@@ -39,12 +39,9 @@ let users = useSelector(state=>state.users);
         <Route path="/account" component={Account}/>
         <Route path="/login" component={Login} />
         <Route path="/home" component={Home} />
-
-        <Route path="/admin/create" component={PostGame}/>
         {/* <Route path="/checkout/:id" component={Checkout}/> */}
-
-        <Route path="/admin" component={Admin}/>
-
+        { users && users.user && users.user.isAdmin ? <Route path="/admin" component={Admin}/> : null }
+        <Route path="/:id" component={NotFound}/>
         <div className='footer'>
         <Footer />
         </div>

@@ -19,7 +19,7 @@ const NavBar = () => {
     dispatch(resetUser());
   };
 
- 
+ console.log(user)
 
   return (
     <nav className="navbar navbar-expand-lg text-light" style={{backgroundColor: "#191D2A", borderRadius: '0'}}>
@@ -48,11 +48,11 @@ const NavBar = () => {
                 <span class="nav-link active text-light" aria-current="page" >Wishlist</span>
               </li>
             </Link>)}
-            {/* user.isAdmin */ true && (<Link to="/admin" className='link'>
+            {user && user.isAdmin ? <Link to="/admin" className='link'>
               <li class="nav-item">
                 <span class="nav-link active text-light" aria-current="page" >Admin</span>
               </li>
-            </Link>)}
+            </Link>:null}
             {location.pathname === "/home" && (
               <Link to="/shopping_cart" className='link'>
                 <li class="nav-item">
