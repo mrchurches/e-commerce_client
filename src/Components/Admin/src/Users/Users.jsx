@@ -85,8 +85,6 @@ export default function Users() {
           if (result.isConfirmed /* ADMIN */) {
             dispatch(makeAdmin(id))
             
-          
-            
             swalWithBootstrapButtons.fire(
               condition_admin3,
               condition_admin4,
@@ -95,7 +93,7 @@ export default function Users() {
             let timerInterval
 Swal.fire({
   title: 'Making Changes!',
-  html: 'I will close in <b></b> segundos.',
+  html: 'I will close in <b>2</b> segundos.',
   timer: 2500,
   timerProgressBar: true,
   didOpen: () => {
@@ -115,8 +113,6 @@ Swal.fire({
   }
 })
 
-              
-  
           } else if (
             /* Read more about handling dismissals below */
             result.dismiss === Swal.DismissReason.cancel
@@ -139,6 +135,15 @@ Swal.fire({
             },
             buttonsStyling: false
           })
+
+          if (adminEdit) {
+            return Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Impossible to ban this user',
+              footer: `Why do I have this issue? --- in this moment the "${banUser.username}" is Admin, for security this option is not allowed`
+            })
+          }
           
           swalWithBootstrapButtons.fire({
             title: `Are you sure to ${contition} this user? "${banUser.username}"`,
@@ -172,15 +177,13 @@ Swal.fire({
           });  
       }
     })
-    
-    
-    
+  
   };  
 
 
-    useEffect(() => {
+   /*  useEffect(() => {
       dispatch(getAllUsers())
-    }, [handleBanUser] )
+    }, [handleBanUser] ) */
 
 
   function handleChange(e) {

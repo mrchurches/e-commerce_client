@@ -1,4 +1,6 @@
 .container {
+    display: flex;
+    flex-direction: row ;
     background-color: rgb(238, 245, 246);
     max-width: 1300px;
     height: 600px;
