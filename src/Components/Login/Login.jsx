@@ -13,7 +13,7 @@ const { REACT_APP_URL } = process.env;
 
 const Login = () => {
   const [user, setUser] = useState({ username: "", password: "" }),
-    [userGet, setUserGet] = useState({ userNExists: false, failedLog: false, userBan: false }),
+    [userGet, setUserGet] = useState({ userNExists: false, failedLog: false, userBan: false, isVerified: false }),
     [disabled, setDisabled] = useState(true),
     dispatch = useDispatch()
 
@@ -32,7 +32,7 @@ const Login = () => {
   function handleChange(e) {
     setUser({ ...user, [e.target.id]: e.target.value })
     if (e.target.id === 'username') {
-      setUserGet((i) => ({ ...i, userNExists: false, userBan: false }))
+      setUserGet((i) => ({ ...i, userNExists: false, userBan: false, isVerified: false }))
     } else {
       setUserGet((i) => ({ ...i, failedLog: false }))
     }
@@ -42,10 +42,13 @@ const Login = () => {
     e.preventDefault();
     deleteCookies();
     const userExist = await findEmail(user.username);
+    console.log(userExist)
     if (!userExist) {
       setUserGet((i) => ({ ...i, userNExists: true }));
     } else if (userExist.isBanned) {
       setUserGet((i) => ({ ...i, userBan: true }));
+    } else if (!userExist.isVerified) {
+      setUserGet((i) => ({ ...i, isVerified: true }));
     } else {
       const info = await postUsers(user);
       info.message === 'Not Autheticaded' && setUserGet((i) => ({ ...i, failedLog: true }));
@@ -63,6 +66,7 @@ const Login = () => {
             <input type="email" id="username" class={`form-control ${(userGet.userNExists || userGet.userBan) && "is-invalid"}`} aria-describedby="emailHelp" placeholder="example@examplemail.com" onChange={handleChange} value={user.username} name="username" />
             {userGet.userNExists && <p>Email addres invalid</p>}
             {userGet.userBan && <p>Email addres are banned</p>}
+            {userGet.isVerified && <p>Email addres not verified</p>}
             <small id="emailHelp" class="form-text">We'll never share your email with anyone else.</small>
           </div>
           <div class="mb-3">

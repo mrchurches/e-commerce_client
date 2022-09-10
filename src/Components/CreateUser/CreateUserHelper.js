@@ -10,6 +10,7 @@ export const userFormat = {
   password: "",
   cPassword: ""
 };
+
 export const validatedFormat = {
   name: false,
   lastname: false,
@@ -51,12 +52,13 @@ export async function existsUsername(username) {
 
 export async function findEmail(email) {
   const response = await axios.get(`${REACT_APP_URL}user/find/email/${email}`);
-  return response.data.user
+  return response.data
 };
 
 export async function createNewUser({ name, lastname, username, email, password, profile_pic }) {
   try {
-    await axios.post(REACT_APP_URL+`signin`,{
+    // await axios.post(REACT_APP_URL+`signin`,{
+    await axios.post('http://localhost:3001/signin',{
       name: name,
       lastname: lastname,
       username: username,
