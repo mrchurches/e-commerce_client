@@ -3,7 +3,9 @@ import { deleteCookies } from "../Components/NavBar/NavBarHelper";
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const FILTER_BY_GENRES = "FILTER_BY_GENRES";
 export const GET_GENRES = "GET_GENRES";
+export const GET_USED_GENRES = "GET_USED_GENRES";
 export const GET_PLATFORMS = "GET_PLATFORMS";
+export const GET_USED_PLATFORMS = "GET_USED_PLATFORMS";
 export const SEARCH_PRODUCT = "SEARCH_PRODUCT";
 export const FILTER_BY_PLATFORMS = "FILTER_BY_PLATFORMS";
 export const GET_USERS = "GET_USERS"
@@ -55,12 +57,38 @@ export function getGenres(){
     }
 };
 
+export function getUsedGenres(){
+    return function (dispatch){
+        axios.get(`${REACT_APP_URL}genres/used`)
+        .then((res)=>{
+            dispatch({
+                type: GET_USED_GENRES,
+                payload:res.data
+            })
+        })
+        .catch(err=>console.log(err))
+    }
+};
+
 export function getPlatforms(){
     return function (dispatch){
         axios.get(`${REACT_APP_URL}platforms`)
         .then((res)=>{
             dispatch({
                 type: GET_PLATFORMS,
+                payload: res.data
+            })
+        })
+        .catch(err=>console.log(err))
+    }
+};
+
+export function getUsedPlatforms(){
+    return function (dispatch){
+        axios.get(`${REACT_APP_URL}platforms/used`)
+        .then((res)=>{
+            dispatch({
+                type: GET_USED_PLATFORMS,
                 payload: res.data
             })
         })

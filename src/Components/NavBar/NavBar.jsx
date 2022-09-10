@@ -22,7 +22,7 @@ const NavBar = () => {
  
 
   return (
-    <nav className="navbar navbar-expand-lg text-light" style={{backgroundColor: "#191D2A"}}>
+    <nav className="navbar navbar-expand-lg text-light" style={{backgroundColor: "#191D2A", borderRadius: '0'}}>
       <div class="container-fluid">
         <Link to="/" className='link'>
           <img class="logo" src={logo} />
