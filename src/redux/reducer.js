@@ -18,7 +18,13 @@ import { GET_ALL_PRODUCTS,
     REMOVE_FROM_CART,
     REMOVE_WISH,
     GET_ALL_USERS,
-    USER_BY_NAME
+    USER_BY_NAME,
+    USERS_FILTRED,
+    GET_USER_REVIEWS,
+    GET_USED_GENRES,
+    GET_USED_PLATFORMS,
+    GET_USER_REPORTED_REVIEWS,
+
    } from "./actions.js";
 import { products } from "./products.js";
 /* import { products } from "./products.js" */
@@ -35,8 +41,13 @@ users: {},
 cart: [],
 wishlist:[],
 currentPage: 1,
-allUsers: []
-
+allUsers: [],
+allUsersCopy: [],
+reviewsUser: [],
+usedGenres: [],
+usedPlatforms: [],
+reviewsUser: [],
+reviewsUserRep: [],
 }
 
 export default function rootReducer(state = initialState, action){
@@ -54,12 +65,24 @@ switch(action.type){
            ...state,
            genres: action.payload
        }
+    case GET_USED_GENRES:
+
+        return{
+            ...state,
+            usedGenres: action.payload
+        }
+
    case GET_PLATFORMS:
        
        return{
            ...state,
            platforms: action.payload
        }
+    case GET_USED_PLATFORMS:
+        return{
+            ...state,
+            usedPlatforms: action.payload
+        }
    case GET_USERS:
        return{
            ...state,
@@ -227,14 +250,51 @@ switch(action.type){
     case GET_ALL_USERS: 
         return {
             ...state,
-            allUsers: action.payload
+            allUsers: action.payload,
+            allUsersCopy: action.payload
         };
 
     case USER_BY_NAME:
-        const userSearchered = state.allUsers.filter(e => e.username === action.payload)
+        const userSearchered = state.allUsersCopy.filter(e => e.username === action.payload)
         return {
             ...state,
             allUsers: [...userSearchered]
+        };
+
+    case USERS_FILTRED: {
+        let user_filtred;
+
+        if (action.payload === "All") {
+            user_filtred = state.allUsersCopy 
+
+        }
+        else if (action.payload === 'Admin') {
+            user_filtred = state.allUsersCopy.filter(e => e.isAdmin === true)
+        }
+
+        else {
+            user_filtred = state.allUsersCopy.filter(e => e.isBanned === true)
+        }
+
+        return {
+            ...state,
+            allUsers: [...user_filtred]
+        }
+    };
+
+    case GET_USER_REVIEWS:
+
+        let enabled_reviews = action.payload.filter((e) => !e.reported);
+
+        return{
+            ...state,
+            reviewsUser: enabled_reviews,
+        }
+    case GET_USER_REPORTED_REVIEWS:
+        let disabled_reviews = action.payload.filter((e) => e.reported);
+        return{
+            ...state,
+            reviewsUserRep:disabled_reviews
         }
 
    default: 
