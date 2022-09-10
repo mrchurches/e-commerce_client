@@ -55,7 +55,7 @@ function handleFilterByPlatforms(e){
   return (
     <div >
         <div>
-          <select class="form-select" aria-label="Default select example" style={{ marginTop: '15px' }} onChange={(e) => handleFilterByGenre(e)}>
+          <select class="form-select" aria-label="Default select example" style={{ marginTop: '15px', marginRight: 'auto', marginLeft: 'auto'}} onChange={(e) => handleFilterByGenre(e)}>
             <option value="default">Genres</option>
             {genres.length && genres.map(e => (
               <option key={e.name} value={e}>{e}</option>
@@ -63,7 +63,7 @@ function handleFilterByPlatforms(e){
           </select>
         </div>
         <div>
-          <select  class="form-select" aria-label="Default select example" style={{ marginTop: '15px' }} onChange={(e) => handleFilterByPlatforms(e)}>
+          <select  class="form-select" aria-label="Default select example" style={{ marginTop: '15px', marginRight: 'auto', marginLeft: 'auto'}} onChange={(e) => handleFilterByPlatforms(e)}>
             <option value="default">Platforms</option>
             {platforms.length && platforms.map(e => (
               <option key={e.name} value={e}>{e}</option>
@@ -71,7 +71,7 @@ function handleFilterByPlatforms(e){
           </select>
         </div>
         <div>
-          <select class="form-select" aria-label="Default select example" style={{ marginTop: '15px' }} onChange={(e) => esrbContent(e)}>
+          <select class="form-select" aria-label="Default select example" style={{ marginTop: '15px', marginRight: 'auto', marginLeft: 'auto'}} onChange={(e) => esrbContent(e)}>
             <option value="default">ESRB Rating</option>
             {esrb?.map((esrb, index) => (
               <option key={index} value={esrb}> {esrb} </option>
@@ -79,8 +79,8 @@ function handleFilterByPlatforms(e){
           </select>
         </div>
 
-        <div className="clear mt-2">
-        <button class="btn btn-outline-success bg-white w-100" onClick={handleClick}>Reset Filters</button>
+        <div className="clear">
+        <button class="btn  bg-white w-100" style={{marginTop: '15px', marginRight: 'auto', marginLeft: 'auto'}} onClick={handleClick}>Reset Filters</button>
       </div>
     </div>
     )

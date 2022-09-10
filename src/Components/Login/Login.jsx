@@ -55,9 +55,9 @@ const Login = () => {
   }
  
   return (
-    <div class="mt-5 d-flex justify-content-center ">
+    <div class="mt-5 d-flex justify-content-center vh-100">
       {userAuth.user && <Redirect to='/home' />}
-      <div class="card shadow-lg p-3 mb-5 bg-body rounded" style={{ width: '18rem' }}>
+      <div class="card shadow-lg p-3 mb-5 bg-body rounded h-50" style={{ width: '18rem' }}>
         <form onSubmit={(e) => handleSubmit(e)}>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Email address</label>

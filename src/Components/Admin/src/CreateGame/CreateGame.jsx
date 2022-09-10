@@ -111,7 +111,9 @@ export default function PostGame(){
     };
     
     return(
-        <div class="mt-5 d-flex justify-content-center ">
+        <div className={style.container}>
+            <h2>Add New Game</h2>
+        <div class="mt-4 d-flex justify-content-center">
         <div class="card shadow-lg p-3 mb-5 bg-body rounded" style={{ width: '25rem'}}>
             <form onSubmit={(e)=>handlersubmit(e)}>
                 <p>Add a new Game:</p>
@@ -182,6 +184,7 @@ export default function PostGame(){
                 <button type="submit" class="btn btn-primary" disabled={activeSubmit}>Create</button>
             </form>
         </div>
+    </div>
     </div>
     )
 };

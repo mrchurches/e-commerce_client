@@ -29,20 +29,22 @@ let forCheckout = { items: gamesCO };
 
 console.log(filterGames)
     return (
-        <div>
-            <div>
+        <div class="d-flex flex-column vh-100  align-items-center">
+            <div class="alert alert-dark w-50">
                 <h1>My shopping cart</h1>
             </div>
-            <div>
-                {
-                    filterGames.map(e=>(
+            <div class="d-flex flex-row justify-content-evenly flex-wrap">
+                {   filterGames.length>0?
+                    (filterGames.map(e=>(
+                        <div class="d-flex m-2">
                         <ProductCard id={e.id} name={e.name} img={e.background_image} rating={e.rating} platforms={e.platforms} price={e.price}
                         inStock={e.inStock}/>
-                    ))
+                        </div>
+                    ))): <h4>No products yet... </h4>
                 }
             </div>
             <div>
-                <h1>pagar</h1>
+                {cart.length>0 && <h1 class="text-light">Pay with MercadoPago</h1>}
                 <Checkout games={forCheckout}/>
             </div>
         </div>

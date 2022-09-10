@@ -7,8 +7,13 @@ import ProductCard from '../ProductCard/ProductCard'
 
 function CardSlider({platforms, i}) {
   return (
-    <div className={styles.containerCarr}>
-    <div class='container-carr-slide' style={{display: 'flex', justifyContent: 'center'}}>
+    <div className={styles.containerCarr} class="d-flex flex-row justify-content-center align-items-center mt-3">
+      <div>
+      <button className={styles.button} type="button" data-bs-target={`#carouselExampleCaptions${i}`} data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" ></span>
+      </button>
+      </div>
+    <div class='container-carr-slide w-50' style={{display: 'flex', justifyContent: 'center'}}>
     <div id={`carouselExampleCaptions${i}`} class="carousel slide" data-bs-ride="false">
       {/*<div class="carousel-indicators">
         <button type="button" data-bs-target={`#carouselExampleCaptions${i}`} data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -19,7 +24,6 @@ function CardSlider({platforms, i}) {
                   }) /}
       </div>*/}
       <div className='carr' class="carousel-inner">
-
         { platforms && platforms.map((product, i) => (
           i < 3 ? 
           <div class={`carousel-item ${i === 0 ? "active" : ""}`} >
@@ -67,17 +71,12 @@ function CardSlider({platforms, i}) {
               : ''
         ))}
       </div>
-      <div style={{backgroundColor: 'black'}}>
-      <button class="carousel-control-prev" type="button" data-bs-target={`#carouselExampleCaptions${i}`} data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target={`#carouselExampleCaptions${i}`} data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-      </div>
     </div>
+  </div>
+  <div>
+      <button className={styles.button} type="button" data-bs-target={`#carouselExampleCaptions${i}`} data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      </button>
   </div>
   </div>
 

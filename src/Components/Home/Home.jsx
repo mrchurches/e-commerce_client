@@ -40,7 +40,7 @@ function Home() {
 
     return (
         <div class="d-flex">
-            <div style={{ marginRight: '15px', marginLeft: '10px' }}>
+            <div style={{ marginRight: '17px', marginLeft: '15px' }}>
                 <SideBar />
             </div>
             <div>
@@ -49,7 +49,7 @@ function Home() {
                 <div class="row pb-5 mb-4" className="allCardsConteiner" >
                     {currentGames.length>0 && currentGames.map(e => (
                         <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-                            <ProductCard name={e.name} id={e.id} img={e.background_image} rating={e.rating} platform={e.platform} price={e.price} inStock={e.inStock}/>
+                            <ProductCard name={e.name} id={e.id} img={e.background_image} rating={e.rating} platform={e.platform} price={e.price} fromApi={e.fromApi} isDisabled={e.isDisabled}/>
                         </div>
                     ))}
     

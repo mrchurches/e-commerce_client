@@ -78,3 +78,15 @@ b, strong {
 .p3 {
   border-bottom: 1px solid #d5dadb;
 }
+
+.verticalScrollable1 {
+  overflow-y: scroll;
+  max-height: 200px;
+  margin-bottom: 15px;
+}
+.reviewContainer {
+  background-color: rgb(238, 245, 246);
+  max-width: 300px;
+  max-height: 600px;
+  margin-bottom: 20px;
+}
