@@ -1,4 +1,3 @@
-
 import "./Login.css"
 import React, { useEffect } from 'react'
 import { useState } from "react";
@@ -10,18 +9,18 @@ import { findEmail } from "../CreateUser/CreateUserHelper";
 import { useSelector } from "react-redux";
 import { getUsers } from "../../redux/actions";
 import { deleteCookies } from "../NavBar/NavBarHelper";
-const {REACT_APP_URL} = process.env;
+const { REACT_APP_URL } = process.env;
 
 const Login = () => {
   const [user, setUser] = useState({ username: "", password: "" }),
-    [userGet, setUserGet] = useState({ userNExists: false, failedLog: false, userBan: false }),
+    [userGet, setUserGet] = useState({ userNExists: false, failedLog: false, userBan: false, isVerified: false }),
     [disabled, setDisabled] = useState(true),
     dispatch = useDispatch()
 
   const { userAuth } = useSelector(state => {
     return { userAuth: state.users }
   })
- 
+
   useEffect(() => {
     if (user.username && user.password) {
       setDisabled(false)
@@ -33,7 +32,7 @@ const Login = () => {
   function handleChange(e) {
     setUser({ ...user, [e.target.id]: e.target.value })
     if (e.target.id === 'username') {
-      setUserGet((i) => ({ ...i, userNExists: false, userBan: false }))
+      setUserGet((i) => ({ ...i, userNExists: false, userBan: false, isVerified: false }))
     } else {
       setUserGet((i) => ({ ...i, failedLog: false }))
     }
@@ -47,13 +46,15 @@ const Login = () => {
       setUserGet((i) => ({ ...i, userNExists: true }));
     } else if (userExist.isBanned) {
       setUserGet((i) => ({ ...i, userBan: true }));
+   // } else if (!userExist.isVerified) {
+   //   setUserGet((i) => ({ ...i, isVerified: true }));
     } else {
       const info = await postUsers(user);
       info.message === 'Not Autheticaded' && setUserGet((i) => ({ ...i, failedLog: true }));
       info.token && dispatch(getUsers(info.token)) && window.sessionStorage.setItem('token', info.token);
     }
   }
- 
+
   return (
     <div class="mt-5 d-flex justify-content-center vh-100">
       {userAuth.user && <Redirect to='/home' />}
@@ -61,9 +62,10 @@ const Login = () => {
         <form onSubmit={(e) => handleSubmit(e)}>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input type="email" id="username" class={`form-control ${(userGet.userNExists ||userGet.userBan )&&"is-invalid"}`} aria-describedby="emailHelp" placeholder="example@examplemail.com" onChange={handleChange} value={user.username} name="username" />
+            <input type="email" id="username" class={`form-control ${(userGet.userNExists || userGet.userBan) && "is-invalid"}`} aria-describedby="emailHelp" placeholder="example@examplemail.com" onChange={handleChange} value={user.username} name="username" />
             {userGet.userNExists && <p>Email addres invalid</p>}
             {userGet.userBan && <p>Email addres are banned</p>}
+            {userGet.isVerified && <p>Email addres not verified</p>}
             <small id="emailHelp" class="form-text">We'll never share your email with anyone else.</small>
           </div>
           <div class="mb-3">
