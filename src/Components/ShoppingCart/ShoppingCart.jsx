@@ -20,14 +20,9 @@ cart.forEach(e=>{ //los juegos añadidos al carrito, los separa de los 120 juego
 //cuando nuestro estado cambie, va a añadir al local storage
 useEffect(()=>{ 
     localStorage.setItem("item", JSON.stringify(carrito))
-    typeof id_user === "string" ? filterGames : cartLocal
-    cart.forEach(e=>{
-        let fg = games.filter((f)=>e===f.id);
-        fg.forEach(e=>setItem(e))
-    })
     //console.log(item) //vacio //vacio // encuentra
 },[item]);
-
+const current = typeof id_user === "string" ? filterGames : cartLocal
 //trae los juegos de local storage
 useEffect(()=>{
     const items = JSON.parse(localStorage.getItem("item"));
