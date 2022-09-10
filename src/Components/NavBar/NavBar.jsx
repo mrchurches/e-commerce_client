@@ -26,7 +26,7 @@ const NavBar = () => {
       <div class="container-fluid">
         <Link to="/" className='link'>
           <img class="logo" src={logo} />
-          <span class="navbar-brand text-light">Games Market</span>
+          <span class="navbar-brand text-light">Games E-commerce</span>
         </Link>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
