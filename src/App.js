@@ -40,8 +40,7 @@ let users = useSelector(state=>state.users);
         <Route path="/account" component={Account}/>
         <Route path="/login" component={Login} />
         <Route path="/home" component={Home} />
-        <Route path="/userprofile" component={UserProfile} />
-
+        { users.user && <Route path="/userprofile" component={UserProfile} /> }
         <Route path="/admin/create" component={PostGame}/>
         {/* <Route path="/checkout/:id" component={Checkout}/> */}
 

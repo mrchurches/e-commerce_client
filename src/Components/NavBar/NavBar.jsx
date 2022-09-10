@@ -102,7 +102,7 @@ const NavBar = () => {
           </ul>
         </li> */}
           </ul>
-          {(<Link to="/userprofile" className='link'>
+          {user && (<Link to="/userprofile" className='link'>
             <li class="nav-item">
               <img class="logo" src={profilePic} />
             </li>
