@@ -1,17 +1,43 @@
 import "./ShoppingCart.css";
-import { useSelector } from "react-redux";
-import React from 'react'
+import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from 'react'
 import Checkout from '../Checkout/Checkout'
 import ProductCard from "../Cards/ProductCard/ProductCard";
+import { getAllProducts } from "../../redux/actions";
 
 export default function ShoppingCart() {
 let cart = useSelector(state=>state.cart);
 let games = useSelector(state=>state.products2);
 let filterGames=[];
-cart.forEach(e=>{
-let fg = games.filter((f)=>e===f.id);
+let [cartLS, setCartLS] = useState();
+let fg;
+let dispatch=useDispatch();
+
+useEffect(()=>{
+    dispatch(getAllProducts())
+    setCartLS(localStorage.getItem("cart").split(","))
+    
+    //console.log(cartLS)
+    //localStorage.clear()
+},[])
+
+useEffect(()=>{
+   cartLS?.forEach(e=>{
+        console.log("id de cartLS")
+        console.log(e)
+        console.log("id de base")
+       fg = games.filter((f)=>{return e===f.id});
+       console.log(fg[0])
+       filterGames.push(fg[0])})
+
+       console.log(filterGames)
+},[cartLS])
+
+
+if(!cartLS && cart.length>0){cart.forEach(e=>{fg = games.filter((f)=>e===f.id)
 filterGames.push(fg[0])
-})
+})}
+
 // asitiene que se el juego= {
 //     title: "Mi producto",
 //     unit_price: 100,
@@ -27,7 +53,9 @@ let gamesCO= filterGames.map(e=>{
 
 let forCheckout = { items: gamesCO };
 
-console.log(filterGames)
+
+
+
     return (
         <div class="d-flex flex-column vh-100  align-items-center">
             <div class="alert alert-dark w-50">
@@ -45,7 +73,7 @@ console.log(filterGames)
             </div>
             <div>
                 {cart.length>0 && <h1 class="text-light">Pay with MercadoPago</h1>}
-                <Checkout games={forCheckout}/>
+                {forCheckout.items.length>0 && <Checkout games={forCheckout}/>}
             </div>
         </div>
     )
