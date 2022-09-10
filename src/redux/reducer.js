@@ -23,6 +23,7 @@ import { GET_ALL_PRODUCTS,
     GET_USER_REVIEWS,
     GET_USED_GENRES,
     GET_USED_PLATFORMS,
+    GET_USER_REPORTED_REVIEWS,
 
    } from "./actions.js";
 import { products } from "./products.js";
@@ -45,6 +46,8 @@ allUsersCopy: [],
 reviewsUser: [],
 usedGenres: [],
 usedPlatforms: [],
+reviewsUser: [],
+reviewsUserRep: [],
 }
 
 export default function rootReducer(state = initialState, action){
@@ -280,9 +283,18 @@ switch(action.type){
     };
 
     case GET_USER_REVIEWS:
+
+        let enabled_reviews = action.payload.filter((e) => !e.reported);
+
         return{
             ...state,
-            reviewsUser: action.payload
+            reviewsUser: enabled_reviews,
+        }
+    case GET_USER_REPORTED_REVIEWS:
+        let disabled_reviews = action.payload.filter((e) => e.reported);
+        return{
+            ...state,
+            reviewsUserRep:disabled_reviews
         }
 
    default: 
