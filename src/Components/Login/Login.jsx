@@ -42,7 +42,6 @@ const Login = () => {
     e.preventDefault();
     deleteCookies();
     const userExist = await findEmail(user.username);
-    console.log(userExist)
     if (!userExist) {
       setUserGet((i) => ({ ...i, userNExists: true }));
     } else if (userExist.isBanned) {
