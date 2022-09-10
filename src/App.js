@@ -19,6 +19,7 @@ import Admin from './Components/Admin/Admin';
 
 import { useSelector } from 'react-redux';
 import Checkout from './Components/Checkout/Checkout';
+import Verify from './Components/Verify/Verify.jsx';
 
 
 
@@ -39,6 +40,7 @@ let users = useSelector(state=>state.users);
         <Route path="/account" component={Account}/>
         <Route path="/login" component={Login} />
         <Route path="/home" component={Home} />
+        <Route path="/verify/:email" component={Verify} />
 
         <Route path="/admin/create" component={PostGame}/>
         {/* <Route path="/checkout/:id" component={Checkout}/> */}
