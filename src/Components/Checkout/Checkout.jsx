@@ -29,6 +29,7 @@ import axios from "axios"
 const FORM_ID = 'payment-form';
 
 export default function Checkout({games}) {
+    const {REACT_APP_URL} = process.env;
     const { id } = useParams(); // id de producto
     const [preferenceId, setPreferenceId] = useState(null);
 
@@ -36,7 +37,7 @@ export default function Checkout({games}) {
 
     useEffect(() => {
         // luego de montarse el componente, le pedimos al backend el preferenceId
-        axios.post('http://localhost:3001/payment', games)
+        axios.post(`${REACT_APP_URL}payment`, games)
 
             .then((order) => {
                 console.log(order)
