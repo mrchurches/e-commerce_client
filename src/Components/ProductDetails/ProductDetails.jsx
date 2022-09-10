@@ -30,7 +30,7 @@ export default function ProductDetails() {
       .then(res => {
         setGame(res.data)
         axios.get(`${REACT_APP_URL}reviews/${id}`)
-        .then(res => setReviews(res.data))
+        .then(res => setReviews(res.data.filter((e)=> !e.reported)))
         .catch(err => console.log(err))
       })
       .catch(err => console.log(err))

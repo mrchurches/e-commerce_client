@@ -6,9 +6,10 @@ import { addToCart, removeFromCart, removeWish, addWish} from '../../../redux/ac
 import './ProductCard.css'
 import FavouriteButton from '../../FavouriteButton/FavouriteBurron.jsx'
 import Swal from 'sweetalert2'
+import { isDisabled } from '@testing-library/user-event/dist/utils/index.js'
 
 
-export default function ProductCard({ id, name, img, rating, platforms, price, inStock}) {
+export default function ProductCard({ id, name, img, rating, platforms, price, fromApi, isDisabled}) {
   let cart = useSelector(state=>state.cart);
   let foundCart=false;   //aca encontraria el juego si esta agregado al carrito
   const dispatch = useDispatch()
@@ -83,11 +84,11 @@ export default function ProductCard({ id, name, img, rating, platforms, price, i
     <div>
       {
         <div class="card hover-overlay hover-zoom" style={{ maxWidth: "18rem", marginBottom: '25px', maxHeight: '18rem' }}>
-          <Link  to={price?`/detail/${id}`:`/home`}>
+          <Link  to={fromApi || isDisabled ?`/home`:`/detail/${id}`}>
             <img class="card-img-top" style={{ maxWidth: '18rem', maxHeight: '10rem' }} src={img} alt="product img" />
           </Link>
           <div class="card-body" >
-            <Link to={`/detail/${id}`} style={{ textDecoration: "none" }}>
+            <Link to={fromApi || isDisabled?`/home`:`/detail/${id}`} style={{ textDecoration: "none" }}>
               <h6 class="card-title">{name}</h6>
             </Link>
             {/* <div class="ratings">
@@ -103,14 +104,14 @@ export default function ProductCard({ id, name, img, rating, platforms, price, i
             <div class="d-flex flex-row align-items-center justify-content-center">
                 <FavouriteButton id={id}/>
                 <div>
-                  {price?
+                  {isDisabled || fromApi?
+                  <span>No stock</span>:
                   <span class="card-text bg-secondary m-2 p-2 text-light">
                   ${price}
-                  </span>
-                  :<span>No stock</span>}
+                  </span>}
                 </div>
                 <div>
-                  <button disabled={price?false:true} onClick={(e) => handleClick(e)} value="cart" class="btn btn-primary">Cart</button>
+                  <button disabled={fromApi || isDisabled?true:false} onClick={(e) => handleClick(e)} value="cart" class="btn btn-primary">Cart</button>
                 </div>
               {foundCart&&<button onClick={(e) => handleClick(e)} type="button" class="btn-close" value="remove" aria-label="Close"></button>}
             </div>

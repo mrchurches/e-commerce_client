@@ -1,3 +1,8 @@
 .postButton{
     margin-bottom: 15px;
 }
+.labelError{
+    font-size: 0.8rem;
+    color: #ff0606;
+    max-width: 200px;
+}

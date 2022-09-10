@@ -5,7 +5,7 @@ import CardSlider from '../Cards/CardsSlider/CardsSlider.jsx'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
 import styles from './cardsContainer.module.css'
-import { getAllProducts, getGenres, getPlatforms } from '../../redux/actions.js'
+import { getAllProducts, getUsedGenres, getUsedPlatforms } from '../../redux/actions.js'
 import { Link } from 'react-router-dom'
 import Spinner from '../Spinner/Spinner.jsx'
 
@@ -14,8 +14,8 @@ const CardContainer = () => {
 
   const Allproducts = useSelector((state) => state.products)
   const searchered = useSelector((state) => state.searchered)
-  const AllGenres = useSelector((state) => state.genres).map(e => e.name)
-  const AllPlataforms = useSelector((state) => state.platforms).map(e => e.name)
+  const AllGenres = useSelector((state) => state.usedGenres).map(e => e.name)
+  const AllPlataforms = useSelector((state) => state.usedPlatforms).map(e => e.name)
 
   /* const topSeller = useSelector((state) => state.topSeller()) */ // más vendidos
 
@@ -31,8 +31,8 @@ const CardContainer = () => {
 
   useEffect(() => {
     dispatch(getAllProducts())
-    dispatch(getGenres())
-    dispatch(getPlatforms())
+    dispatch(getUsedGenres())
+    dispatch(getUsedPlatforms())
     ramYear()
     /*  ramGen()
      ramPlat() */

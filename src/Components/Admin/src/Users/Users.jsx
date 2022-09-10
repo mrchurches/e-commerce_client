@@ -7,7 +7,7 @@ import Swal from 'sweetalert2'
 /* import { banUsersss } from './banUser.js' */
 import { getAllUsers, filter_bannedAdmin, byUserName, bann_unBann, makeAdmin} from '../../../../redux/actions'
 
-export default function Users() {
+export default function Users({setRender}) {
   
   const bannedOn = ["Banned", "Admin", "All"]
   const [name, setName] = useState("")
@@ -21,7 +21,7 @@ export default function Users() {
 
   const handleBanUser = (e) => { 
     e.preventDefault()
-    
+
     let id = e.target.abbr
     const banUser = users.find(e => e.id === parseInt(id))
 
@@ -96,7 +96,7 @@ export default function Users() {
 Swal.fire({
   title: 'Making Changes!',
   html: 'I will close in <b></b> segundos.',
-  timer: 2500,
+  timer: 1500,
   timerProgressBar: true,
   didOpen: () => {
     Swal.showLoading()
@@ -113,7 +113,7 @@ Swal.fire({
   if (result.dismiss === Swal.DismissReason.timer) {
     /* console.log('I was closed by the timer') */
   }
-})
+}).then(()=>dispatch(getAllUsers()))
 
               
   
@@ -159,6 +159,9 @@ Swal.fire({
               
               dispatch(bann_unBann({typeOfEdit,id}))
               
+              setTimeout(() => {
+                dispatch(getAllUsers())
+              }, 500);
 
             } else if (
               result.dismiss === Swal.DismissReason.cancel
@@ -180,7 +183,7 @@ Swal.fire({
 
     useEffect(() => {
       dispatch(getAllUsers())
-    }, [handleBanUser] )
+    }, [] )
 
 
   function handleChange(e) {
@@ -199,108 +202,105 @@ Swal.fire({
     dispatch(filter_bannedAdmin(e.target.value))
   };
 
+  function viewReviews(user){
+    setRender({reviews: true, username: user})
+  }
+
   return (
-    <div className={style.container}><h5>Users</h5>
-
- <div class='container'>   
-
-<div class="dropdown1" > 
-        <button class="btn btn-secondary dropdown-toggle btn-sm row" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style={{ marginBottom: '15px' }}>
-          Filter By ...
-        </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          {bannedOn.map((plat, index) => {
-            return <li key={index} style={{cursor: 'pointer'}}>
-              <button class="dropdown-item tx-sm"
-                onClick={(e) => { filterUsers(e) }}
-                value={plat}>{plat}
-              </button>
-            </li>
-          })}
-        </ul>
-  </div>    
-
-
-<div class="d-flex">
-
-        
-      <div>
-        <form class="d-flex" role="search" onSubmit={handleSubmit}>
-          <input class="form-control text-sm " type="search" placeholder="Username..." required aria-label="Search" value={name} onChange={handleChange} />
-          <button class="btn btn-secondary btn-sm ml-5" type="submit">Search</button>
-        </form>
-      </div>
+    <div className={style.container}>
       
-</div>
+      <h2>Users</h2>
 
-  
-{/* <div class="dropdown2">
-        <button class="btn btn-secondary dropdown-toggle btn-sm ml-5" 
-                type="button" 
-                id="dropdownMenuButton1" 
-                data-bs-toggle="dropdown" 
-                aria-expanded="false" 
-                style={{ marginBottom: '15px' }}>
-              Order By...
-        </button>
-    
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <div class='container d-flex justify-content-center'>   
+
+        <div class="d-flex">
+          <div>
+            <form class="d-flex" role="search" onSubmit={handleSubmit}>
+              <input class="form-control text-sm " type="search" placeholder="Username..." required aria-label="Search" value={name} onChange={handleChange} />
+              <button class="btn btn-secondary btn-sm ml-5 mr-3" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="dropdown1" className={style.filter}> 
+          <button class="btn btn-secondary dropdown-toggle btn-sm row" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style={{ marginBottom: '15px' }}>
+            Filter By ...
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            {bannedOn.map((plat, index) => {
+              return (
+                <li key={index} style={{cursor: 'pointer'}}>
+                  <button class="dropdown-item tx-sm"
+                    onClick={(e) => { filterUsers(e) }}
+                    value={plat}>{plat}
+                  </button>
+                </li>
+              )
+            })}
+          </ul>
+        </div>    
+
+       {/* <div class="dropdown2">
+              <button class="btn btn-secondary dropdown-toggle btn-sm ml-5" 
+                      type="button" 
+                      id="dropdownMenuButton1" 
+                      data-bs-toggle="dropdown" 
+                      aria-expanded="false" 
+                      style={{ marginBottom: '15px' }}>
+                    Order By...
+              </button>
           
-            <li style={{cursor: 'pointer'}}>
-              <button class="dropdown-item tx-sm" onClick={(e) => { ordered(e) }} value={"ID"}> ID
-              </button>
-            </li>
-            <li style={{cursor: 'pointer'}}>
-              <button class="dropdown-item tx-sm" onClick={(e) => { ordered(e) }} value={"name"}>name
-              </button>
-            </li>
-        </ul>
-  </div>    */}
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                
+                  <li style={{cursor: 'pointer'}}>
+                    <button class="dropdown-item tx-sm" onClick={(e) => { ordered(e) }} value={"ID"}> ID
+                    </button>
+                  </li>
+                  <li style={{cursor: 'pointer'}}>
+                    <button class="dropdown-item tx-sm" onClick={(e) => { ordered(e) }} value={"name"}>name
+                    </button>
+                  </li>
+              </ul>
+        </div> */}
 
-  </div> 
+      </div> 
     
-<div class='container' className ={style.tablefixed}>
-  <div  class='row'>  
-  <table  class="table table-striped tabled-striped table-condensend table-fixed table-bordered text-sm">
-  <thead>
-        <tr class="text-sm">
-            <th class="header col-1" scope="col-10">id</th>
-            <th class="header col-1" scope="col">User Name</th>
-            <th class="header col-1" scope="col">Name</th>
-            <th class="header col-1" scope="col">Last Name</th>
-            <th class="header col-1" scope="col">E-mail</th>
-            <th class="header col-1" scope="col">Banned</th>
-            <th class="header col-1" scope="col">isAdmin</th>
-            <th class="header col-1" scope="col">Created At</th>
-            <th class="header col-1" scope="col">Reviews</th>
-            <th class="header col-1" scope="col">Edit</th>
-        </tr>
-    </thead>
-    <tbody  >
-      {users.map((user, index) => {
-        return <tr key={index}  >
-                  <td>{user.id}</td>
-                  <td>{user.username}</td>
-                  <td>{user.name}</td>
-                  <td>{user.lastname}</td>
-                  <td>{user.email}</td>
-                  {user.isBanned === false ? <td> - </td> : <td> ❌ </td>}
-                  {user.isAdmin === false ? <td> - </td> : <td> ✔️ </td>}
-                  <td>{user.createdAt.slice(0, 10)}</td>
-                  <td> <a href="">Reviews</a> </td> {}
-                  <td  abbr={user.id} class="bi bi-pencil"  onClick={(e) => handleBanUser(e)}></td>
-               </tr>
-      })}
-       
-    </tbody>
-</table>
-  
-
-  </div>
-</div>    
-
-
-
+      <div class='container' className ={style.tablefixed}>
+        <div  class='row'>  
+          <table  class="table table-striped tabled-striped table-condensend table-fixed table-bordered text-sm">
+            <thead>
+                  <tr class="text-sm">
+                      <th class="header col-1" scope="col-10">id</th>
+                      <th class="header col-1" scope="col">User Name</th>
+                      <th class="header col-1" scope="col">Name</th>
+                      <th class="header col-1" scope="col">Last Name</th>
+                      <th class="header col-1" scope="col">E-mail</th>
+                      <th class="header col-1" scope="col">Banned</th>
+                      <th class="header col-1" scope="col">isAdmin</th>
+                      <th class="header col-1" scope="col">Created At</th>
+                      <th class="header col-1" scope="col">Reviews</th>
+                      <th class="header col-1" scope="col">Edit</th>
+                  </tr>
+              </thead>
+              <tbody  >
+                {users.map((user, index) => {
+                  return <tr key={index}  >
+                            <td>{user.id}</td>
+                            <td>{user.username}</td>
+                            <td>{user.name}</td>
+                            <td>{user.lastname}</td>
+                            <td>{user.email}</td>
+                            {user.isBanned === false ? <td> - </td> : <td> ❌ </td>}
+                            {user.isAdmin === false ? <td> - </td> : <td> ✔️ </td>}
+                            <td>{user.createdAt.slice(0, 10)}</td>
+                            <td> <a onClick={(e) => viewReviews(user.username)} className={style.reviews}>Reviews</a> </td> {}
+                            <td  abbr={user.id} class="bi bi-pencil"  onClick={(e) => handleBanUser(e)} style={{cursor: 'pointer'}}></td>
+                        </tr>
+                })} 
+              </tbody>
+          </table>
+        </div>
+      </div>    
     </div>
   )
 };

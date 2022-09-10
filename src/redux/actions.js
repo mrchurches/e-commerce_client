@@ -1,9 +1,10 @@
 import axios from "axios";
-import { deleteCookies } from "../Components/NavBar/NavBarHelper";
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const FILTER_BY_GENRES = "FILTER_BY_GENRES";
 export const GET_GENRES = "GET_GENRES";
+export const GET_USED_GENRES = "GET_USED_GENRES";
 export const GET_PLATFORMS = "GET_PLATFORMS";
+export const GET_USED_PLATFORMS = "GET_USED_PLATFORMS";
 export const SEARCH_PRODUCT = "SEARCH_PRODUCT";
 export const FILTER_BY_PLATFORMS = "FILTER_BY_PLATFORMS";
 export const GET_USERS = "GET_USERS"
@@ -25,6 +26,8 @@ export const USER_BY_NAME = "USER_BY_NAME"
 export const USERS_FILTRED = "USERS_FILTRED"
 export const ORDER_USERS_ASC = "ORDER_USERS_ASC"
 export const ORDER_USERS_DESC = "ORDER_USERS_DESC"
+export const GET_USER_REVIEWS = "GET_USER_REVIEWS"
+export const GET_USER_REPORTED_REVIEWS = "GET_USER_REPORTED_REVIEWS"
 const {REACT_APP_URL} = process.env;
 
 export function getAllProducts(){
@@ -54,12 +57,38 @@ export function getGenres(){
     }
 };
 
+export function getUsedGenres(){
+    return function (dispatch){
+        axios.get(`${REACT_APP_URL}genres/used`)
+        .then((res)=>{
+            dispatch({
+                type: GET_USED_GENRES,
+                payload:res.data
+            })
+        })
+        .catch(err=>console.log(err))
+    }
+};
+
 export function getPlatforms(){
     return function (dispatch){
         axios.get(`${REACT_APP_URL}platforms`)
         .then((res)=>{
             dispatch({
                 type: GET_PLATFORMS,
+                payload: res.data
+            })
+        })
+        .catch(err=>console.log(err))
+    }
+};
+
+export function getUsedPlatforms(){
+    return function (dispatch){
+        axios.get(`${REACT_APP_URL}platforms/used`)
+        .then((res)=>{
+            dispatch({
+                type: GET_USED_PLATFORMS,
                 payload: res.data
             })
         })
@@ -227,7 +256,6 @@ export function Edit_Game(payload){
         try{
             let json = await axios.put(`${REACT_APP_URL}videogames/edit`, payload)
             console.log(json)
-            alert("Videogame Edited Succesfully!")
             return json;
         }catch(e){
             console.error(e);
@@ -295,7 +323,6 @@ export function PostReview(payload){
         try{
             let json = await axios.post(`${REACT_APP_URL}reviews`, payload)
             console.log(json)
-            alert("Reviw Posted Succesfully!")
             return json;
 
         }catch(e){
@@ -325,4 +352,46 @@ export function filter_bannedAdmin(payload){
         payload
     };
 };
+
+export function addRemoveReview(payload){
+    return async function (dispatch){
+        try{
+            const url = payload.typeOfEdit
+            let changeReview = await axios.put(`${REACT_APP_URL}reviews/${url}/${payload.id}`)
+            return changeReview;
+        }
+        catch(error) {
+            console.log(error)
+        }
+    }
+};
+
+export function getUserReviews(payload){
+    return function(dispatch){
+        axios.get(`${REACT_APP_URL}reviews?username=${payload}`)
+        .then((res)=>{
+            dispatch({
+                type: GET_USER_REVIEWS,
+                payload:res.data
+            })
+        }
+        )
+        .catch(err=>console.log(err))
+    }
+};
+
+export function getUserReportedReviews(payload){
+    return function(dispatch){
+        axios.get(`${REACT_APP_URL}reviews?username=${payload}`)
+        .then((res)=>{
+            dispatch({
+                type: GET_USER_REPORTED_REVIEWS,
+                payload:res.data
+            })
+        }
+        )
+        .catch(err=>console.log(err))
+    }
+};
+
 

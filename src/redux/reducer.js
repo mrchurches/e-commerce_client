@@ -20,6 +20,10 @@ import { GET_ALL_PRODUCTS,
     GET_ALL_USERS,
     USER_BY_NAME,
     USERS_FILTRED,
+    GET_USER_REVIEWS,
+    GET_USED_GENRES,
+    GET_USED_PLATFORMS,
+    GET_USER_REPORTED_REVIEWS,
 
    } from "./actions.js";
 import { products } from "./products.js";
@@ -38,8 +42,12 @@ cart: [],
 wishlist:[],
 currentPage: 1,
 allUsers: [],
-allUsersCopy: []
-
+allUsersCopy: [],
+reviewsUser: [],
+usedGenres: [],
+usedPlatforms: [],
+reviewsUser: [],
+reviewsUserRep: [],
 }
 
 export default function rootReducer(state = initialState, action){
@@ -57,12 +65,24 @@ switch(action.type){
            ...state,
            genres: action.payload
        }
+    case GET_USED_GENRES:
+
+        return{
+            ...state,
+            usedGenres: action.payload
+        }
+
    case GET_PLATFORMS:
        
        return{
            ...state,
            platforms: action.payload
        }
+    case GET_USED_PLATFORMS:
+        return{
+            ...state,
+            usedPlatforms: action.payload
+        }
    case GET_USERS:
        return{
            ...state,
@@ -261,6 +281,21 @@ switch(action.type){
             allUsers: [...user_filtred]
         }
     };
+
+    case GET_USER_REVIEWS:
+
+        let enabled_reviews = action.payload.filter((e) => !e.reported);
+
+        return{
+            ...state,
+            reviewsUser: enabled_reviews,
+        }
+    case GET_USER_REPORTED_REVIEWS:
+        let disabled_reviews = action.payload.filter((e) => e.reported);
+        return{
+            ...state,
+            reviewsUserRep:disabled_reviews
+        }
 
    default: 
    return state;

@@ -78,7 +78,7 @@ function EditProducts({setRender, setGame}) {
       axios.get(`${REACT_APP_URL}videogames/${id}`)
         .then(res => {
           setGame(res.data)
-          setRender({dash: false, add: false, edit: false, user: false, editForm: true});
+          setRender({editForm: true});
         })
         .catch(err => console.log(err));
     }, "500");
@@ -182,7 +182,7 @@ function EditProducts({setRender, setGame}) {
           }else{color = 'white'}
             return <div className={style.productName} style={{backgroundColor:  color}} class='d-flex'>
               <div id={product.id} className={style.name} onClick={(e) => handleEdit(e)}>{product.name}</div>
-              {product.price ? <div className={style.iconContainer1} onClick={(e) => handleEdit(e)}><i id={product.id} class="bi bi-pencil"></i></div> :
+              {!product.fromApi ? <div className={style.iconContainer1} onClick={(e) => handleEdit(e)}><i id={product.id} class="bi bi-pencil"></i></div> :
               <div id={product.id} className={style.bigIconContainer} onClick={(e) => addToDb(e)} ><div id='add' className={style.iconContainer} style={{display: 'block'}}><i class="bi bi-plus-circle"></i></div><div id='loading' className={style.ldsDualRing} style={{display: 'none'}}></div></div>}
             </div>
         })}

@@ -20,16 +20,16 @@ const NavBar = () => {
     dispatch(resetUser());
   };
 
-  console.log(user)
+
+ console.log(user)
 
   return (
-
-    <nav className="navbar navbar-expand-lg text-light" style={{backgroundColor: "#191D2A"}}>
+    <nav className="navbar navbar-expand-lg text-light" style={{backgroundColor: "#191D2A", borderRadius: '0'}}>
 
       <div class="container-fluid">
         <Link to="/" className='link'>
           <img class="logo" src={logo} />
-          <span class="navbar-brand text-light">Games Market</span>
+          <span class="navbar-brand text-light">Games E-commerce</span>
         </Link>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -61,12 +61,11 @@ const NavBar = () => {
                 <span class="nav-link active text-light" aria-current="page" >Wishlist</span>
               </li>
             </Link>)}
-
-            {/* user.isAdmin */ true && (<Link to="/admin" className='link'>
+            {user && user.isAdmin ? <Link to="/admin" className='link'>
               <li class="nav-item">
                 <span class="nav-link active text-light" aria-current="page" >Admin</span>
               </li>
-            </Link>)}
+            </Link>:null}
 
             {location.pathname === "/home" && (
               <Link to="/shopping_cart" className='link'>

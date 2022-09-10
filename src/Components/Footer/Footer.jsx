@@ -10,7 +10,8 @@ if (location.pathname === "/admin") {
     display = 'none'
   }
     return(
-        <nav className={styles.footer} >
+        <nav className={styles.footer} style={{display: display,  borderRadius: '0'}}>
+            {location.pathname === "/admin" ?<div></div>:
             <div class="d-flex w-100 justify-content-center p-5">
                 <div class="p-2">
                 <svg  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-envelope" viewBox="0 0 16 16">
@@ -33,6 +34,7 @@ if (location.pathname === "/admin") {
                             Buenas Aires, Argentina</h6>
                 </div>
             </div>
+            }
         </nav>
     
     
