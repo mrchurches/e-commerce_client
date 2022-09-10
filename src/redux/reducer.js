@@ -20,7 +20,9 @@ import { GET_ALL_PRODUCTS,
     GET_ALL_USERS,
     USER_BY_NAME,
     USERS_FILTRED,
-    GET_USER_REVIEWS
+    GET_USER_REVIEWS,
+    GET_USED_GENRES,
+    GET_USED_PLATFORMS,
 
    } from "./actions.js";
 import { products } from "./products.js";
@@ -41,7 +43,8 @@ currentPage: 1,
 allUsers: [],
 allUsersCopy: [],
 reviewsUser: [],
-
+usedGenres: [],
+usedPlatforms: [],
 }
 
 export default function rootReducer(state = initialState, action){
@@ -59,12 +62,24 @@ switch(action.type){
            ...state,
            genres: action.payload
        }
+    case GET_USED_GENRES:
+
+        return{
+            ...state,
+            usedGenres: action.payload
+        }
+
    case GET_PLATFORMS:
        
        return{
            ...state,
            platforms: action.payload
        }
+    case GET_USED_PLATFORMS:
+        return{
+            ...state,
+            usedPlatforms: action.payload
+        }
    case GET_USERS:
        return{
            ...state,

@@ -20,6 +20,7 @@ background: linear-gradient(to bottom, #243B55, #141E30); /* W3C, IE 10+/ Edge, 
   min-height: 100vh;
   margin: 0;
   position: relative;
+  border-radius: 0;
 }
 
 .App-link {

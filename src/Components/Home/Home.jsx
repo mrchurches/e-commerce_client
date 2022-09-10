@@ -40,7 +40,7 @@ function Home() {
 
     return (
         <div class="d-flex">
-            <div style={{ marginRight: '15px', marginLeft: '10px' }}>
+            <div style={{ marginRight: '17px', marginLeft: '15px' }}>
                 <SideBar />
             </div>
             <div>

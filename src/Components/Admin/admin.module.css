@@ -5,6 +5,7 @@
     background-color: rgb(68, 100, 109, 0.2);
     min-height: 80vh;
     width: 80%;
+    margin-bottom: 30px;
 }
 
 .options{
@@ -16,4 +17,7 @@
     margin-left: 20px;
     margin-right: 20px;
     justify-content: center;
+    margin-bottom: 30px;
+    padding-right: 10px;
+    padding-top: 5px;
 }

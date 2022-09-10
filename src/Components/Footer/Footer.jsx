@@ -10,7 +10,7 @@ if (location.pathname === "/admin") {
     display = 'none'
   }
     return(
-        <nav className={styles.footer} style={{display: display}}>
+        <nav className={styles.footer} style={{display: display,  borderRadius: '0'}}>
             {location.pathname === "/admin" ?<div></div>:
             <div class="d-flex w-100 justify-content-center p-5">
                 <div class="p-2">
