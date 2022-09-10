@@ -24,7 +24,7 @@ export default function ProductCard({ id, name, img, rating, platforms, price, i
 
   useEffect(() => {
     
-    localStorage.setItem('cart',cart);
+    localStorage.setItem('cart',JSON.stringify(cart));
     console.log(localStorage.getItem("cart"))
   }, [cart]);
 

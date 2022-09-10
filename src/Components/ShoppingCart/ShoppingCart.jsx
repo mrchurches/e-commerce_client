@@ -3,58 +3,59 @@ import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState } from 'react'
 import Checkout from '../Checkout/Checkout'
 import ProductCard from "../Cards/ProductCard/ProductCard";
-import { getAllProducts } from "../../redux/actions";
+import { addToCart, getAllProducts } from "../../redux/actions";
+import { Link } from "react-router-dom";
 
 export default function ShoppingCart() {
 let cart = useSelector(state=>state.cart);
 let games = useSelector(state=>state.products2);
+let users = useSelector(state=>state.users);
 let filterGames=[];
-let [cartLS, setCartLS] = useState();
+let [cartLS, setCartLS] = useState([]);
 let fg;
+let gamesCO;
+let forCheckout;
 let dispatch=useDispatch();
 
 useEffect(()=>{
     dispatch(getAllProducts())
-    setCartLS(localStorage.getItem("cart").split(","))
-    
-    //console.log(cartLS)
-    //localStorage.clear()
-},[])
-
-useEffect(()=>{
-   cartLS?.forEach(e=>{
-        console.log("id de cartLS")
-        console.log(e)
-        console.log("id de base")
-       fg = games.filter((f)=>{return e===f.id});
-       console.log(fg[0])
-       filterGames.push(fg[0])})
-
-       console.log(filterGames)
-},[cartLS])
+    let cartLS2 = JSON.parse(localStorage.getItem("cart"));
+    //localStorage.setItem('cart',JSON.stringify(cart));
+    if(cart.length<1){
+        cartLS2.forEach(e=> dispatch(addToCart(e)));
+    }
+    if(cartLS2){
+        setCartLS(cartLS2)
+    }
+},[dispatch])
 
 
-if(!cartLS && cart.length>0){cart.forEach(e=>{fg = games.filter((f)=>e===f.id)
-filterGames.push(fg[0])
-})}
+cartLS &&( cartLS.forEach(LS=>{
+           fg = games.filter( games => LS === games.id);
+           console.log(fg)
+           if(fg.length>0){
+               filterGames.push(fg[0])}
+           }
+           ))
 
-// asitiene que se el juego= {
-//     title: "Mi producto",
-//     unit_price: 100,
-//     quantity: 1,
-//   };
-let gamesCO= filterGames.map(e=>{
+if(filterGames.length>0){gamesCO= filterGames.map(e=>{
     return {
         title: e.name,
         unit_price: e.price,
         quantity: 1
     }
-});
+})
+forCheckout = { items: gamesCO };
+}
 
-let forCheckout = { items: gamesCO };
+
+if(!cartLS && cart.length>0){
+    cart.forEach(e=>{fg = games.filter((f)=>e===f.id)
+filterGames.push(fg[0])
+})}
 
 
-
+console.log(forCheckout)
 
     return (
         <div class="d-flex flex-column vh-100  align-items-center">
@@ -72,8 +73,17 @@ let forCheckout = { items: gamesCO };
                 }
             </div>
             <div>
-                {cart.length>0 && <h1 class="text-light">Pay with MercadoPago</h1>}
-                {forCheckout.items.length>0 && <Checkout games={forCheckout}/>}
+                {users.user?
+                    <div>
+                        <h1 class="text-light">Pay with MercadoPago</h1>
+                        {forCheckout && <Checkout games={forCheckout}/>}
+                    </div>:
+                    <Link to="/login">
+                    <h2>You must be logged</h2>
+                    </Link>
+            
+            }
+
             </div>
         </div>
     )
