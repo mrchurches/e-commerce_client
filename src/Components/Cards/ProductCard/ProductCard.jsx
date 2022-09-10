@@ -75,11 +75,11 @@ export default function ProductCard({ id, name, img, rating, platforms, price, f
     <div>
       {
         <div class="card hover-overlay hover-zoom" style={{ maxWidth: "18rem", marginBottom: '25px', maxHeight: '18rem' }}>
-          <Link  to={!fromApi || isDisabled ?`/detail/${id}`:`/home`}>
+          <Link  to={fromApi || isDisabled ?`/home`:`/detail/${id}`}>
             <img class="card-img-top" style={{ maxWidth: '18rem', maxHeight: '10rem' }} src={img} alt="product img" />
           </Link>
           <div class="card-body" >
-            <Link to={!fromApi || isDisabled?`/detail/${id}`:`/home`} style={{ textDecoration: "none" }}>
+            <Link to={fromApi || isDisabled?`/home`:`/detail/${id}`} style={{ textDecoration: "none" }}>
               <h6 class="card-title">{name}</h6>
             </Link>
             {/* <div class="ratings">
@@ -95,14 +95,14 @@ export default function ProductCard({ id, name, img, rating, platforms, price, f
             <div class="d-flex flex-row align-items-center justify-content-center">
                 <FavouriteButton id={id}/>
                 <div>
-                  {!fromApi || isDisabled?
+                  {isDisabled || fromApi?
+                  <span>No stock</span>:
                   <span class="card-text bg-secondary m-2 p-2 text-light">
                   ${price}
-                  </span>
-                  :<span>No stock</span>}
+                  </span>}
                 </div>
                 <div>
-                  <button disabled={!fromApi || isDisabled?false:true} onClick={(e) => handleClick(e)} value="cart" class="btn btn-primary">Cart</button>
+                  <button disabled={fromApi || isDisabled?true:false} onClick={(e) => handleClick(e)} value="cart" class="btn btn-primary">Cart</button>
                 </div>
               {foundCart&&<button onClick={(e) => handleClick(e)} type="button" class="btn-close" value="remove" aria-label="Close"></button>}
             </div>

@@ -25,6 +25,7 @@ export const USER_BY_NAME = "USER_BY_NAME"
 export const USERS_FILTRED = "USERS_FILTRED"
 export const ORDER_USERS_ASC = "ORDER_USERS_ASC"
 export const ORDER_USERS_DESC = "ORDER_USERS_DESC"
+export const GET_USER_REVIEWS = "GET_USER_REVIEWS"
 const {REACT_APP_URL} = process.env;
 
 export function getAllProducts(){
@@ -227,7 +228,6 @@ export function Edit_Game(payload){
         try{
             let json = await axios.put(`${REACT_APP_URL}videogames/edit`, payload)
             console.log(json)
-            alert("Videogame Edited Succesfully!")
             return json;
         }catch(e){
             console.error(e);
@@ -295,7 +295,6 @@ export function PostReview(payload){
         try{
             let json = await axios.post(`${REACT_APP_URL}reviews`, payload)
             console.log(json)
-            alert("Reviw Posted Succesfully!")
             return json;
 
         }catch(e){
@@ -336,6 +335,20 @@ export function addRemoveReview(payload){
         catch(error) {
             console.log(error)
         }
+    }
+};
+
+export function getUserReviews(payload){
+    return function(dispatch){
+        axios.get(`${REACT_APP_URL}reviews?username=${payload}`)
+        .then((res)=>{
+            dispatch({
+                type: GET_USER_REVIEWS,
+                payload:res.data
+            })
+        }
+        )
+        .catch(err=>console.log(err))
     }
 };
 

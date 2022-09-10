@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import {getGenres, getPlatforms, Edit_Game}  from "../../../../redux/actions";
 import style from './editForm.module.css'
+import Swal from 'sweetalert2'
 
 function validate(input){
     let error={};
@@ -77,8 +78,8 @@ export default function EditForm({setRender, game}) {
         price:game.price,
         rating:game.rating,
         isDisabled:game.isDisabled,
-        platforms:game.platforms.map(e => e.name),
-        genres:game.genres.map(e => e.name),
+        platforms: game.platforms && game.platforms.map(e => e.name),
+        genres: game.genres && game.genres.map(e => e.name),
     });
     console.log()
 
@@ -87,6 +88,9 @@ export default function EditForm({setRender, game}) {
         dispatch(getPlatforms())
         const llaves = Object.keys(input)
         for (const key of llaves) {
+            if (key === 'isDisabled') {
+                continue;
+            }
             if (input[key] && !error[key]) { //si hay input y no hay errores --false
                 SetactiveSubmit(false)
             }else {
@@ -95,7 +99,7 @@ export default function EditForm({setRender, game}) {
             };
         };
         console.log(getPayload(game,input))
-        if (Object.keys(getPayload(game,input)).length <= 1) SetactiveSubmit(true);
+        if (Object.keys(getPayload(game,input)).length === 1) SetactiveSubmit(true);
     }, [input, error])
 
     function handlersubmit (e){
@@ -103,8 +107,11 @@ export default function EditForm({setRender, game}) {
         console.log(getPayload(game,input))
         dispatch(Edit_Game(getPayload(game,input)));
         console.log("se edito el juego")
-        /* ver si uso un dispatch para volver a cargar los juegos */
-        //navigate("/home")
+        Swal.fire(
+            'Good job!',
+            'Videogame Edited Succesfully!',
+            'success'
+        ).then(()=>setRender({edit: true}))
     };
     function handleSwitch(e){
         setInput({

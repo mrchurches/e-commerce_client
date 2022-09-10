@@ -1,47 +1,46 @@
 import React from 'react'
-import axios from 'axios';
 import style from './ReviewsPanel.module.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
-import { getAllProducts, filterByGenres, filterByPlatforms, addRemoveReview } from '../../../../redux/actions.js'
-import { products } from '../../../../redux/products.js'
-import SearchBar from '../../../SearchBar/SearchBar'
-import { Link } from 'react-router-dom'
-const {REACT_APP_URL} = process.env;
+import { addRemoveReview, getUserReviews } from '../../../../redux/actions.js'
 
 function ReviewsPanel({setRender, render}) {
 
-    const [reviews, setReviews] = useState([]);
     const dispatch = useDispatch()
-    const [load, setLoad] = useState([]);
 
     const goBack = () => {
         setRender({user: true});
     }
+
+    const reviews = useSelector((state) => state.reviewsUser)
     
     var username = render.username;
     var color = 'white'
 
     useEffect(() => {
-        setTimeout(() => {
-          axios.get(`${REACT_APP_URL}reviews?username=${username}`)
-          .then(res => setReviews(res.data))
-          .catch(err => console.log(err))
-        }, "500");
+        dispatch(getUserReviews(username));
     }, [username])
-
+    console.log(reviews)
     function handleSwitch(e, review){
         var action = 'add'
         if (!review.reported) {
             action = 'remove'
         }
-        dispatch(addRemoveReview({typeOfEdit:action, id: review.id}))
+        let i = reviews.findIndex((e) => e.id === review.id);
+        console.log(reviews[i].description)
+        dispatch(addRemoveReview({typeOfEdit:action, id: review.id}));
+        reviews[i].reported = !review.reported;
         setTimeout(() => {
-            axios.get(`${REACT_APP_URL}reviews?username=${username}`)
-            .then(res => setReviews(res.data))
-            .catch(err => console.log(err))
+            dispatch(getUserReviews(username));
         }, "500");
     }
+
+    // function filterDisabled(e){
+    //     if(e.target.value === 'disabled'){
+    //         let filtRev = reviews.filter((e) => e.reported);
+
+    //     }
+    // }
 
   return (
     <div class='container' className={style.bigContainer}>
@@ -49,7 +48,17 @@ function ReviewsPanel({setRender, render}) {
         <button value='test' class="btn btn-secondary" type="button" aria-expanded="false" style={{ marginBottom: '15px'}} onClick={goBack} className={style.goBack}>Go Back</button>
         
         <div className={style.container}>
+        {/* <div class='d-flex justify-content-center'> */}
         <h2 class='mb-4'>{username.charAt(0).toUpperCase() + username.slice(1)}'s Reviews</h2>
+
+        {/* <div>
+          <select class="form-select " aria-label="Default select example" className={style.filter} onChange={(e) => filterDisabled(e)}>
+            <option value="default">Filter Enabled</option>
+            <option value='disabled'>Disabled</option>
+            <option value='enabled'>Enabled</option>
+          </select>
+        </div> 
+        </div> */}
         <div className={style.reviewsContainer}>
         {reviews && reviews.map((review) => {
             if (color === 'white') {

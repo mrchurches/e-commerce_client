@@ -21,7 +21,7 @@ export default function Users({setRender}) {
 
   const handleBanUser = (e) => { 
     e.preventDefault()
-    
+
     let id = e.target.abbr
     const banUser = users.find(e => e.id === parseInt(id))
 
@@ -96,7 +96,7 @@ export default function Users({setRender}) {
 Swal.fire({
   title: 'Making Changes!',
   html: 'I will close in <b></b> segundos.',
-  timer: 2500,
+  timer: 1500,
   timerProgressBar: true,
   didOpen: () => {
     Swal.showLoading()
@@ -113,7 +113,7 @@ Swal.fire({
   if (result.dismiss === Swal.DismissReason.timer) {
     /* console.log('I was closed by the timer') */
   }
-})
+}).then(()=>dispatch(getAllUsers()))
 
               
   
@@ -159,6 +159,9 @@ Swal.fire({
               
               dispatch(bann_unBann({typeOfEdit,id}))
               
+              setTimeout(() => {
+                dispatch(getAllUsers())
+              }, 500);
 
             } else if (
               result.dismiss === Swal.DismissReason.cancel
@@ -180,7 +183,7 @@ Swal.fire({
 
     useEffect(() => {
       dispatch(getAllUsers())
-    }, [handleBanUser] )
+    }, [] )
 
 
   function handleChange(e) {
