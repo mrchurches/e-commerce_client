@@ -87,16 +87,6 @@ label {
 }
 
 
-
-button {
-  border: none;
-  padding: 0;
-  font-size: 0;
-  line-height: 0;
-  background: none;
-  cursor: pointer;
-}
-
 :focus {
   outline: 0;
 }
