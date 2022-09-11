@@ -42,7 +42,7 @@ const Login = () => {
     e.preventDefault();
     deleteCookies();
     const userExist = await findEmail(user.username);
-    if (!userExist) {
+    if (userExist.user === null) {
       setUserGet((i) => ({ ...i, userNExists: true }));
     } else if (userExist.isBanned) {
       setUserGet((i) => ({ ...i, userBan: true }));

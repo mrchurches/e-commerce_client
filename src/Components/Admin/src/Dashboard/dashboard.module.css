@@ -1,4 +1,6 @@
 .container {
+    display: flex;
+    justify-content: space-evenly;
     background-color: rgb(238, 245, 246);
     max-width: 1460px;
     height: 700px;
@@ -7,4 +9,12 @@
     margin-right: auto;
     margin-bottom: auto;
     padding-top: 20px;
-}
+};
+
+
+.iScontainer {
+    border: 1px solid rgb(0, 0, 0);
+    height: 400px;
+    width: auto;
+    margin-right: 100px;
+};

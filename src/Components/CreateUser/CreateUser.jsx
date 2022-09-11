@@ -54,17 +54,16 @@ const CreateUser = () => {
       return
     }
     const getUser = await findEmail(user.email);
-    if (getUser) {
-      setUserNames((i) => ({ ...i, userExist: true }));
-      return
-    } else if (!getUser) {
-      await createNewUser(user)
+    if (getUser.user !== undefined && getUser.user === null) {
+      await createNewUser(user);
     } else {
+      setUserNames((i) => ({ ...i, userExist: true }));
       setDisabled(true)
       setvalidate({
         ...validate,
         email: false
       });
+      return;
     }
     setChange(validatedFormat);
     setUser(userFormat);

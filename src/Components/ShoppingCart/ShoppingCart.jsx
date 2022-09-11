@@ -79,7 +79,7 @@ console.log(forCheckout)
                         {forCheckout && <Checkout games={forCheckout}/>}
                     </div>:
                     <Link to="/login">
-                    <h2>You must be logged</h2>
+                    <h2>You must be logged in..</h2>
                     </Link>
             
             }
