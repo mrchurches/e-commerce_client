@@ -2,13 +2,12 @@ import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux'
-import { getAllProducts, getUsers, setCurrentPage } from '../../redux/actions';
+import { getAllProducts, setCurrentPage } from '../../redux/actions';
 import ProductCard from '../Cards/ProductCard/ProductCard';
 import Pagination from '../Pagination/Pagination';
 import SideBar from '../SideBar/SideBar';
 import Filters from "../Filters/Filters"
 import "./Home.css"
-import { getCookie } from './HomeHelper';
 
 function Home() {
     let games = useSelector(state => state.products);
@@ -25,11 +24,6 @@ function Home() {
     const paginado = (number) => {
         dispatch(setCurrentPage(number))
     }
-
-    useEffect(() => {
-        const token = window.sessionStorage.getItem('token');
-        token && (user === undefined) && dispatch(getUsers(token));   
-    }, [])
 
     useEffect(() => {
         dispatch(getAllProducts())
