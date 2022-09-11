@@ -12,6 +12,7 @@ import PostGame from './Components/Admin/src/CreateGame/CreateGame';
 import MyStore from './Components/MyStore/MyStore';
 import Account from './Components/Account/Account';
 import WishList from "./Components/WishList/WishList.jsx";
+import UserProfile from "./Components/UserProfile/UserProfile.jsx";
 import NotFound from "./Components/NotFound/NotFound.jsx";
 import Pasarela from "./Components/Checkout/Checkout";
 
@@ -41,6 +42,8 @@ console.log(users)
         <Route path="/account" component={Account}/>
         <Route path="/login" component={Login} />
         <Route path="/home" component={Home} />
+        { users.user && <Route path="/userprofile" component={UserProfile} /> }
+        <Route path="/admin/create" component={PostGame}/>
         <Route path="/verify/:email" component={Verify} />
         <Route path="/oauth2/:token" component={VerifyAuth} />
         {/* <Route path="/checkout/:id" component={Checkout}/> */}

@@ -7,10 +7,11 @@ import { logout } from './NavBarHelper'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { getUsers, resetUser } from '../../redux/actions'
+import profilePic from "../../images/profile21.png"
 
 const NavBar = () => {
   let location = useLocation();
-  const {user} = useSelector(state => state.users);
+  const { user } = useSelector(state => state.users);
   let dispatch = useDispatch();
 
   async function handleLogout() {
@@ -28,6 +29,7 @@ console.log(user)
 
   return (
     <nav className="navbar navbar-expand-lg text-light" style={{backgroundColor: "#191D2A", borderRadius: '0'}}>
+
       <div class="container-fluid">
         <Link to="/" className='link'>
           <img class="logo" src={logo} />
@@ -38,16 +40,19 @@ console.log(user)
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
             <Link to="/home" className='link'>
               <li class="nav-item">
                 <span class="nav-link active text-light" aria-current="page" >Home</span>
               </li>
             </Link>
+
             {user && (<Link to="/my_store" className='link'>
               <li class="nav-item">
                 <span class="nav-link active text-light" aria-current="page" >My store</span>
               </li>
             </Link>)}
+            
             {user && (<Link to="/wish_list" className='link'>
               <li class="nav-item">
                 <span class="nav-link active text-light" aria-current="page" >Wishlist</span>
@@ -58,6 +63,7 @@ console.log(user)
                 <span class="nav-link active text-light" aria-current="page" >Admin</span>
               </li>
             </Link>:null}
+
             {location.pathname === "/home" && (
               <Link to="/shopping_cart" className='link'>
                 <li class="nav-item">
@@ -65,6 +71,7 @@ console.log(user)
                 </li>
               </Link>
             )}
+
             {user ?
               (<Link to='/home' className='link'>
                 <li class="nav-item">
@@ -78,6 +85,7 @@ console.log(user)
                 </li>
               </Link>)
             }
+
             {/* <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Dropdown
@@ -90,11 +98,17 @@ console.log(user)
           </ul>
         </li> */}
           </ul>
+          {user && (<Link to="/userprofile" className='link'>
+            <li class="nav-item">
+              <img class="logo" src={profilePic} />
+            </li>
+          </Link>)}
           {location.pathname === "/home" && <SearchBar />}
           {location.pathname.includes('/detail') &&
             <NavLink to="/home">
               <input class="btn btn-secondary" type="button" value="Go Back" />
             </NavLink>}
+
         </div>
       </div>
     </nav>

@@ -28,6 +28,7 @@ export const ORDER_USERS_ASC = "ORDER_USERS_ASC"
 export const ORDER_USERS_DESC = "ORDER_USERS_DESC"
 export const GET_USER_REVIEWS = "GET_USER_REVIEWS"
 export const GET_USER_REPORTED_REVIEWS = "GET_USER_REPORTED_REVIEWS"
+export const GET_ALL_ORDERS = "GET_ALL_ORDERS"
 const {REACT_APP_URL} = process.env;
 
 export function getAllProducts(){
@@ -393,5 +394,15 @@ export function getUserReportedReviews(payload){
         .catch(err=>console.log(err))
     }
 };
+
+export function getAllorders() {
+    return async function(dispatch) {
+        const allOrders = await axios.get(`${REACT_APP_URL}order/all`)
+           dispatch({
+            type: GET_ALL_ORDERS,
+            payload: allOrders.data
+           })
+    }
+}
 
 
