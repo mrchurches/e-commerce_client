@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useParams, NavLink } from 'react-router-dom'
-import { addToCart, addWish, getAllUsers } from '../../redux/actions';
+import { addToCart, addWish } from '../../redux/actions';
 import ReviewCard from '../Cards/Reviews/ReviewCard';
 import FavouriteButton from '../FavouriteButton/FavouriteBurron';
 import Review_box from '../Review/Review';
@@ -20,11 +20,9 @@ export default function ProductDetails() {
   let user = useSelector(state => state.users); // se trae el usuario logueado para permitir agregar a wishlist
   let { id } = useParams();
   let dispatch = useDispatch();
-  let allUsers = useSelector(state => state.allUsers);
 
   useEffect(() => {
     if (user.length) setDisabled(false); //si cuando se monta el componente hay usuario logueado habilita el addwish
-    dispatch(getAllUsers())
     setTimeout(() => {
       axios.get(`${REACT_APP_URL}videogames/${id}`)
       .then(res => {
@@ -143,8 +141,7 @@ export default function ProductDetails() {
             
             <div className='verticalScrollable1'>
               {reviews && reviews.map((e) => {
-                let profile_pic = allUsers.filter((f) => f.username === e.username)[0].profile_pic;
-                return(<ReviewCard username={e.username} rating={e.rating} description={e.description} userImg={profile_pic}/>)
+                return(<ReviewCard username={e.username} rating={e.rating} description={e.description} userImg={e.profile_pic}/>)
               })}
             </div>
 
