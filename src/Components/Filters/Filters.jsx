@@ -54,7 +54,18 @@ function Filters() {
         case "lower":
             dispatch(Orderby((a,b)=>{return a.rating - b.rating })); break
         case "Highest_Price":
-            dispatch(Orderby((a,b)=>{return b.price - a.price})); break
+            dispatch(Orderby((a,b)=>{
+              if (!a.price && !b.price) {
+                return 0;
+              }
+              if (!a.price) {
+                return 1;
+              }
+              if (!b.price) {
+                return -1;
+              }
+              return b.price - a.price
+            })); break
         case "Lowest_Price":
             dispatch(Orderby((a,b)=>{return a.price - b.price})); break
         default: break;
