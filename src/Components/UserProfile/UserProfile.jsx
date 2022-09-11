@@ -1,5 +1,6 @@
 import "./CreateUser.css"
 
+import bcrypt from 'bcryptjs';
 
 
 
@@ -40,6 +41,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { existsUsername, userFormat, validatedFormat, validatedFunctions, findEmail, createNewUser } from "./UserProfileHelper";
 import { Redirect } from "react-router-dom";
+import NoWorkResult from "postcss/lib/no-work-result";
 
 const CreateUser = () => {
     let actualUser = useSelector(state => state.users.user)
@@ -162,11 +164,15 @@ const CreateUser = () => {
     let [oldPassword, setOldPassword] = useState("")
     let [newPassword, setNewPassword] = useState("")
     let [confirmNewPassword, setConfirmNewPassword] = useState("")
-    function handlePasswordChange(e) {
-        let oldPass = bcrypt.compare(e.target.value, user.password)
+    async function handlePasswordChange(e) {
+        let oldPass = await bcrypt.compare(e.target.value, user.password)
         if (oldPass === true) {
             if (newPassword !== "" && confirmNewPassword !== "") {
-                if (newPassword === confirmNewPassword) { user.password = newPassword }
+                if (newPassword === confirmNewPassword) {
+
+                    newPassword = await bcrypt.hash(newPassword, process.env.REACT_APP_KEY_SALT)
+                    user.password = newPassword
+                }
             }
 
         }
