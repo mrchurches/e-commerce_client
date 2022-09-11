@@ -11,24 +11,31 @@ export default function InfoSales({ items }) {
         <div>
 
         <div class="card border-secondary mb-3" style={{ maxwidth: "18rem;" }}>
-            <div class="card-header">Cantida de productos</div>
+            <div class="card-header">Quantity of products</div>
             <div class="card-body text-secondary">
-                <h3 class="card-text">{cantofProducts}</h3>
+                <h4 class="card-text">{cantofProducts}</h4>
             </div>
         </div >
 
         <div class="card border-secondary mb-3" style={{ maxwidth: "18rem;" }}>
-            <div class="card-header">Ventas totales </div>
+            <div class="card-header">Daily sales </div>
             <div class="card-body text-secondary">
-                <h3 class="card-text">{cantofProducts}</h3>
+                <h4 class="card-text">15.004 u$d</h4>
+            </div>
+        </div>
+
+        <div class="card border-secondary mb-3" style={{ maxwidth: "18rem;" }}>
+            <div class="card-header">Monthly sales </div>
+            <div class="card-body text-secondary">
+                <h4 class="card-text">150.584 u$d</h4>
             </div>
         </div>
 
 
         <div class="card border-secondary mb-3" style={{ maxwidth: "18rem;" }}>
-            <div class="card-header">Juego más Vendido</div>
+            <div class="card-header">Best selling game</div>
             <div class="card-body text-secondary">
-                <h3 class="card-text">{cantofProducts}</h3>
+                <h5 class="card-text">The Witcher 3: Wild Hunt</h5>
             </div>
         </div>
 

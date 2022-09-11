@@ -25,7 +25,7 @@ export default function DoughnutChart() {
                     transition: 1,
                     tension: 0.3, 
                     backgroundColor: ['rgb(239, 165, 165)','rgb(192, 239, 182)', 'rgb(198, 155, 247)', '#FFEC00', 'rgb(145, 210, 247)', '#FD3401']  
-                              
+      
                 },
             ],
             labels,
