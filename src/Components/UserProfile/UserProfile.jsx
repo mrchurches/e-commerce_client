@@ -165,12 +165,13 @@ const CreateUser = () => {
     let [newPassword, setNewPassword] = useState("")
     let [confirmNewPassword, setConfirmNewPassword] = useState("")
     async function handlePasswordChange(e) {
+        setOldPassword(e.target.value)
         let oldPass = await bcrypt.compare(e.target.value, user.password)
         if (oldPass === true) {
             if (newPassword !== "" && confirmNewPassword !== "") {
                 if (newPassword === confirmNewPassword) {
 
-                    newPassword = await bcrypt.hash(newPassword, process.env.REACT_APP_KEY_SALT)
+                    newPassword = bcrypt.hashSync(newPassword, process.env.REACT_APP_KEY_SALT)
                     user.password = newPassword
                 }
             }
@@ -215,12 +216,12 @@ const CreateUser = () => {
                     </div>
                     <div class="relative z-0 mb-6 w-full group">
                         <small for="password" class="form-label">Old Password</small><br />
-                        <input type="password" onChange={e => handlePasswordChange(e)} value={user.password} name="password" id="password" class={`form-control ${isChange.password && !validate.password && "is-invalid"}`} placeholder="Your Old Password" required="" />
+                        <input type="password" onChange={e => handlePasswordChange(e)} value={oldPassword} name="password" id="password" class={`form-control ${isChange.password && !validate.password && "is-invalid"}`} placeholder="Old Password" required="" />
                         {isChange.password && !validate.password && <small>Password Must be Contain: number, symbol, uppercase and 8 digits</small>}
                     </div>
                     <div class="relative z-0 mb-6 w-full group">
                         <small for="password" class="form-label">New Password</small><br />
-                        <input type="password" onChange={e => setNewPassword(e)} value={user.password} name="password" id="password" class={`form-control ${isChange.password && !validate.password && "is-invalid"}`} placeholder="Your New Password" required="" />
+                        <input type="password" onChange={e => setNewPassword(e)} value={user.password} name="password" id="password" class={`form-control ${isChange.password && !validate.password && "is-invalid"}`} placeholder="New Password" required="" />
                         {isChange.password && !validate.password && <small>Password Must be Contain: number, symbol, uppercase and 8 digits</small>}
                     </div>
                     <div class="relative z-0 mb-6 w-full group">
