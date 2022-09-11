@@ -1,27 +1,31 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import SearchBar from "../SearchBar/SearchBar"
 import logo from "../../images/logo.png"
 import "./NavBar.css"
-import { deleteCookies, logout } from './NavBarHelper'
+import { logout } from './NavBarHelper'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-import { resetUser } from '../../redux/actions'
+import { getUsers, resetUser } from '../../redux/actions'
 import profilePic from "../../images/profile21.png"
 
 const NavBar = () => {
   let location = useLocation();
   const { user } = useSelector(state => state.users);
   let dispatch = useDispatch();
+
   async function handleLogout() {
     window.sessionStorage.removeItem('token')
-    deleteCookies()
     await logout()
     dispatch(resetUser());
   };
+  
+  useEffect(() => {
+    const token = window.sessionStorage.getItem('token');
+    token && (user === undefined) && dispatch(getUsers(token));   
+}, [])
 
-
- console.log(user)
+console.log(user)
 
   return (
     <nav className="navbar navbar-expand-lg text-light" style={{backgroundColor: "#191D2A", borderRadius: '0'}}>
@@ -48,14 +52,7 @@ const NavBar = () => {
                 <span class="nav-link active text-light" aria-current="page" >My store</span>
               </li>
             </Link>)}
-
-
-
-
-
-
-
-
+            
             {user && (<Link to="/wish_list" className='link'>
               <li class="nav-item">
                 <span class="nav-link active text-light" aria-current="page" >Wishlist</span>

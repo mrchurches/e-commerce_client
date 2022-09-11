@@ -1,35 +1,10 @@
 import React from 'react'
-import style from './NotFound.css'
-import {useLocation } from 'react-router-dom'
-import { useSelector } from 'react-redux';
-
-function validate(location, users){
-    console.log(location);
-    if (location === "/home") return false;
-    if (location.includes('/detail')) return false;
-    if (location === '/shopping_cart') return false;
-    if (location === '/my_store') return false;
-    if (location === '/create_user') return false;
-    if (location === '/wish_list') return false;
-    if (location === '/account') return false;
-    if (location === '/login') return false;
-    if (location.includes('/verify')) return false;
-    if (location === '/userprofile') return false;
-    if (location.includes('/checkout')) return false;
-    console.log(users.user)
-    if (users && users.user && users.user.isAdmin && location === '/admin') return false
-    return true;
-}
+import './NotFound.css'
 
 const NotFound = () => {
-    let location = useLocation();
-    const users = useSelector(state => state.users);
-    let validation = validate(location.pathname, users);
+
   return (
-    <div >
-        
-        { validation ?
-        <div class='notFound'>
+    <div class='notFound'>
         <header class="top-header">
         </header>
         <div>
@@ -55,11 +30,10 @@ const NotFound = () => {
             <p class="message__text">We're sorry, the page you were looking for isn't found here. The link you followed may either be broken or no longer exists. Please try again, or take a look at our.</p>
             </div>
             <div class="error__nav e-nav">
-            <a href="/" target="_blanck" class="e-nav__link"></a>
+            <a href="/home" target="_blanck" class="e-nav__link"></a>
             </div>
         </div>
-        </section></div>:null}
-
+        </section>
     </div>
   )
 }

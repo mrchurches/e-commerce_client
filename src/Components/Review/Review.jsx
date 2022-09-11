@@ -20,8 +20,10 @@ export default function Review_box({productId, reviews, setReviews}){
     let user = useSelector(state => state.users);
     console.log(user)
     var username;
+    var profile_pic;
     if (user.user) {
-        username = user.user.username
+        username = user.user.username;
+        profile_pic = user.user.profile_pic;
     }
     const [activeSubmit, SetactiveSubmit] = useState(true);
 
@@ -29,7 +31,8 @@ export default function Review_box({productId, reviews, setReviews}){
         rating:"",
         description:"",
         username: username,
-        productId: productId
+        productId: productId,
+        profile_pic: profile_pic,
     });
     let [error, setError] = useState({});
     let dispatch = useDispatch();

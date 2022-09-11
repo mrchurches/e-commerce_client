@@ -8,7 +8,6 @@ import { postUsers } from "./LoginHelper";
 import { findEmail } from "../CreateUser/CreateUserHelper";
 import { useSelector } from "react-redux";
 import { getUsers } from "../../redux/actions";
-import { deleteCookies } from "../NavBar/NavBarHelper";
 const { REACT_APP_URL } = process.env;
 
 const Login = () => {
@@ -40,14 +39,13 @@ const Login = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    deleteCookies();
     const userExist = await findEmail(user.username);
-    if (!userExist) {
+    if (userExist.user === null) {
       setUserGet((i) => ({ ...i, userNExists: true }));
     } else if (userExist.isBanned) {
       setUserGet((i) => ({ ...i, userBan: true }));
-   // } else if (!userExist.isVerified) {
-   //   setUserGet((i) => ({ ...i, isVerified: true }));
+   } else if (!userExist.isVerified) {
+     setUserGet((i) => ({ ...i, isVerified: true }));
     } else {
       const info = await postUsers(user);
       info.message === 'Not Autheticaded' && setUserGet((i) => ({ ...i, failedLog: true }));
@@ -63,9 +61,9 @@ const Login = () => {
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Email address</label>
             <input type="email" id="username" class={`form-control ${(userGet.userNExists || userGet.userBan) && "is-invalid"}`} aria-describedby="emailHelp" placeholder="example@examplemail.com" onChange={handleChange} value={user.username} name="username" />
-            {userGet.userNExists && <p>Email addres invalid</p>}
-            {userGet.userBan && <p>Email addres are banned</p>}
-            {userGet.isVerified && <p>Email addres not verified</p>}
+            {userGet.userNExists && <p>Email address invalid</p>}
+            {userGet.userBan && <p>Email address are banned</p>}
+            {userGet.isVerified && <p>Email address not verified</p>}
             <small id="emailHelp" class="form-text">We'll never share your email with anyone else.</small>
           </div>
           <div class="mb-3">
