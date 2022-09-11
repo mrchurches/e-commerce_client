@@ -14,6 +14,7 @@ function validate(location, users){
     if (location === '/account') return false;
     if (location === '/login') return false;
     if (location.includes('/verify')) return false;
+    if (location.includes('/oauth2')) return false;
     if (location === '/userprofile') return false;
     if (location.includes('/checkout')) return false;
     console.log(users.user)
