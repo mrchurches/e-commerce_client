@@ -44,7 +44,21 @@ import { Redirect } from "react-router-dom";
 import NoWorkResult from "postcss/lib/no-work-result";
 
 const CreateUser = () => {
-    let actualUser = useSelector(state => state.users.user)
+    // let actualUser = useSelector(state => state.users.user)
+    let actualUser = {
+        id: 1,
+        username: "prueba1",
+        name: "prueba",
+        lastname: "prueba",
+        email: "prueba1@p.com",
+        password: "$2b$10$5ZZZKdDGg3ZWuenDkHsyKeU9.w25o5bhn0tz3N/XCxXdSRTnsFry.",
+        profile_pic: "https://play.nintendo.com/images/profile-mk-koopa.27049d38.png",
+        isBanned: false,
+        isAdmin: true,
+        isVerified: true,
+        createdAt: "2022-09-10T19:15:06.819Z",
+        Products: []
+    }
     const [user, setUser] = useState(actualUser),
         [userGet, setUserNames] = useState({ userExist: false, usernameExists: false }),
         [disabledBtn, setDisabled] = useState(true),
@@ -221,12 +235,12 @@ const CreateUser = () => {
                     </div>
                     <div class="relative z-0 mb-6 w-full group">
                         <small for="password" class="form-label">New Password</small><br />
-                        <input type="password" onChange={e => setNewPassword(e)} value={user.password} name="password" id="password" class={`form-control ${isChange.password && !validate.password && "is-invalid"}`} placeholder="New Password" required="" />
+                        <input type="password" onChange={e => setNewPassword(e)} value={newPassword} name="password" id="password" class={`form-control ${isChange.password && !validate.password && "is-invalid"}`} placeholder="New Password" required="" />
                         {isChange.password && !validate.password && <small>Password Must be Contain: number, symbol, uppercase and 8 digits</small>}
                     </div>
                     <div class="relative z-0 mb-6 w-full group">
                         <small for="confirm password" class="form-label">Confirm New Password</small>
-                        <input class={`form-control ${isChange.cPassword && user.cPassword !== user.password && "is-invalid"}`} type="password" onChange={e => setConfirmNewPassword(e)} value={user.cPassword} name="cPassword" id="cPassword" placeholder="Confirm New password" required="" />
+                        <input class={`form-control ${isChange.cPassword && user.cPassword !== user.password && "is-invalid"}`} type="password" onChange={e => setConfirmNewPassword(e)} value={confirmNewPassword} name="cPassword" id="cPassword" placeholder="Confirm New password" required="" />
                         {isChange.cPassword && user.cPassword !== user.password && <small>Passwords don't match</small>}
                     </div>
                     <div class="grid md:grid-cols-2 md:gap-6">
@@ -240,6 +254,8 @@ const CreateUser = () => {
                             <input class={`form-control ${isChange.lastname && !validate.lastname && "is-invalid"}`} type="text" onChange={e => handleChange(e)} value={user.lastname} name="lastname" id="lastname" placeholder="Last name" required="" />
                             {isChange.lastname && !validate.lastname && <small>Characters Invalid</small>}
                         </div>
+
+
                         <div class="relative z-0 mb-6 w-full group">
                             <small for="username" class="form-label">Username:  </small>
                             <input type="text" onChange={(e) => handleChange(e)} value={user.username} name="username" id="username" class={`form-control ${isChange.username && !validate.username && "is-invalid"}`} placeholder={user.username} required="" />
@@ -249,7 +265,7 @@ const CreateUser = () => {
                         </div>
                     </div>
                     <div>All fields are required</div>
-                    <button type="submit" class="btn btn-primary" disabled={disabledBtn}>Submit</button>
+                    <button type="submit" class="btn btn-primary" >Submit</button>
                 </form>
             </div>
         </div>

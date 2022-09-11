@@ -58,7 +58,7 @@ export async function findEmail(email) {
 
 export async function createNewUser({ id, name, lastname, username, email, password, profile_pic }) {
   try {
-    await axios.post(REACT_APP_URL+`editprofile`,{
+    await axios.put(REACT_APP_URL+`user/editprofile`,{
       id: id,
       name: name,
       lastname: lastname,
