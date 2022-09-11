@@ -44,21 +44,21 @@ import { Redirect } from "react-router-dom";
 import NoWorkResult from "postcss/lib/no-work-result";
 
 const CreateUser = () => {
-    // let actualUser = useSelector(state => state.users.user)
-    let actualUser = {
-        id: 1,
-        username: "prueba1",
-        name: "prueba",
-        lastname: "prueba",
-        email: "prueba1@p.com",
-        password: "$2b$10$5ZZZKdDGg3ZWuenDkHsyKeU9.w25o5bhn0tz3N/XCxXdSRTnsFry.",
-        profile_pic: "https://play.nintendo.com/images/profile-mk-koopa.27049d38.png",
-        isBanned: false,
-        isAdmin: true,
-        isVerified: true,
-        createdAt: "2022-09-10T19:15:06.819Z",
-        Products: []
-    }
+    let actualUser = useSelector(state => state.users.user)
+    // let actualUser = {
+    //     id: 1,
+    //     username: "prueba1",
+    //     name: "prueba",
+    //     lastname: "prueba",
+    //     email: "prueba1@p.com",
+    //     password: "$2b$10$5ZZZKdDGg3ZWuenDkHsyKeU9.w25o5bhn0tz3N/XCxXdSRTnsFry.",
+    //     profile_pic: "https://play.nintendo.com/images/profile-mk-koopa.27049d38.png",
+    //     isBanned: false,
+    //     isAdmin: true,
+    //     isVerified: true,
+    //     createdAt: "2022-09-10T19:15:06.819Z",
+    //     Products: []
+    // }
     const [user, setUser] = useState(actualUser),
         [userGet, setUserNames] = useState({ userExist: false, usernameExists: false }),
         [disabledBtn, setDisabled] = useState(true),
@@ -130,27 +130,7 @@ const CreateUser = () => {
     };
 
 
-    // let [profilePic, setProfilePic] = useState("");
-    // let [picPreview, setPicPreview] = useState("");
-
-    // async function handleFile(e) {
-    //     let file = e.target.files[0];
-    //     preview(file)
-    //     const data = new FormData();
-    //     data.append('file', file)
-    //     data.append('upload_preset', 'videogamespf')
-
-    //     fetch(`https://api.cloudinary.com/v1_1/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload`, {
-    //         method: "POST",
-    //         body: data
-    //     })
-    //     // .then((response) => {
-    //     //     console.log(response.json())
-    //     //     return response.text();
-    //     // })
-
-    // }
-
+    //botón cloudinary
     let [path, setPath] = useState("");
     function showWidget() {
 
@@ -170,43 +150,31 @@ const CreateUser = () => {
         });
 
         widget.open()
-        // console.log(profilePic)
     };
 
 
-
+    //comprobación de passwords
     let [oldPassword, setOldPassword] = useState("")
     let [newPassword, setNewPassword] = useState("")
     let [confirmNewPassword, setConfirmNewPassword] = useState("")
+
     async function handlePasswordChange(e) {
         setOldPassword(e.target.value)
         let oldPass = await bcrypt.compare(e.target.value, user.password)
+        console.log("🚀 ~ file: UserProfile.jsx ~ line 164 ~ handlePasswordChange ~ oldPass", oldPass)
+
         if (oldPass === true) {
             if (newPassword !== "" && confirmNewPassword !== "") {
-                if (newPassword === confirmNewPassword) {
-
-                    newPassword = bcrypt.hashSync(newPassword, process.env.REACT_APP_KEY_SALT)
-                    user.password = newPassword
+                let confirmation = validatedFunctions.password(newPassword)
+                if (confirmation) {
+                    if (newPassword === confirmNewPassword) {
+                        let hashedPassword = bcrypt.hashSync(newPassword, process.env.REACT_APP_KEY_SALT)
+                        user.password = hashedPassword
+                    }
                 }
             }
-
         }
-
     }
-
-
-
-    // function preview(p) {
-    //     const reader = new FileReader();
-    //     reader.readAsDataURL(p);
-    //     reader.onloadend = () => {
-    //         setPicPreview(reader.result)
-    //     }
-    //     console.log(picPreview)
-    // }
-    // function handlePic(e) {
-    //     setPicPreview("")
-    // }
 
     return (
         <div class="d-flex justify-content-center align-items-center">
@@ -217,54 +185,120 @@ const CreateUser = () => {
                     <div class="relative z-0 mb-6 w-full group">
 
                         <button class={'form-control'} onClick={showWidget}> Upload Image </button>
-                        <img src={path} id={"uploadedImage"} alt={"selectedPic"} />
+                        <img src={path} id={"uploadedImage"} alt={"selectedPic"} hidden={path === "" ? true : false} onClick={() => setPath("")} />
 
                     </div>
 
-
+                    {/* E-MAIL */}
                     <div class="relative z-0 mb-6 w-full group">
                         <small for="exampleInputEmail1" class="form-label">E-Mail:</small>
-                        <input type="email" onChange={e => handleChange(e)} value={user.email} name="email" id="email" class={`form-control ${isChange.email && !validate.email && "is-invalid"}`} placeholder={() => actualUser.email === undefined ? "New E-mail" : actualUser.email} required="" />
+
+                        <input type="email"
+                            onChange={e => handleChange(e)}
+                            value={user.email}
+                            name="email"
+                            id="email"
+                            class={`form-control ${isChange.email && !validate.email && "is-invalid"}`} placeholder={() => actualUser.email === undefined ? "New E-mail" : actualUser.email}
+                            required="" />
+
                         {isChange.email && !validate.email && <small>Email Address is incorrect</small>}
                         {userGet.userExist && <small>Email Address already exists</small>}
                     </div>
+
+                    {/* OLD PASSWORD */}
                     <div class="relative z-0 mb-6 w-full group">
                         <small for="password" class="form-label">Old Password</small><br />
-                        <input type="password" onChange={e => handlePasswordChange(e)} value={oldPassword} name="password" id="password" class={`form-control ${isChange.password && !validate.password && "is-invalid"}`} placeholder="Old Password" required="" />
+
+                        <input type="password"
+                            onChange={e => { setOldPassword(e.target.value); handlePasswordChange(e) }}
+                            value={oldPassword}
+                            name="password" id="password"
+                            class={`form-control ${isChange.password && !validate.password && "is-invalid"}`} placeholder="Old Password"
+                            required="" />
+
                         {isChange.password && !validate.password && <small>Password Must be Contain: number, symbol, uppercase and 8 digits</small>}
                     </div>
+
+                    {/* NEW PASSWORD */}
                     <div class="relative z-0 mb-6 w-full group">
                         <small for="password" class="form-label">New Password</small><br />
-                        <input type="password" onChange={e => setNewPassword(e)} value={newPassword} name="password" id="password" class={`form-control ${isChange.password && !validate.password && "is-invalid"}`} placeholder="New Password" required="" />
+
+                        <input type="password"
+                            onChange={e => { setNewPassword(e.target.value); handlePasswordChange(e) }}
+                            value={newPassword}
+                            name="password"
+                            id="password"
+                            class={`form-control ${isChange.password && !validate.password && "is-invalid"}`} placeholder="New Password"
+                            required="" />
+
                         {isChange.password && !validate.password && <small>Password Must be Contain: number, symbol, uppercase and 8 digits</small>}
                     </div>
+
+                    {/* CONFIRM NEW PASSWORD */}
                     <div class="relative z-0 mb-6 w-full group">
                         <small for="confirm password" class="form-label">Confirm New Password</small>
-                        <input class={`form-control ${isChange.cPassword && user.cPassword !== user.password && "is-invalid"}`} type="password" onChange={e => setConfirmNewPassword(e)} value={confirmNewPassword} name="cPassword" id="cPassword" placeholder="Confirm New password" required="" />
+                        <input class={`form-control ${isChange.cPassword && user.cPassword !== user.password && "is-invalid"}`}
+                            type="password"
+                            onChange={e => { setConfirmNewPassword(e.target.value); handlePasswordChange(e) }} value={confirmNewPassword}
+                            name="cPassword"
+                            id="cPassword"
+                            placeholder="Confirm New password"
+                            required="" />
+
                         {isChange.cPassword && user.cPassword !== user.password && <small>Passwords don't match</small>}
                     </div>
+
+                    {/* NAME */}
                     <div class="grid md:grid-cols-2 md:gap-6">
                         <div class="relative z-0 mb-6 w-full group">
                             <small for="name" class="form-label">Name</small><br />
-                            <input class={`form-control ${isChange.name && !validate.name && "is-invalid"}`} type="text" onChange={e => handleChange(e)} value={user.name} name="name" id="name" placeholder="First name" required="" />
+
+                            <input class={`form-control ${isChange.name && !validate.name && "is-invalid"}`}
+                                type="text"
+                                onChange={e => handleChange(e)}
+                                value={user.name}
+                                name="name"
+                                id="name"
+                                placeholder="First name"
+                                required="" />
+
                             {isChange.name && !validate.name && <small>Characters Invalid</small>}
                         </div>
+
+                        {/* LASTNAME */}
                         <div class="relative z-0 mb-6 w-full group">
                             <small for="lastname" class="form-label">Lastname</small><br />
-                            <input class={`form-control ${isChange.lastname && !validate.lastname && "is-invalid"}`} type="text" onChange={e => handleChange(e)} value={user.lastname} name="lastname" id="lastname" placeholder="Last name" required="" />
+                            <input class={`form-control ${isChange.lastname && !validate.lastname && "is-invalid"}`}
+                                type="text"
+                                onChange={e => handleChange(e)}
+                                value={user.lastname}
+                                name="lastname"
+                                id="lastname"
+                                placeholder="Last name"
+                                required="" />
+
                             {isChange.lastname && !validate.lastname && <small>Characters Invalid</small>}
                         </div>
 
-
+                        {/* USERNAME */}
                         <div class="relative z-0 mb-6 w-full group">
                             <small for="username" class="form-label">Username:  </small>
-                            <input type="text" onChange={(e) => handleChange(e)} value={user.username} name="username" id="username" class={`form-control ${isChange.username && !validate.username && "is-invalid"}`} placeholder={user.username} required="" />
+                            <input type="text"
+                                onChange={(e) => handleChange(e)}
+                                value={user.username}
+                                name="username"
+                                id="username"
+                                class={`form-control ${isChange.username && !validate.username && "is-invalid"}`}
+                                placeholder={user.username}
+                                required="" />
 
                             {isChange.username && !validate.username && <small>Username Invalid</small>}
                             {userGet.usernameExists && <small>Username already exists</small>}
                         </div>
                     </div>
                     <div>All fields are required</div>
+
+                    {/* SUBMIT BUTTON */}
                     <button type="submit" class="btn btn-primary" >Submit</button>
                 </form>
             </div>
