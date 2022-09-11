@@ -9,7 +9,6 @@ import { getAllProducts, getUsedGenres, getUsedPlatforms } from '../../redux/act
 import { Link } from 'react-router-dom'
 import Spinner from '../Spinner/Spinner.jsx'
 
-
 const CardContainer = () => {
 
   const Allproducts = useSelector((state) => state.products)
@@ -30,10 +29,15 @@ const CardContainer = () => {
   useEffect(() => {
     setInterval(() => {
       var genre = prueba[Math.floor(Math.random() * prueba.length)]
+       setRandomGen(genre)
+    }, 10000);
+  },[setInterval])
+
+  useEffect(() => {
+    setInterval(() => {
       var plataf = prueba2[Math.floor(Math.random() * prueba.length)]
-      setRandomGen(genre)
       SetRandomPLat(plataf)  
-    }, 5000);
+    }, 10000);
   },[setInterval])
 
   const [start, setStart] = useState(0)
@@ -77,8 +81,6 @@ const CardContainer = () => {
   const genres = Allproducts.filter((c) => c.genres.find((c) => c.name === randomGen))
   const platforms = Allproducts.filter((c) => c.platforms.find((c) => c.name === randomPlat))
   
-  
-
   return (
         <div className='d-flex flex-column'>
 
@@ -92,9 +94,9 @@ const CardContainer = () => {
           
           {/* Genres */}
           {genres.length>0?(<div className={styles.box}>
-          <h5 className="text-light"> Recomended: ({randomGen}) </h5>
+          <div ><h5 className="text-light"> Recomended: ({randomGen}) </h5></div>
             <CardSlider platforms={genres} i={2}/>
-          </div>): <Spinner />}
+          </div>) : <Spinner />}
 
       </div>
   )
