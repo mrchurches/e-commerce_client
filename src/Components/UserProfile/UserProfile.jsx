@@ -165,6 +165,9 @@ const CreateUser = () => {
     function handlePasswordChange(e) {
         let oldPass = bcrypt.compare(e.target.value, user.password)
         if (oldPass === true) {
+            if (newPassword !== "" && confirmNewPassword !== "") {
+                if (newPassword === confirmNewPassword) { user.password = newPassword }
+            }
 
         }
 
@@ -192,25 +195,11 @@ const CreateUser = () => {
                 <form onSubmit={(e) => handleSubmit(e)} method='post'>
                     <div class="relative z-0 mb-6 w-full group">
 
-                        {/* <small for="exampleInputEmail1" class="form-label">Profile Pic:</small> */}
-
-                        {/* <input type="file"
-                            onChange={e => handleFile(e)}
-                            value={profilePic}
-                            name="file"
-                            class={`form-control`}
-                        /> */}
-
-                        {/* {picPreview && <img src={picPreview} onClick={e => handlePic(e)} alt={"selectedPic"} />}
-                        <small>Click on Pic to Delete</small> */}
-
                         <button class={'form-control'} onClick={showWidget}> Upload Image </button>
                         <img src={path} id={"uploadedImage"} alt={"selectedPic"} />
 
-
-
-
                     </div>
+
 
                     <div class="relative z-0 mb-6 w-full group">
                         <small for="exampleInputEmail1" class="form-label">E-Mail:</small>
@@ -220,17 +209,17 @@ const CreateUser = () => {
                     </div>
                     <div class="relative z-0 mb-6 w-full group">
                         <small for="password" class="form-label">Old Password</small><br />
-                        <input type="password" onChange={e => handlePasswordChange(e)} value={user.password} name="password" id="password" class={`form-control ${isChange.password && !validate.password && "is-invalid"}`} placeholder="Your Password" required="" />
+                        <input type="password" onChange={e => handlePasswordChange(e)} value={user.password} name="password" id="password" class={`form-control ${isChange.password && !validate.password && "is-invalid"}`} placeholder="Your Old Password" required="" />
                         {isChange.password && !validate.password && <small>Password Must be Contain: number, symbol, uppercase and 8 digits</small>}
                     </div>
                     <div class="relative z-0 mb-6 w-full group">
                         <small for="password" class="form-label">New Password</small><br />
-                        <input type="password" onChange={e => setNewPassword(e)} value={user.password} name="password" id="password" class={`form-control ${isChange.password && !validate.password && "is-invalid"}`} placeholder="Your Password" required="" />
+                        <input type="password" onChange={e => setNewPassword(e)} value={user.password} name="password" id="password" class={`form-control ${isChange.password && !validate.password && "is-invalid"}`} placeholder="Your New Password" required="" />
                         {isChange.password && !validate.password && <small>Password Must be Contain: number, symbol, uppercase and 8 digits</small>}
                     </div>
                     <div class="relative z-0 mb-6 w-full group">
                         <small for="confirm password" class="form-label">Confirm New Password</small>
-                        <input class={`form-control ${isChange.cPassword && user.cPassword !== user.password && "is-invalid"}`} type="password" onChange={e => setConfirmNewPassword(e)} value={user.cPassword} name="cPassword" id="cPassword" placeholder="Confirm password" required="" />
+                        <input class={`form-control ${isChange.cPassword && user.cPassword !== user.password && "is-invalid"}`} type="password" onChange={e => setConfirmNewPassword(e)} value={user.cPassword} name="cPassword" id="cPassword" placeholder="Confirm New password" required="" />
                         {isChange.cPassword && user.cPassword !== user.password && <small>Passwords don't match</small>}
                     </div>
                     <div class="grid md:grid-cols-2 md:gap-6">
@@ -246,7 +235,7 @@ const CreateUser = () => {
                         </div>
                         <div class="relative z-0 mb-6 w-full group">
                             <small for="username" class="form-label">Username:  </small>
-                            <input type="text" onChange={(e) => handleChange(e)} value={user.username} name="username" id="username" class={`form-control ${isChange.username && !validate.username && "is-invalid"}`} placeholder="Username" required="" />
+                            <input type="text" onChange={(e) => handleChange(e)} value={user.username} name="username" id="username" class={`form-control ${isChange.username && !validate.username && "is-invalid"}`} placeholder={user.username} required="" />
 
                             {isChange.username && !validate.username && <small>Username Invalid</small>}
                             {userGet.usernameExists && <small>Username already exists</small>}
