@@ -1,4 +1,4 @@
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import LandingPage from './Components/LandingPage/LandingPage';
 import Footer from "./Components/Footer/Footer";
@@ -31,9 +31,9 @@ let users = useSelector(state=>state.users);
 console.log(users)
   return (
     <div className="App">
-
         <Route path="/" component={NavBar}/>
-        <Route path="/" component={LandingPage} />
+      <Switch>
+        <Route exact path="/" component={LandingPage} />
         <Route path="/detail/:id" component={ProductDetails} />
         <Route path="/shopping_cart" component={ShoppingCart} />
         <Route path="/my_store" component={MyStore} />
@@ -48,7 +48,8 @@ console.log(users)
         <Route path="/oauth2/:token" component={VerifyAuth} />
         {/* <Route path="/checkout/:id" component={Checkout}/> */}
         { users && users.user && users.user.isAdmin ? <Route path="/admin" component={Admin}/> : null }
-        <Route path="/:id" component={NotFound}/>
+        <Route path="*" component={NotFound}/>
+        </Switch>
         <div className='footer'>
         <Footer />
         </div>
