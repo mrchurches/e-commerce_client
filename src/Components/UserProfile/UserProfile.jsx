@@ -42,20 +42,16 @@ import { existsUsername, userFormat, validatedFormat, validatedFunctions, findEm
 import { Redirect } from "react-router-dom";
 
 const CreateUser = () => {
-    const [user, setUser] = useState(userFormat),
+    let actualUser = useSelector(state => state.users.user)
+    const [user, setUser] = useState(actualUser),
         [userGet, setUserNames] = useState({ userExist: false, usernameExists: false }),
         [disabledBtn, setDisabled] = useState(true),
         [isChange, setChange] = useState(validatedFormat),
         [isSubmit, setIsSubmit] = useState(false),
         [validate, setvalidate] = useState(validatedFormat);
 
-    let userState = useSelector(state => state.user)
+    // let userState = useSelector(state => state.user)
 
-    const cld = new Cloudinary({
-        cloud: {
-            cloudName: `${process.env.CLOUDINARY_CLOUD_NAME}`
-        }
-    });
 
     function handleChange(e) {
         setUserNames((i) => ({
@@ -118,26 +114,26 @@ const CreateUser = () => {
     };
 
 
-    let [profilePic, setProfilePic] = useState("");
-    let [picPreview, setPicPreview] = useState("");
+    // let [profilePic, setProfilePic] = useState("");
+    // let [picPreview, setPicPreview] = useState("");
 
-    async function handleFile(e) {
-        let file = e.target.files[0];
-        preview(file)
-        const data = new FormData();
-        data.append('file', file)
-        data.append('upload_preset', 'videogamespf')
+    // async function handleFile(e) {
+    //     let file = e.target.files[0];
+    //     preview(file)
+    //     const data = new FormData();
+    //     data.append('file', file)
+    //     data.append('upload_preset', 'videogamespf')
 
-        fetch(`https://api.cloudinary.com/v1_1/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload`, {
-            method: "POST",
-            body: data
-        })
-        // .then((response) => {
-        //     console.log(response.json())
-        //     return response.text();
-        // })
+    //     fetch(`https://api.cloudinary.com/v1_1/${process.env.CLOUDINARY_CLOUD_NAME}/image/upload`, {
+    //         method: "POST",
+    //         body: data
+    //     })
+    //     // .then((response) => {
+    //     //     console.log(response.json())
+    //     //     return response.text();
+    //     // })
 
-    }
+    // }
 
     let [path, setPath] = useState("");
     function showWidget() {
@@ -152,7 +148,7 @@ const CreateUser = () => {
             // console.log("----------------------------------------RESULT")
             // console.log(result.event)
             // console.log(result.info)
-            if(!error && result.event === "success"){
+            if (!error && result.event === "success") {
                 setPath(result.info.url)
             }
         });
@@ -163,22 +159,30 @@ const CreateUser = () => {
 
 
 
+    let [oldPassword, setOldPassword] = useState("")
+    let [newPassword, setNewPassword] = useState("")
+    let [confirmNewPassword, setConfirmNewPassword] = useState("")
+    function handlePasswordChange(e) {
+        let oldPass = bcrypt.compare(e.target.value, user.password)
+        if (oldPass === true) {
 
-
-
-
-
-    function preview(p) {
-        const reader = new FileReader();
-        reader.readAsDataURL(p);
-        reader.onloadend = () => {
-            setPicPreview(reader.result)
         }
-        console.log(picPreview)
+
     }
-    function handlePic(e) {
-        setPicPreview("")
-    }
+
+
+
+    // function preview(p) {
+    //     const reader = new FileReader();
+    //     reader.readAsDataURL(p);
+    //     reader.onloadend = () => {
+    //         setPicPreview(reader.result)
+    //     }
+    //     console.log(picPreview)
+    // }
+    // function handlePic(e) {
+    //     setPicPreview("")
+    // }
 
     return (
         <div class="d-flex justify-content-center align-items-center">
@@ -188,17 +192,17 @@ const CreateUser = () => {
                 <form onSubmit={(e) => handleSubmit(e)} method='post'>
                     <div class="relative z-0 mb-6 w-full group">
 
-                        <small for="exampleInputEmail1" class="form-label">Profile Pic:</small>
+                        {/* <small for="exampleInputEmail1" class="form-label">Profile Pic:</small> */}
 
-                        <input type="file"
+                        {/* <input type="file"
                             onChange={e => handleFile(e)}
                             value={profilePic}
                             name="file"
                             class={`form-control`}
-                        />
+                        /> */}
 
-                        {picPreview && <img src={picPreview} onClick={e => handlePic(e)} alt={"selectedPic"} />}
-                        <small>Click on Pic to Delete</small>
+                        {/* {picPreview && <img src={picPreview} onClick={e => handlePic(e)} alt={"selectedPic"} />}
+                        <small>Click on Pic to Delete</small> */}
 
                         <button class={'form-control'} onClick={showWidget}> Upload Image </button>
                         <img src={path} id={"uploadedImage"} alt={"selectedPic"} />
@@ -210,18 +214,23 @@ const CreateUser = () => {
 
                     <div class="relative z-0 mb-6 w-full group">
                         <small for="exampleInputEmail1" class="form-label">E-Mail:</small>
-                        <input type="email" onChange={e => handleChange(e)} value={user.email} name="email" id="email" class={`form-control ${isChange.email && !validate.email && "is-invalid"}`} placeholder={() => userState.email === undefined ? "New E-mail" : userState.email} required="" />
+                        <input type="email" onChange={e => handleChange(e)} value={user.email} name="email" id="email" class={`form-control ${isChange.email && !validate.email && "is-invalid"}`} placeholder={() => actualUser.email === undefined ? "New E-mail" : actualUser.email} required="" />
                         {isChange.email && !validate.email && <small>Email Address is incorrect</small>}
                         {userGet.userExist && <small>Email Address already exists</small>}
                     </div>
                     <div class="relative z-0 mb-6 w-full group">
-                        <small for="password" class="form-label">Password</small><br />
-                        <input type="password" onChange={e => handleChange(e)} value={user.password} name="password" id="password" class={`form-control ${isChange.password && !validate.password && "is-invalid"}`} placeholder="Your Password" required="" />
+                        <small for="password" class="form-label">Old Password</small><br />
+                        <input type="password" onChange={e => handlePasswordChange(e)} value={user.password} name="password" id="password" class={`form-control ${isChange.password && !validate.password && "is-invalid"}`} placeholder="Your Password" required="" />
                         {isChange.password && !validate.password && <small>Password Must be Contain: number, symbol, uppercase and 8 digits</small>}
                     </div>
                     <div class="relative z-0 mb-6 w-full group">
-                        <small for="confirm password" class="form-label">Confirm Password</small>
-                        <input class={`form-control ${isChange.cPassword && user.cPassword !== user.password && "is-invalid"}`} type="password" onChange={e => handleChange(e)} value={user.cPassword} name="cPassword" id="cPassword" placeholder="Confirm password" required="" />
+                        <small for="password" class="form-label">New Password</small><br />
+                        <input type="password" onChange={e => setNewPassword(e)} value={user.password} name="password" id="password" class={`form-control ${isChange.password && !validate.password && "is-invalid"}`} placeholder="Your Password" required="" />
+                        {isChange.password && !validate.password && <small>Password Must be Contain: number, symbol, uppercase and 8 digits</small>}
+                    </div>
+                    <div class="relative z-0 mb-6 w-full group">
+                        <small for="confirm password" class="form-label">Confirm New Password</small>
+                        <input class={`form-control ${isChange.cPassword && user.cPassword !== user.password && "is-invalid"}`} type="password" onChange={e => setConfirmNewPassword(e)} value={user.cPassword} name="cPassword" id="cPassword" placeholder="Confirm password" required="" />
                         {isChange.cPassword && user.cPassword !== user.password && <small>Passwords don't match</small>}
                     </div>
                     <div class="grid md:grid-cols-2 md:gap-6">
