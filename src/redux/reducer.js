@@ -189,10 +189,11 @@ switch(action.type){
            return 0;
        }
    let asc = state.products.sort(ascend)
-   
+   let ascSerch = state.searchered.sort(ascend);
        return {
            ...state,
-           products: [...asc]
+           products: [...asc],
+           searchered: [...ascSerch]
        };
 
    case ORDER_DESC:
@@ -202,34 +203,46 @@ switch(action.type){
                return 0;
            }
            let oderDesc = state.products.sort(desc)
+           let oderDescSerch = state.searchered.sort(desc)
 
        return {
                ...state,
-               products: [...oderDesc]
+               products: [...oderDesc],
+               searchered: [...oderDescSerch]
        };
 
    case ORDER_BY_RATING:
            let rat;
+           let ratSerch
            const producRating = state.products
            
            action.payload === 'High to Low'
            ?  rat = producRating.sort((a, b) => b.rating - a.rating)
            :  rat = producRating.sort((a, b) => a.rating - b.rating)
+
+           action.payload === 'High to Low'
+           ?  ratSerch = state.searchered.sort((a, b) => b.rating - a.rating)
+           :  ratSerch = state.searchered.sort((a, b) => a.rating - b.rating)
+
                return {
                    ...state,
-                   products: [...rat]
+                   products: [...rat],
+                   searchered: [...ratSerch]
        };
        case Order_By:
-           //console.log(action.payload)
+           console.log(action.payload)
            return{
                ...state,
-               products:[...state.products].sort(action.payload)
+               products:[...state.products].sort(action.payload),
+               searchered:[...state.searchered].sort(action.payload)
            };
        case ORDER_BY_ESRB:
            const esrb = state.products.filter(e => e.esrb_rating === action.payload)
+           const esrbSerch = state.searchered.filter(e => e.esrb_rating === action.payload)
                return {
                    ...state,
-                   products: [...esrb]
+                   products: [...esrb],
+                   searchered: [...esrbSerch]
        };
    case RESET_USER :
        return{

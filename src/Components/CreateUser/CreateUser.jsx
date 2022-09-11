@@ -58,11 +58,7 @@ const CreateUser = () => {
       await createNewUser(user);
     } else {
       setUserNames((i) => ({ ...i, userExist: true }));
-      setDisabled(true)
-      setvalidate({
-        ...validate,
-        email: false
-      });
+      setDisabled(true);
       return;
     }
     setChange(validatedFormat);
