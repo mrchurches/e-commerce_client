@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux'
-import { getAllProducts, setCurrentPage } from '../../redux/actions';
+import { getAllProducts, setCurrentPage, getUsers } from '../../redux/actions';
 import ProductCard from '../Cards/ProductCard/ProductCard';
 import Pagination from '../Pagination/Pagination';
 import SideBar from '../SideBar/SideBar';
@@ -24,7 +24,7 @@ function Home() {
     const paginado = (number) => {
         dispatch(setCurrentPage(number))
     }
-
+    
     useEffect(() => {
         const token = window.sessionStorage.getItem('token');
         token && (user === undefined) && dispatch(getUsers(token));
