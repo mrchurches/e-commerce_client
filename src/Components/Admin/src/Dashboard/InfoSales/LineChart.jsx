@@ -20,7 +20,7 @@ export default function LineChart() {
         return {
             datasets: [
                 {
-                    label: "Daily Users",
+                    label: "Weekly Users",
                     data: scores,
                     transition: 1,
                     tension: 0.3,

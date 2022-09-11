@@ -10,19 +10,19 @@ export default function InfoWeb({items}) {
   return (
     <div>
         <div class="card border-secondary mb-3" style={{ maxwidth: "18rem;" }}>
-            <div class="card-header">Usuarios Registrados</div>
+            <div class="card-header">Registered users</div>
             <div class="card-body text-secondary">
                 <h3 class="card-text">{items.allUsers.length}</h3>
             </div>
         </div>
         <div class="card border-secondary mb-3" style={{ maxwidth: "18rem;" }}>
-            <div class="card-header">Usuarios Baneados</div>
+            <div class="card-header">Users Banned</div>
             <div class="card-body text-secondary">
                 <h3 class="card-text">{baneados.length}</h3>
             </div>
         </div>
         <div class="card border-secondary mb-3" style={{ maxwidth: "18rem;" }}>
-            <div class="card-header">Administradores</div>
+            <div class="card-header">Admins</div>
             <div class="card-body text-secondary">
                 <h3 class="card-text">{Admin.length}</h3>
             </div>

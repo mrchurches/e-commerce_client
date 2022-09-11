@@ -25,7 +25,7 @@ export default function Tables() {
                   <td>350 u$d</td>
                 </tr>
                 <tr >
-                  <td>info</td>
+                  <td>Indie</td>
                   <td>150 u$d</td>
                 </tr>
                 <tr >
@@ -34,7 +34,7 @@ export default function Tables() {
                 </tr>
                 <tr >
                   <td>TOTAL:</td>
-                  <td>150 u$d</td>
+                  <td>1.230 u$d</td>
                 </tr>
      
     </tbody>
@@ -56,7 +56,7 @@ export default function Tables() {
 <tbody  >
         <tr >
           <td>Xbox</td>
-          <td>{8030} u$d</td>
+          <td>{803} u$d</td>
        </tr>
        <tr >
           <td>Pc</td>
@@ -72,7 +72,7 @@ export default function Tables() {
        </tr>
        <tr >
           <td>TOTAL:</td>
-          <td>688 u$d</td>
+          <td>2.629 u$d</td>
        </tr>
 
 </tbody>
