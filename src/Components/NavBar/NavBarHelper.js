@@ -1,6 +1,5 @@
 import axios from "axios";
 
-//import { REACT_APP_URL } from "../CreateUser/CreateUserHelper";
 const { REACT_APP_URL } = process.env;
 
 export async function logout(){
@@ -11,10 +10,4 @@ export async function logout(){
     } catch (error) {
         console.log(error)
     }
-}
-
-export function deleteCookies() {
-    document.cookie.split(";").forEach(function (c) {
-        document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
-    });
 }
