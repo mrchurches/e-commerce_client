@@ -26,8 +26,10 @@ function Home() {
     }
 
     useEffect(() => {
+        const token = window.sessionStorage.getItem('token');
+        token && (user === undefined) && dispatch(getUsers(token));
         dispatch(getAllProducts())
-    }, [dispatch])
+    }, [])
 
     return (
         <div class="d-flex">
