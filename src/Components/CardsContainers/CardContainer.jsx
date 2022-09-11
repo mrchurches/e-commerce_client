@@ -86,7 +86,7 @@ const CardContainer = () => {
           
           {/* Plataforms */}
            {platforms.length>0?(<div className={styles.box} >
-          <h5 className="text-light"> Recomended ({randomPlat}) </h5>
+          <h5 className="text-light"> Recomended: ({randomPlat}) </h5>
             <CardSlider platforms={platforms} i={1}/>
           </div>): <Spinner />}
           
