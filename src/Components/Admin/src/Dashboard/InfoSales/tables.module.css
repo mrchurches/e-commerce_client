@@ -1,0 +1,6 @@
+.tablefixed {
+    font-size: 12px ;
+    display: block;
+    height: 100px;
+    overflow-y: auto ;
+}
