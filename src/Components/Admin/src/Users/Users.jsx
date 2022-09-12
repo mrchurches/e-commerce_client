@@ -1,5 +1,5 @@
 import React from 'react'
-import style from './users.module.css'
+import './users.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { useState } from 'react'
@@ -207,7 +207,8 @@ Swal.fire({
   }
 
   return (
-    <div className={style.container}>
+    <div className='contenedorUsers1'>
+    <div className='contenedorViejo123'>
       
       <h2>Users</h2>
 
@@ -222,7 +223,7 @@ Swal.fire({
           </div>
         </div>
 
-        <div class="dropdown1" className={style.filter}> 
+        <div class="dropdown1" className='filtro123'> 
           <button class="btn btn-secondary dropdown-toggle btn-sm row" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style={{ marginBottom: '15px' }}>
             Filter By ...
           </button>
@@ -265,7 +266,7 @@ Swal.fire({
 
       </div> 
     
-      <div class='container' className ={style.tablefixed}>
+      <div class='container' className ='tablefixed1234'>
         <div  class='row'>  
           <table  class="table table-striped tabled-striped table-condensend table-fixed table-bordered text-sm">
             <thead>
@@ -293,7 +294,7 @@ Swal.fire({
                             {user.isBanned === false ? <td> - </td> : <td> ❌ </td>}
                             {user.isAdmin === false ? <td> - </td> : <td> ✔️ </td>}
                             <td>{user.createdAt.slice(0, 10)}</td>
-                            <td> <a onClick={(e) => viewReviews(user.username)} className={style.reviews}>Reviews</a> </td> {}
+                            <td> <a onClick={(e) => viewReviews(user.username)} className='reviews12345'>Reviews</a> </td> {}
                             <td  abbr={user.id} class="bi bi-pencil"  onClick={(e) => handleBanUser(e)} style={{cursor: 'pointer'}}></td>
                         </tr>
                 })} 
@@ -301,6 +302,7 @@ Swal.fire({
           </table>
         </div>
       </div>    
+    </div>
     </div>
   )
 };

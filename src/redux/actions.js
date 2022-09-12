@@ -30,6 +30,7 @@ export const GET_USER_REVIEWS = "GET_USER_REVIEWS"
 export const GET_USER_REPORTED_REVIEWS = "GET_USER_REPORTED_REVIEWS"
 export const GET_ALL_ORDERS = "GET_ALL_ORDERS"
 export const FILTRED_PRICE = "FILTRED_PRICE"
+export const GET_USER_ORDERS = "GET_USER_ORDERS"
 const {REACT_APP_URL} = process.env;
 
 export function getAllProducts(){
@@ -128,6 +129,20 @@ export function getUsers(token){
             return;
         }
 
+    }
+};
+
+export function getUserOrders(user_id) {
+    return async function(dispatch) {
+        try{
+            const response = await axios.get(`${REACT_APP_URL}order/user/${user_id}`);
+            dispatch({
+                type: GET_USER_ORDERS,
+                payload: response.data
+            })
+        }catch(err){
+            console.log(err);
+        }
     }
 };
 
@@ -415,5 +430,11 @@ export function priceFilter(payload) {
         })
     }
 }
+
+export function clearCart(){
+    return{
+        type: CLEAR_CART,
+    };
+};
 
 

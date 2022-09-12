@@ -5,6 +5,7 @@ import Checkout from '../Checkout/Checkout'
 import ProductCard from "../Cards/ProductCard/ProductCard";
 import { addToCart, getAllProducts } from "../../redux/actions";
 import { Link } from "react-router-dom";
+import { REACT_APP_URL } from "../CreateUser/CreateUserHelper";
 
 export default function ShoppingCart() {
 let cart = useSelector(state=>state.cart);
@@ -29,14 +30,23 @@ useEffect(()=>{
     }
 },[dispatch])
 
+useEffect(()=>{
+    
+},[cart])
 
 cartLS &&( cartLS.forEach(LS=>{
-           fg = games.filter( games => LS === games.id);
-           console.log(fg)
-           if(fg.length>0){
-               filterGames.push(fg[0])}
-           }
-           ))
+        fg = games.filter( games => LS === games.id);
+        console.log(fg)
+        if(fg.length>0){
+        filterGames.push(fg[0])}
+    }
+))
+
+//arreglo vacio. 
+if(!cartLS && cart.length>0){
+    cart.forEach(e=>{fg = games.filter((f)=>e===f.id)
+filterGames.push(fg[0])
+})}
 
 if(filterGames.length>0){gamesCO= filterGames.map(e=>{
     return {
@@ -45,15 +55,22 @@ if(filterGames.length>0){gamesCO= filterGames.map(e=>{
         quantity: 1
     }
 })
-forCheckout = { items: gamesCO };
-}
 
 
-if(!cartLS && cart.length>0){
-    cart.forEach(e=>{fg = games.filter((f)=>e===f.id)
-filterGames.push(fg[0])
-})}
+let string_user_id = JSON.stringify(users.user.id)
+string_user_id = string_user_id + "/"
+const carro = cart.map(e => e).join('*')
+string_user_id = string_user_id + carro
 
+forCheckout = { items: gamesCO,
+    external_reference: `${string_user_id}`, //el id de cada orden
+    back_urls: {
+        "success": `${process.env.REACT_APP_URL}cart/feedback`,
+        "failure": `${process.env.REACT_APP_URL}cart/feedback`, //cambiar a mensaje de error
+        "pending": `${process.env.REACT_APP_URL}cart/feedback` //x2
+    },
+    auto_return: "approved",};
+};
 
 console.log(forCheckout)
 

@@ -26,6 +26,9 @@ import { GET_ALL_PRODUCTS,
     GET_USER_REPORTED_REVIEWS,
     GET_ALL_ORDERS,
     FILTRED_PRICE
+    GET_USER_ORDERS,
+    CLEAR_CART
+
 
    } from "./actions.js";
 import { products } from "./products.js";
@@ -50,7 +53,8 @@ usedGenres: [],
 usedPlatforms: [],
 reviewsUser: [],
 reviewsUserRep: [],
-allOrders:[]
+allOrders:[],
+userOrders:[],
 }
 
 export default function rootReducer(state = initialState, action){
@@ -318,6 +322,16 @@ switch(action.type){
             ...state,
             allOrders: action.payload
         };
+    case GET_USER_ORDERS:
+        return {
+            ...state,
+            userOrders: action.payload
+        }
+    case CLEAR_CART:
+        return{
+            ...state,
+            cart: []
+        }
 
     case FILTRED_PRICE: 
         const filtred_prices = state.products.filter((e) => e.price <= action.payload)
