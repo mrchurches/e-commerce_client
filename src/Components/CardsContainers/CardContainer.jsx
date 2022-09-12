@@ -9,40 +9,54 @@ import { getAllProducts, getUsedGenres, getUsedPlatforms } from '../../redux/act
 import { Link } from 'react-router-dom'
 import Spinner from '../Spinner/Spinner.jsx'
 
-
 const CardContainer = () => {
 
   const Allproducts = useSelector((state) => state.products)
   const searchered = useSelector((state) => state.searchered)
-  const AllGenres = useSelector((state) => state.usedGenres).map(e => e.name)
-  const AllPlataforms = useSelector((state) => state.usedPlatforms).map(e => e.name)
+  /* const AllGenres = useSelector((state) => state.usedGenres).map(e => e.name)
+  const AllPlataforms = useSelector((state) => state.usedPlatforms).map(e => e.name) */
+  const AllGenres = [...new Set(Allproducts.map(e => e.genres).flat().map(e => e.name))]
+  const AllPlataforms = [...new Set(Allproducts.map(e => e.platforms).flat().map(e => e.name))]
 
-  /* const topSeller = useSelector((state) => state.topSeller()) */ // más vendidos
+  const prueba = ["Puzzle", "Action", "Adventure", "Shooter"]
+  const prueba2 = ["PC", "Linux", "Xbox One", "Nintendo Switch"]
+  const years = [2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017]
 
-  const [randomGen, SetRandomGen] = useState("Adventure")
+  const [randomGen, setRandomGen] = useState("Puzzle")
   const [randomPlat, SetRandomPLat] = useState("PC")
   const [randomYear, SetRandomYear] = useState()
+
+  useEffect(() => {
+    setInterval(() => {
+      var genre = prueba[Math.floor(Math.random() * prueba.length)]
+       setRandomGen(genre)
+    }, 10000);
+  },[setInterval])
+
+  useEffect(() => {
+    setInterval(() => {
+      var plataf = prueba2[Math.floor(Math.random() * prueba.length)]
+      SetRandomPLat(plataf)  
+    }, 10000);
+  },[setInterval])
 
   const [start, setStart] = useState(0)
   const [finish, setFinish] = useState(9)
 
-  const years = [2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017]
+  
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(getAllProducts())
-    dispatch(getUsedGenres())
-    dispatch(getUsedPlatforms())
     ramYear()
-    /*  ramGen()
-     ramPlat() */
-  }, [dispatch])
+  }, [])
 
   /* useEffect(() => {
-    ramGen()
-    ramPlat()
-    SetRandomYear(ramYear())
-  }, []) */
+    setTimeout(() => {
+      SetRandomGen(AllGenres[Math.floor(Math.random() * AllGenres.length)])
+      
+    }, 2000)
+  }, [setTimeout]) */
 
   /*   const ramGen = async () => {
       let randGen = Math.floor(Math.random() * AllGenres.length)
@@ -63,11 +77,10 @@ const CardContainer = () => {
 
   };
 
-  const forSale = Allproducts.filter((e) => e.released.slice(0, 4) > randomYear).slice(start, finish)
-  const genres = Allproducts.filter((c) => c.genres.find((c) => c.name === randomGen)).slice(start, finish)
-  const platforms = Allproducts.filter((c) => c.platforms.find((c) => c.name === randomPlat)).slice(start, finish)
-
-
+  const forSale = Allproducts.filter((e) => e.released.slice(0, 4) > randomYear)
+  const genres = Allproducts.filter((c) => c.genres.find((c) => c.name === randomGen))
+  const platforms = Allproducts.filter((c) => c.platforms.find((c) => c.name === randomPlat))
+  
   return (
         <div className='d-flex flex-column'>
 
@@ -75,15 +88,15 @@ const CardContainer = () => {
           
           {/* Plataforms */}
            {platforms.length>0?(<div className={styles.box} >
-          <h5 className="text-light"> {randomPlat} </h5>
+          <h5 className="text-light"> Recomended: ({randomPlat}) </h5>
             <CardSlider platforms={platforms} i={1}/>
           </div>): <Spinner />}
           
           {/* Genres */}
           {genres.length>0?(<div className={styles.box}>
-          <h5 className="text-light"> {randomGen} </h5>
+          <div ><h5 className="text-light"> Recomended: ({randomGen}) </h5></div>
             <CardSlider platforms={genres} i={2}/>
-          </div>): <Spinner />}
+          </div>) : <Spinner />}
 
       </div>
   )
