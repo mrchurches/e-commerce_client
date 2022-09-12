@@ -35,7 +35,7 @@ export default function CardWhishList({ id, name, price }) {
     async function handleClose() {
         dispatch(removeWish(id));
         await deleteFavorite(id, token);
-        window.location.reload()
+        // window.location.reload()
     }
 
     function handleShopCart(e) {
