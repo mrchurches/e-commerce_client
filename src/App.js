@@ -43,7 +43,8 @@ console.log(users)
         <Route path="/account" component={Account}/>
         <Route path="/login" component={Login} />
         <Route path="/home" component={Home} />
-        { users.user && <Route path="/userprofile" component={UserProfile} /> }
+        {/* { users.user && <Route path="/userprofile" component={UserProfile} /> } */}
+        <Route path="/userprofile" component={UserProfile} /> 
         <Route path="/admin/create" component={PostGame}/>
         <Route path="/verify/:email" component={Verify} />
         <Route path="/oauth2/:token" component={VerifyAuth} />

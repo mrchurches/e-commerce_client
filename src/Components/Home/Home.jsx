@@ -18,16 +18,16 @@ function Home() {
     const indexOfLastGame = currentPage * gamesPerPage;
     const indexOfFirstGame = indexOfLastGame - gamesPerPage;
     const currentGames = searchered.length ? searchered.slice(indexOfFirstGame, indexOfLastGame) : games.slice(indexOfFirstGame, indexOfLastGame),
-    {user} = useSelector((state) => state.users)
+        { user } = useSelector((state) => state.users)
     // const [show, setShow] = useState(false);
 
     const paginado = (number) => {
         dispatch(setCurrentPage(number))
     }
-    
+
     useEffect(() => {
         const token = window.sessionStorage.getItem('token');
-        token && (user === undefined) && dispatch(getUsers(token));
+        token && dispatch(getUsers(token));
         dispatch(getAllProducts())
     }, [])
 
@@ -40,16 +40,16 @@ function Home() {
 
                 <Filters />
                 <div class="row pb-5 mb-4" className="allCardsConteiner" >
-                    {currentGames.length>0 && currentGames.map(e => (
+                    {currentGames.length > 0 && currentGames.map(e => (
                         <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-                            <ProductCard name={e.name} id={e.id} img={e.background_image} rating={e.rating} platform={e.platform} price={e.price} fromApi={e.fromApi} isDisabled={e.isDisabled}/>
+                            <ProductCard name={e.name} id={e.id} img={e.background_image} rating={e.rating} platform={e.platform} price={e.price} fromApi={e.fromApi} isDisabled={e.isDisabled} />
                         </div>
                     ))}
-    
+
                     {
-                        (currentGames.length<1) && <div class="spinner-border" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                      </div>
+                        (currentGames.length < 1) && <div class="spinner-border" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
                     }
 
 

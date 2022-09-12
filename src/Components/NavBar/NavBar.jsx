@@ -19,11 +19,11 @@ const NavBar = () => {
     await logout()
     dispatch(resetUser());
   };
-  
+
   useEffect(() => {
     const token = window.sessionStorage.getItem('token');
-    token && (user === undefined) && dispatch(getUsers(token));   
-}, [])
+    token && dispatch(getUsers(token));
+  }, [])
 
 var isAdmin = false;
 
@@ -32,7 +32,7 @@ if (user && user.isAdmin) {
 }
 
   return (
-    <nav className="navbar navbar-expand-lg text-light" style={{backgroundColor: "#191D2A", borderRadius: '0'}}>
+    <nav className="navbar navbar-expand-lg text-light" style={{ backgroundColor: "#191D2A", borderRadius: '0' }}>
 
       <div class="container-fluid">
         <Link to="/" className='link'>
@@ -66,7 +66,7 @@ if (user && user.isAdmin) {
               <li class="nav-item">
                 <span class="nav-link active text-light" aria-current="page" >Admin</span>
               </li>
-            </Link>:null}
+            </Link> : null}
 
             { !isAdmin  ?
               <Link to="/shopping_cart" className='link'>
@@ -104,7 +104,8 @@ if (user && user.isAdmin) {
           </ul>
           {user && (<Link to="/userprofile" className='link'>
             <li class="nav-item">
-              <img class="logo" src={profilePic} />
+              <small class={"navbar-brand text-light"}>{user.username}</small>
+              <img class="logo" src={user.profile_pic} />
             </li>
           </Link>)}
           {location.pathname === "/home" && <SearchBar />}

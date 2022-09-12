@@ -29,7 +29,12 @@ export const ORDER_USERS_DESC = "ORDER_USERS_DESC"
 export const GET_USER_REVIEWS = "GET_USER_REVIEWS"
 export const GET_USER_REPORTED_REVIEWS = "GET_USER_REPORTED_REVIEWS"
 export const GET_ALL_ORDERS = "GET_ALL_ORDERS"
+
+export const PUT_USER = "PUT_USER";
+
+export const FILTRED_PRICE = "FILTRED_PRICE"
 export const GET_USER_ORDERS = "GET_USER_ORDERS"
+
 const {REACT_APP_URL} = process.env;
 
 export function getAllProducts(){
@@ -157,6 +162,20 @@ export function filterByGenres(value){
         dispatch({
             type: FILTER_BY_GENRES,
             payload: value
+            
+        })
+    }
+}
+export function putUser(user){
+    let finalUser={
+        message:"edited user",
+        user: user
+    }
+    
+    return function(dispatch){
+        dispatch({
+            type: PUT_USER,
+            payload: finalUser
             
         })
     }
@@ -417,6 +436,16 @@ export function getAllorders() {
             type: GET_ALL_ORDERS,
             payload: allOrders.data
            })
+    }
+};
+
+export function priceFilter(payload) {
+    return async function(dispatch) {
+        dispatch({
+            type: FILTRED_PRICE,
+            payload
+
+        })
     }
 }
 
