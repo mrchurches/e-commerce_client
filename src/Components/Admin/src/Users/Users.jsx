@@ -6,7 +6,7 @@ import { useState } from 'react'
 import Swal from 'sweetalert2'
 /* import { banUsersss } from './banUser.js' */
 import { getAllUsers, filter_bannedAdmin, byUserName, bann_unBann, makeAdmin} from '../../../../redux/actions'
-
+//
 export default function Users({setRender}) {
   
   const bannedOn = ["Banned", "Admin", "All"]
@@ -207,7 +207,7 @@ Swal.fire({
   }
 
   return (
-    <div className={style.container}>
+    <div className={style.container123}>
       
       <h2>Users</h2>
 
