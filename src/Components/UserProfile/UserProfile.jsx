@@ -108,34 +108,42 @@ const CreateUser = () => {
         }
     }, [user, isChange, userGet.usernameExists])
 
+    // async function handleSubmit(e) {
+    //     e.preventDefault()
+    //     console.log("🚀 ~ file: UserProfile.jsx ~ line 113 ~ handleSubmit ~ e", e)
+
+    //     if (user !== undefined) {
+    //         const response = await existsUsername(user.username);
+    //         if (response) {
+    //             setUserNames((i) => ({ ...i, usernameExists: true }))
+    //             return
+    //         }
+    //         const getUser = await findEmail(user?.email);
+    //         if (getUser) {
+    //             setUserNames((i) => ({ ...i, userExist: true }));
+    //             return
+    //         } else if (!getUser) {
+    //             await createNewUser(user)
+    //         } else {
+    //             setDisabled(true)
+    //             setvalidate({
+    //                 ...validate,
+    //                 email: false
+    //             });
+    //         }
+    //         setChange(validatedFormat);
+    //         setUser(userFormat);
+    //         setvalidate(validatedFormat);
+    //         setDisabled(true)
+    //         setIsSubmit(true);
+    //     }
+    // };
+
+
     async function handleSubmit(e) {
         e.preventDefault()
-        if (user !== undefined) {
-            const response = await existsUsername(user.username);
-            if (response) {
-                setUserNames((i) => ({ ...i, usernameExists: true }))
-                return
-            }
-            const getUser = await findEmail(user?.email);
-            if (getUser) {
-                setUserNames((i) => ({ ...i, userExist: true }));
-                return
-            } else if (!getUser) {
-                await createNewUser(user)
-            } else {
-                setDisabled(true)
-                setvalidate({
-                    ...validate,
-                    email: false
-                });
-            }
-            setChange(validatedFormat);
-            setUser(userFormat);
-            setvalidate(validatedFormat);
-            setDisabled(true)
-            setIsSubmit(true);
-        }
-    };
+        await createNewUser(user)
+    }
 
 
     //botón cloudinary
@@ -153,7 +161,9 @@ const CreateUser = () => {
             // console.log(result.event)
             // console.log(result.info)
             if (!error && result.event === "success") {
-                setPath(result.info.url)
+                // setPath(result.info.url)
+                // user.profile_pic = path
+                setUser((i) => ({ ...i, profile_pic: result.info.url }))
             }
         });
 
@@ -192,6 +202,9 @@ const CreateUser = () => {
     let [disabledName, setDisabledName] = useState(true)
     let [disabledLastname, setDisabledLastname] = useState(true)
     let [disabledUsername, setDisabledUsername] = useState(true)
+
+
+
     return (
         <div class="d-flex justify-content-center align-items-center">
             {isSubmit && <Redirect to={'/login'} />}
@@ -201,8 +214,7 @@ const CreateUser = () => {
                     <div class="relative z-0 mb-6 w-full group">
 
                         <button class={'form-control'} onClick={showWidget}> Upload Image </button>
-                        <img src={path === "" ? `${actualUser.profile_pic}` : path} id={"uploadedImage"} alt={"selectedPic"} onClick={() => setPath("")} />
-
+                        <img src={user.profile_pic} id={"uploadedImage"} alt={"selectedPic"} onClick={() => setPath("")} />
                     </div>
 
                     {/* E-MAIL */}
@@ -322,7 +334,7 @@ const CreateUser = () => {
                                 name="username"
                                 id="username"
                                 class={`form-control ${isChange.username && !validate.username && "is-invalid"}`}
-                                placeholder={`${actualUser && actualUser.email}`}
+                                placeholder={`${actualUser && actualUser.username}`}
                                 required=""
                                 disabled={disabledUsername} />
 
