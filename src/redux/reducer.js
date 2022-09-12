@@ -25,7 +25,8 @@ import { GET_ALL_PRODUCTS,
     GET_USED_PLATFORMS,
     GET_USER_REPORTED_REVIEWS,
     GET_ALL_ORDERS,
-    GET_USER_ORDERS
+    GET_USER_ORDERS,
+    CLEAR_CART
 
    } from "./actions.js";
 import { products } from "./products.js";
@@ -323,6 +324,11 @@ switch(action.type){
         return {
             ...state,
             userOrders: action.payload
+        }
+    case CLEAR_CART:
+        return{
+            ...state,
+            cart: []
         }
 
    default: 
