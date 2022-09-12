@@ -28,9 +28,7 @@ import { GET_ALL_PRODUCTS,
     PUT_USER,
     FILTRED_PRICE,
     GET_USER_ORDERS,
-    CLEAR_CART
-
-,
+    CLEAR_CART,
     RESET_WISH_LIST
    } from "./actions.js";
 import { products } from "./products.js";
