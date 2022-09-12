@@ -24,8 +24,8 @@ import { GET_ALL_PRODUCTS,
     GET_USED_GENRES,
     GET_USED_PLATFORMS,
     GET_USER_REPORTED_REVIEWS,
-    GET_ALL_ORDERS
-
+    GET_ALL_ORDERS,
+    RESET_WISH_LIST
    } from "./actions.js";
 import { products } from "./products.js";
 /* import { products } from "./products.js" */
@@ -248,7 +248,11 @@ switch(action.type){
             ...state,
             wishlist: wishF
         };
-
+    case RESET_WISH_LIST:
+        return{
+            ...state,
+            wishlist:[]
+        };
     case GET_ALL_USERS: 
         return {
             ...state,

@@ -4,7 +4,6 @@ import {useLocation } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 
 function validate(location, users){
-    console.log(location);
     if (location === "/home") return false;
     if (location.includes('/detail')) return false;
     if (location === '/shopping_cart') return false;
@@ -17,7 +16,6 @@ function validate(location, users){
     if (location.includes('/oauth2')) return false;
     if (location === '/userprofile') return false;
     if (location.includes('/checkout')) return false;
-    console.log(users.user)
     if (users && users.user && users.user.isAdmin && location === '/admin') return false
     return true;
 }

@@ -19,8 +19,7 @@ export const ORDER_ASC = "ORDER_ASC"
 export const ORDER_DESC = "ORDER_DESC"
 export const ORDER_BY_RATING = "ORDER_BY_RATING"
 export const ORDER_BY_ESRB = "ORDER_BY_ESRB"
-export const Order_By = "Orderby", 
-RESET_USER = 'RESET_USER';
+export const Order_By = "Orderby"
 export const GET_ALL_USERS = "GET_ALL_USERS"
 export const USER_BY_NAME = "USER_BY_NAME"
 export const USERS_FILTRED = "USERS_FILTRED"
@@ -28,7 +27,9 @@ export const ORDER_USERS_ASC = "ORDER_USERS_ASC"
 export const ORDER_USERS_DESC = "ORDER_USERS_DESC"
 export const GET_USER_REVIEWS = "GET_USER_REVIEWS"
 export const GET_USER_REPORTED_REVIEWS = "GET_USER_REPORTED_REVIEWS"
-export const GET_ALL_ORDERS = "GET_ALL_ORDERS"
+export const GET_ALL_ORDERS = "GET_ALL_ORDERS",
+RESET_USER = 'RESET_USER',
+RESET_WISH_LIST= 'RESET_WISH_LIST';
 const {REACT_APP_URL} = process.env;
 
 export function getAllProducts(){
@@ -268,6 +269,12 @@ export function Edit_Game(payload){
 export function resetUser(){
     return{
         type: RESET_USER
+    };
+};
+
+export function resetWish(){
+    return{
+        type: RESET_WISH_LIST
     };
 };
 

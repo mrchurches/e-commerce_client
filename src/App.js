@@ -27,8 +27,6 @@ import VerifyAuth from './Components/Verify/VerifyAuth';
 
 function App() {
 let users = useSelector(state=>state.users);
-
-console.log(users)
   return (
     <div className="App">
 
