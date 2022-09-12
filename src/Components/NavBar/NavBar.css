@@ -1,4 +1,4 @@
-.link{
+.link {
     text-decoration: none;
 }
 
@@ -7,4 +7,16 @@
     width: 2vw;
     height: auto;
     margin-right: 0.8rem;
+}
+
+.span {
+    text-decoration: none;
+
+}
+
+ul li small img {
+
+    list-style-type: none;
+    text-decoration: none;
+
 }
