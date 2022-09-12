@@ -37,10 +37,10 @@ import React from 'react'
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 
-import { existsUsername, userFormat, validatedFormat, validatedFunctions, findEmail, createNewUser } from "./UserProfileHelper";
+import { existsUsername, userFormat, validatedFormat, validatedFunctions, findEmail, editUser } from "./UserProfileHelper";
 import { Redirect } from "react-router-dom";
 import NoWorkResult from "postcss/lib/no-work-result";
-import { getUsers } from "../../redux/actions";
+import { getUsers, putUser } from "../../redux/actions";
 
 const CreateUser = () => {
     let actualUser = useSelector(state => state.users.user)
@@ -142,7 +142,8 @@ const CreateUser = () => {
 
     async function handleSubmit(e) {
         e.preventDefault()
-        await createNewUser(user)
+        await editUser(user)
+        dispatch(putUser(user))
     }
 
 

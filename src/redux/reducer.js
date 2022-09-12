@@ -24,7 +24,8 @@ import { GET_ALL_PRODUCTS,
     GET_USED_GENRES,
     GET_USED_PLATFORMS,
     GET_USER_REPORTED_REVIEWS,
-    GET_ALL_ORDERS
+    GET_ALL_ORDERS,
+    PUT_USER
 
    } from "./actions.js";
 import { products } from "./products.js";
@@ -86,6 +87,11 @@ switch(action.type){
             usedPlatforms: action.payload
         }
    case GET_USERS:
+       return{
+           ...state,
+           users: action.payload
+           }
+   case PUT_USER:
        return{
            ...state,
            users: action.payload
