@@ -1,4 +1,6 @@
-.container123 {
+
+.contenedorUsers1 {
+
     background-color: rgb(238, 245, 246);
     max-width: 1460px;
     height: 700px;
@@ -9,13 +11,24 @@
     padding-top: 20px;
 };
 
-.verticalScrollable {
+.contenedorViejo123 {
+    background-color: rgb(238, 245, 246);
+    max-width: 1460px;
+    height: 700px;
+    margin-top: 35px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    padding-top: 20px;
+};
+
+.verticalScrollable1234 {
     height:200px;
     overflow-y:scroll;
     
 }
 
-.tablefixed {
+.tablefixed1234 {
     margin-top: 15px;
     font-size: 12px ;
     display: block;
@@ -24,14 +37,14 @@
     overflow-x: hidden;
 }
 
-.reviews{
+.reviews12345{
     cursor: pointer;
 }
 
 td,th{
     cursor: default;
 }
-.filter{
+.filtro123{
     margin-left:auto;
     margin-right:30px;
 }
