@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 
 export default function CardWhishList({ id, name, price }) {
     const wishList = useSelector(state => state.wishlist),
-        stoken = sessionStorage.getItem('token'),
+        token = sessionStorage.getItem('token'),
         [inShopCart, setInShopCart] = useState(false),
         cart = useSelector(state => state.cart),
         dispatch = useDispatch();
