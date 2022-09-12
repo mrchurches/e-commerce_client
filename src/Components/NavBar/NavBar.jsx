@@ -25,7 +25,11 @@ const NavBar = () => {
     token && (user === undefined) && dispatch(getUsers(token));   
 }, [])
 
-console.log(user)
+var isAdmin = false;
+
+if (user && user.isAdmin) {
+  isAdmin = true;
+}
 
   return (
     <nav className="navbar navbar-expand-lg text-light" style={{backgroundColor: "#191D2A", borderRadius: '0'}}>
@@ -47,13 +51,13 @@ console.log(user)
               </li>
             </Link>
 
-            {user && (<Link to="/my_store" className='link'>
+            {user && !user.isAdmin && (<Link to="/my_store" className='link'>
               <li class="nav-item">
                 <span class="nav-link active text-light" aria-current="page" >My store</span>
               </li>
             </Link>)}
             
-            {user && (<Link to="/wish_list" className='link'>
+            {user && !user.isAdmin && (<Link to="/wish_list" className='link'>
               <li class="nav-item">
                 <span class="nav-link active text-light" aria-current="page" >Wishlist</span>
               </li>
@@ -64,13 +68,13 @@ console.log(user)
               </li>
             </Link>:null}
 
-            {location.pathname === "/home" && (
+            { !isAdmin  ?
               <Link to="/shopping_cart" className='link'>
                 <li class="nav-item">
                   <span class="nav-link text-light">Shopping Cart</span>
                 </li>
               </Link>
-            )}
+            : null }
 
             {user ?
               (<Link to='/home' className='link'>
