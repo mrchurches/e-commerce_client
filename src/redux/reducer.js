@@ -24,7 +24,8 @@ import { GET_ALL_PRODUCTS,
     GET_USED_GENRES,
     GET_USED_PLATFORMS,
     GET_USER_REPORTED_REVIEWS,
-    GET_ALL_ORDERS
+    GET_ALL_ORDERS,
+    FILTRED_PRICE
 
    } from "./actions.js";
 import { products } from "./products.js";
@@ -316,6 +317,13 @@ switch(action.type){
         return {
             ...state,
             allOrders: action.payload
+        };
+
+    case FILTRED_PRICE: 
+        const filtred_prices = state.products.filter((e) => e.price <= action.payload)
+        return {
+            ...state,
+            products: [...filtred_prices]
         };
 
    default: 

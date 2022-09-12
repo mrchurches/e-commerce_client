@@ -29,6 +29,7 @@ export const ORDER_USERS_DESC = "ORDER_USERS_DESC"
 export const GET_USER_REVIEWS = "GET_USER_REVIEWS"
 export const GET_USER_REPORTED_REVIEWS = "GET_USER_REPORTED_REVIEWS"
 export const GET_ALL_ORDERS = "GET_ALL_ORDERS"
+export const FILTRED_PRICE = "FILTRED_PRICE"
 const {REACT_APP_URL} = process.env;
 
 export function getAllProducts(){
@@ -402,6 +403,16 @@ export function getAllorders() {
             type: GET_ALL_ORDERS,
             payload: allOrders.data
            })
+    }
+};
+
+export function priceFilter(payload) {
+    return async function(dispatch) {
+        dispatch({
+            type: FILTRED_PRICE,
+            payload
+
+        })
     }
 }
 
