@@ -30,24 +30,27 @@ export default function ShoppingCart() {
         }
     }, [dispatch])
 
-useEffect(()=>{
-    
-},[cart])
+    useEffect(() => {
+
+    }, [cart])
 
 
-cartLS &&( cartLS.forEach(LS=>{
-        fg = games.filter( games => LS === games.id);
+    cartLS && (cartLS.forEach(LS => {
+        fg = games.filter(games => LS === games.id);
         console.log(fg)
-        if(fg.length>0){
-        filterGames.push(fg[0])}
+        if (fg.length > 0) {
+            filterGames.push(fg[0])
+        }
     }
-))
+    ))
 
-//arreglo vacio. 
-if(!cartLS && cart.length>0){
-    cart.forEach(e=>{fg = games.filter((f)=>e===f.id)
-filterGames.push(fg[0])
-})}
+    //arreglo vacio. 
+    if (!cartLS && cart.length > 0) {
+        cart.forEach(e => {
+            fg = games.filter((f) => e === f.id)
+            filterGames.push(fg[0])
+        })
+    }
 
 
     if (filterGames.length > 0) {
@@ -67,26 +70,28 @@ filterGames.push(fg[0])
             },
             auto_return: "approved",
         };
-    }
-
-})
 
 
-let string_user_id = JSON.stringify(users.user.id)
-string_user_id = string_user_id + "/"
-const carro = cart.map(e => e).join('*')
-string_user_id = string_user_id + carro
 
 
-forCheckout = { items: gamesCO,
-    external_reference: `${string_user_id}`, //el id de cada orden
-    back_urls: {
-        "success": `${process.env.REACT_APP_URL}cart/feedback`,
-        "failure": `${process.env.REACT_APP_URL}cart/feedback`, //cambiar a mensaje de error
-        "pending": `${process.env.REACT_APP_URL}cart/feedback` //x2
-    },
-    auto_return: "approved",};
-};
+
+        let string_user_id = JSON.stringify(users.user.id)
+        string_user_id = string_user_id + "/"
+        const carro = cart.map(e => e).join('*')
+        string_user_id = string_user_id + carro
+
+
+        forCheckout = {
+            items: gamesCO,
+            external_reference: `${string_user_id}`, //el id de cada orden
+            back_urls: {
+                "success": `${process.env.REACT_APP_URL}cart/feedback`,
+                "failure": `${process.env.REACT_APP_URL}cart/feedback`, //cambiar a mensaje de error
+                "pending": `${process.env.REACT_APP_URL}cart/feedback` //x2
+            },
+            auto_return: "approved",
+        };
+    };
 
     console.log(forCheckout)
 
