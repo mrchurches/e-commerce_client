@@ -1,4 +1,6 @@
+
 .contenedorUsers1 {
+
     background-color: rgb(238, 245, 246);
     max-width: 1460px;
     height: 700px;
@@ -45,4 +47,14 @@ td,th{
 .filtro123{
     margin-left:auto;
     margin-right:30px;
+}
+
+.testAdminUser{
+    background-color: rgb(238, 245, 246);
+    max-width: 1460px;
+    height: 700px;
+    margin-top: 35px;
+    padding-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
 }
