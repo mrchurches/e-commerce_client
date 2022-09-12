@@ -24,7 +24,8 @@ import { GET_ALL_PRODUCTS,
     GET_USED_GENRES,
     GET_USED_PLATFORMS,
     GET_USER_REPORTED_REVIEWS,
-    GET_ALL_ORDERS
+    GET_ALL_ORDERS,
+    GET_USER_ORDERS
 
    } from "./actions.js";
 import { products } from "./products.js";
@@ -49,7 +50,8 @@ usedGenres: [],
 usedPlatforms: [],
 reviewsUser: [],
 reviewsUserRep: [],
-allOrders:[]
+allOrders:[],
+userOrders:[],
 }
 
 export default function rootReducer(state = initialState, action){
@@ -317,6 +319,11 @@ switch(action.type){
             ...state,
             allOrders: action.payload
         };
+    case GET_USER_ORDERS:
+        return {
+            ...state,
+            userOrders: action.payload
+        }
 
    default: 
    return state;
