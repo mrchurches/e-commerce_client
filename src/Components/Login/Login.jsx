@@ -42,7 +42,8 @@ const Login = () => {
     const userExist = await findEmail(user.username);
     if (userExist.user === null) {
       setUserGet((i) => ({ ...i, userNExists: true }));
-    } else if (userExist.isBanned) {
+    } 
+      else if (userExist.isBanned) {
       setUserGet((i) => ({ ...i, userBan: true }));
     // } else if (!userExist.isVerified) {
     //   setUserGet((i) => ({ ...i, isVerified: true }));

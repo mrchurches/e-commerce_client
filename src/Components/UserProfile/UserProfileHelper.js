@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+
 export const { REACT_APP_URL } = process.env
 
 export const userFormat = {
@@ -55,9 +56,11 @@ export async function findEmail(email) {
 };
 
 
-export async function createNewUser({ name, lastname, username, email, password, profile_pic }) {
+export async function editUser({ id, name, lastname, username, email, password, profile_pic }) {
+  console.log("🚀 ~ file: UserProfileHelper.js ~ line 60 ~ createNewUser ~ profile_pic", profile_pic)
   try {
-    await axios.post(REACT_APP_URL+`signin`,{
+    await axios.put(REACT_APP_URL+`user/editprofile`,{
+      id: id,
       name: name,
       lastname: lastname,
       username: username,

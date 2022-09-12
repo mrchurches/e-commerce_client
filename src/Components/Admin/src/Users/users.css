@@ -1,0 +1,60 @@
+
+.contenedorUsers1 {
+
+    background-color: rgb(238, 245, 246);
+    max-width: 1460px;
+    height: 700px;
+    margin-top: 35px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    padding-top: 20px;
+};
+
+.contenedorViejo123 {
+    background-color: rgb(238, 245, 246);
+    max-width: 1460px;
+    height: 700px;
+    margin-top: 35px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    padding-top: 20px;
+};
+
+.verticalScrollable1234 {
+    height:200px;
+    overflow-y:scroll;
+    
+}
+
+.tablefixed1234 {
+    margin-top: 15px;
+    font-size: 12px ;
+    display: block;
+    height: 440px;
+    overflow-y: auto ;
+    overflow-x: hidden;
+}
+
+.reviews12345{
+    cursor: pointer;
+}
+
+td,th{
+    cursor: default;
+}
+.filtro123{
+    margin-left:auto;
+    margin-right:30px;
+}
+
+.testAdminUser{
+    background-color: rgb(238, 245, 246);
+    max-width: 1460px;
+    height: 700px;
+    margin-top: 35px;
+    padding-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}

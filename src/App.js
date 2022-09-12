@@ -1,4 +1,4 @@
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import './App.css';
 import LandingPage from './Components/LandingPage/LandingPage';
 import Footer from "./Components/Footer/Footer";
@@ -22,6 +22,7 @@ import { useSelector } from 'react-redux';
 import Checkout from './Components/Checkout/Checkout';
 import Verify from './Components/Verify/Verify.jsx';
 import VerifyAuth from './Components/Verify/VerifyAuth';
+import Success from './Components/SuccessfulPurchase/Success';
 
 
 
@@ -29,9 +30,9 @@ function App() {
 let users = useSelector(state=>state.users);
   return (
     <div className="App">
-
         <Route path="/" component={NavBar}/>
-        <Route path="/" component={LandingPage} />
+      <Switch>
+        <Route exact path="/" component={LandingPage} />
         <Route path="/detail/:id" component={ProductDetails} />
         <Route path="/shopping_cart" component={ShoppingCart} />
         <Route path="/my_store" component={MyStore} />
@@ -40,13 +41,16 @@ let users = useSelector(state=>state.users);
         <Route path="/account" component={Account}/>
         <Route path="/login" component={Login} />
         <Route path="/home" component={Home} />
-        { users.user && <Route path="/userprofile" component={UserProfile} /> }
+        {/* { users.user && <Route path="/userprofile" component={UserProfile} /> } */}
+        <Route path="/userprofile" component={UserProfile} /> 
         <Route path="/admin/create" component={PostGame}/>
         <Route path="/verify/:email" component={Verify} />
         <Route path="/oauth2/:token" component={VerifyAuth} />
+        <Route path="/success" component={Success} />
         {/* <Route path="/checkout/:id" component={Checkout}/> */}
         { users && users.user && users.user.isAdmin ? <Route path="/admin" component={Admin}/> : null }
-        <Route path="/:id" component={NotFound}/>
+        <Route path="*" component={NotFound}/>
+        </Switch>
         <div className='footer'>
         <Footer />
         </div>

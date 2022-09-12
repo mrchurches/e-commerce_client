@@ -30,6 +30,12 @@ export const GET_USER_REPORTED_REVIEWS = "GET_USER_REPORTED_REVIEWS"
 export const GET_ALL_ORDERS = "GET_ALL_ORDERS",
 RESET_USER = 'RESET_USER',
 RESET_WISH_LIST= 'RESET_WISH_LIST';
+
+export const PUT_USER = "PUT_USER";
+
+export const FILTRED_PRICE = "FILTRED_PRICE"
+export const GET_USER_ORDERS = "GET_USER_ORDERS"
+
 const {REACT_APP_URL} = process.env;
 
 export function getAllProducts(){
@@ -131,6 +137,20 @@ export function getUsers(token){
     }
 };
 
+export function getUserOrders(user_id) {
+    return async function(dispatch) {
+        try{
+            const response = await axios.get(`${REACT_APP_URL}order/user/${user_id}`);
+            dispatch({
+                type: GET_USER_ORDERS,
+                payload: response.data
+            })
+        }catch(err){
+            console.log(err);
+        }
+    }
+};
+
 // export function filterByGenres(value){
 //     return{
 //         type:FILTER_BY_GENRES,
@@ -143,6 +163,20 @@ export function filterByGenres(value){
         dispatch({
             type: FILTER_BY_GENRES,
             payload: value
+            
+        })
+    }
+}
+export function putUser(user){
+    let finalUser={
+        message:"edited user",
+        user: user
+    }
+    
+    return function(dispatch){
+        dispatch({
+            type: PUT_USER,
+            payload: finalUser
             
         })
     }
@@ -410,6 +444,38 @@ export function getAllorders() {
             payload: allOrders.data
            })
     }
+};
+
+export function priceFilter(payload) {
+    return async function(dispatch) {
+        dispatch({
+            type: FILTRED_PRICE,
+            payload
+
+        })
+    }
+};
+
+export function priceFilter(payload) {
+    return async function(dispatch) {
+        dispatch({
+            type: FILTRED_PRICE,
+            payload
+
+        })
+    }
 }
+
+export function clearCart(){
+    return{
+        type: CLEAR_CART,
+    };
+};
+
+export function clearCart(){
+    return{
+        type: CLEAR_CART,
+    };
+};
 
 

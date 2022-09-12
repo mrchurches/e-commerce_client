@@ -20,14 +20,20 @@ const NavBar = () => {
     dispatch(resetUser());
     window.location.reload()
   };
-  
+
   useEffect(() => {
     const token = window.sessionStorage.getItem('token');
-    token && (user === undefined) && dispatch(getUsers(token));
-})
+    token && dispatch(getUsers(token));
+  }, [])
+
+var isAdmin = false;
+
+if (user && user.isAdmin) {
+  isAdmin = true;
+}
 
   return (
-    <nav className="navbar navbar-expand-lg text-light" style={{backgroundColor: "#191D2A", borderRadius: '0'}}>
+    <nav className="navbar navbar-expand-lg text-light" style={{ backgroundColor: "#191D2A", borderRadius: '0' }}>
 
       <div class="container-fluid">
         <Link to="/" className='link'>
@@ -46,13 +52,13 @@ const NavBar = () => {
               </li>
             </Link>
 
-            {user && (<Link to="/my_store" className='link'>
+            {user && !user.isAdmin && (<Link to="/my_store" className='link'>
               <li class="nav-item">
                 <span class="nav-link active text-light" aria-current="page" >My store</span>
               </li>
             </Link>)}
             
-            {user && (<Link to="/wish_list" className='link'>
+            {user && !user.isAdmin && (<Link to="/wish_list" className='link'>
               <li class="nav-item">
                 <span class="nav-link active text-light" aria-current="page" >Wishlist</span>
               </li>
@@ -61,15 +67,15 @@ const NavBar = () => {
               <li class="nav-item">
                 <span class="nav-link active text-light" aria-current="page" >Admin</span>
               </li>
-            </Link>:null}
+            </Link> : null}
 
-            {location.pathname === "/home" && (
+            { !isAdmin  ?
               <Link to="/shopping_cart" className='link'>
                 <li class="nav-item">
                   <span class="nav-link text-light">Shopping Cart</span>
                 </li>
               </Link>
-            )}
+            : null }
 
             {user ?
               (<Link to='/home' className='link'>
@@ -99,7 +105,8 @@ const NavBar = () => {
           </ul>
           {user && (<Link to="/userprofile" className='link'>
             <li class="nav-item">
-              <img class="logo" src={profilePic} />
+              <small class={"navbar-brand text-light"}>{user.username}</small>
+              <img class="logo" src={user.profile_pic} />
             </li>
           </Link>)}
           {location.pathname === "/home" && <SearchBar />}

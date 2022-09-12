@@ -13,6 +13,7 @@ export default function ProductCard({ id, name, img, rating, platforms, price, f
   let cart = useSelector(state => state.cart);
   const {user} = useSelector(state => state.users);
   let foundCart = false;   //aca encontraria el juego si esta agregado al carrito
+  //const [foundCart, setFoundCart] = useState(false)
   const dispatch = useDispatch()
 
   const swalWithBootstrapButtons = Swal.mixin({
@@ -71,11 +72,12 @@ export default function ProductCard({ id, name, img, rating, platforms, price, f
             'error'
           )
         }
+        window.location.reload()
       })
     }
   }
 
-  cart.forEach(e => { if (e === id) { foundCart = true } })
+  cart.forEach(e=>{if(e===id){foundCart = true}})
 
   return (
     <div>
@@ -106,10 +108,10 @@ export default function ProductCard({ id, name, img, rating, platforms, price, f
                   <span class="card-text bg-secondary m-2 p-2 text-light">
                     ${price}
                   </span>}
-              </div>
-              <div>
-                <button disabled={fromApi || isDisabled ? true : false} onClick={(e) => handleClick(e)} value="cart" class="btn btn-primary">Cart</button>
-              </div>
+                </div>
+                <div>
+                  <button disabled={fromApi || isDisabled?true:false} onClick={(e) => handleClick(e)} value="cart" class="btn btn-primary">Cart</button>
+                </div>
               {foundCart && <button onClick={(e) => handleClick(e)} type="button" class="btn-close" value="remove" aria-label="Close"></button>}
             </div>
           </div>

@@ -1,5 +1,5 @@
-import React from "react";
-import { getAllProducts, filterByGenres, filterByPlatforms, getGenres, getPlatforms, setCurrentPage, orderEsrb, clear} from '../../redux/actions';
+import React, { useState } from "react";
+import { getAllProducts, filterByGenres, filterByPlatforms, getGenres, getPlatforms, setCurrentPage, orderEsrb, clear, priceFilter} from '../../redux/actions';
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./SideBar.css"
@@ -7,20 +7,42 @@ import "./SideBar.css"
 /* const esrbMock = [ "Teen", "Mature", "Not rated", "Adults Only", "Everyone", "Everyone 10+", "Rating Pending" ] */
 
 export default function SideBar (){
+
+  const dispatch = useDispatch();
+  
   const products = useSelector((state) => state.products)
   let genres = [...new Set(products.map(e => e.genres).flat().map(e => e.name))]
   let platforms = [...new Set(products.map(e => e.platforms).flat().map(e => e.name))]
   let esrb = [...new Set(products.map(e => e.esrb_rating))]
+  let prices = [...new Set(products.map(e => e.price).sort((a, b) => a - b))]
 
-  /* const genres = useSelector((state => state.genres));
-  const platforms = useSelector ((state => state.platforms)); */
 
-const dispatch = useDispatch();
+  let min = prices[0]
+  let max = prices[prices.length - 1]
+
+  const [minPrice, setMinPrice] = useState(0)
+  const [maxPrice, setMaxPrice] = useState(0)
+
+  console.log(maxPrice)
+/*   const minprice = (e) => {
+    e.preventDefault() 
+    setMinPrice(parseInt(e.target.value))
+  };
+ */
+  const hanleChange = (e) => {
+    e.preventDefault() 
+    setMaxPrice(parseInt(e.target.value))
+  };
+
+  useEffect(() => {
+    setMaxPrice(max)
+    setMinPrice(min)
+  },[products])
+  
+
   
   useEffect(()=>{
     dispatch(getAllProducts())
-    /* dispatch(getGenres());
-    dispatch(getPlatforms()); */
 },[dispatch])
 
 function handleFilterByGenre(e){
@@ -39,18 +61,25 @@ function handleFilterByPlatforms(e){
     }
   };
 
+function applyPrice(e) {
+  e.preventDefault()
+  dispatch(priceFilter(maxPrice))
+}
+
   function esrbContent(e) {
     e.preventDefault()
     let value = e.target.value
     if(value !== "default"){
-      console.log(value)
+      /* console.log(value) */
       dispatch(orderEsrb(value))
     };
   };
 
   function handleClick(e) {
+   /*  setMaxPrice(max)
+    setMinPrice(min) */
     dispatch(clear())
-  }
+  };
 
   return (
     <div >
@@ -78,6 +107,18 @@ function handleFilterByPlatforms(e){
             ))}
           </select>
         </div>
+
+        <div>
+        { maxPrice > 1 ? <label for='rangeMax' class='text-white form label'> Under ${maxPrice - 1} </label> : <label for='rangeMax' class='text-white form label'> ${minPrice}</label>}
+          <input id='rangeMax' class='form-range' disabled={false} value={maxPrice} onChange={(e) => hanleChange(e)} type="range" min={min} max={max} step='10'/>
+        </div>
+
+        {/* <div>
+          <label for='rangeMin' class='text-white form label'> Low Price ${minPrice}</label>
+          <input id='rangeMin' class='form-range' onChange={(e) => minprice(e)} type="range" min={min} max={maxPrice} step='1'/>
+        </div> */}
+
+        <button class="btn  bg-white w-100" style={{marginTop: '15px', marginRight: 'auto', marginLeft: 'auto'}} onClick={applyPrice}>Apply Price</button>
 
         <div className="clear">
         <button class="btn  bg-white w-100" style={{marginTop: '15px', marginRight: 'auto', marginLeft: 'auto'}} onClick={handleClick}>Reset Filters</button>
