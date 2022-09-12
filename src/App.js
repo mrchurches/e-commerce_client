@@ -22,6 +22,7 @@ import { useSelector } from 'react-redux';
 import Checkout from './Components/Checkout/Checkout';
 import Verify from './Components/Verify/Verify.jsx';
 import VerifyAuth from './Components/Verify/VerifyAuth';
+import Success from './Components/SuccessfulPurchase/Success';
 
 
 
@@ -47,6 +48,7 @@ console.log(users)
         <Route path="/admin/create" component={PostGame}/>
         <Route path="/verify/:email" component={Verify} />
         <Route path="/oauth2/:token" component={VerifyAuth} />
+        <Route path="/success" component={Success} />
         {/* <Route path="/checkout/:id" component={Checkout}/> */}
         { users && users.user && users.user.isAdmin ? <Route path="/admin" component={Admin}/> : null }
         <Route path="*" component={NotFound}/>

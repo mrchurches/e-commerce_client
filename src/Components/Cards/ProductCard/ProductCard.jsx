@@ -12,6 +12,7 @@ import { isDisabled } from '@testing-library/user-event/dist/utils/index.js'
 export default function ProductCard({ id, name, img, rating, platforms, price, fromApi, isDisabled}) {
   let cart = useSelector(state=>state.cart);
   let foundCart=false;   //aca encontraria el juego si esta agregado al carrito
+  //const [foundCart, setFoundCart] = useState(false)
   const dispatch = useDispatch()
   
   const swalWithBootstrapButtons = Swal.mixin({
@@ -34,10 +35,10 @@ export default function ProductCard({ id, name, img, rating, platforms, price, f
   const handleClick = (e) => {
     e.preventDefault();
     if (e.target.value === "cart") {
-       let fC = cart.filter(e=>e===id);
-       if(fC.length>0){
+      let fC = cart.filter(e=>e===id);
+      if(fC.length>0){
         alert("Juego ya agregado al carrito anteriormente!")
-       }else{
+      }else{
          dispatch(addToCart(id)) // dispacha al carrito de compras con el id del game en la db
           Swal.fire({
             position: 'center',
@@ -46,7 +47,7 @@ export default function ProductCard({ id, name, img, rating, platforms, price, f
             showConfirmButton: false,
             timer: 1500
           })
-       }
+      }
     }else if(e.target.value==="remove"){
       swalWithBootstrapButtons.fire({
         title: 'Are you sure?',
@@ -74,11 +75,12 @@ export default function ProductCard({ id, name, img, rating, platforms, price, f
             'error'
           )
         }
+        window.location.reload()
       })
     }
 }
 
-  cart.forEach(e=>{if(e===id){foundCart=true}})
+  cart.forEach(e=>{if(e===id){foundCart = true}})
 
   return (
     <div>
@@ -113,7 +115,7 @@ export default function ProductCard({ id, name, img, rating, platforms, price, f
                 <div>
                   <button disabled={fromApi || isDisabled?true:false} onClick={(e) => handleClick(e)} value="cart" class="btn btn-primary">Cart</button>
                 </div>
-              {foundCart&&<button onClick={(e) => handleClick(e)} type="button" class="btn-close" value="remove" aria-label="Close"></button>}
+              {foundCart && <button onClick={(e) => handleClick(e)} type="button" class="btn-close" value="remove" aria-label="Close"></button>}
             </div>
           </div>
         </div>
