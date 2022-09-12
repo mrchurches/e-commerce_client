@@ -208,10 +208,7 @@ Swal.fire({
 
   return (
 
-    <div className='contenedorUsers1'>
-    <div className='contenedorViejo123'>
-
-
+      <div className='testAdminUser'>
       
       <h2>Users</h2>
 
@@ -305,7 +302,6 @@ Swal.fire({
           </table>
         </div>
       </div>    
-    </div>
     </div>
   )
 };
