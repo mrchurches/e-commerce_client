@@ -19,16 +19,16 @@ const NavBar = () => {
     await logout()
     dispatch(resetUser());
   };
-  
+
   useEffect(() => {
     const token = window.sessionStorage.getItem('token');
-    token && (user === undefined) && dispatch(getUsers(token));   
-}, [])
+    token && dispatch(getUsers(token));
+  }, [])
 
-console.log(user)
+  console.log(user)
 
   return (
-    <nav className="navbar navbar-expand-lg text-light" style={{backgroundColor: "#191D2A", borderRadius: '0'}}>
+    <nav className="navbar navbar-expand-lg text-light" style={{ backgroundColor: "#191D2A", borderRadius: '0' }}>
 
       <div class="container-fluid">
         <Link to="/" className='link'>
@@ -52,7 +52,7 @@ console.log(user)
                 <span class="nav-link active text-light" aria-current="page" >My store</span>
               </li>
             </Link>)}
-            
+
             {user && (<Link to="/wish_list" className='link'>
               <li class="nav-item">
                 <span class="nav-link active text-light" aria-current="page" >Wishlist</span>
@@ -62,7 +62,7 @@ console.log(user)
               <li class="nav-item">
                 <span class="nav-link active text-light" aria-current="page" >Admin</span>
               </li>
-            </Link>:null}
+            </Link> : null}
 
             {location.pathname === "/home" && (
               <Link to="/shopping_cart" className='link'>
@@ -100,7 +100,8 @@ console.log(user)
           </ul>
           {user && (<Link to="/userprofile" className='link'>
             <li class="nav-item">
-              <img class="logo" src={profilePic} />
+              <small class={"navbar-brand text-light"}>{user.username}</small>
+              <img class="logo" src={user.profile_pic} />
             </li>
           </Link>)}
           {location.pathname === "/home" && <SearchBar />}
