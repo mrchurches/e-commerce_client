@@ -100,7 +100,7 @@ const NavBar = () => {
           </ul>
           {user && (<Link to="/userprofile" className='link'>
             <li class="nav-item">
-              <span>{user.username}</span>
+              <small class={"navbar-brand text-light"}>{user.username}</small>
               <img class="logo" src={user.profile_pic} />
             </li>
           </Link>)}
