@@ -13,7 +13,8 @@ export default function ProductCard({ id, name, img, rating, platforms, price, f
   let cart = useSelector(state => state.cart);
   const {user} = useSelector(state => state.users);
   let foundCart = false;   //aca encontraria el juego si esta agregado al carrito
-  //const [foundCart, setFoundCart] = useState(false)
+  // const [foundCart, setFoundCart] = useState(false)
+  const [isRemove, setIsRemove] = useState(false)
   const dispatch = useDispatch()
 
   const swalWithBootstrapButtons = Swal.mixin({
@@ -28,6 +29,10 @@ export default function ProductCard({ id, name, img, rating, platforms, price, f
     cart?.length && localStorage.setItem('cart', JSON.stringify(cart));
     // console.log(localStorage.getItem("cart"))
   }, [cart]);
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [isRemove]);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -61,7 +66,8 @@ export default function ProductCard({ id, name, img, rating, platforms, price, f
             'Your product has been deleted from the cart.',
             'success'
           );
-          dispatch(removeFromCart(id))
+          dispatch(removeFromCart(id));
+          setIsRemove(true);
         } else if (
           /* Read more about handling dismissals below */
           result.dismiss === Swal.DismissReason.cancel
