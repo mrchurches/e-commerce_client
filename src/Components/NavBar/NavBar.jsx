@@ -11,7 +11,7 @@ import profilePic from "../../images/profile21.png"
 
 const NavBar = () => {
   let location = useLocation();
-  const { user } = useSelector(state => state.users);
+  const  user  = useSelector(state => state.users);
   const cart = useSelector(state=>state.cart);
   let dispatch = useDispatch();
 
