@@ -6,17 +6,24 @@ import "./NavBar.css"
 import { logout } from './NavBarHelper'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-import { getUsers, resetUser, addWish } from '../../redux/actions'
+import { getUsers, resetUser, addWish, removeFromCart } from '../../redux/actions'
+
 import profilePic from "../../images/profile21.png"
 
 const NavBar = () => {
   let location = useLocation();
+
+  const { user } = useSelector(state => state.users);
+  const cart = useSelector(state=>state.cart);
   let dispatch = useDispatch();
-  const {user} = useSelector(state => state.users);
 
   async function handleLogout() {
-    window.sessionStorage.removeItem('token')
+    window.sessionStorage.removeItem('token');
     await logout()
+    localStorage.removeItem("cart");
+    if(cart.length>0){
+      cart.forEach(id=>dispatch(removeFromCart(id)))
+    }
     dispatch(resetUser());
     window.location.reload()
   };
