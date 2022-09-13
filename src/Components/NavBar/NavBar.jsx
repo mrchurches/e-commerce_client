@@ -31,59 +31,73 @@ const NavBar = () => {
     <nav className="navbar navbar-expand-md navbar-dark bg-dark text-light" style={{ backgroundColor: "#191D2A", borderRadius: '0' }}>
 
       <div class="container-fluid  mt-2">
-        <Link to="/" className='link'>
+        <NavLink to="/" className='link'>
           <img class="logo " src={logo} />
           <span class="navbar-brand text-light title">GAME-COMMERCE</span>
-        </Link>
+        </NavLink>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-            <Link to="/home" className='link'>
+            <NavLink to="/home" className='link' activeStyle={{
+              fontWeight: "bold",
+            }}>
               <li class="nav-item">
                 <span class="nav-link active text-light" aria-current="page" >Home</span>
               </li>
-            </Link>
+            </NavLink>
 
-            {user && (<Link to="/my_store" className='link'>
+            {user && (<NavLink to="/my_store" className='link' activeStyle={{
+              fontWeight: "bold",
+            }}>
               <li class="nav-item">
                 <span class="nav-link active text-light" aria-current="page" >My store</span>
               </li>
-            </Link>)}
+            </NavLink>)}
 
-            {user && (<Link to="/wish_list" className='link'>
+            {user && (<NavLink to="/wish_list" className='link' activeStyle={{
+              fontWeight: "bold",
+            }}>
               <li class="nav-item">
                 <span class="nav-link active text-light" aria-current="page" >Wishlist</span>
               </li>
-            </Link>)}
-            {user && user.isAdmin ? <Link to="/admin" className='link'>
+            </NavLink>)}
+            {user && user.isAdmin ? <NavLink to="/admin" className='link' activeStyle={{
+              fontWeight: "bold",
+            }}>
               <li class="nav-item">
                 <span class="nav-link active text-light" aria-current="page" >Admin</span>
               </li>
-            </Link> : null}
+            </NavLink> : null}
 
             {location.pathname === "/home" && (
-              <Link to="/shopping_cart" className='link'>
+              <NavLink to="/shopping_cart" className='link' activeStyle={{
+                fontWeight: "bold",
+              }}>
                 <li class="nav-item">
                   <span class="nav-link text-light">Shopping Cart</span>
                 </li>
-              </Link>
+              </NavLink>
             )}
 
             {user ?
-              (<Link to='/home' className='link'>
+              (<NavLink to='/home' className='link' activeStyle={{
+                fontWeight: "bold",
+              }}>
                 <li class="nav-item">
                   <span onClick={() => handleLogout()} class="nav-link text-light">Logout</span>
                 </li>
-              </Link>
+              </NavLink>
               ) :
-              (<Link to="/login" className='link'>
+              (<NavLink to="/login" className='link' activeStyle={{
+                fontWeight: "bold",
+              }}>
                 <li class="nav-item">
                   <span class="nav-link text-light">Login</span>
                 </li>
-              </Link>)
+              </NavLink>)
             }
 
             {/* <li class="nav-item dropdown">
@@ -98,12 +112,14 @@ const NavBar = () => {
           </ul>
         </li> */}
           </ul>
-          {user && (<Link to="/userprofile" className='link'>
+          {user && (<NavLink to="/userprofile" className='link' activeStyle={{
+            fontWeight: "bold",
+          }}>
             <li class="nav-item">
-              <small class={"navbar-brand text-light"}>{user.username}</small>
+              <small class={"navbar-brand text-light username"}>{user.username}</small>
               <img class="logo" src={user.profile_pic} />
             </li>
-          </Link>)}
+          </NavLink>)}
           {location.pathname === "/home" && <SearchBar />}
           {location.pathname.includes('/detail') &&
             <NavLink to="/home">

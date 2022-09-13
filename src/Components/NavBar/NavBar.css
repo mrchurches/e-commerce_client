@@ -23,7 +23,13 @@ ul li small img {
 }
 
 .btn {
-    border-color: rgb(30, 134, 231);
+    border-color: rgb(19, 149, 201);
+}
+
+.btn:hover {
+    border-color: rgb(25, 190, 255);
+    box-shadow: 1px 1px 10px rgb(23, 218, 159);
+    background-color: rgb(11, 177, 199)
 }
 
 .logo {
@@ -32,5 +38,18 @@ ul li small img {
 }
 
 .title {
+    /* font-size: 0.9vw; */
     font-size: 0.9vw;
+}
+
+.title:hover {
+    font-size: 0.9vw;
+    text-shadow: 1px 1px 2px rgb(8, 139, 172);
+    /* color: rgb(3, 3, 3) */
+}
+
+
+.username {
+    list-style-type: none;
+    text-decoration: none;
 }
