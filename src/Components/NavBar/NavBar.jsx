@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import SearchBar from "../SearchBar/SearchBar"
-import logo from "../../images/logo.png"
+import logo from "../../images/logo/sin fondo/logo.png"
 import "./NavBar.css"
 import { logout } from './NavBarHelper'
 import { useSelector } from 'react-redux'
@@ -28,12 +28,12 @@ const NavBar = () => {
   console.log(user)
 
   return (
-    <nav className="navbar navbar-expand-lg text-light" style={{ backgroundColor: "#191D2A", borderRadius: '0' }}>
+    <nav className="navbar navbar-expand-md navbar-dark bg-dark text-light" style={{ backgroundColor: "#191D2A", borderRadius: '0' }}>
 
-      <div class="container-fluid">
+      <div class="container-fluid  mt-2">
         <Link to="/" className='link'>
-          <img class="logo" src={logo} />
-          <span class="navbar-brand text-light">Games E-commerce</span>
+          <img class="logo " src={logo} />
+          <span class="navbar-brand text-light title">GAME-COMMERCE</span>
         </Link>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>

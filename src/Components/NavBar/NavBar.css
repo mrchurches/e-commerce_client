@@ -19,4 +19,18 @@ ul li small img {
     list-style-type: none;
     text-decoration: none;
 
+
+}
+
+.btn {
+    border-color: rgb(30, 134, 231);
+}
+
+.logo {
+    margin-bottom: 8px;
+    padding: 0px;
+}
+
+.title {
+    font-size: 0.9vw;
 }
