@@ -37,7 +37,7 @@ export default function ShoppingCart() {
 
     cartLS && (cartLS.forEach(LS => {
         fg = games.filter(games => LS === games.id);
-        console.log(fg)
+        // console.log(fg)
         if (fg.length > 0) {
             filterGames.push(fg[0])
         }

@@ -2,21 +2,21 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import heart from "../../images/heart.png"
 import { addWish, removeWish } from '../../redux/actions';
-import {addFavorite, deleteFavorite} from './FavoriteButton';
+import { addFavorite, deleteFavorite } from './FavoriteButton';
 import styles from "./FavouriteButton.module.css"
 
 function FavouriteButton({ id }) {
   let dispatch = useDispatch();
   let wishlist = useSelector(state => state.wishlist);
-  let {products} = useSelector(state => state.users);
+  let { products } = useSelector(state => state.users);
   const [brigthness, setBrigthness] = useState("brightness(0.5)")
 
   const token = sessionStorage.getItem('token');
-  
+
   useEffect(() => {
-    let fW = wishlist.filter(e => e === id);
-    if (fW.length > 0) { setBrigthness("") };
-  }, [wishlist, id]);
+    let fW = wishlist?.filter(e => e === id) 
+    if (fW.length > 0 ) { setBrigthness("") };
+  }, [wishlist,products]);
 
   async function handleClick() {
     if (wishlist.includes(id)) {

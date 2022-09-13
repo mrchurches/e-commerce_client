@@ -36,7 +36,8 @@ function Home() {
     }, []);
 
     useEffect(() => {
-        user.products && wishList.length === 0 && user.products.map(e => dispatch(addWish(e.id)))     
+        user.products?.length !== 0 ? user.products?.map(e => dispatch(addWish(e.id))):
+        dispatch(resetWish());
     },[user])
 
     return (

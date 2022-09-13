@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { removeWish, addToCart, removeFromCart } from '../../redux/actions';
+import { removeWish, addToCart, removeFromCart, getUsers } from '../../redux/actions';
 import { deleteFavorite } from '../FavouriteButton/FavoriteButton';
 import Swal from 'sweetalert2';
 
@@ -9,6 +9,7 @@ export default function CardWhishList({ id, name, price }) {
     const wishList = useSelector(state => state.wishlist),
         token = sessionStorage.getItem('token'),
         [inShopCart, setInShopCart] = useState(false),
+        [isClose, setIsClose] = useState(false),
         cart = useSelector(state => state.cart),
         dispatch = useDispatch();
 
@@ -30,13 +31,17 @@ export default function CardWhishList({ id, name, price }) {
             }
         }
         setInShopCart(false)
-    })
+    });
+
+    useEffect(() => {
+        dispatch(getUsers(token))
+    }, [isClose]);
 
     async function handleClose() {
         dispatch(removeWish(id));
         await deleteFavorite(id, token);
-        // window.location.reload()
-    }
+        setIsClose(true)
+    };
 
     function handleShopCart(e) {
         if (e.target.id === 'addShop') {
