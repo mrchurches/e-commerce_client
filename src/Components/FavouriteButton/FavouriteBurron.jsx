@@ -31,7 +31,7 @@ function FavouriteButton({ id }) {
 
   return (
     <div className={styles.button}>
-      <input type="image" onClick={(e) => handleClick(e)} value="favourite" src={heart} class="" style={{ width: "1.5vw", filter: `${brigthness}` }} alt="heart" />
+      <input type="image" onClick={(e) => handleClick(e)} value="favourite" src={heart} class="" style={{ width: "1vw", filter: `${brigthness}` }} alt="heart" />
     </div>
   )
 }
