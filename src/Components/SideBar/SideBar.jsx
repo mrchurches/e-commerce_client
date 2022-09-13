@@ -23,7 +23,7 @@ export default function SideBar (){
   const [minPrice, setMinPrice] = useState(0)
   const [maxPrice, setMaxPrice] = useState(0)
 
-  console.log(maxPrice)
+  // console.log(maxPrice)
 /*   const minprice = (e) => {
     e.preventDefault() 
     setMinPrice(parseInt(e.target.value))

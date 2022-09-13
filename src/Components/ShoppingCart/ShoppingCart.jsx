@@ -37,7 +37,7 @@ export default function ShoppingCart() {
 
     cartLS && (cartLS.forEach(LS => {
         fg = games.filter(games => LS === games.id);
-        console.log(fg)
+        // console.log(fg)
         if (fg.length > 0) {
             filterGames.push(fg[0])
         }
@@ -75,7 +75,7 @@ export default function ShoppingCart() {
 
 
 
-        let string_user_id = JSON.stringify(users.user.id)
+        let string_user_id = JSON.stringify(users.user?.id)
         string_user_id = string_user_id + "/"
         const carro = cart.map(e => e).join('*')
         string_user_id = string_user_id + carro
