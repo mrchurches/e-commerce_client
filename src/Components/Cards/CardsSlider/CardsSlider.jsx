@@ -26,12 +26,12 @@ function CardSlider({platforms, i}) {
       <div className='carr' class="carousel-inner">
         { platforms && platforms.map((product, i) => (
           i < 3 ? 
-          <div class={`carousel-item ${i === 0 ? "active" : ""}`} >
+          <div key={i} class={`carousel-item ${i === 0 ? "active" : ""}`} >
                   <span style={{display: 'none'}}>{i === 1 ? i*=3 : ''}{i === 2 ? i*=3 : ''}</span>
                     <div className={styles.slideCardContainer}>
                     <div className={styles.slideCard}>
                         <ProductCard
-                            key={i}
+                            
                             id={platforms[i].id}
                             name={platforms[i].name}
                             img={platforms[i].background_image}

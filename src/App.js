@@ -28,6 +28,7 @@ import Success from './Components/SuccessfulPurchase/Success';
 
 function App() {
 let users = useSelector(state=>state.users);
+// console.log(users);
   return (
     <div className="App">
         <Route path="/" component={NavBar}/>

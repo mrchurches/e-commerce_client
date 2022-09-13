@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import SearchBar from "../SearchBar/SearchBar"
 import logo from "../../images/logo.png"
@@ -13,7 +13,8 @@ const NavBar = () => {
   let location = useLocation();
   let dispatch = useDispatch();
   const {user} = useSelector(state => state.users);
-
+const [show, setShow] = useState(false);
+const [expanded, setExpanded] = useState('fa');
   async function handleLogout() {
     window.sessionStorage.removeItem('token')
     await logout()
@@ -32,18 +33,22 @@ if (user && user.isAdmin) {
   isAdmin = true;
 }
 
+  function handleClick(){
+   show ? setShow(false): setShow(true)
+  }
+
   return (
     <nav className="navbar navbar-expand-lg text-light" style={{ backgroundColor: "#191D2A", borderRadius: '0' }}>
 
       <div class="container-fluid">
         <Link to="/" className='link'>
-          <img class="logo" src={logo} />
+          <img class="logo"  src={logo} />
           <span class="navbar-brand text-light">Games E-commerce</span>
         </Link>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button onClick={handleClick} class="navbar-toggler" type="button" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div  class={show ? "collapse navbar-collapse show " : "collapse navbar-collapse" }id="navbarSupportedContent"> 
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
             <Link to="/home" className='link'>

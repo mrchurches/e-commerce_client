@@ -31,7 +31,7 @@ function CardForSale({forSale}) {
         {
           forSale?.map((e, i) => {
             return (
-              <div class={`carousel-item ${i === 0 ? "active" : ""}`}>
+              <div key={i} class={`carousel-item ${i === 0 ? "active" : ""}`}>
                 <Link to={`/detail/${e.id}`}> 
                 <img src={e?.background_image} class="d-block w-100 rounded" style={{maxHeight: '40rem', maxWidth: '100vw'}} alt="..." />
                 </Link>
