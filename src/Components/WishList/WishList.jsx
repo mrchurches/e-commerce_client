@@ -1,38 +1,30 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { addWish } from '../../redux/actions';
+import Spinner from '../Spinner/Spinner';
+import CardWhishList from './CardWhishList';
+import NotCardWhishList from './NotCardWhishList';
 
 const WishList = () => {
+  const wishList = useSelector(state => state.wishlist),
+    { products } = useSelector(state => state.users),
+    { user } = useSelector(state => state.users),
+    dispatch = useDispatch();
+
+  useEffect(() => {
+    products && wishList.length === 0 && products.map(e => dispatch(addWish(e.id)));
+  }, [products]);
+
   return (
-    <div class="d-flex p-2  justify-content-center">
-    <div class="list-group align-self-center d-grid gap-3" >
-      <a href="#" class="list-group-item list-group-item-action" aria-current="true">
-        <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1">Assesins creed</h5>
-          <small>3 days ago</small>
-          <button type="button" class="btn-close" aria-label="Close"></button>
-        </div>
-        <p class="mb-1">Some placeholder content in a paragraph.</p>
-        <small>And some small print.</small>
-      </a>
-      <a href="#" class="list-group-item list-group-item-action">
-        <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1">Crash</h5>
-          <small class="text-muted">5 days ago</small>
-          <button type="button" class="btn-close" aria-label="Close"></button>
-        </div>
-        <p class="mb-1">Some placeholder content in a paragraph.</p>
-        <small class="text-muted">And some muted small print.</small>
-      </a>
-      <a href="#" class="list-group-item list-group-item-action">
-        <div class="d-flex w-100 justify-content-between">
-          <h5 class="mb-1">Forza horizon</h5>
-          <small class="text-muted">1 month ago</small>
-          <button type="button" class="btn-close" aria-label="Close"></button>
-        </div>
-        <p class="mb-1">Some placeholder content in a paragraph.</p>
-        <small class="text-muted">And some muted small print.</small>
-      </a>
+    <div class="d-flex p-2 justify-content-center">
+      <div class="list-group align-self-center d-grid gap-3">
+        {user === undefined ? <Spinner /> :
+          products.length ? products?.map(e => {
+            return <CardWhishList key={e.id} id={e['wishList.ProductId'] ? e['wishList.ProductId'] : e['Favorites.ProductId']} name={e.name} price={e.price} background_image={e.background_image} />
+          }) :
+            <NotCardWhishList />}
+      </div>
     </div>
-  </div>
   )
 }
 

@@ -45,13 +45,11 @@ const Login = () => {
     } 
       else if (userExist.isBanned) {
       setUserGet((i) => ({ ...i, userBan: true }));
-
-      //  } else if (!userExist.isVerified) {
-      //    setUserGet((i) => ({ ...i, isVerified: true }));
-
+    // } else if (!userExist.isVerified) {
+    //   setUserGet((i) => ({ ...i, isVerified: true }));
     } else {
       const info = await postUsers(user);
-      info.message === 'Not Autheticaded' && setUserGet((i) => ({ ...i, failedLog: true }));
+      info.message?.search('login') && setUserGet((i) => ({ ...i, failedLog: true }));
       info.token && dispatch(getUsers(info.token)) && window.sessionStorage.setItem('token', info.token);
     }
   }

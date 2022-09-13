@@ -22,7 +22,8 @@ export default function ShoppingCart() {
         dispatch(getAllProducts())
         let cartLS2 = JSON.parse(localStorage.getItem("cart"));
         //localStorage.setItem('cart',JSON.stringify(cart));
-        if (cart.length < 1) {
+        if (cart.length < 1 && cartLS2 !== null) {
+            console.log(cartLS2)
             cartLS2.forEach(e => dispatch(addToCart(e)));
         }
         if (cartLS2) {
@@ -35,9 +36,9 @@ export default function ShoppingCart() {
     }, [cart])
 
 
-    cartLS && (cartLS.forEach(LS => {
+    cartLS !== undefined && (cartLS.forEach(LS => {
         fg = games.filter(games => LS === games.id);
-        console.log(fg)
+        // console.log(fg)
         if (fg.length > 0) {
             filterGames.push(fg[0])
         }
@@ -74,16 +75,19 @@ export default function ShoppingCart() {
 
 
 
+    let string_user_id;
+        if(users.user){
+            string_user_id = JSON.stringify(users.user.id)
+            string_user_id = string_user_id + "/"
+            const carro = cart.map(e => e).join('*')
+            string_user_id = string_user_id + carro
+        }
 
-        let string_user_id = JSON.stringify(users.user.id)
-        string_user_id = string_user_id + "/"
-        const carro = cart.map(e => e).join('*')
-        string_user_id = string_user_id + carro
 
 
         forCheckout = {
             items: gamesCO,
-            external_reference: `${string_user_id}`, //el id de cada orden
+            external_reference: `${users.user?string_user_id:null}`, //el id de cada orden
             back_urls: {
                 "success": `${process.env.REACT_APP_URL}cart/feedback`,
                 "failure": `${process.env.REACT_APP_URL}cart/feedback`, //cambiar a mensaje de error
