@@ -6,12 +6,14 @@ import "./NavBar.css"
 import { logout } from './NavBarHelper'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-import { getUsers, removeFromCart, resetUser } from '../../redux/actions'
+import { getUsers, resetUser, addWish, removeFromCart } from '../../redux/actions'
+
 import profilePic from "../../images/profile21.png"
 
 const NavBar = () => {
   let location = useLocation();
-  const  user  = useSelector(state => state.users);
+
+  const { user } = useSelector(state => state.users);
   const cart = useSelector(state=>state.cart);
   let dispatch = useDispatch();
 
@@ -23,6 +25,7 @@ const NavBar = () => {
       cart.forEach(id=>dispatch(removeFromCart(id)))
     }
     dispatch(resetUser());
+    window.location.reload()
   };
 
   useEffect(() => {
