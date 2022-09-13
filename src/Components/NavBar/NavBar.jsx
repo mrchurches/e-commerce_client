@@ -6,18 +6,25 @@ import "./NavBar.css"
 import { logout } from './NavBarHelper'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-import { getUsers, resetUser, addWish } from '../../redux/actions'
+import { getUsers, resetUser, addWish, removeFromCart } from '../../redux/actions'
+
 import profilePic from "../../images/profile21.png"
 
 const NavBar = () => {
   let location = useLocation();
+
+  const { user } = useSelector(state => state.users);
+  const cart = useSelector(state => state.cart);
   let dispatch = useDispatch();
-  const {user} = useSelector(state => state.users);
-const [show, setShow] = useState(false);
-const [expanded, setExpanded] = useState('fa');
+  const [show, setShow] = useState(false);
+
   async function handleLogout() {
-    window.sessionStorage.removeItem('token')
+    window.sessionStorage.removeItem('token');
     await logout()
+    localStorage.removeItem("cart");
+    if (cart.length > 0) {
+      cart.forEach(id => dispatch(removeFromCart(id)))
+    }
     dispatch(resetUser());
     window.location.reload()
   };
@@ -27,14 +34,14 @@ const [expanded, setExpanded] = useState('fa');
     token && dispatch(getUsers(token));
   }, [])
 
-var isAdmin = false;
+  var isAdmin = false;
 
-if (user && user.isAdmin) {
-  isAdmin = true;
-}
+  if (user && user.isAdmin) {
+    isAdmin = true;
+  }
 
-  function handleClick(){
-   show ? setShow(false): setShow(true)
+  function handleClick() {
+    show ? setShow(false) : setShow(true)
   }
 
   return (
@@ -42,13 +49,13 @@ if (user && user.isAdmin) {
 
       <div class="container-fluid">
         <Link to="/" className='link'>
-          <img class="logo"  src={logo} />
+          <img class="logo p-3 py-4 mb-2 " src={logo} />
           <span class="navbar-brand text-light">Games E-commerce</span>
         </Link>
         <button onClick={handleClick} class="navbar-toggler" type="button" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div  class={show ? "collapse navbar-collapse show " : "collapse navbar-collapse" }id="navbarSupportedContent"> 
+        <div class={show ? "collapse navbar-collapse show " : "collapse navbar-collapse"} id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
             <Link to="/home" className='link'>
@@ -62,7 +69,7 @@ if (user && user.isAdmin) {
                 <span class="nav-link active text-light" aria-current="page" >My store</span>
               </li>
             </Link>)}
-            
+
             {user && !user.isAdmin && (<Link to="/wish_list" className='link'>
               <li class="nav-item">
                 <span class="nav-link active text-light" aria-current="page" >Wishlist</span>
@@ -74,13 +81,13 @@ if (user && user.isAdmin) {
               </li>
             </Link> : null}
 
-            { !isAdmin  ?
+            {!isAdmin ?
               <Link to="/shopping_cart" className='link'>
                 <li class="nav-item">
                   <span class="nav-link text-light">Shopping Cart</span>
                 </li>
               </Link>
-            : null }
+              : null}
 
             {user ?
               (<Link to='/home' className='link'>
