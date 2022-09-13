@@ -28,10 +28,8 @@ import { GET_ALL_PRODUCTS,
     PUT_USER,
     FILTRED_PRICE,
     GET_USER_ORDERS,
-    CLEAR_CART
-
-
-
+    CLEAR_CART,
+    RESET_WISH_LIST
    } from "./actions.js";
 import { products } from "./products.js";
 /* import { products } from "./products.js" */
@@ -273,7 +271,11 @@ switch(action.type){
             ...state,
             wishlist: wishF
         };
-
+    case RESET_WISH_LIST:
+        return{
+            ...state,
+            wishlist:[]
+        };
     case GET_ALL_USERS: 
         return {
             ...state,

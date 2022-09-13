@@ -1,8 +1,6 @@
-import React, { useState } from 'react'
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux'
-import { getAllProducts, setCurrentPage, getUsers } from '../../redux/actions';
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector} from 'react-redux';
+import { getAllProducts, setCurrentPage, getUsers, addWish, resetWish } from '../../redux/actions';
 import ProductCard from '../Cards/ProductCard/ProductCard';
 import Pagination from '../Pagination/Pagination';
 import SideBar from '../SideBar/SideBar';
@@ -17,8 +15,11 @@ function Home() {
     let [gamesPerPage, setgamesPerPage] = useState(10);
     const indexOfLastGame = currentPage * gamesPerPage;
     const indexOfFirstGame = indexOfLastGame - gamesPerPage;
-    const currentGames = searchered.length ? searchered.slice(indexOfFirstGame, indexOfLastGame) : games.slice(indexOfFirstGame, indexOfLastGame),
-        { user } = useSelector((state) => state.users)
+    const currentGames = searchered.length ? searchered.slice(indexOfFirstGame, indexOfLastGame) : games.slice(indexOfFirstGame, indexOfLastGame);
+
+    const user = useSelector((state) => state.users),
+        wishList = useSelector(state => state.wishlist),
+        token = window.sessionStorage.getItem('token');
     // const [show, setShow] = useState(false);
 
     const paginado = (number) => {
@@ -26,10 +27,18 @@ function Home() {
     }
 
     useEffect(() => {
-        const token = window.sessionStorage.getItem('token');
         token && dispatch(getUsers(token));
-        dispatch(getAllProducts())
-    }, [])
+        dispatch(getAllProducts());
+    }, []);
+
+    useEffect(() => {
+        return () => dispatch(getUsers(token));
+    }, []);
+
+    useEffect(() => {
+        user.products?.length !== 0 ? user.products?.map(e => dispatch(addWish(e.id))):
+        dispatch(resetWish());
+    },[user])
 
     return (
         <div class="d-flex">
@@ -41,7 +50,7 @@ function Home() {
                 <Filters />
                 <div class="row pb-5 mb-4" className="allCardsConteiner" >
                     {currentGames.length > 0 && currentGames.map(e => (
-                        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+                        <div key={e.id} class="col-lg-3 col-md-6 mb-4 mb-lg-0">
                             <ProductCard name={e.name} id={e.id} img={e.background_image} rating={e.rating} platform={e.platform} price={e.price} fromApi={e.fromApi} isDisabled={e.isDisabled} />
                         </div>
                     ))}
