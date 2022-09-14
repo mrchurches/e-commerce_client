@@ -6,7 +6,11 @@ import SideBar from '../SideBar/SideBar.jsx';
 import CreateUser from '../CreateUser/CreateUser';
 import Login from '../Login/Login';
 import ShoppingCart from '../ShoppingCart/ShoppingCart';
-
+import MyChatBot from '../Chatbot/chatbot.jsx';
+import Chatbot from 'react-chatbot-kit';
+import config from '../Chatbot/Config/config.js';
+import MessageParser from '../Chatbot/MessageParser/MessageParser.jsx';
+import ActionProvider from '../Chatbot/ActionProvider/ActionProvider.jsx';
 
 export default function LandingPage(){
  
@@ -18,6 +22,11 @@ export default function LandingPage(){
       {/* {location.pathname === "/" && <SideBar/>} */}
       {location.pathname === "/" && <CardContainer />}
   </div>
+      <Chatbot
+        config={config}
+        messageParser={MessageParser}
+        actionProvider={ActionProvider}
+      />
   </div>
 )
 }

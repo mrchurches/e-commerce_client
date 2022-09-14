@@ -15,6 +15,8 @@ import WishList from "./Components/WishList/WishList.jsx";
 import UserProfile from "./Components/UserProfile/UserProfile.jsx";
 import NotFound from "./Components/NotFound/NotFound.jsx";
 import Pasarela from "./Components/Checkout/Checkout";
+import Chatbot from 'react-chatbot-kit'
+import 'react-chatbot-kit/build/main.css'
 
 import Admin from './Components/Admin/Admin';
 
