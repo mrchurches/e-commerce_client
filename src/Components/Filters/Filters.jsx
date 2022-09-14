@@ -73,10 +73,10 @@ function Filters() {
 };
 
   return (
-    <div class="d-flex justify-content-end" style={{marginTop: '15px', marginBottom: '15px'}}>
+    <div class="d-flex justify-content-end" style={{marginTop: '1rem', marginBottom: '15px', marginRight:'3em'}}>
       <div className={styles.posicion}>
         Sort by:
-        <select  onChange={(e) => handlerChange(e)}> {/* propuesta rango de precio */}
+        <select class="justify-content-md-center"  onChange={(e) => handlerChange(e)}> {/* propuesta rango de precio */}
         <option disabled={true} value="default">Order by name</option>
           <option value="A-Z">A-Z</option>
           <option value="Z-A">Z-A</option>

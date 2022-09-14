@@ -49,7 +49,7 @@ const NavBar = () => {
 
       <div class="container-fluid">
         <Link to="/" className='link'>
-          <img class="logo p-3 py-4 mb-2 " src={logo} />
+          <img class="logo img-fluid" src={logo} />
           <span class="navbar-brand text-light">Games E-commerce</span>
         </Link>
         <button onClick={handleClick} class="navbar-toggler" type="button" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,13 +57,11 @@ const NavBar = () => {
         </button>
         <div class={show ? "collapse navbar-collapse show " : "collapse navbar-collapse"} id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
             <Link to="/home" className='link'>
               <li class="nav-item">
                 <span class="nav-link active text-light" aria-current="page" >Home</span>
               </li>
             </Link>
-
             {user && !user.isAdmin && (<Link to="/my_store" className='link'>
               <li class="nav-item">
                 <span class="nav-link active text-light" aria-current="page" >My store</span>
