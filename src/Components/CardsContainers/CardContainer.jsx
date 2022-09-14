@@ -8,6 +8,7 @@ import styles from './cardsContainer.module.css'
 import { getAllProducts, getUsedGenres, getUsedPlatforms } from '../../redux/actions.js'
 import { Link } from 'react-router-dom'
 import Spinner from '../Spinner/Spinner.jsx'
+import CardLanding from '../CardLanding/CardLanding.jsx'
 
 const CardContainer = () => {
 

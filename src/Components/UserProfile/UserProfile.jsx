@@ -142,7 +142,10 @@ const CreateUser = () => {
 
     async function handleSubmit(e) {
         e.preventDefault()
+        //manda "user" al back
         await editUser(user)
+
+        //manda "user" a redux
         dispatch(putUser(user))
     }
 
@@ -180,20 +183,23 @@ const CreateUser = () => {
     let [confirmNewPassword, setConfirmNewPassword] = useState("")
 
     async function handlePasswordChange(e) {
-        // setOldPassword(e.target.value)
-        let oldPass = await bcrypt.compare(e.target.value, user.password)
-        console.log(" 🚀 ~ file: UserProfile.jsx ~ line 164 ~ handlePasswordChange ~ oldPass", oldPass)
 
+        let oldPass = await bcrypt.compare(oldPassword, user.password)
+        console.log(" 🚀 ~ file: UserProfile.jsx ~ line 164 ~ handlePasswordChange ~ oldPass", oldPass)
+        let confirmation = validatedFunctions.password(newPassword)
+        let newConfirmedPass = "";
         if (oldPass === true) {
             if (newPassword !== "" && confirmNewPassword !== "") {
-                let confirmation = validatedFunctions.password(newPassword)
                 if (confirmation) {
                     if (newPassword === confirmNewPassword) {
                         let hashedPassword = bcrypt.hashSync(newPassword, process.env.REACT_APP_KEY_SALT)
-                        user.password = hashedPassword
+                        newConfirmedPass = hashedPassword
                     }
                 }
             }
+        }
+        if (confirmation && newConfirmedPass !== "") {
+            user.password = newConfirmedPass
         }
     }
     let [disabledEmail, setDisabledEmail] = useState(true)
@@ -265,7 +271,7 @@ const CreateUser = () => {
                             value={newPassword}
                             name="password"
                             id="password"
-                            class={`form-control ${isChange.password && !validate.password && "is-invalid"}`}
+                            class={`form-control ${isChange.password && !validate.password(newPassword) && "is-invalid"}`}
                             placeholder="New Password"
                             required=""
                             disabled={disabledNewPassword} />

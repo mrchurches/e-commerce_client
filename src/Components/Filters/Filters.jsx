@@ -75,15 +75,15 @@ function Filters() {
   return (
     <div class="d-flex justify-content-end" style={{marginTop: '15px', marginBottom: '15px'}}>
       <div className={styles.posicion}>
-        Sort by:
-        <select  onChange={(e) => handlerChange(e)}> {/* propuesta rango de precio */}
-        <option disabled={true} value="default">Order by name</option>
+        {/* Sort by: */}
+        <select onChange={(e) => handlerChange(e)}> {/* propuesta rango de precio */}
+        <option disabled={false} value="default">Order by...</option>
+          <option value="Highest_Price">Price: Higher to lower</option>
+          <option value="Lowest_Price">Price: Lower to Higher</option>
+          <option value="higher">Rating: Higher to lower</option>
+          <option value="lower">Rating: Lower to Higher</option>
           <option value="A-Z">A-Z</option>
           <option value="Z-A">Z-A</option>
-          <option value="higher">Higher Rating</option>
-          <option value="lower">Lower Rating</option>
-          <option value="Lowest_Price">Lowest Price</option>
-          <option value="Highest_Price">Highest Price</option>
         </select>
       </div>
       <div>

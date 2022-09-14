@@ -1,8 +1,14 @@
 select{
     margin-left: 5px;
-    margin-right: 5px;
+    margin-right: 50px;
+    background-color: #69717A;
+    color: rgb(206, 201, 201);
+    border: none;
+    color: black;
+    font-size: small;
+
 }
 .posicion{
     display: flex;
-    
+    color: black
 }
