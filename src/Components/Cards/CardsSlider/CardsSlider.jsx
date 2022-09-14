@@ -3,9 +3,6 @@ import { Link } from 'react-router-dom'
 import styles from './CardSlider.module.css'
 import ProductCard from '../ProductCard/ProductCard'
 
-console.log(window.screen.width < 1200)
-console.log(window.screen.width < 720)
-
 function CardSlider({ platforms, i }) {
   return (
     <div className={styles.containerCarr} class="d-flex flex-row justify-content-center align-items-center mt-3">
