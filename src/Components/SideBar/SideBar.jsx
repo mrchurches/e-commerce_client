@@ -23,7 +23,7 @@ export default function SideBar (){
   const [minPrice, setMinPrice] = useState(0)
   const [maxPrice, setMaxPrice] = useState(0)
 
-  console.log(maxPrice)
+  // console.log(maxPrice)
 /*   const minprice = (e) => {
     e.preventDefault() 
     setMinPrice(parseInt(e.target.value))
@@ -84,7 +84,7 @@ function applyPrice(e) {
   return (
     <div >
         <div>
-          <select class="form-select" aria-label="Default select example" style={{ marginTop: '15px', marginRight: 'auto', marginLeft: 'auto'}} onChange={(e) => handleFilterByGenre(e)}>
+          <select class="texto btp" aria-label="Default select example" style={{ marginTop: '15px', marginRight: 'auto', marginLeft: 'auto'}} onChange={(e) => handleFilterByGenre(e)}>
             <option value="default">Genres</option>
             {genres.length && genres.map(e => (
               <option key={e.name} value={e}>{e}</option>
@@ -92,7 +92,7 @@ function applyPrice(e) {
           </select>
         </div>
         <div>
-          <select  class="form-select" aria-label="Default select example" style={{ marginTop: '15px', marginRight: 'auto', marginLeft: 'auto'}} onChange={(e) => handleFilterByPlatforms(e)}>
+          <select  class="texto btp" aria-label="Default select example" style={{ marginTop: '15px', marginRight: 'auto', marginLeft: 'auto'}} onChange={(e) => handleFilterByPlatforms(e)}>
             <option value="default">Platforms</option>
             {platforms.length && platforms.map(e => (
               <option key={e.name} value={e}>{e}</option>
@@ -100,7 +100,7 @@ function applyPrice(e) {
           </select>
         </div>
         <div>
-          <select class="form-select" aria-label="Default select example" style={{ marginTop: '15px', marginRight: 'auto', marginLeft: 'auto'}} onChange={(e) => esrbContent(e)}>
+          <select class="select texto btp" aria-label="Default select example" style={{ marginTop: '15px', marginRight: 'auto', marginLeft: 'auto'}} onChange={(e) => esrbContent(e)}>
             <option value="default">ESRB Rating</option>
             {esrb?.map((esrb, index) => (
               <option key={index} value={esrb}> {esrb} </option>
@@ -108,9 +108,9 @@ function applyPrice(e) {
           </select>
         </div>
 
-        <div>
+        <div style={{ width: "160px"}}>
         { maxPrice > 1 ? <label for='rangeMax' class='text-white form label'> Under ${maxPrice - 1} </label> : <label for='rangeMax' class='text-white form label'> ${minPrice}</label>}
-          <input id='rangeMax' class='form-range' disabled={false} value={maxPrice} onChange={(e) => hanleChange(e)} type="range" min={min} max={max} step='10'/>
+          <input  id='rangeMax' class='form-range'  style={{backgroundColor: "#69717A"}} disabled={false} value={maxPrice} onChange={(e) => hanleChange(e)} type="range" min={min} max={max} step='10'/>
         </div>
 
         {/* <div>
@@ -118,10 +118,11 @@ function applyPrice(e) {
           <input id='rangeMin' class='form-range' onChange={(e) => minprice(e)} type="range" min={min} max={maxPrice} step='1'/>
         </div> */}
 
-        <button class="btn  bg-white w-100" style={{marginTop: '15px', marginRight: 'auto', marginLeft: 'auto'}} onClick={applyPrice}>Apply Price</button>
+        <button class="texto btp" style={{marginTop: '15px', marginRight: 'auto', marginLeft: 'auto'}} onClick={applyPrice}>Apply Price</button>
+
 
         <div className="clear">
-        <button class="btn  bg-white w-100" style={{marginTop: '15px', marginRight: 'auto', marginLeft: 'auto'}} onClick={handleClick}>Reset Filters</button>
+        <button class="texto btp" style={{marginTop: '15px', marginRight: 'auto', marginLeft: 'auto'}} onClick={handleClick}>Reset Filters</button>
       </div>
     </div>
     )

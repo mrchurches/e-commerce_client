@@ -10,6 +10,17 @@
     height: 100%;
 }
 
-.textColor {
-    color: white;
+.texto {
+    font-size: small;
+    background-color: #69717A;
+    border: none;
+    /* color:white; */
+    padding: 5px;
+}
+
+
+.btp {
+    width: 158px;
+    justify-content: start;
+    color: black;
 }

@@ -1,7 +1,10 @@
 .allCardsConteiner {
+    background-color: transparent;
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
-    /* background-color: black; */
-    width: 90vw;
-}
+    flex-direction: center;
+    /* justify-content: left; */
+    width: 100%;
+    margin-left: 63px;
+   
+}   

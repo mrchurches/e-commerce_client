@@ -6,18 +6,26 @@ import "./NavBar.css"
 import { logout } from './NavBarHelper'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-import { getUsers, resetUser } from '../../redux/actions'
+import { getUsers, resetUser, addWish, removeFromCart } from '../../redux/actions'
+
 import profilePic from "../../images/profile21.png"
 
 const NavBar = () => {
   let location = useLocation();
+
   const { user } = useSelector(state => state.users);
+  const cart = useSelector(state => state.cart);
   let dispatch = useDispatch();
 
   async function handleLogout() {
-    window.sessionStorage.removeItem('token')
+    window.sessionStorage.removeItem('token');
     await logout()
+    localStorage.removeItem("cart");
+    if (cart.length > 0) {
+      cart.forEach(id => dispatch(removeFromCart(id)))
+    }
     dispatch(resetUser());
+    window.location.reload()
   };
 
   useEffect(() => {
@@ -25,7 +33,11 @@ const NavBar = () => {
     token && dispatch(getUsers(token));
   }, [])
 
-  console.log(user)
+  var isAdmin = false;
+
+  if (user && user.isAdmin) {
+    isAdmin = true;
+  }
 
   return (
     <nav className="navbar navbar-expand-md navbar-dark bg-dark text-light" style={{ backgroundColor: "#191D2A", borderRadius: '0' }}>
@@ -49,21 +61,24 @@ const NavBar = () => {
               </li>
             </NavLink>
 
-            {user && (<NavLink to="/my_store" className='link' activeStyle={{
-              fontWeight: "bold",
-            }}>
-              <li class="nav-item">
-                <span class="nav-link active text-light" aria-current="page" >My store</span>
-              </li>
-            </NavLink>)}
+            {
+              user && !user.isAdmin && (<NavLink to="/my_store" className='link' activeStyle={{
+                fontWeight: "bold",
+              }}>
+                <li class="nav-item">
+                  <span class="nav-link active text-light" aria-current="page" >My store</span>
+                </li>
+              </NavLink>)}
 
-            {user && (<NavLink to="/wish_list" className='link' activeStyle={{
-              fontWeight: "bold",
-            }}>
-              <li class="nav-item">
-                <span class="nav-link active text-light" aria-current="page" >Wishlist</span>
-              </li>
-            </NavLink>)}
+            {
+              user && !user.isAdmin && (<NavLink to="/wish_list" className='link' activeStyle={{
+                fontWeight: "bold",
+              }}>
+
+                <li class="nav-item">
+                  <span class="nav-link active text-light" aria-current="page" >Wishlist</span>
+                </li>
+              </NavLink>)}
             {user && user.isAdmin ? <NavLink to="/admin" className='link' activeStyle={{
               fontWeight: "bold",
             }}>
@@ -72,15 +87,17 @@ const NavBar = () => {
               </li>
             </NavLink> : null}
 
-            {location.pathname === "/home" && (
-              <NavLink to="/shopping_cart" className='link' activeStyle={{
+
+            {!isAdmin ?
+              <Link to="/shopping_cart" className='link' activeStyle={{
                 fontWeight: "bold",
               }}>
                 <li class="nav-item">
                   <span class="nav-link text-light">Shopping Cart</span>
                 </li>
-              </NavLink>
-            )}
+              </Link>
+              : null}
+
 
             {user ?
               (<NavLink to='/home' className='link' activeStyle={{
