@@ -1,11 +1,11 @@
-import "./ShoppingCart.css";
+
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState } from 'react'
 import Checkout from '../Checkout/Checkout'
-import ProductCard from "../Cards/ProductCard/ProductCard";
-import { addToCart, getAllProducts } from "../../redux/actions";
+import { addToCart, getAllProducts, removeFromCart } from "../../redux/actions";
 import { Link } from "react-router-dom";
-import { REACT_APP_URL } from "../CreateUser/CreateUserHelper";
+import CartCard from "./CartCard";
+import { RandomHelper } from "./RandomHelper";
 
 export default function ShoppingCart() {
     let cart = useSelector(state => state.cart);
@@ -17,7 +17,8 @@ export default function ShoppingCart() {
     let gamesCO;
     let forCheckout;
     let dispatch = useDispatch();
-
+    let totalPrice=0;
+    
     useEffect(() => {
         dispatch(getAllProducts())
         let cartLS2 = JSON.parse(localStorage.getItem("cart"));
@@ -95,37 +96,86 @@ export default function ShoppingCart() {
             },
             auto_return: "approved",
         };
+
+        filterGames.forEach(e=>
+            totalPrice = totalPrice + e.price
+            )
+
     };
 
-    console.log(forCheckout)
+    function handleAllRemove(){
+        cart.forEach(e=> dispatch(removeFromCart(e)));
+        window.localStorage.clear();
+        window.location.reload();
+    }
 
+    console.log(filterGames)
     return (
-        <div class="d-flex flex-column vh-100  align-items-center">
-            <div class="alert alert-dark w-50">
+        <div class="d-flex flex-column vh-100 align-items-center " >
+            <div class="alert alert-dark w-50 m-3">
                 <h1>My shopping cart</h1>
             </div>
-            <div class="d-flex flex-row justify-content-evenly flex-wrap">
-                {filterGames.length > 0 ?
-                    (filterGames.map(e => (
-                        <div class="d-flex m-2">
-                            <ProductCard id={e.id} name={e.name} img={e.background_image} rating={e.rating} platforms={e.platforms} price={e.price}
-                                inStock={e.inStock} />
-                        </div>
-                    ))) : <h4>No products yet... </h4>
-                }
+
+            {/* Contendio del medio */}
+            <div class="d-flex flex-row w-50  justify-content-center">
+                {/* <div class="d-flex flex-row justify-content-evenly flex-wrap"> */}
+                <div class="d-flex flex-column">
+                    {filterGames.length > 0 ?
+                        (filterGames.map(e => (
+                            <div class="d-flex m-2 w-100">
+                                <CartCard
+                                id={e.id} name={e.name} img={e.background_image}
+                                rating={e.rating} platforms={e.platforms} price={e.price}
+                                    />
+                            </div>
+                        ))) : <div class="w-100 m-3" style={{backgroundColor: "#212529"}}> <h4>No products yet... </h4> </div>
+                    }
+                </div>
+                <div>
+
+                </div>
             </div>
+            {/*FIN DEL CONTENDIO DEL MEDIO*/}
+            <div class="d-flex flex-column justify-content-between w-50 p-3" style={{backgroundColor: "#212529"}}>
+                <div class="d-flex flex-row justify-content-between">
+                    <div>
+                        <h4>Estimated total</h4>
+                    </div>
+                    <div>
+                        <h4>$ {totalPrice}</h4>
+                    </div>
+                </div>
             <div>
                 {users.user ?
                     <div>
-                        <h1 class="text-light">Pay with MercadoPago</h1>
+                        {filterGames.length>0 && <h2 class="text-light">Pay with MercadoPago</h2>}
                         {forCheckout && <Checkout games={forCheckout} />}
                     </div> :
                     <Link to="/login">
-                        <h2>You must be logged in..</h2>
+                       <button type="button" class="btn btn-secondary">You must be logged in to purchase</button>
                     </Link>
 
                 }
 
+            </div>
+            </div>
+            <div class="d-flex">
+                <div>
+                    <Link to="/home">
+                        <button type="button" class="btn btn-primary">Continue shopping!</button>
+                    </Link>
+                </div>
+                <div>
+                <button onClick={(e)=> handleAllRemove(e)} type="button" class="btn btn-primary">Remove all items</button>
+                </div>
+            </div>
+            <div>
+                <div class="p-4">
+                    <h4>Maybe you're interested in...</h4>
+                </div>
+                <div class = "d-flex flex-row flex-wrap">
+                    <RandomHelper games={games}/>
+                </div>
             </div>
         </div>
     )
