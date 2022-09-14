@@ -159,7 +159,7 @@ export default function ShoppingCart() {
 
             </div>
             </div>
-            <div class="d-flex">
+            <div class="d-flex p-2">
                 <div>
                     <Link to="/home">
                         <button type="button" class="btn btn-primary">Continue shopping!</button>
@@ -169,7 +169,7 @@ export default function ShoppingCart() {
                 <button onClick={(e)=> handleAllRemove(e)} type="button" class="btn btn-primary">Remove all items</button>
                 </div>
             </div>
-            <div>
+            <div class="d-flex flex-column justify-content-center align-items-center vw100 w-100">
                 <div class="p-4">
                     <h4>Maybe you're interested in...</h4>
                 </div>
