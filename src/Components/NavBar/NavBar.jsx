@@ -52,7 +52,7 @@ const NavBar = () => {
           <img class="logo img-fluid" src={logo} />
           <span class="navbar-brand text-light">Games E-commerce</span>
         </Link>
-        <button onClick={handleClick} class="navbar-toggler" type="button" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button onClick={() => handleClick()} class="navbar-toggler " type="button" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class={show ? "collapse navbar-collapse show " : "collapse navbar-collapse"} id="navbarSupportedContent">

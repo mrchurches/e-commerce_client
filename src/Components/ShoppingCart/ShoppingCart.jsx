@@ -17,7 +17,7 @@ export default function ShoppingCart() {
     let gamesCO;
     let forCheckout;
     let dispatch = useDispatch();
-
+    
     useEffect(() => {
         dispatch(getAllProducts())
         let cartLS2 = JSON.parse(localStorage.getItem("cart"));

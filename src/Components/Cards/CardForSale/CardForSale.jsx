@@ -6,7 +6,7 @@ import styles from './CardForSale.module.css'
 
 function CardForSale({forSale}) {
   return (
-    <div className={styles.containerCarr} class="d-flex justify-content-center align-items-center mt-3">
+    <div className={styles.containerCarr+'sale'} class="d-flex justify-content-center align-items-center mt-3">
 
       <div class="m-2">
       <button className={styles.button}type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
@@ -15,7 +15,7 @@ function CardForSale({forSale}) {
       </div>
 
     
-    <div id="carouselExampleCaptions" class="carousel slide w-50" data-bs-ride="false">
+    <div id="carouselExampleCaptions" class="carousel slide img-fluid w-50" data-bs-ride="false">
       <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>

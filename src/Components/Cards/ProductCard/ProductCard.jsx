@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { Dispatch } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addToCart, removeFromCart, removeWish, addWish } from '../../../redux/actions.js' // CREAR UNA ACTION QUE DEPLOYE FAVORITO AL USUARIO
+import { addToCart, removeFromCart, removeWish, addWish, getUsers } from '../../../redux/actions.js' // CREAR UNA ACTION QUE DEPLOYE FAVORITO AL USUARIO
 import './ProductCard.css'
 import FavouriteButton from '../../FavouriteButton/FavouriteBurron.jsx'
 import Swal from 'sweetalert2'
@@ -15,7 +15,8 @@ export default function ProductCard({ id, name, img, rating, platforms, price, f
   let foundCart = false;   //aca encontraria el juego si esta agregado al carrito
   // const [foundCart, setFoundCart] = useState(false)
   const [isRemove, setIsRemove] = useState(false)
-  const dispatch = useDispatch()
+  const dispatch = useDispatch(),
+  token = sessionStorage.getItem('token');
 
   const swalWithBootstrapButtons = Swal.mixin({
     customClass: {
@@ -78,7 +79,7 @@ export default function ProductCard({ id, name, img, rating, platforms, price, f
             'error'
           )
         }
-        window.location.reload()
+        // window.location.reload()
       })
     }
   }
