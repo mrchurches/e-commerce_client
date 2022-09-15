@@ -11,7 +11,6 @@
 
 .span {
     text-decoration: none;
-
 }
 
 ul li small img {
@@ -40,35 +39,61 @@ ul li small img {
 }
 
 .logo:hover {
-    transform: scale(1.5);
+    transform: scale(1.7);
 }
 
 .title {
     /* font-size: 0.9vw; */
     font-size: 0.9rem;
-    border-bottom-color: #05ffb0;
+    /* border-bottom-color: #05ffb0; */
 
-    active-style: {
+    /* active-style: {
         color: rgb(23, 218, 159);
-    }
+    } */
+}
+
+.title:hover {
+    font-size: 0.9rem;
+    text-shadow: 1px 1px 2px rgb(217, 255, 0);
+    color: rgb(3, 3, 3);
+    padding-left: 1rem;
 }
 
 .titleLogo {
     /* font-size: 0.9vw; */
-    font-size: 0.9rem;
-    border-bottom-color: #05ffb0;
+    font-size: 1.1rem;
+    color: rgb(255, 187, 0);
+    text-shadow: 1px 1px 5px rgb(208, 255, 0);
+    -webkit-text-stroke: 0.002px rgb(0, 0, 0);
+
+
+
 }
 
 
 
-.title:hover {
-    font-size: 0.93rem;
-    text-shadow: 1px 1px 2px rgb(8, 139, 172);
-    /* color: rgb(3, 3, 3) */
-}
 
 
 .username {
     list-style-type: none;
     text-decoration: none;
+}
+
+.letraE {
+
+    font-size: 1.4rem;
+    color: rgb(3, 120, 136);
+    transform: rotate(360deg);
+    text-shadow: 1px 1px 2px rgb(59, 148, 189);
+}
+
+.letraE:hover {
+
+    text-shadow: 1px 1px 2px rgb(36, 240, 46);
+    /* font-size: 1.4rem; */
+    color: rgb(3, 120, 136);
+    /* transform: rotate(360deg); */
+    transform: rotate(180deg);
+    -webkit-text-stroke: 0.002px rgb(11, 171, 235);
+
 }

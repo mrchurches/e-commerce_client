@@ -57,10 +57,6 @@ h6 {
 
 }
 
-.heartButton {
-    /* -webkit-filter: drop-shadow(-5px -5px 50px rgb(181, 231, 1)); */
-    filter: drop-shadow(0 2px 1px rgba(143, 27, 27, 0.7));
-}
 
 .titleBg {
     /* font-size: 100%; */

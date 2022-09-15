@@ -40,12 +40,12 @@ const NavBar = () => {
   }
 
   return (
-    <nav className="navbar navbar-expand-md navbar-dark bg-dark text-light" style={{ backgroundColor: "#191D2A", borderRadius: '0' }}>
+    <nav className="navbar navbar-expand-md navbar-dark bg-dark " style={{ backgroundColor: "#191D2A", borderRadius: '0' }}>
 
       <div class="container-fluid  mt-2">
         <NavLink to="/" className='link'>
           <img class="logo " src={logo} />
-          <span class="navbar-brand text-light titleLogo">GAME-COMMERCE</span>
+          <span class="titleLogo">GAM<span class="letraE">E</span>-COMMERCE</span>
         </NavLink>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -55,13 +55,14 @@ const NavBar = () => {
 
             <NavLink to="/home" className='link' activeStyle={{
               fontWeight: "bold",
-              color: 'yellow',
+              fontSize: "1rem"
             }}>
               <li class="nav-item active">
                 <span class="nav-link active text-light title" aria-current="page"
                   activeStyle={{
                     fontWeight: "bold",
-                    borderBottomColor: "#05ffb0",
+                    borderBottomColor: "red"
+
                   }} >Home</span>
               </li>
             </NavLink>

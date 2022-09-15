@@ -109,8 +109,8 @@ export default function SideBar() {
       </div>
 
       <div style={{ width: "160px" }}>
-        {maxPrice > 1 ? <label for='rangeMax' class='text-white form label'> Under ${maxPrice - 1} </label> : <label for='rangeMax' class='text-white form label'> ${minPrice}</label>}
-        <input id='rangeMax' class='form-range' style={{ backgroundColor: "#69717A" }} disabled={false} value={maxPrice} onChange={(e) => hanleChange(e)} type="range" min={min} max={max} step='10' />
+        {maxPrice > 1 ? <label for='rangeMax' class='text-white form label fs-6 pt-3'> Under ${maxPrice - 1} </label> : <label for='rangeMax' class='text-white form label'> ${minPrice}</label>}
+        <input id='rangeMax' class='form-range' disabled={false} value={maxPrice} onChange={(e) => hanleChange(e)} type="range" min={min} max={max} step='10' />
       </div>
 
       {/* <div>
