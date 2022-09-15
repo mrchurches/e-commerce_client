@@ -45,7 +45,7 @@ const NavBar = () => {
       <div class="container-fluid  mt-2">
         <NavLink to="/" className='link'>
           <img class="logo " src={logo} />
-          <span class="navbar-brand text-light title">GAME-COMMERCE</span>
+          <span class="navbar-brand text-light titleLogo">GAME-COMMERCE</span>
         </NavLink>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -57,11 +57,11 @@ const NavBar = () => {
               fontWeight: "bold",
               color: 'yellow',
             }}>
-              <li class="nav-item">
-                <span class="nav-link active text-light" aria-current="page"
+              <li class="nav-item active">
+                <span class="nav-link active text-light title" aria-current="page"
                   activeStyle={{
                     fontWeight: "bold",
-                    color: "yellow",
+                    borderBottomColor: "#05ffb0",
                   }} >Home</span>
               </li>
             </NavLink>
@@ -71,7 +71,7 @@ const NavBar = () => {
                 fontWeight: "bold",
               }}>
                 <li class="nav-item">
-                  <span class="nav-link active text-light" aria-current="page" >My store</span>
+                  <span class="nav-link active text-light title" aria-current="page" >My store</span>
                 </li>
               </NavLink>)}
 
@@ -117,7 +117,7 @@ const NavBar = () => {
                 fontWeight: "bold",
               }}>
                 <li class="nav-item">
-                  <span class="nav-link text-light">Login</span>
+                  <span class="nav-link text-light title">Login</span>
                 </li>
               </NavLink>)
             }

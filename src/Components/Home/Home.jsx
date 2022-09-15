@@ -33,7 +33,7 @@ function Home() {
     }, [dispatch])
 
     return (
-        <div class="d-flex">
+        <div class="d-sm-flex container-fluid cardsAndFilter">
             <div style={{ marginRight: '15px', marginLeft: '30px', marginTop: '46px', width: '122px' }}>
                 <SideBar />
             </div>

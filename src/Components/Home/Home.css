@@ -11,13 +11,18 @@
     justify-content: center;
 }
 
-/*@media screen and only(max-width:320px) {
+/* @media screen and (max-width:375px) {
 
-     .allCardsConteiner {
+    .cardsAndFilter {
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    .allCardsConteiner {
         display: flex;
         flex-wrap: wrap;
         flex-direction: column;
-    } 
+    }
 
-}
-*/
+} */
