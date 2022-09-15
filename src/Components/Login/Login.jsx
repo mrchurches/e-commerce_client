@@ -55,7 +55,7 @@ const Login = () => {
   }
 
   return (
-    <div class="mt-5 d-flex justify-content-center vh-100">
+    <div class="mt-5 d-flex justify-content-center ">
       {userAuth.user && <Redirect to='/home' />}
       <div class="card shadow-lg p-3 mb-5 bg-body rounded h-50" style={{ width: '18rem' }}>
         <form onSubmit={(e) => handleSubmit(e)}>
