@@ -134,60 +134,61 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
       }
 
 
-      {
-        <div class="card-body" style={{ width: '35rem', height: '15rem' }}>
 
-          <div>
-            <h6 class=" titleBg card-header d-flex justify-content-between ">{name} <FavouriteButton id={id} /> </h6>
-          </div>
+      <div class="card-body" style={{ width: '35rem', height: '15rem' }}>
 
-          <div class="card ">
-            <Link class='decoration' to={fromApi || isDisabled ? `/home` : `/detail/${id}`}>
-              <div class="d-flex justify-content-between">
-                <img class="card-img-top d-flex justify-content-start" style={{ maxWidth: '15rem', maxHeight: '12rem' }} src={img} alt="product img" />
-                <div>
+        <div class="d-flex justify-content-around mt-2">
+          <h6 class=" flex-end card-title justify-content-center fs-5 ">{name} </h6>
+          <FavouriteButton class="heartButton" id={id} />
+        </div>
 
-                  {/* <span class="card-text bg-secondary m-2 p-2 text-light">
+        <div /*class="card-body "*/>
+          <Link class='decoration' to={fromApi || isDisabled ? `/home` : `/detail/${id}`}>
+            <div class=" d-flex justify-content-around mt-2">
+              <img class=" card-img-top d-flex justify-content-start align-items-center max-height-5" style={{ maxWidth: '50%', maxHeight: '10rem' }} src={img} alt="product img" />
+              <div>
+
+                {/* <span class="card-text bg-secondary m-2 p-2 text-light">
                   {rating}
                   </span> */}
+                <div class="d-flex justify-content-around" >
+                  <img class="platformPic" src={xboxImg} style={{ maxWidth: '1.5rem', maxHeight: '1.5rem', marginRight: "15px", marginLeft: "15px" }} />
+                  <img class="platformPic" src={playStation} style={{ maxWidth: '1.5rem', maxHeight: '1.5rem', marginRight: "15px" }} />
+                  <img class="platformPic" src={pc} style={{ maxWidth: '1.5rem', maxHeight: '1.5rem', marginRight: "15px" }} />
+                  <img class="platformPic" src={pc} style={{ maxWidth: '1.5rem', maxHeight: '1.5rem', marginRight: "15px" }} />
+                </div>
+                <p class='d-flex justify-content-around pt-4'>
+                  {genres.map((e, index) => <p key={index} class=" bg-transparent text1 d-flex p-1 justify-content-center  ">{e.name}</p>)}
+                </p>
+                <div>
                   {isDisabled || fromApi ?
                     <span>No stock</span> :
-                    <h6 class="card-text bg-secondary decoration ">
-                      Price: ${price}
+                    <h6 class="card-text  titleBg pt-4 pl-3">
+                      Only: ${price}
+                      <button disabled={fromApi || isDisabled ? true : false} onClick={(e) => handleClick(e)} value="cart" class=" text1 buttonCart"><img src={shoppingCard} alt="" style={{ maxWidth: '2rem', maxHeight: '2rem' }} /></button>
                     </h6>
                   }
-                  <div /* class="d-flex justify-content-between" */>
-                    <img src={xboxImg} style={{ maxWidth: '1.5rem', maxHeight: '1.5rem', marginRight: "15px", marginLeft: "15px" }} />
-                    <img src={playStation} style={{ maxWidth: '1.5rem', maxHeight: '1.5rem', marginRight: "15px" }} />
-                    <img src={pc} style={{ maxWidth: '1.5rem', maxHeight: '1.5rem', marginRight: "15px" }} />
-                    <img src={pc} style={{ maxWidth: '1.5rem', maxHeight: '1.5rem', marginRight: "15px" }} />
-                  </div>
+                  {/* </div> */}
                 </div>
               </div>
-            </Link>
-
-            <div class='d-flex justify-content-between mt-1 '>
-
-              <p class='d-flex justify-content-start '>
-                {genres.map((e, index) => <p key={index} class=" bg-secondary text1 d-flex p-1 justify-content-center bg-secondary m-1 mt-1">{e.name}</p>)}
-              </p>
-
-              <div>
-                <button disabled={fromApi || isDisabled ? true : false} onClick={(e) => handleClick(e)} value="cart" class="bg-secondary text1 p-2"><img src={shoppingCard} alt="" style={{ maxWidth: '1.3rem', maxHeight: '1.3rem' }} /></button>
-              </div>
             </div>
+          </Link>
+
+          {/* <div class='d-flex fluid-content justify-content-between mt-1 '> */}
 
 
-            {/*   */}
 
-            <div class="d-flex flex-row align-items-center justify-content-center">
 
-              {foundCart && <button onClick={(e) => handleClick(e)} type="button" class="btn-close" value="remove" aria-label="Close"></button>}
-            </div>
+
+
+          <div class="d-flex flex-row align-items-center justify-content-center">
+
+            {foundCart && <button onClick={(e) => handleClick(e)} type="button" class="btn-close" value="remove" aria-label="Close"></button>}
           </div>
-
         </div>
-      }
+
+      </div>
+
     </div>)
 
 }

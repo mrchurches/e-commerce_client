@@ -35,6 +35,11 @@ ul li small img {
 .logo {
     margin-bottom: 8px;
     padding: 0px;
+    transform: scale(1.2);
+}
+
+.logo:hover {
+    transform: scale(1.5);
 }
 
 .title {

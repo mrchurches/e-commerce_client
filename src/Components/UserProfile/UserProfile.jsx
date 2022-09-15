@@ -228,7 +228,7 @@ const CreateUser = () => {
                     <div class="relative z-0 mb-6 w-full group">
                         <small onClick={(e) => setDisabledEmail(!disabledEmail)}
                             for="exampleInputEmail1"
-                            class="form-label">E-Mail:
+                            class="inputLabel form-label">E-Mail:
                         </small>
 
                         <input type="email"
@@ -247,7 +247,7 @@ const CreateUser = () => {
                     </div>
 
                     {/* OLD PASSWORD */}
-                    <div class="relative z-0 mb-6 w-full group">
+                    {/* <div class="relative z-0 mb-6 w-full group">
                         <small onClick={(e) => setDisabledOldPassword(!disabledOldPassword)} for="password" class="form-label">Old Password</small><br />
 
                         <input type="password"
@@ -260,10 +260,10 @@ const CreateUser = () => {
                             disabled={disabledOldPassword} />
 
                         {isChange.password && !validate.password && <small>Password Must be Contain: number, symbol, uppercase and 8 digits</small>}
-                    </div>
+                    </div> */}
 
                     {/* NEW PASSWORD */}
-                    <div class="relative z-0 mb-6 w-full group">
+                    {/* <div class="relative z-0 mb-6 w-full group">
                         <small onClick={(e) => setDisabledNewPassword(!disabledNewPassword)} for="password" class="form-label">New Password</small><br />
 
                         <input type="password"
@@ -277,10 +277,10 @@ const CreateUser = () => {
                             disabled={disabledNewPassword} />
 
                         {isChange.password && !validate.password && <small>Password Must be Contain: number, symbol, uppercase and 8 digits</small>}
-                    </div>
+                    </div> */}
 
                     {/* CONFIRM NEW PASSWORD */}
-                    <div class="relative z-0 mb-6 w-full group">
+                    {/* <div class="relative z-0 mb-6 w-full group">
                         <small onClick={(e) => setDisabledConfirmNewPassword(!disabledConfirmNewPassword)} for="confirm password" class="form-label">Confirm New Password</small>
 
                         <input class={`form-control ${isChange.cPassword && user.cPassword !== user.password && "is-invalid"}`}
@@ -294,12 +294,12 @@ const CreateUser = () => {
                             disabled={disabledConfirmNewPassword} />
 
                         {isChange.cPassword && user.cPassword !== user.password && <small>Passwords don't match</small>}
-                    </div>
+                    </div> */}
 
                     {/* NAME */}
                     <div class="grid md:grid-cols-2 md:gap-6">
                         <div class="relative z-0 mb-6 w-full group">
-                            <small onClick={(e) => setDisabledName(!disabledName)} for="name" class="form-label">Name</small><br />
+                            <small onClick={(e) => setDisabledName(!disabledName)} for="name" class="inputLabel form-label">Name</small><br />
 
                             <input class={`form-control ${isChange.name && !validate.name && "is-invalid"}`}
                                 type="text"
@@ -316,7 +316,7 @@ const CreateUser = () => {
 
                         {/* LASTNAME */}
                         <div class="relative z-0 mb-6 w-full group">
-                            <small onClick={(e) => setDisabledLastname(!disabledLastname)} for="lastname" class="form-label">Lastname</small><br />
+                            <small onClick={(e) => setDisabledLastname(!disabledLastname)} for="lastname" class="inputLabel form-label">Lastname</small><br />
 
                             <input class={`form-control ${isChange.lastname && !validate.lastname && "is-invalid"}`}
                                 type="text"

@@ -55,9 +55,14 @@ const NavBar = () => {
 
             <NavLink to="/home" className='link' activeStyle={{
               fontWeight: "bold",
+              color: 'yellow',
             }}>
               <li class="nav-item">
-                <span class="nav-link active text-light" aria-current="page" >Home</span>
+                <span class="nav-link active text-light" aria-current="page"
+                  activeStyle={{
+                    fontWeight: "bold",
+                    color: "yellow",
+                  }} >Home</span>
               </li>
             </NavLink>
 
@@ -93,7 +98,7 @@ const NavBar = () => {
                 fontWeight: "bold",
               }}>
                 <li class="nav-item">
-                  <span class="nav-link text-light">Shopping Cart</span>
+                  <span class="nav-link text-light title">Shopping Cart</span>
                 </li>
               </Link>
               : null}
