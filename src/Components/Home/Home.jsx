@@ -5,6 +5,11 @@ import ProductCard from '../Cards/ProductCard/ProductCard';
 import Pagination from '../Pagination/Pagination';
 import SideBar from '../SideBar/SideBar';
 import Filters from "../Filters/Filters"
+import MessageParser from '../Chatbot/MessageParser/MessageParser';
+import ActionProvider from '../Chatbot/ActionProvider/ActionProvider';
+import config from '../Chatbot/Config/config';
+import Chatbot from 'react-chatbot-kit';
+import 'react-chatbot-kit/build/main.css'
 import "./Home.css"
 
 function Home() {
@@ -44,6 +49,11 @@ function Home() {
         <div class="d-flex">
             <div style={{ marginRight: '17px', marginLeft: '15px' }}>
                 <SideBar />
+                {/* <Chatbot
+                config={config}
+                messageParser={MessageParser}
+                actionProvider={ActionProvider}
+                /> */}
             </div>
             <div>
 
