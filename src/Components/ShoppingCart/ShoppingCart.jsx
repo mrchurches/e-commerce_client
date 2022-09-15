@@ -96,11 +96,11 @@ export default function ShoppingCart() {
     console.log(forCheckout)
 
     return (
-        <div class="d-flex flex-column vh-100  align-items-center">
-            <div class="alert alert-dark w-50">
-                <h1>My shopping cart</h1>
+        <div class="d-flex gap-3 flex-column align-items-center ">
+            <div class="alert alert-dark" style={{width:'80%'}}>
+                <h1 class="">My shopping cart</h1>
             </div>
-            <div class="d-flex flex-row justify-content-evenly flex-wrap">
+            <div class="d-flex flex-row justify-content-center flex-wrap">
                 {filterGames.length > 0 ?
                     (filterGames.map(e => (
                         <div class="d-flex m-2">

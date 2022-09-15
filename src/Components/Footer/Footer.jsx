@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 export default function About() {
     let location = useLocation()
 
-    var display = 'block'
+    var display = ''
     if (location.pathname === "/admin") {
         display = 'none'
     }
