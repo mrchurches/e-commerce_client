@@ -61,7 +61,6 @@ const NavBar = () => {
                 <span class="nav-link active text-light title" aria-current="page"
                   activeStyle={{
                     fontWeight: "bold",
-                    borderBottomColor: "red"
 
                   }} >Home</span>
               </li>

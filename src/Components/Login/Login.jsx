@@ -42,11 +42,11 @@ const Login = () => {
     const userExist = await findEmail(user.username);
     if (userExist.user === null) {
       setUserGet((i) => ({ ...i, userNExists: true }));
-    } 
-      else if (userExist.isBanned) {
+    }
+    else if (userExist.isBanned) {
       setUserGet((i) => ({ ...i, userBan: true }));
-    // } else if (!userExist.isVerified) {
-    //   setUserGet((i) => ({ ...i, isVerified: true }));
+      // } else if (!userExist.isVerified) {
+      //   setUserGet((i) => ({ ...i, isVerified: true }));
     } else {
       const info = await postUsers(user);
       info.message?.search('login') && setUserGet((i) => ({ ...i, failedLog: true }));
@@ -55,7 +55,7 @@ const Login = () => {
   }
 
   return (
-    <div class="mt-5 d-flex justify-content-center vh-100">
+    <div class="mt-5 d-flex justify-content-center vh-150">
       {userAuth.user && <Redirect to='/home' />}
       <div class="card shadow-lg p-3 mb-5 bg-body rounded h-50" style={{ width: '18rem' }}>
         <form onSubmit={(e) => handleSubmit(e)}>
@@ -71,20 +71,24 @@ const Login = () => {
             <label for="exampleInputPassword1" class="form-label">Password</label>
             <input type="password" class="form-control" id="password" onChange={handleChange} value={user.password} name="password" />
             {userGet.failedLog && <p>Password are invalid</p>}
+            <Link class="linkA" to="/restore">
+              <small class="form-label">forgot your password?</small><br />
+            </Link>
           </div>
           <input disabled={disabled} type="submit" class="btn btn-primary" value="Login" />
         </form><br />
         <div>
+
           <small class="form-label">don't have an account?</small><br />
           <Link to="/create_user">
-            <span class="btn btn-primary">Create one!</span>
+            <span class="btn-primary btn bg-info border border-dark border-1">Create one!</span>
           </Link>
         </div>
         <p>OR</p>
-        <div class="btnLogo">
+        <div class="btnLogo ">
           <a class={"linkA"} href={`${REACT_APP_URL}login/auth/google`}>
-            <img src={gLogo} class="" id='' alt='googleButton' />
-            <small class="form-label">Sign in with google</small><br />
+            <img src={gLogo} class="pt-3" id='' alt='googleButton' />
+            <small class="form-label mb-0">Sign in with google</small><br />
             <br />
           </a>
         </div>

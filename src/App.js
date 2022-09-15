@@ -23,6 +23,7 @@ import Checkout from './Components/Checkout/Checkout';
 import Verify from './Components/Verify/Verify.jsx';
 import VerifyAuth from './Components/Verify/VerifyAuth';
 import Success from './Components/SuccessfulPurchase/Success';
+import Restore from './Components/Restore/Restore';
 
 
 
@@ -40,6 +41,7 @@ let users = useSelector(state=>state.users);
         <Route path="/wish_list" component={WishList}/>
         <Route path="/account" component={Account}/>
         <Route path="/login" component={Login} />
+        <Route path="/login/restore" component={Restore} />
         <Route path="/home" component={Home} />
         {/* { users.user && <Route path="/userprofile" component={UserProfile} /> } */}
         <Route path="/userprofile" component={UserProfile} /> 

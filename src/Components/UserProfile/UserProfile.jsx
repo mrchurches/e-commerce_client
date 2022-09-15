@@ -333,7 +333,7 @@ const CreateUser = () => {
 
                         {/* USERNAME */}
                         <div class="relative z-0 mb-6 w-full group">
-                            <small onClick={(e) => setDisabledUsername(!disabledUsername)} for="username" class="form-label">Username:  </small>
+                            <small onClick={(e) => setDisabledUsername(!disabledUsername)} for="username" class="form-label inputLabel">Username:  </small>
 
                             <input type="text"
                                 onChange={(e) => handleChange(e)}
