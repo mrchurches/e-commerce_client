@@ -6,13 +6,16 @@ const MessageParser = ({ children, actions }) => {
             actions.handleNoMessage()
         }
         if(
-            input.includes("hola")
+            input.includes("hola") ||
+            input.includes("buenas tardes") ||
+            input.includes("buen dia") || 
+            input.includes("buenos dias") ||
+            input.includes("buenas noches")
             ) {
             return actions.handleHello()
         }
         if(
-            input.includes("quien") ||
-            input.includes("quienes") ||
+            input.includes("quienes son") ||
             input.includes("para que sirve") ||
             input.includes("que puedo hacer")
             ) {
@@ -41,7 +44,10 @@ const MessageParser = ({ children, actions }) => {
         };
 
         if(
-            input.includes("ayuda")
+            input.includes("ayuda") ||
+            input.includes("no entiendo") ||
+            input.includes("problema") ||
+            input.includes("help")
             ) {
             return actions.handleAyuda();
         };
@@ -69,9 +75,21 @@ const MessageParser = ({ children, actions }) => {
             input.includes("perdí") ||
             input.includes("olvide") ||
             input.includes("restablecer contraseña") ||
-            input.includes("restablecer")
+            input.includes("restablecer") ||
+            input.includes("contraseña")
         ) {
             actions.handleForgottenPassword( {withAvatar:false} )
+        }
+        if(
+            input.includes("contacto") ||
+            input.includes("email") ||
+            input.includes("telefono") ||
+            input.includes("numero") ||
+            input.includes("escribir")
+        ){
+            actions.handleContacto()
+        }else{
+            actions.handleRepeat()
         }
 
 /*         if(input.includes("q")  //el bot va a estar en el home

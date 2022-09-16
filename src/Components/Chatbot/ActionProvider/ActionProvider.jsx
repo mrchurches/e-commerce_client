@@ -135,6 +135,20 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
             messages:[...prev.messages, botMessage]
         }));
     };
+    const handleContacto = () =>{
+        const botMessage = createChatBotMessage("puedes escribirnos al siguiente email. videogamesmarket@mailing.com. O tambien llamar al siguiente numero (0800) 333 4888")
+        setState((prev)=>({
+            ...prev,
+            messages:[...prev.messages, botMessage]
+        }))
+    }
+    const handleRepeat = () =>{
+        const botMessage = createChatBotMessage("Disculpa, no te entendí, intenta nuevamente.")
+        setState((prev)=>({
+            ...prev,
+            messages:[...prev.messages, botMessage]
+        }))
+    }
 
     
     return (
@@ -153,7 +167,9 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
                     handleAccount0,
                     handleAccount1,
                     handleCatalog,
-                    handleForgottenPassword
+                    handleForgottenPassword,
+                    handleContacto,
+                    handleRepeat
                 },
             });
         })}

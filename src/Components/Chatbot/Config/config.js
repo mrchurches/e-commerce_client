@@ -8,15 +8,11 @@ import MyChatBot from '../chatbot.jsx';
 
 
 let botname = "E-robb";
-function close(e){
-    console.log(MyChatBot)
-}
 const config = {
     initialMessages: [createChatBotMessage(`Bienvenido a Games E-commerce!. yo soy ${botname}`), createChatBotMessage("Mi mision es la de responder a tus preguntas, si no sabes por donde comenzar, prueba escribiendo `ayuda`.")],
     botName:`${botname}`,
     customComponents:{
         botAvatar:(props)=><Botavatar {...props}/>,
-        header: () => <div style={{ backgroundColor: 'white', padding: "5px", borderRadius: "3px" }}>This is the header <button onClick={()=>close()}>X</button></div>
     },
     customStyles:{
         botMessageBox:{ //color del recuador de texto del bot
