@@ -25,7 +25,6 @@ import VerifyAuth from './Components/Verify/VerifyAuth';
 import Success from './Components/SuccessfulPurchase/Success';
 import Chatbot from 'react-chatbot-kit';
 
-<Chatbot></Chatbot>
 
 
 function App() {
