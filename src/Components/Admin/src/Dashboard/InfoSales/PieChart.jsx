@@ -3,8 +3,8 @@ import { useMemo } from 'react';
 
 import { Pie } from 'react-chartjs-2'
 
-// import { Chart, registerables } from 'chart.js';
-// Chart.register(...registerables)
+import { Chart, registerables } from 'chart.js';
+Chart.register(...registerables)
 
 const scores = ["19522", "1029", "93943", "93483", "93284", "9384"]
 const labels = ["PC", "Xbox", "Ps5", "Linux", "MacOS", "Others"]

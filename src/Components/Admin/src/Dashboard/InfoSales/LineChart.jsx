@@ -3,8 +3,8 @@ import { useMemo } from 'react';
 
 import { Line } from 'react-chartjs-2'
 
-// import { Chart, registerables } from 'chart.js';
-// Chart.register(...registerables)
+import { Chart, registerables } from 'chart.js';
+Chart.register(...registerables)
 
 
 const scores = ["10", "20", "45", "3", "80"]
