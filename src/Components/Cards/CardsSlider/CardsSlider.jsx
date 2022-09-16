@@ -32,7 +32,7 @@ function CardSlider({platforms, i}) {
                     <div className={styles.slideCard}>
                         <CardLanding
                             key={i}
-                            id={platforms[i].id}
+                            id={platforms[i]?.id}
                             name={platforms[i].name}
                             img={platforms[i].background_image}
                             rating={platforms[i].rating}
@@ -43,7 +43,7 @@ function CardSlider({platforms, i}) {
                     <div className={styles.slideCard}>
                         <CardLanding
                             key={i+1}
-                            id={platforms[i+1].id}
+                            id={platforms[i+1]?.id}
                             name={platforms[i+1].name}
                             img={platforms[i+1].background_image}
                             rating={platforms[i+1].rating}
@@ -56,7 +56,7 @@ function CardSlider({platforms, i}) {
                     <div className={styles.slideCard}>
                         <CardLanding
                             key={i+2}
-                            id={platforms[i+2].id}
+                            id={platforms[i+2]?.id}
                             name={platforms[i+2].name}
                             img={platforms[i+2].background_image}
                             rating={platforms[i+2].rating}

@@ -38,13 +38,14 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 
 import { existsUsername, userFormat, validatedFormat, validatedFunctions, findEmail, editUser } from "./UserProfileHelper";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import NoWorkResult from "postcss/lib/no-work-result";
 import { getUsers, putUser } from "../../redux/actions";
 
 const CreateUser = () => {
     let actualUser = useSelector(state => state.users.user)
     let dispatch = useDispatch();
+    let history = useHistory();
     // let actualUser = {
     //     id: 1,
     //     username: "prueba1",
@@ -147,6 +148,9 @@ const CreateUser = () => {
 
         //manda "user" a redux
         dispatch(putUser(user))
+
+        history.push("/home");
+        window.location.reload()
     }
 
 
