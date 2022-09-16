@@ -101,7 +101,7 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
 
 
   return (
-    <div class=''>
+    <div class='bg-transparent cardBigContainer'>
       {
 
         /*<div class="card hover-overlay hover-zoom" style={{ maxWidth: "18rem", marginBottom: '25px', maxHeight: '18rem' }}>
@@ -144,7 +144,7 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
 
         <div /*class="card-body "*/>
           <Link class='decoration' to={fromApi || isDisabled ? `/home` : `/detail/${id}`}>
-            <div class=" d-flex justify-content-around mt-2">
+            <div class=" d-flex justify-content-around mt-2 cardBigContainer">
               <img class=" card-img-top d-flex justify-content-start align-items-center max-height-5" style={{ maxWidth: '50%', maxHeight: '10rem' }} src={img} alt="product img" />
               <div>
 
