@@ -3,8 +3,8 @@ import { useMemo } from 'react';
 
 import { Doughnut} from 'react-chartjs-2'
 
-// import { Chart, registerables } from 'chart.js';
-// Chart.register(...registerables)
+import { Chart, registerables } from 'chart.js';
+Chart.register(...registerables)
 
 
 const scores = ["19522", "104329", "93943", "93483"]

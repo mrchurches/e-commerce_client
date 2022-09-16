@@ -1,23 +1,57 @@
-.infocontainer {
-    border-radius: 10px;
-    margin-top: 30px;
-    margin-left: 20px;
-    background-color: rgb(68, 100, 109, 0.2);
-    min-height: 80vh;
-    width: 80%;
-    margin-bottom: 30px;
+
+@media (min-width: 951px){
+    .infocontainer {
+        border-radius: 10px;
+        margin-top: 30px;
+        margin-left: 20px;
+        background-color: rgb(68, 100, 109, 0.2);
+        min-height: 80vh;
+        width: 80%;
+        margin-bottom: 30px;
+    }
+    
+    .options {
+        display: flex;
+        border-radius: 10px;
+        background-color: rgb(68, 100, 109, 0.2);
+        width: 13%;
+        margin-top: 30px;
+        margin-left: 20px;
+        margin-right: 20px;
+        justify-content: center;
+        margin-bottom: 30px;
+        padding-right: 10px;
+        padding-top: 5px;
+    }
 }
 
-.options{
-    display: flex;
-    border-radius: 10px;
-    background-color: rgb(68, 100, 109, 0.2);
-    width: 13%;
-    margin-top: 30px;
-    margin-left: 20px;
-    margin-right: 20px;
-    justify-content: center;
-    margin-bottom: 30px;
-    padding-right: 10px;
-    padding-top: 5px;
+@media (min-width: 745px) and (max-width: 950px) {
+    .infocontainer {
+        border-radius: 10px;
+        margin-top: auto;
+        margin-left: auto;
+        background-color: rgb(68, 100, 109, 0.2);
+        min-height: 80vh;
+        width: 100%;
+    }
+
+    .options {
+        background-color: rgb(68, 100, 109, 0.2);
+    }
+}
+
+@media (max-width: 352px) {
+    .infocontainer {
+        flex-direction: column;
+        border-radius: 10px;
+        margin-top: auto;
+        margin-left: auto;
+        background-color: rgb(68, 100, 109, 0.2);
+        min-height: 80vh;
+        width: 100%;
+    }
+
+    .options {
+        background-color: rgb(68, 100, 109, 0.2);
+    }
 }

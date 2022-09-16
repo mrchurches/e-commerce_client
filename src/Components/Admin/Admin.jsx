@@ -9,22 +9,27 @@ import { useState, useEffect } from "react";
 
 export default function Admin() {
 
- /*  const [items, setItems] = useState({});
+  /*  const [items, setItems] = useState({});
+ 
+   useEffect(() => {
+     localStorage.setItem('items', JSON.stringify(items));
+   }, [items]); */
+
+  const [render, setRender] = useState({ dash: true });
+  const [screen, setScreen] = useState(false);
 
   useEffect(() => {
-    localStorage.setItem('items', JSON.stringify(items));
-  }, [items]); */
-
-  const [render, setRender] = useState({dash: true});
-
+    setScreen(window.screen.width <= 950 ? true : false)
+  });
+  
   return (
-    <div class='d-flex'>
-        <div className={styles.options}>
-        <Options setRender={setRender}/>
-        </div>
-        <div className={styles.infocontainer}>
-        <InfoContainter render={render} setRender={setRender}/>
-        </div>
+    <div class={screen ? "col" : "d-flex"}>
+      <div className={styles.options}>
+        <Options setRender={setRender} />
+      </div>
+      <div className={styles.infocontainer}>
+        <InfoContainter render={render} setRender={setRender} />
+      </div>
     </div>
   )
 }

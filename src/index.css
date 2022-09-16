@@ -11,7 +11,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 } */
-
+footer{
+  width: 100%;
+  position: absolute;
+  top: 100%;
+}
+body{
+  position: relative;
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
