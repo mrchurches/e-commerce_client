@@ -14,7 +14,7 @@ export default function LandingPage() {
 
   return (
     <div class="landingContainer">
-      <div class="flex">
+      <div class="flex ">
         {/* {location.pathname === "/" && <SideBar/>} */}
         {location.pathname === "/" && <CardContainer />}
       </div>

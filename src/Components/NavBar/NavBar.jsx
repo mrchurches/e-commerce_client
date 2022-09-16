@@ -45,13 +45,13 @@ const NavBar = () => {
       <div class="container-fluid  mt-2">
         <NavLink to="/" className='link'>
           <img class="logo " src={logo} />
-          <span class="titleLogo">GAM<span class="letraE">E</span>-COMMERCE</span>
+          <span class="titleLogo">   GAM<span class="letraE">E</span>-COMMERCE</span>
         </NavLink>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
 
             <NavLink to="/home" className='link' activeStyle={{
               fontWeight: "bold",
@@ -62,7 +62,7 @@ const NavBar = () => {
                   activeStyle={{
                     fontWeight: "bold",
 
-                  }} >Home</span>
+                  }} >  🕹️ Home</span>
               </li>
             </NavLink>
 
@@ -71,7 +71,7 @@ const NavBar = () => {
                 fontWeight: "bold",
               }}>
                 <li class="nav-item">
-                  <span class="nav-link active text-light title" aria-current="page" >My store</span>
+                  <span class="nav-link active text-light title" aria-current="page" >  🏪 My store</span>
                 </li>
               </NavLink>)}
 
@@ -81,14 +81,14 @@ const NavBar = () => {
               }}>
 
                 <li class="nav-item">
-                  <span class="nav-link active text-light" aria-current="page" >Wishlist</span>
+                  <span class="nav-link active text-light" aria-current="page" >   🤞 Wishlist</span>
                 </li>
               </NavLink>)}
             {user && user.isAdmin ? <NavLink to="/admin" className='link' activeStyle={{
               fontWeight: "bold",
             }}>
               <li class="nav-item">
-                <span class="nav-link active text-light" aria-current="page" >Admin</span>
+                <span class="nav-link active text-light" aria-current="page" >   🤳 Admin</span>
               </li>
             </NavLink> : null}
 
@@ -98,7 +98,7 @@ const NavBar = () => {
                 fontWeight: "bold",
               }}>
                 <li class="nav-item">
-                  <span class="nav-link text-light title">Shopping Cart</span>
+                  <span class="nav-link text-light title">   🛒  Shopping Cart</span>
                 </li>
               </Link>
               : null}
@@ -109,7 +109,7 @@ const NavBar = () => {
                 fontWeight: "bold",
               }}>
                 <li class="nav-item">
-                  <span onClick={() => handleLogout()} class="nav-link text-light">Logout</span>
+                  <span onClick={() => handleLogout()} class="nav-link text-light">   🔄️ Logout</span>
                 </li>
               </NavLink>
               ) :
@@ -117,7 +117,7 @@ const NavBar = () => {
                 fontWeight: "bold",
               }}>
                 <li class="nav-item">
-                  <span class="nav-link text-light title">Login</span>
+                  <span class="nav-link text-light title">   ☑️ Login</span>
                 </li>
               </NavLink>)
             }
