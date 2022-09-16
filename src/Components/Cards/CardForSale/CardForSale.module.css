@@ -14,3 +14,9 @@
   .button :hover{
 
   }
+
+  .container img{
+    height: 40rem;
+    width: 50vh;
+    object-fit: cover;
+  }

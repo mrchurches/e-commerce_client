@@ -27,13 +27,14 @@ function CardForSale({forSale}) {
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="7" aria-label="Slide 8"></button>
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="8" aria-label="Slide 9"></button>
       </div>
-      <div className='carr' class="carousel-inner">
+      <div  class="carousel-inner w-100" className={styles.container}>
+        {console.log(forSale)}
         {
           forSale?.map((e, i) => {
             return (
-              <div class={`carousel-item ${i === 0 ? "active" : ""}`}>
+              <div class={`carousel-item ${i === 0 ? "active" : "" }`} >
                 <Link to={`/detail/${e.id}`}> 
-                <img src={e?.background_image} class="d-block w-100 rounded" style={{maxHeight: '40rem', maxWidth: '100vw'}} alt="..." />
+                <img className={styles.image} src={e?.background_image} class="d-block w-100 rounded" style={{maxHeight: '40rem', maxWidth: '100vw'}} alt="..." />
                 </Link>
                 <div class="carousel-caption d-none d-md-block">
                   <h4>{e.name}</h4>

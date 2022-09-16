@@ -85,7 +85,7 @@ const CardContainer = () => {
   return (
         <div className='d-flex flex-column'>
 
-          {Allproducts.length>0?<CardForSale forSale={forSale}/>:<Spinner />}
+          {Allproducts.length>0?<CardForSale forSale={forSale.slice(0,8)}/>:<Spinner />}
           
           {/* Plataforms */}
            {platforms.length>0?(<div className={styles.box} >

@@ -3,7 +3,7 @@ import "./CreateUser.css"
 import React from 'react'
 import { useState, useEffect } from "react";
 import { existsUsername, userFormat, validatedFormat, validatedFunctions, findEmail, createNewUser } from "./CreateUserHelper";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 
 const CreateUser = () => {
   const [user, setUser] = useState(userFormat),
@@ -12,6 +12,8 @@ const CreateUser = () => {
     [isChange, setChange] = useState(validatedFormat),
     [isSubmit, setIsSubmit] = useState(false),
     [validate, setvalidate] = useState(validatedFormat);
+
+let history = useHistory();
 
   function handleChange(e) {
     setUserNames((i) => ({
@@ -71,8 +73,8 @@ const CreateUser = () => {
   return (
     <div class="d-flex justify-content-center align-items-center">
       {isSubmit && <Redirect to={'/login'} />}
-      <div class="mt-5 card shadow-lg p-3 mb-5 bg-body rounded" style={{ width: '18rem' }}>
-        <h4>Create your account</h4>
+      <div class="mt-5 card shadow-lg p-3 mb-5  rounded w-25" style={{ width: '18rem' }}>
+        <h4 class="text-gray">Register</h4>
         <form onSubmit={(e) => handleSubmit(e)} method='post'>
           <div class="relative z-0 mb-6 w-full group">
             <small for="exampleInputEmail1" class="form-label">Email address</small>
@@ -112,6 +114,7 @@ const CreateUser = () => {
           <div>All fields are required</div>
           <button type="submit" class="btn btn-primary" disabled={disabledBtn}>Submit</button>
         </form>
+        <button onClick={()=> history.push("/login")} type="text" class="btn btn-primary w-50 align-self-center m-2" >Go back</button>
       </div>
     </div>
   )

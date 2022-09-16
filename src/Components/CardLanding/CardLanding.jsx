@@ -91,9 +91,9 @@ export default function CardLanding({ id, name, img, price, fromApi, isDisabled}
   return (
     <div class=''>
       
-        <div class="card hover-overlay hover-zoom" style={{ maxWidth: "18rem", marginBottom: '25px', maxHeight: '18rem' }}>
+        <div class="card hover-overlay image" style={{ maxWidth: "18rem", marginBottom: '25px', maxHeight: '18rem' }}>
           <Link  to={fromApi || isDisabled ?`/home`:`/detail/${id}`}>
-            <img class="card-img-top" style={{ maxWidth: '30rem', maxHeight: '10rem' }} src={img} alt="product img" />
+            <img class="card-img-top" className="image" src={img} alt="product img" />
           </Link>
           <div class="card-body" >
             <Link to={fromApi || isDisabled?`/home`:`/detail/${id}`} style={{ textDecoration: "none" }}>

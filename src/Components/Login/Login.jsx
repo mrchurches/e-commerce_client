@@ -55,9 +55,9 @@ const Login = () => {
   }
 
   return (
-    <div class="d-flex justify-content-center  restoreContainer ">
+    <div class="d-flex justify-content-center align-items-center  restoreContainer ">
       {userAuth.user && <Redirect to='/home' />}
-      <div class="card shadow-lg p-3 mb-5 bg-body rounded loginContainer" style={{ width: '18rem' }}>
+      <div class="card shadow-lg p-3  h-75 mb-5 w-25  rounded loginContainer" style={{ width: '18rem' }}>
         <form onSubmit={(e) => handleSubmit(e)}>
           <h3 id="pleaseLogIn" class=" inputLabel pt-3 mb-1">Please Log-In</h3>
           <div class="mb-3">
@@ -68,7 +68,7 @@ const Login = () => {
             {userGet.isVerified && <p>Email address not verified</p>}
             <small id="emailHelp" class="form-text inputLabel">We'll never share your email with anyone else.</small>
           </div>
-          <div class="mb-3">
+          <div class="mb-1">
             <label for="exampleInputPassword1" class="form-label inputLabel">Password</label>
             <input type="password" class="form-control" id="password" onChange={handleChange} value={user.password} name="password" />
             {userGet.failedLog && <p>Password are invalid</p>}
@@ -76,22 +76,19 @@ const Login = () => {
               <small class="form-label ">forgot your password?</small><br />
             </Link>
           </div>
-          <input disabled={disabled} type="submit" class="btn btn-primary btn-info" value="Login" />
-        </form><br />
+          <input disabled={disabled} type="submit" class="btn btn-primary btn-info mb-3" value="Login" />
+        </form>
         <div>
-
           <small class="form-label inputLabel">don't have an account?</small><br />
           <Link to="/create_user">
             <span class="btn-primary btn-info btn bg-info border border-dark border-1">Create one!</span>
           </Link>
         </div>
-        <br />
-
-        <small class="form-label inputLabel">OR</small>
+        <small class="inputLabel">OR</small>
         <div class="btnLogo ">
           <a class={"linkA"} href={`${REACT_APP_URL}login/auth/google`}>
-            <img src={gLogo} class="pt-3" id='' alt='googleButton' />
-            <small class="form-label mb-0 inputLabel">Sign in with google</small><br />
+            <img src={gLogo} class="" id='' alt='googleButton' />
+            <small class="form-label">Sign in with google</small><br />
             <br />
           </a>
         </div>
