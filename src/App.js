@@ -15,7 +15,7 @@ import WishList from "./Components/WishList/WishList.jsx";
 import UserProfile from "./Components/UserProfile/UserProfile.jsx";
 import NotFound from "./Components/NotFound/NotFound.jsx";
 import Pasarela from "./Components/Checkout/Checkout";
-
+import "react-chatbot-kit/build/main.css"
 import Admin from './Components/Admin/Admin';
 
 import { useSelector } from 'react-redux';
@@ -23,8 +23,12 @@ import Checkout from './Components/Checkout/Checkout';
 import Verify from './Components/Verify/Verify.jsx';
 import VerifyAuth from './Components/Verify/VerifyAuth';
 import Success from './Components/SuccessfulPurchase/Success';
+
 import Restore from './Components/Restore/Restore';
 import ChangePass from './Components/ChangePass/ChangePass';
+
+import Chatbot from 'react-chatbot-kit';
+
 
 
 

@@ -201,6 +201,7 @@ export function addToCart(id) {
 }
 
 export function removeFromCart(id) {
+    
     return function (dispatch) {
         dispatch({
             type: REMOVE_FROM_CART,
