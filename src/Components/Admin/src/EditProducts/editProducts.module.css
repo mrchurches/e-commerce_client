@@ -73,6 +73,10 @@
     border-color: rgb(193, 164, 164) transparent rgb(193, 164, 164) transparent;
     animation: ldsDualRing 1.2s linear infinite;
   }
+  .font{
+    color:black
+  }
+
   @keyframes ldsDualRing {
     0% {
       transform: rotate(0deg);
@@ -81,4 +85,5 @@
       transform: rotate(360deg);
     }
   }
+
   

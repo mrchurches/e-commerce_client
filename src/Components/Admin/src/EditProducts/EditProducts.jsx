@@ -7,6 +7,7 @@ import { getAllProducts, filterByGenres, filterByPlatforms } from '../../../../r
 import { products } from '../../../../redux/products.js'
 import SearchBar from '../../../SearchBar/SearchBar'
 import { Link } from 'react-router-dom'
+import styles from "./editProducts.module.css"
 const {REACT_APP_URL} = process.env;
 
 function EditProducts({setRender, setGame}) {
@@ -93,12 +94,12 @@ function EditProducts({setRender, setGame}) {
   const games = searchered.length ? searchered : products
 
 
-  var color = 'white'
+  var color = 'black'
 
   return (
     <div class='container' className={style.bigContainer}>
       
-      <h1> Edit Product </h1>
+      <h1 className={styles.font}> Edit Product </h1>
       
       
       <div class='d-flex' style={{justifyContent: 'center'}}><SearchBar button={'admin'}/></div>
@@ -181,9 +182,9 @@ function EditProducts({setRender, setGame}) {
             color = 'rgba(140, 144, 147, 0.138)'
           }else{color = 'white'}
             return <div className={style.productName} style={{backgroundColor:  color}} class='d-flex'>
-              <div id={product.id} className={style.name} onClick={(e) => handleEdit(e)}>{product.name}</div>
-              {!product.fromApi ? <div className={style.iconContainer1} onClick={(e) => handleEdit(e)}><i id={product.id} class="bi bi-pencil"></i></div> :
-              <div id={product.id} className={style.bigIconContainer} onClick={(e) => addToDb(e)} ><div id='add' className={style.iconContainer} style={{display: 'block'}}><i class="bi bi-plus-circle"></i></div><div id='loading' className={style.ldsDualRing} style={{display: 'none'}}></div></div>}
+              <div id={product.id} className={style.name} style={{color: "black"}} onClick={(e) => handleEdit(e)}>{product.name}</div>
+              {!product.fromApi ? <div className={style.iconContainer1} style={{color: "black"}} onClick={(e) => handleEdit(e)}><i id={product.id} class="bi bi-pencil"></i></div> :
+              <div id={product.id} className={style.bigIconContainer} style={{color: "black"}} onClick={(e) => addToDb(e)} ><div id='add' className={style.iconContainer} style={{display: 'block'}}><i class="bi bi-plus-circle"></i></div><div id='loading' className={style.ldsDualRing} style={{display: 'none'}}></div></div>}
             </div>
         })}
       </div>

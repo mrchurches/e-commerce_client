@@ -3,15 +3,18 @@ import {useState} from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import {getGenres, getPlatforms, Post_Game}  from "../../../../redux/actions";
+import { Link } from "react-router-dom";
 import style from "./CreateGame.module.css";
 //import {   useNavigate, NavLink } from "react-router-dom";
 
 function validate(input){
     let error={};
     if(!input.name) error.name="Title required"
+    if(input.name.length < 4) error.name="Title needs at least 4 characters"
     if(!input.description) error.description ="Description required"
+    if(input.description.length < 20) error.description ="Description needs at least 20 characters"
     if(!input.background_image) error.background_image="an image is required"
-    if(!input.rating || input.rating < 0 || input.rating > 100)error.rating = "Must rate the product with a number between 1 and 100"
+    //if(!input.rating || input.rating < 0 || input.rating > 100)error.rating = "Must rate the product with a number between 1 and 100"
     if(!input.price || input.price <= 0 )error.price = "Must put a price with a value higher than 0"
     if(!input.genres.length) error.genres="Must select at least one Genre"
     if(!input.released) error.released="Must select the release date of the product"
@@ -32,7 +35,7 @@ export default function PostGame(){
         background_image:"",
         released:"",
         price:"",
-        rating:"",
+        //rating:"",
         //isDisabled:false,
         platforms:[],
         genres:[],
@@ -112,12 +115,12 @@ export default function PostGame(){
     
     return(
         <div className={style.container}>
-            <h2>Add New Game</h2>
+            <h2 style={{color: "black"}}>Add a New Game</h2>
         <div class="mt-4 d-flex justify-content-center">
         <div class="card shadow-lg p-3 mb-5 bg-body rounded" style={{ width: '25rem'}}>
             <form onSubmit={(e)=>handlersubmit(e)}>
-                <p>Add a new Game:</p>
-                <div class="mb-3 w-100">
+{/*                 <p>Add a new Game:</p>
+ */}                <div class="mb-3 w-100">
                 {/*  <label  class="form-label">Name</label> */}
                     <input type="text" class="form-control" style={{width:"100%"}} placeholder="title of the game..." onChange={handleChange} value={input.name} name="name" />
                     {/* <small class="form-text">We'll never share your email with anyone else.</small> */}
@@ -140,8 +143,8 @@ export default function PostGame(){
                 </div>
                 <div class="mb-3">
                 {/*  <label  class="form-label">Rating</label> */}
-                    <input type="number" class="form-control" placeholder="Rating of the game..." onChange={handleChange} min="1" max="100" value={input.rating} name="rating" />
-                    {error.rating ? <label className={style.labelError}>{error.rating}</label> : null}
+                    {/* <input type="number" class="form-control" placeholder="Rating of the game..." onChange={handleChange} min="1" max="100" value={input.rating} name="rating" />
+                    {error.rating ? <label className={style.labelError}>{error.rating}</label> : null} */}
                 </div>
                 <div class="mb-3">
                     {/* <label  class="form-label">Price</label> */}
@@ -156,7 +159,7 @@ export default function PostGame(){
                     </select>  
                     {error.genres ? <label className={style.labelError}>Select a Genre</label> : null}
                 </div>
-       
+
                 <div class="mb-3">
                     {/* <label class="form-label">Platform</label> */}
                     <select placeholder="Select at least one Platform" class="form-select" name="platforms" value={input.platforms} onChange={(e)=>handleSelectPlat(e)}>
@@ -181,7 +184,11 @@ export default function PostGame(){
                 )}
                 <br></br>
                 {/* <button type="submit" disabled={activeSubmit}>Create!!</button> */} 
-                <button type="submit" class="btn btn-primary" disabled={activeSubmit}>Create</button>
+                <Link to="/home">
+                    <button type="submit" class="btn btn-primary" disabled={activeSubmit}>
+                        Create
+                        </button>
+                </Link>
             </form>
         </div>
     </div>
