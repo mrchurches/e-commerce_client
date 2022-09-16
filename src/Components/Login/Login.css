@@ -1,10 +1,15 @@
 .btnLogo img {
     text-decoration: none;
-    width: 3vw;
+    width: 4rem;
     height: auto;
     /* margin-right: 0.8rem; */
 }
 
 .linkA {
     text-decoration: none;
+    color: cadetblue
+}
+
+.loginContainer {
+    height: 100%;
 }

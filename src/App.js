@@ -15,7 +15,7 @@ import WishList from "./Components/WishList/WishList.jsx";
 import UserProfile from "./Components/UserProfile/UserProfile.jsx";
 import NotFound from "./Components/NotFound/NotFound.jsx";
 import Pasarela from "./Components/Checkout/Checkout";
-
+import "react-chatbot-kit/build/main.css"
 import Admin from './Components/Admin/Admin';
 
 import { useSelector } from 'react-redux';
@@ -23,6 +23,12 @@ import Checkout from './Components/Checkout/Checkout';
 import Verify from './Components/Verify/Verify.jsx';
 import VerifyAuth from './Components/Verify/VerifyAuth';
 import Success from './Components/SuccessfulPurchase/Success';
+
+import Restore from './Components/Restore/Restore';
+import ChangePass from './Components/ChangePass/ChangePass';
+
+import Chatbot from 'react-chatbot-kit';
+
 
 
 
@@ -41,6 +47,8 @@ let users = useSelector(state=>state.users);
         <Route path="/wish_list" component={WishList}/>
         <Route path="/account" component={Account}/>
         <Route path="/login" component={Login} />
+        <Route path="/restore" component={Restore} />
+        <Route path="/changepass" component={ChangePass} />
         <Route path="/home" component={Home} />
         {/* { users.user && <Route path="/userprofile" component={UserProfile} /> } */}
         <Route path="/userprofile" component={UserProfile} /> 

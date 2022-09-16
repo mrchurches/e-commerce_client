@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import SearchBar from "../SearchBar/SearchBar"
-import logo from "../../images/logo.png"
+import logo from "../../images/logo/sin fondo/logo.png"
 import "./NavBar.css"
 import { logout } from './NavBarHelper'
 import { useSelector } from 'react-redux'
@@ -45,60 +45,86 @@ const NavBar = () => {
   }
 
   return (
-    <nav className="navbar navbar-expand-lg text-light" style={{ backgroundColor: "#191D2A", borderRadius: '0' }}>
+    <nav className="navbar navbar-expand-md navbar-dark bg-dark " style={{ backgroundColor: "#191D2A", borderRadius: '0' }}>
 
-      <div class="container-fluid">
-        <Link to="/" className='link'>
-          <img class="logo img-fluid" src={logo} />
-          <span class="navbar-brand text-light">Games E-commerce</span>
-        </Link>
-        <button onClick={() => handleClick()} class="navbar-toggler " type="button" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
+      <div class="container-fluid  mt-2">
+        <NavLink to="/" className='link'>
+          <img class="logo " src={logo} />
+          <span class="titleLogo">GAM<span class="letraE">E</span>-COMMERCE</span>
+        </NavLink>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class={show ? "collapse navbar-collapse show " : "collapse navbar-collapse"} id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <Link to="/home" className='link'>
-              <li class="nav-item">
-                <span class="nav-link active text-light" aria-current="page" >Home</span>
-              </li>
-            </Link>
-            {user && !user.isAdmin && (<Link to="/my_store" className='link'>
-              <li class="nav-item">
-                <span class="nav-link active text-light" aria-current="page" >My store</span>
-              </li>
-            </Link>)}
 
-            {user && !user.isAdmin && (<Link to="/wish_list" className='link'>
-              <li class="nav-item">
-                <span class="nav-link active text-light" aria-current="page" >Wishlist</span>
+            <NavLink to="/home" className='link' activeStyle={{
+              fontWeight: "bold",
+              fontSize: "1rem"
+            }}>
+              <li class="nav-item active">
+                <span class="nav-link active text-light title" aria-current="page"
+                  activeStyle={{
+                    fontWeight: "bold",
+
+                  }} >Home</span>
               </li>
-            </Link>)}
-            {user && user.isAdmin ? <Link to="/admin" className='link'>
+            </NavLink>
+
+            {
+              user && !user.isAdmin && (<NavLink to="/my_store" className='link' activeStyle={{
+                fontWeight: "bold",
+              }}>
+                <li class="nav-item">
+                  <span class="nav-link active text-light title" aria-current="page" >My store</span>
+                </li>
+              </NavLink>)}
+
+            {
+              user && !user.isAdmin && (<NavLink to="/wish_list" className='link' activeStyle={{
+                fontWeight: "bold",
+              }}>
+
+                <li class="nav-item">
+                  <span class="nav-link active text-light" aria-current="page" >Wishlist</span>
+                </li>
+              </NavLink>)}
+            {user && user.isAdmin ? <NavLink to="/admin" className='link' activeStyle={{
+              fontWeight: "bold",
+            }}>
               <li class="nav-item">
                 <span class="nav-link active text-light" aria-current="page" >Admin</span>
               </li>
-            </Link> : null}
+            </NavLink> : null}
+
 
             {!isAdmin ?
-              <Link to="/shopping_cart" className='link'>
+              <Link to="/shopping_cart" className='link' activeStyle={{
+                fontWeight: "bold",
+              }}>
                 <li class="nav-item">
-                  <span class="nav-link text-light">Shopping Cart</span>
+                  <span class="nav-link text-light title">Shopping Cart</span>
                 </li>
               </Link>
               : null}
 
+
             {user ?
-              (<Link to='/home' className='link'>
+              (<NavLink to='/home' className='link' activeStyle={{
+                fontWeight: "bold",
+              }}>
                 <li class="nav-item">
                   <span onClick={() => handleLogout()} class="nav-link text-light">Logout</span>
                 </li>
-              </Link>
+              </NavLink>
               ) :
-              (<Link to="/login" className='link'>
+              (<NavLink to="/login" className='link' activeStyle={{
+                fontWeight: "bold",
+              }}>
                 <li class="nav-item">
-                  <span class="nav-link text-light">Login</span>
+                  <span class="nav-link text-light title">Login</span>
                 </li>
-              </Link>)
+              </NavLink>)
             }
 
             {/* <li class="nav-item dropdown">
@@ -113,12 +139,14 @@ const NavBar = () => {
           </ul>
         </li> */}
           </ul>
-          {user && (<Link to="/userprofile" className='link'>
+          {user && (<NavLink to="/userprofile" className='link' activeStyle={{
+            fontWeight: "bold",
+          }}>
             <li class="nav-item">
-              <small class={"navbar-brand text-light"}>{user.username}</small>
+              <small class={"navbar-brand text-light username"}>{user.username}</small>
               <img class="logo" src={user.profile_pic} />
             </li>
-          </Link>)}
+          </NavLink>)}
           {location.pathname === "/home" && <SearchBar />}
           {location.pathname.includes('/detail') &&
             <NavLink to="/home">

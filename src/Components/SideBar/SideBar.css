@@ -1,15 +1,28 @@
-
-.dropdown{
+.dropdown {
     position: absolute;
     inset: 0px auto auto 0px;
     margin: 0px;
     transform: translate(320px, 70px);
 }
 
-.sidebar-wrapper{
+.sidebar-wrapper {
     height: 100%;
 }
 
-.textColor {
-    color: white;
+.texto {
+    font-size: small;
+    background-color: #3fa3b9d0;
+    /* border: none; */
+    box-shadow: 1px 1px 10px rgb(2, 63, 45);
+    padding: 5px;
+}
+
+
+.btp {
+    width: 8rem;
+    justify-content: start;
+    color: #00233a;
+    border-radius: 4px;
+    border: 1px rgb(18, 49, 58) solid;
+
 }

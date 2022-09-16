@@ -7,16 +7,23 @@ import './ProductCard.css'
 import FavouriteButton from '../../FavouriteButton/FavouriteBurron.jsx'
 import Swal from 'sweetalert2'
 import { isDisabled } from '@testing-library/user-event/dist/utils/index.js'
+import xboxImg from '../../../images/Xbox.png'
+import playStation from '../../../images/PlayStation.png'
+import pc from '../../../images/PC.png'
+import shoppingCard from '../../../images/shopping-cart.png'
 
 
-export default function ProductCard({ id, name, img, rating, platforms, price, fromApi, isDisabled }) {
+
+
+export default function ProductCard({ id, id_api, name, img, rating, platforms, price, fromApi, isDisabled, genres }) {
   let cart = useSelector(state => state.cart);
-  const {user} = useSelector(state => state.users);
+  /* let screenShots = useSelector(state => state.screenShots) */
   let foundCart = false;   //aca encontraria el juego si esta agregado al carrito
   // const [foundCart, setFoundCart] = useState(false)
   const [isRemove, setIsRemove] = useState(false)
   const dispatch = useDispatch(),
   token = sessionStorage.getItem('token');
+
 
   const swalWithBootstrapButtons = Swal.mixin({
     customClass: {
@@ -27,17 +34,24 @@ export default function ProductCard({ id, name, img, rating, platforms, price, f
   })
 
   useEffect(() => {
-    cart?.length && localStorage.setItem('cart', JSON.stringify(cart));
-    // console.log(localStorage.getItem("cart"))
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    console.log(localStorage.getItem("cart"))
+
   }, [cart]);
 
-  useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart));
-  }, [isRemove]);
+  /*  useEffect(() => {
+     dispatch(getScreenShots(id_api))
+   },[])
+   console.log(screenShots) */
+
+
 
   const handleClick = (e) => {
     e.preventDefault();
+    console.log("HICISTE CLICK")
     if (e.target.value === "cart") {
+
       let fC = cart.filter(e => e === id);
       if (fC.length > 0) {
         alert("Juego ya agregado al carrito anteriormente!")
@@ -52,6 +66,7 @@ export default function ProductCard({ id, name, img, rating, platforms, price, f
         })
       }
     } else if (e.target.value === "remove") {
+
       swalWithBootstrapButtons.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -67,8 +82,7 @@ export default function ProductCard({ id, name, img, rating, platforms, price, f
             'Your product has been deleted from the cart.',
             'success'
           );
-          dispatch(removeFromCart(id));
-          setIsRemove(true);
+          dispatch(removeFromCart(id))
         } else if (
           /* Read more about handling dismissals below */
           result.dismiss === Swal.DismissReason.cancel
@@ -79,52 +93,103 @@ export default function ProductCard({ id, name, img, rating, platforms, price, f
             'error'
           )
         }
-        // window.location.reload()
       })
     }
   }
 
-  cart.forEach(e=>{if(e===id){foundCart = true}})
+
+  cart.forEach(e => { if (e === id) { foundCart = true } })
+
 
   return (
-    <div>
+    <div class='bg-transparent cardBigContainer'>
       {
-        <div class="card hover-overlay hover-zoom" style={{ maxWidth: "18rem", marginBottom: '25px', maxHeight: '18rem' }}>
-          <Link to={fromApi || isDisabled ? `/home` : `/detail/${id}`}>
-            <img class="card-img-top" style={{ maxWidth: '18rem', maxHeight: '10rem' }} src={img} alt="product img" />
-          </Link>
-          <div class="card-body" >
-            <Link to={fromApi || isDisabled ? `/home` : `/detail/${id}`} style={{ textDecoration: "none" }}>
-              <h6 class="card-title">{name}</h6>
-            </Link>
-            {/* <div class="ratings">
-              <svg aria-hidden="true" class="fa fa-star rating-color" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>First star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-              <svg aria-hidden="true" class="fa fa-star rating-color" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Second star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-              <svg aria-hidden="true" class="fa fa-star rating-color" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><tit<Navlink></Navlink>le>Third star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-              <svg aria-hidden="true" class="fa fa-star rating-color" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Fourth star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-              <svg aria-hidden="true" class="fa fa-star rating-color" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Fifth star</title><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-              <span class="bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-3">{rating}</span>
-            </div> */}
 
-            {/* <input type="image" onClick={(e)=>handleClick(e)} value="favourite"  src={heart} class="m-2" style={{width:"2vw", filter:`${brigthness}`}}  alt="heart"/> */}
-            <div class="d-flex flex-row align-items-center justify-content-center">
-              {user && <FavouriteButton id={id} />}
+        /*<div class="card hover-overlay hover-zoom" style={{ maxWidth: "18rem", marginBottom: '25px', maxHeight: '18rem' }}>
+          <Link to={fromApi || isDisabled ? `/home` : `/detail/${id}`}>*/
+
+        /*  <div class="card hover-overlay hover-zoom" style={{ maxWidth: "18rem", marginBottom: '25px', maxHeight: '18rem' }}>
+           <Link  to={fromApi || isDisabled ?`/home`:`/detail/${id}`}>
+             <img class="card-img-top" style={{ maxWidth: '18rem', maxHeight: '10rem' }} src={img} alt="product img" />
+           </Link>
+           <div class="card-body" >
+             <Link to={fromApi || isDisabled ? `/home` : `/detail/${id}`} style={{ textDecoration: "none" }}>
+               <h6 class="card-title">{name}</h6>
+             </Link>
+             <div class="d-flex flex-row align-items-center justify-content-center">
+               <FavouriteButton id={id} />
+               <div>
+                 {isDisabled || fromApi ?
+                   <span>No stock</span> :
+                   <span class="card-text bg-secondary m-2 p-2 text-light">
+                     ${price}
+                   </span>}
+                 </div>
+                 <div>
+                   <button disabled={fromApi || isDisabled?true:false} onClick={(e) => handleClick(e)} value="cart" class="btn btn-primary">Cart</button>
+                 </div>
+               {foundCart&&<button onClick={(e) => handleClick(e)} type="button" class="btn-close" value="remove" aria-label="Close"></button>}
+             </div>
+           </div>
+         </div> */
+      }
+
+
+
+      <div class="card-body" style={{ width: '35rem', height: '15rem' }}>
+
+        <div class="d-flex justify-content-around mt-2">
+          <h6 class=" flex-end card-title justify-content-center fs-5 ">{name} </h6>
+          <FavouriteButton class="heartButton" id={id} />
+        </div>
+
+        <div /*class="card-body "*/>
+          <Link class='decoration' to={fromApi || isDisabled ? `/home` : `/detail/${id}`}>
+            <div class=" d-flex justify-content-around mt-2 cardBigContainer">
+              <img class=" card-img-top d-flex justify-content-start align-items-center max-height-5" style={{ maxWidth: '50%', maxHeight: '10rem' }} src={img} alt="product img" />
               <div>
-                {isDisabled || fromApi ?
-                  <span>No stock</span> :
-                  <span class="card-text bg-secondary m-2 p-2 text-light">
-                    ${price}
-                  </span>}
+
+                {/* <span class="card-text bg-secondary m-2 p-2 text-light">
+                  {rating}
+                  </span> */}
+                <div class="d-flex justify-content-around" >
+                  <img class="platformPic" src={xboxImg} style={{ maxWidth: '1.5rem', maxHeight: '1.5rem', marginRight: "15px", marginLeft: "15px" }} />
+                  <img class="platformPic" src={playStation} style={{ maxWidth: '1.5rem', maxHeight: '1.5rem', marginRight: "15px" }} />
+                  <img class="platformPic" src={pc} style={{ maxWidth: '1.5rem', maxHeight: '1.5rem', marginRight: "15px" }} />
+                  <img class="platformPic" src={pc} style={{ maxWidth: '1.5rem', maxHeight: '1.5rem', marginRight: "15px" }} />
                 </div>
+                <p class='d-flex justify-content-around pt-4'>
+                  {genres.map((e, index) => <p key={index} class=" bg-transparent text1 d-flex p-1 justify-content-center  ">{e.name}</p>)}
+                </p>
                 <div>
-                  <button disabled={fromApi || isDisabled?true:false} onClick={(e) => handleClick(e)} value="cart" class="btn btn-primary">Cart</button>
+                  {isDisabled || fromApi ?
+                    <span>No stock</span> :
+                    <h6 class="card-text  titleBg pt-4 pl-3">
+                      Only: ${price}
+                      <button disabled={fromApi || isDisabled ? true : false} onClick={(e) => handleClick(e)} value="cart" class=" text1 buttonCart"><img src={shoppingCard} alt="" style={{ maxWidth: '2rem', maxHeight: '2rem' }} /></button>
+                    </h6>
+                  }
+                  {/* </div> */}
                 </div>
-              {foundCart && <button onClick={(e) => handleClick(e)} type="button" class="btn-close" value="remove" aria-label="Close"></button>}
+              </div>
             </div>
+          </Link>
+
+          {/* <div class='d-flex fluid-content justify-content-between mt-1 '> */}
+
+
+
+
+
+
+          <div class="d-flex flex-row align-items-center justify-content-center">
+
+            {foundCart && <button onClick={(e) => handleClick(e)} type="button" class="btn-close" value="remove" aria-label="Close"></button>}
           </div>
         </div>
 
-      }
+      </div>
 
     </div>)
+
 }
