@@ -39,12 +39,6 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
 
   }, [cart]);
 
-  /*  useEffect(() => {
-     dispatch(getScreenShots(id_api))
-   },[])
-   console.log(screenShots) */
-
-
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -97,6 +91,22 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
       })
     }
   }
+
+
+
+
+  let platformsArr = []
+  if (platforms && platforms.length > 0) {
+    let platformsSet = new Set();
+    platforms.forEach(e => {
+      if (e.name.includes('PlayStation')) platformsSet.add('PlayStation');
+      if (e.name.includes('Xbox')) platformsSet.add('Xbox');
+      if (e.name === 'PC') platformsSet.add('PC');
+    });
+    platformsSet.forEach(e => platformsArr.push(e))
+  }
+
+
 
 
   cart.forEach(e => { if (e === id) { foundCart = true } })
@@ -159,10 +169,23 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
                   {rating}
                   </span> */}
                 <div class="d-flex justify-content-around" >
-                  <img class="platformPic" src={xboxImg} style={{ maxWidth: '1.5rem', maxHeight: '1.5rem', marginRight: "15px", marginLeft: "15px" }} />
-                  <img class="platformPic" src={playStation} style={{ maxWidth: '1.5rem', maxHeight: '1.5rem', marginRight: "15px" }} />
-                  <img class="platformPic" src={pc} style={{ maxWidth: '1.5rem', maxHeight: '1.5rem', marginRight: "15px" }} />
-                  <img class="platformPic" src={pc} style={{ maxWidth: '1.5rem', maxHeight: '1.5rem', marginRight: "15px" }} />
+
+                  {
+                    platformsArr.map((e, i) => {
+                      let img;
+                      if (e === 'PC') img = pc
+                      if (e === 'Xbox') img = xboxImg
+                      if (e === 'PlayStation') img = playStation
+                      return (
+                        <img
+                          class="platformPic"
+                          style={{ maxWidth: '1.5rem', maxHeight: '1.5rem', marginRight: "15px", marginLeft: "15px" }}
+                          src={img}
+                        />
+                      )
+                    })
+                  }
+
                 </div>
                 <p class='d-flex justify-content-around pt-4'>
                   {genres.map((e, index) => <p key={index} class=" bg-transparent text1 d-flex p-1 justify-content-center  ">{e.name}</p>)}
@@ -188,7 +211,6 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
             </div>
           </Link>
 
-          {/* <div class='d-flex fluid-content justify-content-between mt-1 '> */}
 
           <div class="d-flex flex-row align-items-center justify-content-center">
 
