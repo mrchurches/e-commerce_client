@@ -32,12 +32,12 @@ export default function Dashboard() {
     <div className={styles.container}>
   
       <div className={styles.iScontainer}>
-        <h3> Info Sales </h3>
+        <h3 style={{color: "black"}}> Info Sales </h3>
        <InfoSales items={items}/> 
       </div>
       
       <div className={styles.iScontainer}>
-      <h3> Info Web </h3>
+      <h3 style={{color: "black"}}> Info Web </h3>
         <InfoWeb items={items}/>
       </div>
 

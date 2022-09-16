@@ -8,10 +8,11 @@ import Swal from 'sweetalert2'
 
 function validate(input){
     let error={};
-    if(!input.name) error.name="Name required"
-    if(!input.description) error.description ="Description required"
+    if(!input.name || input.name.length < 4) error.name="A Tittle required with at least 4 characters"
+    if(input.description.length < 20) error.description ="A Description is required with at least 20 characters"
+    if(!input.description) error.description="Description is required"
     if(!input.background_image) error.background_image="an image is required"
-    if(!input.rating || input.rating < 0 || input.rating > 100)error.rating = "Must rate the product with a number between 1 and 100"
+    //if(!input.rating || input.rating < 0 || input.rating > 100)error.rating = "Must rate the product with a number between 1 and 100"
     if(!input.price || input.price <= 0 )error.price = "Must put a price with a value higher than 0"
     if(!input.genres.length) error.genres="Must select at least one Genre"
     if(!input.released) error.released="Must select the release date of the product"
@@ -180,7 +181,7 @@ export default function EditForm({setRender, game}) {
   return (
     <div className={style.container}>
         <button value='test' class="btn btn-secondary" type="button" aria-expanded="false" style={{ marginBottom: '15px'}} onClick={goBack} className={style.goBack}>Go Back</button>
-        <h1>Edit Game</h1>
+        <h1 style={{color: "black"}}>Edit Game</h1>
         
 
 
@@ -198,38 +199,33 @@ export default function EditForm({setRender, game}) {
                     
 
                     <div class="mb-3 w-100">
-                    {/*  <label  class="form-label">Name</label> */}
+                        <label  class="form-label" style={{color: "black"}}>Name</label> 
                         <input type="text" class="form-control" className={style.name} style={{width:"100%"}} placeholder="title of the game..." onChange={handleChange} value={input.name} name="name" />
                         {/* <small class="form-text">We'll never share your email with anyone else.</small> */}
                         {error.name? <label className={style.labelError}>{error.name}</label>:null}
                     </div>
                     <div class="mb-3">
-                    {/*  <label  class="form-label">Description</label> */}
+                        <label  class="form-label" style={{color: "black"}}>Description</label> 
                         <textarea type="text" class="form-control"  placeholder="a brief summary..." onChange={handleChange}  value={input.description} name="description" />
                         {error.description ? <label className={style.labelError}>{error.description}</label>:null}
                     </div>
                     <div class="mb-3">
-                        {/* <label  class="form-label">Image</label> */}
+                        <label  class="form-label" style={{color: "black"}}>Image</label>
                         <input type="text" class="form-control" placeholder="an image url..." onChange={handleChange} value={input.background_image} name="background_image" />
                         {error.background_image ? <label className={style.labelError}>{error.background_image}</label> : null}
                     </div>
                     <div class="mb-3">
-                        {/* <label  class="form-label">Release Date</label> */}
+                        <label  class="form-label" style={{color: "black"}}>Release Date</label>
                         <input type="date" class="form-control"  placeholder="Realese date..." onChange={handleChange} value={input.released} name="released" />
                         {error.released ? <label className={style.labelError}>{error.released}</label> : null}
                     </div>
                     <div class="mb-3">
-                    {/*  <label  class="form-label">Rating</label> */}
-                        <input type="number" class="form-control" placeholder="Rating of the game..." onChange={handleChange} min="1" max="100" value={input.rating} name="rating" />
-                        {error.rating ? <label className={style.labelError}>{error.rating}</label> : null}
-                    </div>
-                    <div class="mb-3">
-                        {/* <label  class="form-label">Price</label> */}
+                        <label  class="form-label" style={{color: "black"}}>Price</label>
                         <input type="number" class="form-control" placeholder="Price..." onChange={handleChange}  min="1" max="100" value={input.price} name="price" />
                         {error.price ? <label className={style.labelError}>{error.price}</label> : null}
                     </div>
                     <div class="mb-3">
-                    {/*  <label class="form-label">Genres</label> */}
+                        {/* <label class="form-label" >Genres</label> */}
                         <select  placeholder="Select at least one Genre..." class="form-select"  name="genres" value={input.genres} onChange={(e)=>handleSelectGenres(e)}>
                             <option>Select Genres</option > 
                             {genres && genres.map((e, pos)=>{ return <option id={pos} key={e.id} value={e.genres}>{e.name}</option>})}

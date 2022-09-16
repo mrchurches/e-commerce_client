@@ -64,6 +64,7 @@
   display: flex;
   justify-content: center;
   margin-bottom: 5px;
+  color: black;
 }
 .enabled{
   margin-right: 10px;
