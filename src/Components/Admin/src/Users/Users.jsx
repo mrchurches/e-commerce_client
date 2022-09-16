@@ -210,7 +210,7 @@ Swal.fire({
 
       <div className='testAdminUser'>
       
-      <h2>Users</h2>
+      <h2 style={{color: "black"}}>Users</h2>
 
       <div class='container d-flex justify-content-center'>   
 
