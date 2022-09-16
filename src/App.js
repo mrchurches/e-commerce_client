@@ -41,7 +41,7 @@ let users = useSelector(state=>state.users);
         <Route path="/wish_list" component={WishList}/>
         <Route path="/account" component={Account}/>
         <Route path="/login" component={Login} />
-        <Route path="/login/restore" component={Restore} />
+        <Route path="/restore" component={Restore} />
         <Route path="/home" component={Home} />
         {/* { users.user && <Route path="/userprofile" component={UserProfile} /> } */}
         <Route path="/userprofile" component={UserProfile} /> 
