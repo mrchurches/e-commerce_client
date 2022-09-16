@@ -57,6 +57,7 @@ const NavBar = () => {
               fontWeight: "bold",
               fontSize: "1rem"
             }}>
+
               <li class="nav-item active">
                 <span class="nav-link active text-light title" aria-current="page"
                   activeStyle={{

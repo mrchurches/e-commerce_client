@@ -61,12 +61,12 @@ const Login = () => {
         <form onSubmit={(e) => handleSubmit(e)}>
           <h3 id="pleaseLogIn" class=" inputLabel pt-3 mb-1">Please Log-In</h3>
           <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Email address</label>
+            <label for="exampleInputEmail1" class="inputLabel form-label">Email address</label>
             <input type="email" id="username" class={`form-control ${(userGet.userNExists || userGet.userBan) && "is-invalid"}`} aria-describedby="emailHelp" placeholder="example@examplemail.com" onChange={handleChange} value={user.username} name="username" />
             {userGet.userNExists && <p>Email address invalid</p>}
             {userGet.userBan && <p>Email address are banned</p>}
             {userGet.isVerified && <p>Email address not verified</p>}
-            <small id="emailHelp" class="form-text inputLabel">We'll never share your email with anyone else.</small>
+            <small id="emailHelp" class="inputLabel form-text inputLabel">We'll never share your email with anyone else.</small>
           </div>
           <div class="mb-1">
             <label for="exampleInputPassword1" class="form-label inputLabel">Password</label>

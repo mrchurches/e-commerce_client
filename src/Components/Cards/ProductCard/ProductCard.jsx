@@ -39,17 +39,13 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
 
   }, [cart]);
 
-  /*  useEffect(() => {
-     dispatch(getScreenShots(id_api))
-   },[])
-   console.log(screenShots) */
-
-
 
   const handleClick = (e) => {
     e.preventDefault();
     console.log("HICISTE CLICK")
-    if (e.target.value === "cart") {
+    console.log(e.target)
+    console.log(e.target.name)
+    if (e.target.name === "cart") {
 
       let fC = cart.filter(e => e === id);
       if (fC.length > 0) {
@@ -97,6 +93,22 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
   }
 
 
+
+
+  let platformsArr = []
+  if (platforms && platforms.length > 0) {
+    let platformsSet = new Set();
+    platforms.forEach(e => {
+      if (e.name.includes('PlayStation')) platformsSet.add('PlayStation');
+      if (e.name.includes('Xbox')) platformsSet.add('Xbox');
+      if (e.name === 'PC') platformsSet.add('PC');
+    });
+    platformsSet.forEach(e => platformsArr.push(e))
+  }
+
+
+
+
   cart.forEach(e => { if (e === id) { foundCart = true } })
 
 
@@ -135,11 +147,16 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
 
 
 
-      <div class="card-body" style={{ width: '35rem', height: '15rem' }}>
+      <div class="card-body headerContainer " style={{ width: '35rem', height: '15rem' }}>
 
-        <div class="d-flex justify-content-around mt-2">
-          <h6 class=" flex-end card-title justify-content-center fs-5 ">{name} </h6>
-          <FavouriteButton class="heartButton" id={id} />
+        <div class="d-flex  justify-content-between mt-2 headerMatrics   ">
+          <div class="mt-2 ">
+            <h6 class="card-title fs-5 ">{name} </h6>
+          </div>
+
+          <div class="">
+            <FavouriteButton class="heartButton" id={id} />
+          </div>
         </div>
 
         <div /*class="card-body "*/>
@@ -152,33 +169,47 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
                   {rating}
                   </span> */}
                 <div class="d-flex justify-content-around" >
-                  <img class="platformPic" src={xboxImg} style={{ maxWidth: '1.5rem', maxHeight: '1.5rem', marginRight: "15px", marginLeft: "15px" }} />
-                  <img class="platformPic" src={playStation} style={{ maxWidth: '1.5rem', maxHeight: '1.5rem', marginRight: "15px" }} />
-                  <img class="platformPic" src={pc} style={{ maxWidth: '1.5rem', maxHeight: '1.5rem', marginRight: "15px" }} />
-                  <img class="platformPic" src={pc} style={{ maxWidth: '1.5rem', maxHeight: '1.5rem', marginRight: "15px" }} />
+
+                  {
+                    platformsArr.map((e, i) => {
+                      let img;
+                      if (e === 'PC') img = pc
+                      if (e === 'Xbox') img = xboxImg
+                      if (e === 'PlayStation') img = playStation
+                      return (
+                        <img
+                          class="platformPic"
+                          style={{ maxWidth: '1.5rem', maxHeight: '1.5rem', marginRight: "15px", marginLeft: "15px" }}
+                          src={img}
+                        />
+                      )
+                    })
+                  }
+
                 </div>
                 <p class='d-flex justify-content-around pt-4'>
                   {genres.map((e, index) => <p key={index} class=" bg-transparent text1 d-flex p-1 justify-content-center  ">{e.name}</p>)}
                 </p>
-                <div>
+                <div class="align-items-center">
                   {isDisabled || fromApi ?
                     <span>No stock</span> :
-                    <h6 class="card-text  titleBg pt-4 pl-3">
+
+                    (<h6 class="card-text  titleBg pt-4 pl-3">
                       Only: ${price}
-                      <button disabled={fromApi || isDisabled ? true : false} onClick={(e) => handleClick(e)} value="cart" class=" text1 buttonCart"><img src={shoppingCard} alt="" style={{ maxWidth: '2rem', maxHeight: '2rem' }} /></button>
+
+                      <div name="cart" onClick={(e) => handleClick(e)}>
+
+                        <button disabled={fromApi || isDisabled ? true : false} class=" text1 buttonCart">
+                          <img src={shoppingCard} name="cart" alt="" style={{ maxWidth: '2rem', maxHeight: '2rem' }} /></button>
+                      </div>
                     </h6>
+                    )
                   }
                   {/* </div> */}
                 </div>
               </div>
             </div>
           </Link>
-
-          {/* <div class='d-flex fluid-content justify-content-between mt-1 '> */}
-
-
-
-
 
 
           <div class="d-flex flex-row align-items-center justify-content-center">
