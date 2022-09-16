@@ -9,6 +9,7 @@ import SideBar from '../SideBar/SideBar';
 import Filters from "../Filters/Filters"
 import "./Home.css"
 
+
 function Home() {
     let games = useSelector(state => state.products);
     let searchered = useSelector(state => state.searchered);

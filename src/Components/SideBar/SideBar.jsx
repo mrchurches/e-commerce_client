@@ -3,6 +3,12 @@ import { getAllProducts, filterByGenres, filterByPlatforms, getGenres, getPlatfo
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./SideBar.css"
+import MessageParser from '../Chatbot/MessageParser/MessageParser';
+import ActionProvider from '../Chatbot/ActionProvider/ActionProvider';
+import config from '../Chatbot/Config/config';
+import Chatbot from 'react-chatbot-kit';
+import 'react-chatbot-kit/build/main.css'
+import MyChatBot from "../Chatbot/chatbot";
 
 /* const esrbMock = [ "Teen", "Mature", "Not rated", "Adults Only", "Everyone", "Everyone 10+", "Rating Pending" ] */
 
@@ -124,6 +130,13 @@ function applyPrice(e) {
         <div className="clear">
         <button class="texto btp" style={{marginTop: '15px', marginRight: 'auto', marginLeft: 'auto'}} onClick={handleClick}>Reset Filters</button>
       </div>
+      <br></br>
+      <br />
+      <MyChatBot
+                config={config}
+                messageParser={MessageParser}
+                actionProvider={ActionProvider}
+                />
     </div>
     )
 }
