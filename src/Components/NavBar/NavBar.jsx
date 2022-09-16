@@ -40,12 +40,12 @@ const NavBar = () => {
   }
 
   return (
-    <nav className="navbar navbar-expand-md navbar-dark bg-dark text-light" style={{ backgroundColor: "#191D2A", borderRadius: '0' }}>
+    <nav className="navbar navbar-expand-md navbar-dark bg-dark " style={{ backgroundColor: "#191D2A", borderRadius: '0' }}>
 
       <div class="container-fluid  mt-2">
         <NavLink to="/" className='link'>
           <img class="logo " src={logo} />
-          <span class="navbar-brand text-light title">GAME-COMMERCE</span>
+          <span class="titleLogo">GAM<span class="letraE">E</span>-COMMERCE</span>
         </NavLink>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -55,9 +55,14 @@ const NavBar = () => {
 
             <NavLink to="/home" className='link' activeStyle={{
               fontWeight: "bold",
+              fontSize: "1rem"
             }}>
-              <li class="nav-item">
-                <span class="nav-link active text-light" aria-current="page" >Home</span>
+              <li class="nav-item active">
+                <span class="nav-link active text-light title" aria-current="page"
+                  activeStyle={{
+                    fontWeight: "bold",
+
+                  }} >Home</span>
               </li>
             </NavLink>
 
@@ -66,7 +71,7 @@ const NavBar = () => {
                 fontWeight: "bold",
               }}>
                 <li class="nav-item">
-                  <span class="nav-link active text-light" aria-current="page" >My store</span>
+                  <span class="nav-link active text-light title" aria-current="page" >My store</span>
                 </li>
               </NavLink>)}
 
@@ -93,7 +98,7 @@ const NavBar = () => {
                 fontWeight: "bold",
               }}>
                 <li class="nav-item">
-                  <span class="nav-link text-light">Shopping Cart</span>
+                  <span class="nav-link text-light title">Shopping Cart</span>
                 </li>
               </Link>
               : null}
@@ -112,7 +117,7 @@ const NavBar = () => {
                 fontWeight: "bold",
               }}>
                 <li class="nav-item">
-                  <span class="nav-link text-light">Login</span>
+                  <span class="nav-link text-light title">Login</span>
                 </li>
               </NavLink>)
             }

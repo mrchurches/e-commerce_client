@@ -1,14 +1,20 @@
-select{
+select {
+    width: 8rem;
     margin-left: 5px;
     margin-right: 50px;
-    background-color: #69717A;
-    color: rgb(206, 201, 201);
-    border: none;
-    color: black;
+    background-color: #3fa3b9d0;
+
+
+
     font-size: small;
+    color: #012035;
+    border-radius: 4px;
+    border: 1px rgb(18, 49, 58) solid;
+    box-shadow: 1px 1px 10px rgb(2, 63, 45);
 
 }
-.posicion{
+
+.posicion {
     display: flex;
     color: black
 }
