@@ -106,7 +106,13 @@ h6 {
 
 }
 
-.platformPic {}
+.headerMatrics {
+    /* background-color: rgb(0, 200, 255); */
+    width: 88%;
+    margin-left: 10%;
+
+
+}
 
 .cardBigContainer {
     display: flex;
