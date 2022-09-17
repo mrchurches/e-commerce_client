@@ -1,11 +1,23 @@
+import axios from 'axios';
 import React, { useState } from 'react'
+import { Redirect, useParams } from 'react-router-dom';
+import bcrypt from 'bcryptjs'
 import "./ChangePass.css"
 
 function ChangePass() {
+    let { id, token } = useParams();
+    // console.log("🚀 ~ file: ChangePass.jsx ~ line 7 ~ ChangePass ~ id", id)
+    // console.log("🚀 ~ file: ChangePass.jsx ~ line 7 ~ ChangePass ~ token", token)
 
-
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault()
+
+        if (confirmNewPassword === newPassword) {
+            let salt = parseInt(process.env.REACT_APP_KEY_SALT)
+            let hashedPass = await bcrypt.hash(newPassword, salt)
+            console.log("🚀 ~ file: ChangePass.jsx ~ line 18 ~ handleSubmit ~ hashedPass", hashedPass)
+            axios.put(`${process.env.REACT_APP_URL}restore/newpassword/${id}/${token}`, { newPassword: hashedPass })
+        }
     }
 
     function handlePasswordChange(e) {

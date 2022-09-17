@@ -1,13 +1,17 @@
 import React, { useState } from 'react'
 import "./Restore.css"
+import axios from 'axios';
 
 function Restore() {
+    let [email, setEmail] = useState()
 
     function handleChange(e) {
         e.preventDefault()
+        setEmail(e.target.value)
     }
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault()
+        await axios.get(`${process.env.REACT_APP_URL}restore/?email=${email}`)
     }
 
 
@@ -39,7 +43,7 @@ function Restore() {
 
                         <input type="email"
                             onChange={e => handleChange(e)}
-                            // value={}
+                            value={email}
                             name="email"
                             id="email"
                             class={`form-control`}
