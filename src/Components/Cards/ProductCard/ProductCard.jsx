@@ -159,7 +159,7 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
                   <img class="platformPic" src={pc} style={{ maxWidth: '1.5rem', maxHeight: '1.5rem', marginRight: "15px" }} />
                 </div>
                 <p class='d-flex justify-content-around pt-4'>
-                  {genres.map((e, index) => <p key={index} class=" bg-transparent text1 d-flex p-1 justify-content-center  ">{e.name}</p>)}
+                  {genres?.map((e, index) => <p key={index} class=" bg-transparent text1 d-flex p-1 justify-content-center  ">{e.name}</p>)}
                 </p>
                 <div>
                   {isDisabled || fromApi ?

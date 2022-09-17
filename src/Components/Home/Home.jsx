@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux'
-import { getAllProducts, setCurrentPage, /* getScreenShots */ } from '../../redux/actions';
+import { getAllProducts, setCurrentPage, getUsers, addWish, resetWish, /* getScreenShots */ } from '../../redux/actions';
 import ProductCard from '../Cards/ProductCard/ProductCard';
 import Pagination from '../Pagination/Pagination';
 import SideBar from '../SideBar/SideBar';
@@ -19,7 +19,8 @@ function Home() {
     const indexOfLastGame = currentPage * gamesPerPage;
     const indexOfFirstGame = indexOfLastGame - gamesPerPage;
     const currentGames = searchered.length ? searchered.slice(indexOfFirstGame, indexOfLastGame) : games.slice(indexOfFirstGame, indexOfLastGame),
-        { user } = useSelector((state) => state.users)
+        { user } = useSelector((state) => state.users),
+        token = window.sessionStorage.getItem('token');
     /* const screenshots = useSelector((state) => state.screenshots) */
     // const [show, setShow] = useState(false);
 
@@ -30,8 +31,18 @@ function Home() {
     }
 
     useEffect(() => {
-        dispatch(getAllProducts())
-    }, [dispatch])
+        token && dispatch(getUsers(token));
+        dispatch(getAllProducts());
+    }, []);
+
+    useEffect(() => {
+        return () => dispatch(getUsers(token));
+    }, []);
+
+    useEffect(() => {
+        user && user.products?.length !== 0 ? user.products?.map(e => dispatch(addWish(e.id))) :
+            dispatch(resetWish());
+    }, [user])
 
     return (
         <div class="d-sm-flex container-fluid cardsAndFilter">
