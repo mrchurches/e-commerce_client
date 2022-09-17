@@ -35,11 +35,11 @@ function ChangePass() {
     return (
         <div class="d-flex justify-content-center align-items-center restoreContainer mt-5 pb-5">
             {/* {isSubmit && <Redirect to={'/login'} />} */}
-            <div class="mt-5 card shadow-lg p-3 mb-5 bg-body rounded" style={{ width: '18rem' }}>
+            <div class="mt-5 card shadow-lg p-3 mb-5 rounded cardProperties" style={{ width: '18rem' }}>
                 <h3 id="pleaseLogIn" class=" inputLabel pt-3 mb-1">Restore Password</h3>
                 <form onSubmit={(e) => handleSubmit(e)} method='post'>
 
-                    s{/* NEW PASSWORD */}
+                    {/* NEW PASSWORD */}
                     <div class="relative z-0 mb-6 w-full group">
                         <small onClick={(e) => setDisabledNewPassword(!disabledNewPassword)} for="password" class="form-label inputLabel">New Password</small><br />
 

@@ -24,7 +24,7 @@ function Restore() {
     return (
         <div class="d-flex justify-content-center align-items-center restoreContainer mt-5 pb-5">
             {/* {isSubmit && <Redirect to={'/login'} />} */}
-            <div class="mt-5 card shadow-lg p-3 mb-5 bg-body rounded"
+            <div class="mt-5 card shadow-lg p-3 mb-5 rounded cardProperties"
                 style={{ width: '18rem' }}
             >
                 <h3 id="pleaseLogIn"
