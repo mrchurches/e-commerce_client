@@ -6,7 +6,7 @@ import "./NavBar.css"
 import { logout } from './NavBarHelper'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-import { getUsers, resetUser, addWish, removeFromCart } from '../../redux/actions'
+import { getUsers, resetUser, addWish, removeFromCart, getUserOrders } from '../../redux/actions'
 
 import profilePic from "../../images/profile21.png"
 
@@ -32,6 +32,10 @@ const NavBar = () => {
     const token = window.sessionStorage.getItem('token');
     token && dispatch(getUsers(token));
   }, [])
+
+  useEffect(() => {
+    user && dispatch(getUserOrders(user.id));
+  }, [user])
 
   var isAdmin = false;
 

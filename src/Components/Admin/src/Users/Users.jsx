@@ -294,7 +294,7 @@ Swal.fire({
                             {user.isBanned === false ? <td> - </td> : <td> ❌ </td>}
                             {user.isAdmin === false ? <td> - </td> : <td> ✔️ </td>}
                             <td>{user.createdAt.slice(0, 10)}</td>
-                            <td> <a onClick={(e) => viewReviews(user.username)} className='reviews12345'>Reviews</a> </td> {}
+                            <td> <a onClick={(e) => viewReviews(user.id)} className='reviews12345'>Reviews</a> </td> {}
                             <td  abbr={user.id} class="bi bi-pencil"  onClick={(e) => handleBanUser(e)} style={{cursor: 'pointer'}}></td>
                         </tr>
                 })} 

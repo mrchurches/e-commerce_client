@@ -32,6 +32,19 @@
   color: azure;
 }
 
+.App::after {
+  content: '';
+  display: block;
+  height: 163px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 163px;
+}
+
 .App-link {
   color: #61dafb;
 }

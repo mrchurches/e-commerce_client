@@ -412,7 +412,7 @@ export function addRemoveReview(payload) {
 
 export function getUserReviews(payload) {
     return function (dispatch) {
-        axios.get(`${REACT_APP_URL}reviews?username=${payload}`)
+        axios.get(`${REACT_APP_URL}reviews?user_id=${payload}`)
             .then((res) => {
                 dispatch({
                     type: GET_USER_REVIEWS,
@@ -426,7 +426,7 @@ export function getUserReviews(payload) {
 
 export function getUserReportedReviews(payload) {
     return function (dispatch) {
-        axios.get(`${REACT_APP_URL}reviews?username=${payload}`)
+        axios.get(`${REACT_APP_URL}reviews?user_id=${payload}`)
             .then((res) => {
                 dispatch({
                     type: GET_USER_REPORTED_REVIEWS,
@@ -461,5 +461,18 @@ export function priceFilter(payload) {
 export function clearCart() {
     return {
         type: CLEAR_CART,
+    };
+};
+
+
+export function editReview(payload) {
+    return async function (dispatch) {
+        try {
+            let res = await axios.put(`${REACT_APP_URL}reviews/edit`, payload)
+            console.log(res)
+        } catch (e) {
+            console.error(e);
+            alert(e.message)
+        };
     };
 };
