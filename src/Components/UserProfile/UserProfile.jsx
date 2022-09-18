@@ -217,14 +217,14 @@ const CreateUser = () => {
 
 
     return (
-        <div class="d-flex justify-content-center align-items-center">
+        <div class="d-flex justify-content-center align-items-center ">
             {isSubmit && <Redirect to={'/login'} />}
-            <div class="mt-5 card shadow-lg p-3 mb-5 bg-body rounded" style={{ width: '18rem' }}>
-                <h3>Edit Your Profile</h3>
+            <div class="mt-5 card shadow-lg p-3 mb-5 rounded createUserContainer btp" style={{ width: '18rem' }}>
+                <h3 class="text-info">Edit Your Profile</h3>
                 <form onSubmit={(e) => handleSubmit(e)} method='post'>
                     <div class="relative z-0 mb-6 w-full group">
 
-                        <button class={'form-control'} onClick={showWidget}> Upload Image </button>
+                        <button class={'form-control '} onClick={showWidget}> Upload Image </button><br />
                         <img src={user.profile_pic} id={"uploadedImage"} alt={"selectedPic"} onClick={() => setPath("")} />
                     </div>
 
@@ -352,7 +352,7 @@ const CreateUser = () => {
                             {isChange.username && !validate.username && <small>Username Invalid</small>}
                             {userGet.usernameExists && <small>Username already exists</small>}
                         </div>
-                    </div>
+                    </div><br />
                     {/* <div>All fields are required</div> */}
 
                     {/* SUBMIT BUTTON */}
