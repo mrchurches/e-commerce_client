@@ -39,6 +39,8 @@ img {
   -webkit-backface-visibility: hidden;
 }
 
+/* @media {} */
+
 .rounded {
   border-radius: 5px !important;
 }

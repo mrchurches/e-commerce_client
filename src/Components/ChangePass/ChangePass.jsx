@@ -2,9 +2,12 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import { Redirect, useParams } from 'react-router-dom';
 import bcrypt from 'bcryptjs'
+import Swal from 'sweetalert2'
 import "./ChangePass.css"
+import { useHistory } from 'react-router-dom'
 
 function ChangePass() {
+    let history = useHistory();
     let { id, token } = useParams();
     // console.log("🚀 ~ file: ChangePass.jsx ~ line 7 ~ ChangePass ~ id", id)
     // console.log("🚀 ~ file: ChangePass.jsx ~ line 7 ~ ChangePass ~ token", token)
@@ -18,6 +21,14 @@ function ChangePass() {
             console.log("🚀 ~ file: ChangePass.jsx ~ line 18 ~ handleSubmit ~ hashedPass", hashedPass)
             axios.put(`${process.env.REACT_APP_URL}restore/newpassword/${id}/${token}`, { newPassword: hashedPass })
         }
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Password Changed!',
+            showConfirmButton: false,
+            timer: 1500
+        })
+        history.push("/home")
     }
 
     function handlePasswordChange(e) {

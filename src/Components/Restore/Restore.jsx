@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import "./Restore.css"
 import axios from 'axios';
+import Swal from 'sweetalert2'
+import { useHistory } from 'react-router-dom'
 
 function Restore() {
+    let history = useHistory();
     let [email, setEmail] = useState()
 
     function handleChange(e) {
@@ -12,6 +15,14 @@ function Restore() {
     async function handleSubmit(e) {
         e.preventDefault()
         await axios.get(`${process.env.REACT_APP_URL}restore/?email=${email}`)
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Please, check you e-mail and Follow the Link.',
+            showConfirmButton: true,
+            timer: 1500
+        })
+        history.push("/home")
     }
 
 
