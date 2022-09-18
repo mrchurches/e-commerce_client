@@ -6,7 +6,7 @@
 
 .project-info-box {
   margin: 15px 0;
-  background-color: rgb(238, 245, 246);
+  background-color: #212529;
   padding: 30px 40px;
   border-radius: 5px;
   color: rgb(255, 253, 239);
@@ -16,6 +16,7 @@
 }
 
 .project-info-box p {
+  color: #cccccc;
   margin-bottom: 15px;
   padding-bottom: 15px;
 
@@ -94,7 +95,7 @@ strong {
 }
 
 .reviewContainer {
-  background-color: rgb(238, 245, 246);
+  background-color: #212529;
   max-width: 300px;
   max-height: 600px;
   margin-bottom: 20px;

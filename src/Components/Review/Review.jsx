@@ -5,6 +5,8 @@ import {getUserOrders, PostReview} from "../../redux/actions";
 import { useSelector } from 'react-redux';
 import style from './Review.module.css'
 import Swal from 'sweetalert2'
+import axios from "axios";
+const {REACT_APP_URL} = process.env;
 
 function validate(input, productOwned){
     let error={};
@@ -30,19 +32,23 @@ export default function Review_box({productId, reviews, setReviews}){
     }
     const [activeSubmit, SetactiveSubmit] = useState(true);
     const [productOwned, SetProductOwned] = useState(false);
+    const [userReviews, setUserReviews] = useState([]);
+    const [reviewed, setReviewed] = useState(false);
 
     let [input , setInput] = useState({
         rating:"",
         description:"",
-        username: username,
+        user_id: user_id,
         productId: productId,
         profile_pic: profile_pic,
+        username: username,
     });
     let [error, setError] = useState({});
     let dispatch = useDispatch();
 
+    
     useEffect(()=>{
-        if (productOwned) {   
+        if (productOwned && !reviewed) {   
             const llaves = Object.keys(input)
             for (const key of llaves) {
                 if (input[key] && !error[key]) { //si hay input y no hay errores --false
@@ -54,7 +60,7 @@ export default function Review_box({productId, reviews, setReviews}){
             };
         }
     }, [input, error])
-
+    
     function handleChange (e){
         e.preventDefault(e)
         let review = e.target.value;
@@ -67,21 +73,41 @@ export default function Review_box({productId, reviews, setReviews}){
             [e.target.name]: review
         }, productOwned))
     };
-
+    
     useEffect(() => {
         if (user.user) {
             dispatch(getUserOrders(user_id))
         }
-      }, []);
-      useEffect(() => {
+    }, []);
+    useEffect(() => {
         userOrders.forEach(e => {
             if (e.game_id === productId) {
                 SetProductOwned(true);
             }
         });
-      }, [userOrders]);
+    }, [userOrders]);
 
-
+    useEffect(() => {
+        if (reviews) {
+            setTimeout(() => {
+                axios.get(`${REACT_APP_URL}reviews?user_id=${user_id}`)
+                .then(res => setUserReviews(res.data.filter((e)=> !e.reported)))
+                .catch(err => console.log(err))
+            }, "500");
+        }
+    }, [user,reviews])
+    
+    useEffect(() => {
+        if (reviews && userReviews) {
+            userReviews.forEach(e => {
+                if (e.productId === productId) {
+                    setReviewed(true)
+                }
+            })
+        }
+    }, [userReviews,reviews])
+    
+    
     function handlerSubmit(e){
         e.preventDefault();
         dispatch(PostReview(input));
@@ -91,12 +117,13 @@ export default function Review_box({productId, reviews, setReviews}){
             'Good job!',
             'Review Posted Succesfully!',
             'success'
-        )
-        setInput({
-            rating:"",
-            description:"",
-            username: username,
-            productId: productId
+            )
+            setInput({
+                rating:"",
+                description:"",
+                user_id: user_id,
+                productId: productId,
+                username: username,
         })
     };
     //rating y review 
@@ -116,6 +143,7 @@ export default function Review_box({productId, reviews, setReviews}){
                             {error.description ? <label className={style.labelError}>{error.description}</label> : null}
                         </div>
                         { !productOwned ? <div>You must own the product to review</div> : null }
+                        { reviewed ? <div>You already reviewed this game</div> : null }
                         <button type="submit" class="btn btn-primary mb-3" disabled={activeSubmit} >Post Review</button>
                     </form>
                 </div>

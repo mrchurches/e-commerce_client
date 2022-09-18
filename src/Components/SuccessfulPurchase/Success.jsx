@@ -1,13 +1,16 @@
 import React from 'react'
-import { clearCart } from '../../redux/actions'
+import { clearCart, getUserOrders } from '../../redux/actions'
 import { useDispatch } from "react-redux";
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 const Success = () => {
   let dispatch = useDispatch();
+  const { user } = useSelector(state => state.users);
   useEffect(() => {
-    dispatch(clearCart())
-  }, []);
+    user && dispatch(getUserOrders(user.id));
+    dispatch(clearCart());
+  }, [user]);
   return (
     <div class="vh-100">
       <h1 class="mt-3"> Successful Purchase</h1>
