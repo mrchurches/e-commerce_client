@@ -17,8 +17,8 @@ export default function ShoppingCart() {
     let gamesCO;
     let forCheckout;
     let dispatch = useDispatch();
-    let totalPrice=0;
-    
+    let totalPrice = 0;
+
     useEffect(() => {
         dispatch(getAllProducts())
         let cartLS2 = JSON.parse(localStorage.getItem("cart"));
@@ -76,8 +76,8 @@ export default function ShoppingCart() {
 
 
 
-    let string_user_id;
-        if(users.user){
+        let string_user_id;
+        if (users.user) {
             string_user_id = JSON.stringify(users.user.id)
             string_user_id = string_user_id + "/"
             const carro = cart.map(e => e).join('*')
@@ -88,7 +88,7 @@ export default function ShoppingCart() {
 
         forCheckout = {
             items: gamesCO,
-            external_reference: `${users.user?string_user_id:null}`, //el id de cada orden
+            external_reference: `${users.user ? string_user_id : null}`, //el id de cada orden
             back_urls: {
                 "success": `${process.env.REACT_APP_URL}cart/feedback`,
                 "failure": `${process.env.REACT_APP_URL}cart/feedback`, //cambiar a mensaje de error
@@ -97,14 +97,14 @@ export default function ShoppingCart() {
             auto_return: "approved",
         };
 
-        filterGames.forEach(e=>
+        filterGames.forEach(e =>
             totalPrice = totalPrice + e.price
-            )
+        )
 
     };
 
-    function handleAllRemove(){
-        cart.forEach(e=> dispatch(removeFromCart(e)));
+    function handleAllRemove() {
+        cart.forEach(e => dispatch(removeFromCart(e)));
         window.localStorage.clear();
         window.location.reload();
     }
@@ -112,7 +112,7 @@ export default function ShoppingCart() {
     console.log(filterGames)
     return (
         <div class="d-flex flex-column vh-100 align-items-center " >
-            <div class="alert alert-dark w-50 m-3">
+            <div class="alert alert-dark w-50 m-3 createUserContainer ">
                 <h1>My shopping cart</h1>
             </div>
 
@@ -124,11 +124,11 @@ export default function ShoppingCart() {
                         (filterGames.map(e => (
                             <div class="d-flex m-2 w-100">
                                 <CartCard
-                                id={e.id} name={e.name} img={e.background_image}
-                                rating={e.rating} platforms={e.platforms} price={e.price}
-                                    />
+                                    id={e.id} name={e.name} img={e.background_image}
+                                    rating={e.rating} platforms={e.platforms} price={e.price}
+                                />
                             </div>
-                        ))) : <div class="w-100 m-3" style={{backgroundColor: "#212529"}}> <h4>No products yet... </h4> </div>
+                        ))) : <div class="w-100 m-3 createUserContainer" style={{ backgroundColor: "#212529" }}> <h4>No products yet... </h4> </div>
                     }
                 </div>
                 <div>
@@ -136,8 +136,8 @@ export default function ShoppingCart() {
                 </div>
             </div>
             {/*FIN DEL CONTENDIO DEL MEDIO*/}
-            <div class="d-flex flex-column justify-content-between w-50 p-3" style={{backgroundColor: "#212529"}}>
-                <div class="d-flex flex-row justify-content-between">
+            <div class="d-flex flex-column justify-content-between w-50 p-3 " style={{ backgroundColor: "#212529" }}>
+                <div class="d-flex flex-row justify-content-between bg-transparent">
                     <div>
                         <h4>Estimated total</h4>
                     </div>
@@ -145,36 +145,36 @@ export default function ShoppingCart() {
                         <h4>$ {totalPrice}</h4>
                     </div>
                 </div>
-            <div>
-                {users.user ?
-                    <div>
-                        {filterGames.length>0 && <h2 class="text-light">Pay with MercadoPago</h2>}
-                        {forCheckout && <Checkout games={forCheckout} />}
-                    </div> :
-                    <Link to="/login">
-                       <button type="button" class="btn btn-secondary">You must be logged in to purchase</button>
-                    </Link>
+                <div>
+                    {users.user ?
+                        <div>
+                            {filterGames.length > 0 && <h2 class="text-light">Pay with MercadoPago</h2>}
+                            {forCheckout && <Checkout games={forCheckout} />}
+                        </div> :
+                        <Link to="/login">
+                            <button type="button" class="btn btn-info">You must be logged in to purchase</button>
+                        </Link>
 
-                }
+                    }
 
-            </div>
+                </div>
             </div>
             <div class="d-flex p-2">
                 <div>
                     <Link to="/home">
-                        <button type="button" class="btn btn-primary">Continue shopping!</button>
+                        <button type="button" class="btn btn-info">Continue shopping!</button>
                     </Link>
                 </div>
                 <div>
-                <button onClick={(e)=> handleAllRemove(e)} type="button" class="btn btn-primary">Remove all items</button>
+                    <button onClick={(e) => handleAllRemove(e)} type="button" class="btn btn-info">Remove all items</button>
                 </div>
             </div>
             <div class="d-flex flex-column justify-content-center align-items-center vw100 w-100">
                 <div class="p-4">
                     <h4>Maybe you're interested in...</h4>
                 </div>
-                <div class = "d-flex flex-row flex-wrap">
-                    <RandomHelper games={games}/>
+                <div class="d-flex flex-row flex-wrap justify-content-center">
+                    <RandomHelper games={games} />
                 </div>
             </div>
         </div>

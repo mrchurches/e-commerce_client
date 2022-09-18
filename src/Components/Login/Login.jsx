@@ -71,7 +71,7 @@ const Login = () => {
           <div class="mb-1">
             <label for="exampleInputPassword1" class="form-label inputLabel">Password</label>
             <input type="password" class="form-control" id="password" onChange={handleChange} value={user.password} name="password" />
-            {userGet.failedLog && <p>Password are invalid</p>}
+            {userGet.failedLog && <p>Invalid Password</p>}
             <Link class="linkA" to="/restore">
               <small class="form-label ">forgot your password?</small><br />
             </Link>
