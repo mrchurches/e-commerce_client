@@ -133,10 +133,10 @@ export default function SideBar() {
       <br></br>
       <br />
       <MyChatBot
-                config={config}
-                messageParser={MessageParser}
-                actionProvider={ActionProvider}
-                />
+        config={config}
+        messageParser={MessageParser}
+        actionProvider={ActionProvider}
+      />
     </div>
   )
 }

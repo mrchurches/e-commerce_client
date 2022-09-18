@@ -13,7 +13,7 @@ const CreateUser = () => {
     [isSubmit, setIsSubmit] = useState(false),
     [validate, setvalidate] = useState(validatedFormat);
 
-let history = useHistory();
+  let history = useHistory();
 
   function handleChange(e) {
     setUserNames((i) => ({
@@ -71,50 +71,50 @@ let history = useHistory();
   };
 
   return (
-    <div class="d-flex justify-content-center align-items-center">
+    <div class="d-flex justify-content-center align-items-center vh-50 ">
       {isSubmit && <Redirect to={'/login'} />}
-      <div class="mt-5 card shadow-lg p-3 mb-5  rounded w-25" style={{ width: '18rem' }}>
-        <h4 class="text-gray">Register</h4>
+      <div class="mt-5 card shadow-lg p-3 mb-5  rounded w-25 createUserContainer" style={{ width: '18rem' }}>
+        <h1 class="inputLabel">Register</h1><br />
         <form onSubmit={(e) => handleSubmit(e)} method='post'>
           <div class="relative z-0 mb-6 w-full group">
-            <small for="exampleInputEmail1" class="form-label">Email address</small>
-            <input type="email" onChange={e => handleChange(e)} value={user.email} name="email" id="email" class={`form-control ${isChange.email && !validate.email && "is-invalid"}`} placeholder="your@email.com" required="" />
+            <small for="exampleInputEmail1" class="form-label inputLabel">Email address</small><br />
+            <input type="email" onChange={e => handleChange(e)} value={user.email} name="email" id="email" class={`form-control ${isChange.email && !validate.email && "is-invalid"}`} placeholder="your@email.com" required="" /><br /><br />
             {isChange.email && !validate.email && <small>Email Address is incorrect</small>}
-            {userGet.userExist && <small>Email Address already exists</small>}
+            {userGet.userExist && <small class="inputLabel">Email Address already exists</small>}
           </div>
           <div class="relative z-0 mb-6 w-full group">
-            <small for="password" class="form-label">Password</small><br />
-            <input type="password" onChange={e => handleChange(e)} value={user.password} name="password" id="password" class={`form-control ${isChange.password && !validate.password && "is-invalid"}`} placeholder="Your Password" required="" />
-            {isChange.password && !validate.password && <small>Password Must be Contain: number, symbol, uppercase and 8 digits</small>}
+            <small for="password" class="form-label inputLabel">Password</small><br />
+            <input type="password" onChange={e => handleChange(e)} value={user.password} name="password" id="password" class={`form-control ${isChange.password && !validate.password && "is-invalid"}`} placeholder="Your Password" required="" /><br /><br />
+            {isChange.password && !validate.password && <small class="inputLabel">Password Must be Contain: number, symbol, uppercase and 8 digits</small>}
           </div>
           <div class="relative z-0 mb-6 w-full group">
-            <small for="confirm password" class="form-label">Confirm Password</small>
-            <input class={`form-control ${isChange.cPassword && user.cPassword !== user.password && "is-invalid"}`} type="password" onChange={e => handleChange(e)} value={user.cPassword} name="cPassword" id="cPassword" placeholder="Confirm password" required="" />
-            {isChange.cPassword && user.cPassword !== user.password && <small>Passwords don't match</small>}
+            <small for="confirm password" class="form-label inputLabel">Confirm Password</small><br />
+            <input class={`form-control ${isChange.cPassword && user.cPassword !== user.password && "is-invalid"}`} type="password" onChange={e => handleChange(e)} value={user.cPassword} name="cPassword" id="cPassword" placeholder="Confirm password" required="" /><br /><br />
+            {isChange.cPassword && user.cPassword !== user.password && <small class="inputLabel">Passwords don't match</small>}
           </div>
           <div class="grid md:grid-cols-2 md:gap-6">
             <div class="relative z-0 mb-6 w-full group">
-              <small for="name" class="form-label">Name</small><br />
-              <input class={`form-control ${isChange.name && !validate.name && "is-invalid"}`} type="text" onChange={e => handleChange(e)} value={user.name} name="name" id="name" placeholder="First name" required="" />
-              {isChange.name && !validate.name && <small>Characters Invalid</small>}
+              <small for="name" class="form-label inputLabel">Name</small><br />
+              <input class={`form-control ${isChange.name && !validate.name && "is-invalid"}`} type="text" onChange={e => handleChange(e)} value={user.name} name="name" id="name" placeholder="First name" required="" /><br /><br />
+              {isChange.name && !validate.name && <small class="inputLabel">Characters Invalid</small>}
             </div>
             <div class="relative z-0 mb-6 w-full group">
-              <small for="lastname" class="form-label">Lastname</small><br />
-              <input class={`form-control ${isChange.lastname && !validate.lastname && "is-invalid"}`} type="text" onChange={e => handleChange(e)} value={user.lastname} name="lastname" id="lastname" placeholder="Last name" required="" />
-              {isChange.lastname && !validate.lastname && <small>Characters Invalid</small>}
+              <small for="lastname" class="form-label inputLabel">Lastname</small><br />
+              <input class={`form-control ${isChange.lastname && !validate.lastname && "is-invalid"}`} type="text" onChange={e => handleChange(e)} value={user.lastname} name="lastname" id="lastname" placeholder="Last name" required="" /><br /><br />
+              {isChange.lastname && !validate.lastname && <small class="inputLabel">Characters Invalid</small>}
             </div>
             <div class="relative z-0 mb-6 w-full group">
-              <small for="username" class="form-label">Username:  </small>
-              <input type="text" onChange={(e) => handleChange(e)} value={user.username} name="username" id="username" class={`form-control ${isChange.username && !validate.username && "is-invalid"}`} placeholder="Username" required="" />
+              <small for="username" class="form-label inputLabel">Username:  </small><br />
+              <input type="text" onChange={(e) => handleChange(e)} value={user.username} name="username" id="username" class={`form-control ${isChange.username && !validate.username && "is-invalid"}`} placeholder="Username" required="" /><br /><br />
 
-              {isChange.username && !validate.username && <small>Username Invalid</small>}
-              {userGet.usernameExists && <small>Username already exists</small>}
+              {isChange.username && !validate.username && <small class="inputLabel">Username Invalid</small>}
+              {userGet.usernameExists && <small class="inputLabel">Username already exists</small>}
             </div>
           </div>
-          <div>All fields are required</div>
+          <div class="inputLabel">All fields are required</div>
           <button type="submit" class="btn btn-primary" disabled={disabledBtn}>Submit</button>
-        </form>
-        <button onClick={()=> history.push("/login")} type="text" class="btn btn-primary w-50 align-self-center m-2" >Go back</button>
+        </form><br /><br />
+        <button onClick={() => history.push("/login")} type="text" class="btn btn-secondary w-50 align-self-center m-2" >Go back</button>
       </div>
     </div>
   )

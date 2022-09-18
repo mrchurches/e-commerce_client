@@ -127,6 +127,7 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
   cart.forEach(e => { if (e === id) { foundCart = true } })
 
 
+
   return (
     <div class='bg-transparent cardBigContainer'>
       {
@@ -177,7 +178,7 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
         <div /*class="card-body "*/>
           <Link class='decoration' to={fromApi || isDisabled ? `/home` : `/detail/${id}`}>
             <div class=" d-flex justify-content-around mt-2 cardBigContainer">
-              <img class=" card-img-top d-flex justify-content-start align-items-center max-height-5" style={{ maxWidth: '50%', maxHeight: '10rem' }} src={img} alt="product img" />
+              <img class=" card-img-top d-flex justify-content-start align-items-center max-height-5" style={{ maxWidth: '50%', maxHeight: '9rem' }} src={img} alt="product img" />
               <div>
 
                 {/* <span class="card-text bg-secondary m-2 p-2 text-light">
@@ -229,7 +230,7 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
 
           <div class="d-flex flex-row align-items-center justify-content-center">
 
-            {foundCart && <button onClick={(e) => handleClick(e)} type="button" class="btn-close" value="remove" aria-label="Close"></button>}
+            {foundCart && <button onClick={(e) => handleClick(e)} type="button" class="btn-close bg-info mt-2" style={{ maxWidth: '0.8rem', maxHeight: '0.8rem' }} value="remove" aria-label="Close"></button>}
           </div>
         </div>
 
