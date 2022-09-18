@@ -77,18 +77,18 @@ export default function CardWhishList({ id, name, price }) {
     }
 
     return (
-        <div class="list-group-item list-group-item-action gap-3" aria-current="true">
+        <div class="list-group-item list-group-item-action gap-3 createUserContainer" aria-current="true">
             <div class="d-flex w-100 justify-content-between">
                 <button onClick={() => handleClose()} type="button" class="btn-close " aria-label="Close"></button>
             </div>
-            <Link to={'/detail/' + id} class="list-group-item" aria-current="true" >
+            <Link to={'/detail/' + id} class="list-group-item createUserContainer" aria-current="true" >
                 <h5 class="mb-1">{name}</h5>
                 {/* <p class="mb-1">Some placeholder content in a paragraph.</p> */}
                 <small class="text-muted">${price}</small>
-            </Link>
+            </Link><br />
             {inShopCart ?
-                <small id='deleteShop' class="btn btn-danger" onClick={(e) => handleShopCart(e)}>Delete to Shopping Cart.</small> :
-                <small id='addShop' class="btn btn-primary" onClick={(e) => handleShopCart(e)}>Add to Shopping Cart.</small>}
+                <small id='deleteShop' class="btn btn-danger btn" onClick={(e) => handleShopCart(e)}>Delete to Shopping Cart.</small> :
+                <small id='addShop' class="btn btn-info btn" onClick={(e) => handleShopCart(e)}>Add to Shopping Cart.</small>}
         </div>
     );
 };
