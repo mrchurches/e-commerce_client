@@ -141,7 +141,7 @@ export default function ProductDetails() {
             
             <div className='verticalScrollable1'>
               {reviews && reviews.map((e) => {
-                return(<ReviewCard username={e.username} rating={e.rating} description={e.description} userImg={e.profile_pic}/>)
+                return(<ReviewCard username={e.username} rating={e.rating} description={e.description} userImg={e.profile_pic} id={e.id} reviews={reviews} setReviews={setReviews}/>)
               })}
             </div>
 

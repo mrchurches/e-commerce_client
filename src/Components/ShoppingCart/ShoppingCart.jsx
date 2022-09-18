@@ -111,7 +111,7 @@ export default function ShoppingCart() {
 
     console.log(filterGames)
     return (
-        <div class="d-flex flex-column vh-100 align-items-center " >
+        <div class="d-flex flex-column align-items-center " >
             <div class="alert alert-dark w-50 m-3">
                 <h1>My shopping cart</h1>
             </div>
@@ -173,7 +173,7 @@ export default function ShoppingCart() {
                 <div class="p-4">
                     <h4>Maybe you're interested in...</h4>
                 </div>
-                <div class = "d-flex flex-row flex-wrap">
+                <div class = "d-flex flex-row flex-wrap justify-content-center">
                     <RandomHelper games={games}/>
                 </div>
             </div>
