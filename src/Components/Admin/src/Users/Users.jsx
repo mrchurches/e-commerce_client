@@ -211,8 +211,8 @@ Swal.fire({
     dispatch(filter_bannedAdmin(e.target.value))
   };
 
-  function viewReviews(user){
-    setRender({reviews: true, username: user})
+  function viewReviews(user, username){
+    setRender({reviews: true, username: user, username1: username})
   };
 
   return (
@@ -273,7 +273,7 @@ Swal.fire({
                             {user.isBanned === false ? <td> - </td> : <td> ❌ </td>}
                             {user.isAdmin === false ? <td> - </td> : <td> ✔️ </td>}
                             <td>{user.createdAt.slice(0, 10)}</td>
-                            <td> <a onClick={(e) => viewReviews(user.id)} className='reviews12345'>Reviews</a> </td> {}
+                            <td> <a onClick={(e) => viewReviews(user.id, user.username)} className='reviews12345'>Reviews</a> </td> {}
                             <td  abbr={user.id} class="bi bi-pencil"  onClick={(e) => handleBanUser(e)} style={{cursor: 'pointer'}}></td>
                           </tr>
                 })} 
