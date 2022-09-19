@@ -2,8 +2,8 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import { Redirect, useParams } from 'react-router-dom';
 import bcrypt from 'bcryptjs'
-import "./ChangePass.css"
 import Swal from 'sweetalert2'
+import "./ChangePass.css"
 import { useHistory } from 'react-router-dom'
 
 function ChangePass() {
@@ -24,11 +24,11 @@ function ChangePass() {
         Swal.fire({
             position: 'center',
             icon: 'success',
-            title: 'Game Created!',
+            title: 'Password Changed!',
             showConfirmButton: false,
             timer: 1500
         })
-        history.push("/admin")
+        history.push("/home")
     }
 
     function handlePasswordChange(e) {

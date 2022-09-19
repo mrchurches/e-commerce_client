@@ -83,7 +83,7 @@ const CardContainer = () => {
   const platforms = Allproducts.filter((c) => c.platforms.find((c) => c.name === randomPlat))
   
   return (
-        <div className='d-flex flex-column'>
+        <div className='d-flex flex-column mb-3'>
 
           {Allproducts.length>0?<CardForSale forSale={forSale.slice(0,8)}/>:<Spinner />}
           

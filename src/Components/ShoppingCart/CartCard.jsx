@@ -24,7 +24,7 @@ function CartCard({id, name, img, rating, platforms, price}) {
         </div>
         <div className={styles.conteiner2}>
             <div>
-                <Link to={`/detail/${id}`}>
+                <Link to={`/detail/${id}` } style={{textDecoration:'none'}}>
                     <small>{name}</small>
                 </Link>
                 

@@ -380,6 +380,7 @@ export function PostReview(payload) {
 
 export function makeAdmin(payload) {
     return async function (dispatch) {
+        console.log(payload)
         try {
             let changeAdmin = await axios.put(`${REACT_APP_URL}${"users/admin"}/${payload}`,)
             return changeAdmin;
