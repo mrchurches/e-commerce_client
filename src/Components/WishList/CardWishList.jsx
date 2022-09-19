@@ -6,7 +6,7 @@ import { removeWish, addToCart, removeFromCart, getUsers } from '../../redux/act
 import { deleteFavorite } from '../FavouriteButton/FavoriteButton';
 import Swal from 'sweetalert2';
 
-export default function CardWhishList({ id, name, price, background_image}) {
+export default function CardWhishList({ id, name, price, background_image }) {
     const token = sessionStorage.getItem('token'),
         [inShopCart, setInShopCart] = useState(false),
         [isClose, setIsClose] = useState(false),
@@ -82,13 +82,13 @@ export default function CardWhishList({ id, name, price, background_image}) {
                 <button onClick={() => handleClose()} type="button" class="btn-close btn-close-white " aria-label="Close"></button>
             </div>
             <div>
-            <Link to={'/detail/' + id} class="createUserContainer" style={{textDecoration:'none'}} aria-current="true" >
-                <img className={styles.imgCard}  src={background_image} alt={name} />
-                <h5 class="mb-1" >{name}</h5>
-                {/* <p class="mb-1">Some placeholder content in a paragraph.</p> */}
-            </Link>
+                <Link to={'/detail/' + id} class="createUserContainer" style={{ textDecoration: 'none' }} aria-current="true" >
+                    <img className={styles.imgCard} src={background_image} alt={name} />
+                    <h5 class="mb-1" >{name}</h5>
+                    {/* <p class="mb-1">Some placeholder content in a paragraph.</p> */}
+                </Link>
                 <small class="tex-muted">${price}</small>
-            <br />
+                <br />
             </div>
             {inShopCart ?
                 <small id='deleteShop' class="btn btn-danger btn" onClick={(e) => handleShopCart(e)}>Delete to Shopping Cart.</small> :

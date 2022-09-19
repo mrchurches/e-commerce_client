@@ -24,7 +24,7 @@ export default function ProductDetails() {
   let user = useSelector(state => state.users); // se trae el usuario logueado para permitir agregar a wishlist
   let { id } = useParams();
   let dispatch = useDispatch();
-  let orders = useSelector(state=> state.userOrders);
+  let orders = useSelector(state => state.userOrders);
   let [orderFound, setOrderFound] = useState(false);
 
   useEffect(() => {
@@ -70,9 +70,10 @@ export default function ProductDetails() {
 
     }
   }
-  useEffect(()=>{
-    orders.forEach(e=>{
-      if(id=== e.game_id) setOrderFound(true) })
+  useEffect(() => {
+    orders.forEach(e => {
+      if (id === e.game_id) setOrderFound(true)
+    })
   }, [id, orders])
 
   return (
@@ -102,23 +103,23 @@ export default function ProductDetails() {
               <p className='p2'><b>Released:</b> {game.released}</p>
             </div>
 
-                {orderFound && (
-                <div class="w-100 project-info-box">
-                  <h4>You already own this game!</h4>
-                  <Link to="/my_store"><h4>Go to your games library to check it out</h4></Link>
-                </div>)}
+            {orderFound && (
+              <div class="w-100 project-info-box">
+                <h4>You already own this game!</h4>
+                <Link to="/my_store"><h4>Go to your games library to check it out</h4></Link>
+              </div>)}
 
             <div class="project-info-box mt-0 mb-0 d-flex flex-row justify-content-center align-items-center">
               <div class="pt-2">
                 <h4>${game.price}</h4>
               </div>
               <div >
-              { orderFound? 
-                <button type="button" class="btn btn-info" disabled>Owned</button>
-                :
-              <button value="cart" onClick={handleClick} type="button" class="btn btn-info">
-                  Add to cart
-                </button>}
+                {orderFound ?
+                  <button type="button" class="btn btn-info" disabled>Owned</button>
+                  :
+                  <button value="cart" onClick={handleClick} type="button" class="btn btn-info">
+                    Add to cart
+                  </button>}
               </div>
               <div class="m-2">
                 <FavouriteButton id={id} />
@@ -144,12 +145,12 @@ export default function ProductDetails() {
               </div>
               <div class="carousel-inner">
                 <div class='carousel-item active'>
-                  <img src={game.background_image} class="d-block w-100 rounded" alt="..." />
+                  <img src={game.background_image} class="d-block w-100 rounded h-50" alt="..." />
                 </div>
                 {game.Screenshots?.map((e) => {
                   return (
-                    <div class="carousel-item">
-                      <img src={e?.image} class="d-block w-100 rounded" alt="..." />
+                    <div class="carousel-item" style={{ height: "25rem" }}>
+                      <img src={e?.image} class="d-block w-100 rounded h-100" alt="..." />
                     </div>
                   )
                 })
@@ -173,9 +174,9 @@ export default function ProductDetails() {
             <div className='verticalScrollable1'>
               {reviews && reviews.map((e) => {
 
-               // return (<ReviewCard username={e.username} rating={e.rating} description={e.description} userImg={e.profile_pic} />)
+                // return (<ReviewCard username={e.username} rating={e.rating} description={e.description} userImg={e.profile_pic} />)
 
-                return(<ReviewCard username={e.username} rating={e.rating} description={e.description} userImg={e.profile_pic} id={e.id} reviews={reviews} setReviews={setReviews}/>)
+                return (<ReviewCard username={e.username} rating={e.rating} description={e.description} userImg={e.profile_pic} id={e.id} reviews={reviews} setReviews={setReviews} />)
 
               })}
             </div>

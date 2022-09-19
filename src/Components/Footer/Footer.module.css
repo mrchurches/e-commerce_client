@@ -1,3 +1,23 @@
 .footer {
     background-color: #191D2A;
 }
+
+@media screen and (max-width: 631px) {
+    .footerText {
+        display: none;
+
+    }
+
+    .footerBlocks {
+        margin: 2rem;
+
+        /* gap: 8rem; */
+        /* background-color: yellow; */
+    }
+
+    .footer {
+
+        justify-content: space-around;
+
+    }
+}
