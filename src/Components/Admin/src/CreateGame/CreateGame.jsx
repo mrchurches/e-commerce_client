@@ -2,6 +2,10 @@ import React, { useEffect } from "react"
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+
+import { useHistory } from 'react-router-dom'
+import Swal from 'sweetalert2'
+
 import { getGenres, getPlatforms, Post_Game } from "../../../../redux/actions";
 import { Link } from "react-router-dom";
 import style from "./CreateGame.module.css";
@@ -23,12 +27,14 @@ function validate(input) {
 };
 
 export default function PostGame() {
+    let history = useHistory();
     const dispatch = useDispatch();
     //const navigate = useNavigate();
     const [activeSubmit, SetactiveSubmit] = useState(true);
     const genres = useSelector((state) => state.genres);
     const platform = useSelector((state) => state.platforms);
     const [error, setError] = useState({});
+    let [screenshots, setScreenshots] = useState([]);
     const [input, setInput] = useState({
         name: "",
         description: "",
@@ -39,6 +45,7 @@ export default function PostGame() {
         //isDisabled:false,
         platforms: [],
         genres: [],
+        // screenshots: []
     });
     useEffect(() => {
         dispatch(getGenres())
@@ -56,10 +63,21 @@ export default function PostGame() {
 
     function handlersubmit(e) {
         e.preventDefault();
-        dispatch(Post_Game(input));
+
+        console.log({ ...input, screenshots: screenshots })
+        dispatch(Post_Game({ ...input, screenshots: screenshots }));
+
         console.log("se envio el juego")
         /* ver si uso un dispatch para volver a cargar los juegos */
         //navigate("/home")
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Game Created!!',
+            showConfirmButton: false,
+            timer: 1500
+        })
+        history.push("/home")
     };
     function handleChange(e) {
         //console.log(input)
@@ -115,7 +133,6 @@ export default function PostGame() {
 
     ////////////////////////////
     // //botón cloudinary
-    let [screenshots, setScreenshots] = useState([]);
     let [path, setPath] = useState("");
     function showWidget() {
 
@@ -133,10 +150,13 @@ export default function PostGame() {
                 // setPath(result.info.url)
                 // user.profile_pic = path+
                 setScreenshots((i) => ([...i, result.info.url]))
+                // setInput({ ...input, screenshots: screenshots })
+
             }
         });
 
         widget.open()
+        console.log("🚀 ~ file: CreateGame.jsx ~ line 138 ~ showWidget ~ screenshots", input)
     };
 
 
@@ -212,26 +232,26 @@ export default function PostGame() {
                             </div>
                         )}
 
-                        <div class="relative z-0 mb-6 w-full group">
-                            <button class={'form-control'} onClick={showWidget} > Upload Screenshot </button>
-                            {screenshots?.map(s => {
-                                return <img src={s} id={s} alt={"selectedPic"} onClick={() => {
-                                    setScreenshots(screenshots.filter((scr) => scr != s))
-                                }} />
-
-                            })}
-                        </div>    <br></br>
                         {/* <button type="submit" disabled={activeSubmit}>Create!!</button> */}
-                        <Link to="/home">
-                            <button type="submit" class="btn btn-primary" disabled={activeSubmit}>
-                                Create
-                            </button>
-                        </Link>
+                        {/* <Link to="/home"> */}
+                        <button type="submit" class="btn btn-primary" disabled={activeSubmit}>
+                            Create
+                        </button><br />
                     </form>
+                    <div class="relative z-0 mb-6 w-full group">
+                        <button class={'form-control'} onClick={showWidget} > Upload Screenshot </button>
+                        {screenshots?.map(s => {
+                            return <img src={s} id={s} alt={"selectedPic"} onClick={() => {
+                                setScreenshots(screenshots.filter((scr) => scr != s))
+                            }} />
+
+                        })}
+                    </div>    <br></br>
+                    {/* </Link> */}
                     {/* //botón cloudinary */}
                 </div>
             </div>
-        </div>
+        </div >
     )
 };
 

@@ -228,16 +228,7 @@ const CreateUser = () => {
     return (
         <div class="d-flex justify-content-center align-items-center ">
             {isSubmit && <Redirect to={'/login'} />}
-<<<<<<< HEAD
-            <div class="mt-5 card shadow-lg p-3 mb-5 bg-body rounded" style={{ width: '18rem' }}>
-                <h3>Edit Your Profile</h3>
-                <div class="relative z-0 mb-6 w-full group">
-
-                    <button class={'form-control'} onClick={showWidget}> Upload Image </button>
-                    <img src={user.profile_pic} id={"uploadedImage"} alt={"selectedPic"} onClick={() => setPath("")} />
-                </div>
-                <form onSubmit={(e) => handleSubmit(e)} method='post'>
-=======
+/////
             <div class="mt-5 card shadow-lg p-3 mb-5 rounded createUserContainer btp" style={{ width: '18rem' }}>
                 <h3 class="text-info">Edit Your Profile</h3>
                 <button class={'form-control '} onClick={showWidget}> Upload Image </button><br />
@@ -246,7 +237,7 @@ const CreateUser = () => {
 
                         <img src={user.profile_pic} id={"uploadedImage"} alt={"selectedPic"} onClick={() => setPath("")} />
                     </div>
->>>>>>> 1d785441b7078bb5eedfc4da485a2889fa1bc296
+//////
 
                     {/* E-MAIL */}
                     <div class="relative z-0 mb-6 w-full group"><br />
