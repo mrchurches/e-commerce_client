@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom'
 import { Dispatch } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { addToCart, removeFromCart, removeWish, addWish, /* getScreenShots */ } from '../../../redux/actions.js' // CREAR UNA ACTION QUE DEPLOYE FAVORITO AL USUARIO
+import { addToCart, removeFromCart, removeWish, addWish, getUserOrders } from '../../../redux/actions.js' // CREAR UNA ACTION QUE DEPLOYE FAVORITO AL USUARIO
 
 import './ProductCard.css'
 import FavouriteButton from '../../FavouriteButton/FavouriteBurron.jsx'
@@ -13,16 +13,29 @@ import xboxImg from '../../../images/Xbox.png'
 import playStation from '../../../images/PlayStation.png'
 import pc from '../../../images/PC.png'
 import shoppingCard from '../../../images/shopping-cart.png'
+import style from "./ProductCard.css";
 
 
 
 
 export default function ProductCard({ id, id_api, name, img, rating, platforms, price, fromApi, isDisabled, genres }) {
   let cart = useSelector(state => state.cart);
-  const {user} = useSelector(state => state.users);
+  let user = useSelector(state => state.users);
+  let games = useSelector(state => state.products2).map(e=>e.name) //140 --
+  let orders = useSelector(state => state.userOrders).map(e=>e.game_name) //horizon y thiswar
+  let [adquiridos, setAdquiridos] = useState(false)
   /* let screenShots = useSelector(state => state.screenShots) */
   let foundCart = false;   //aca encontraria el juego si esta agregado al carrito
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
+  let user_id = null;
+  console.log(user)
+  console.log(games)
+  if(user.user){
+    user_id = user.user.id
+    console.log(user_id)
+  }else{
+    console.log("hola")
+  }
 
 
   const swalWithBootstrapButtons = Swal.mixin({
@@ -34,10 +47,10 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
   })
 
   useEffect(() => {
-
     localStorage.setItem('cart', JSON.stringify(cart));
-    console.log(localStorage.getItem("cart"))
-
+    dispatch(getUserOrders(user_id))
+    orders.forEach(e => {if(e === name){setAdquiridos(true)}})
+    console.log(localStorage.getItem("cart"))      
   }, [cart]);
 
   const handleClick = (e) => {
@@ -126,6 +139,9 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
 
   cart.forEach(e => { if (e === id) { foundCart = true } })
 
+//orders.forEach(e => {if(e === name){setAdquiridos(true)}})
+
+
 
 
   return (
@@ -169,7 +185,7 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
           </div>
 
           <div class="">
-            {user?.id && <FavouriteButton class="heartButton" id={id} />}
+            {user?.user?.id && <FavouriteButton class="heartButton" id={id} />}
           </div>
         </div>
 
@@ -209,13 +225,13 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
                     <span>No stock</span> :
 
                     (<h6 class="card-text  titleBg pt-4 pl-3">
-                      Only: ${price}
-
-                      <div name="cart" onClick={(e) => handleClick(e)}>
+                        ARS$ {price}
+                    
+                      { !adquiridos ? <div name="cart" onClick={(e) => handleClick(e)}>
 
                         <button disabled={fromApi || isDisabled ? true : false} class=" text1 buttonCart">
                           <img src={shoppingCard} name="cart" alt="" style={{ maxWidth: '2rem', maxHeight: '2rem' }} /></button>
-                      </div>
+                      </div> : null}
                     </h6>
                     )
                   }
@@ -228,7 +244,9 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
 
           <div class="d-flex flex-row align-items-center justify-content-center">
 
-            {foundCart && <button onClick={(e) => handleClick(e)} type="button" class="btn-close bg-info mt-2" style={{ maxWidth: '0.8rem', maxHeight: '0.8rem' }} value="remove" aria-label="Close"></button>}
+            
+            { 
+            foundCart && <button onClick={(e) => handleClick(e)} type="button" class="btn-close bg-info mt-2" style={{ maxWidth: '0.8rem', maxHeight: '0.8rem' }} value="remove" aria-label="Close"></button>}
           </div>
         </div>
 
