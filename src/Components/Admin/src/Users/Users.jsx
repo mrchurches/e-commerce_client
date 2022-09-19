@@ -4,34 +4,32 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import Swal from 'sweetalert2'
-/* import { banUsersss } from './banUser.js' */
-import { getAllUsers, filter_bannedAdmin, byUserName, bann_unBann, makeAdmin} from '../../../../redux/actions'
-//
+import { getAllUsers, 
+        filter_bannedAdmin, 
+        byUserName, 
+        bann_unBann, 
+        makeAdmin
+      } from '../../../../redux/actions'
+
 export default function Users({setRender}) {
   
   const bannedOn = ["Banned", "Admin", "All"]
   const [name, setName] = useState("")
-  
   const dispatch = useDispatch()
   const users = useSelector((state) => state.allUsers)
 
+  
   useEffect(() => {
     dispatch(getAllUsers())
   },[])
 
   const handleBanUser = (e) => { 
     e.preventDefault()
-
+    
     let id = e.target.abbr
-    //id = parseInt(id)
-    const banUser = users.find(e => parseInt(e.id) === parseInt(id))
-
-    console.log(typeof id)
-    console.log(users)
-    console.log(banUser)
+    const banUser = users.find(e => e.id === id)
 
     let adminEdit = banUser.isAdmin
-    
     let contidion_admin = adminEdit ? "QUIT this user as admin" : "Add this user an admin"
     let condition_admin2 = adminEdit ? "QUIT" : "ADD"
     let condition_admin3 = adminEdit ? `The user "${banUser.username}" is no longer an admin` : `The user "${banUser.username}" is now an admin`
@@ -41,14 +39,14 @@ export default function Users({setRender}) {
     ? typeOfEdit = "unban"
     : typeOfEdit = "ban"
 
-
-    
     var contition;
     var contition2;
     
     typeOfEdit === "ban" ? contition = 'BAN' : contition = 'UNBAN' 
     typeOfEdit === "ban" ? contition2 = "and the user lost all de permission to our site" : contition2 = "Is welcome again"
     
+  
+
     Swal.fire({
       title: `What do you want to do with this user "${banUser.username}"?`,
       showDenyButton: true,
@@ -59,7 +57,7 @@ export default function Users({setRender}) {
 ///////////////////////////////// FUNCIÓN SI EL USUARIO PASA A SER ADMINISTRADOR /////////////////////////////   
 
     }).then((result) => {
-      if (result.isConfirmed /* make admin */) {
+      if (result.isConfirmed) {
     
         const swalWithBootstrapButtons = Swal.mixin({
           customClass: {
@@ -87,13 +85,10 @@ export default function Users({setRender}) {
           reverseButtons: true
         }).then((result) => {
   
-          if (result.isConfirmed /* ADMIN */) {
+          if (result.isConfirmed) {
             console.log(typeof id)
             dispatch(makeAdmin(id))
-            //console.log(id)
-            
-          
-            
+    
             swalWithBootstrapButtons.fire(
               condition_admin3,
               condition_admin4,
@@ -125,7 +120,7 @@ Swal.fire({
               
   
           } else if (
-            /* Read more about handling dismissals below */
+            
             result.dismiss === Swal.DismissReason.cancel
           ) {
             swalWithBootstrapButtons.fire(
@@ -146,6 +141,16 @@ Swal.fire({
             },
             buttonsStyling: false
           })
+
+            if (banUser.isAdmin)  {
+              return Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Impossible to ban this user!',
+                footer: `Why do I have this issue? --- in this moment the "${banUser.username}" is admin, for security this option is not allowed`
+              })
+            };
+
           
           swalWithBootstrapButtons.fire({
             title: `Are you sure to ${contition} this user? "${banUser.username}"`,
@@ -182,27 +187,24 @@ Swal.fire({
           });  
       }
     })
-    
-    
-    
   };  
 
 
-    useEffect(() => {
+/*     useEffect(() => {
       dispatch(getAllUsers())
-    }, [] )
+    }, [] ) */
 
 
   function handleChange(e) {
     e.preventDefault();
       setName(e.target.value)
-  }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(byUserName(name))
     setName("")
-  }
+  };
 
   const filterUsers = (e) => {
     e.preventDefault()
@@ -211,25 +213,21 @@ Swal.fire({
 
   function viewReviews(user){
     setRender({reviews: true, username: user})
-  }
+  };
 
   return (
 
       <div className='testAdminUser'>
-      
-      <h2 style={{color: "black"}}>Users</h2>
-
-      <div class='container d-flex justify-content-center'>   
-
-        <div class="d-flex">
-          <div>
-            <form class="d-flex" role="search" onSubmit={handleSubmit}>
-              <input class="form-control text-sm " type="search" placeholder="Username..." required aria-label="Search" value={name} onChange={handleChange} />
-              <button class="btn btn-secondary btn-sm ml-5 mr-3" type="submit">Search</button>
-            </form>
+        <h2 style={{color: "black"}}>Users</h2>
+        <div class='container d-flex justify-content-center'>   
+          <div class="d-flex">
+            <div>
+              <form class="d-flex" role="search" onSubmit={handleSubmit}>
+                <input class="form-control text-sm " type="search" placeholder="Username..." required aria-label="Search" value={name} onChange={handleChange} />
+                <button class="btn btn-secondary btn-sm ml-5 mr-3" type="submit">Search</button>
+              </form>
+            </div>
           </div>
-        </div>
-
         <div class="dropdown1" className='filtro123'> 
           <button class="btn btn-secondary dropdown-toggle btn-sm row" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style={{ marginBottom: '15px' }}>
             Filter By ...
@@ -242,41 +240,15 @@ Swal.fire({
                     onClick={(e) => { filterUsers(e) }}
                     value={plat}>{plat}
                   </button>
-                </li>
-              )
-            })}
+                </li>)})}
           </ul>
         </div>    
-
-       {/* <div class="dropdown2">
-              <button class="btn btn-secondary dropdown-toggle btn-sm ml-5" 
-                      type="button" 
-                      id="dropdownMenuButton1" 
-                      data-bs-toggle="dropdown" 
-                      aria-expanded="false" 
-                      style={{ marginBottom: '15px' }}>
-                    Order By...
-              </button>
-          
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                
-                  <li style={{cursor: 'pointer'}}>
-                    <button class="dropdown-item tx-sm" onClick={(e) => { ordered(e) }} value={"ID"}> ID
-                    </button>
-                  </li>
-                  <li style={{cursor: 'pointer'}}>
-                    <button class="dropdown-item tx-sm" onClick={(e) => { ordered(e) }} value={"name"}>name
-                    </button>
-                  </li>
-              </ul>
-        </div> */}
-
       </div> 
     
       <div class='container' className ='tablefixed1234'>
         <div  class='row'>  
-          <table  class="table table-striped tabled-striped table-condensend table-fixed table-bordered text-sm">
-            <thead>
+            <table  class="table table-striped tabled-striped table-condensend table-fixed table-bordered text-sm">
+              <thead>
                   <tr class="text-sm">
                       <th class="header col-1" scope="col-10">id</th>
                       <th class="header col-1" scope="col">User Name</th>
@@ -289,7 +261,7 @@ Swal.fire({
                       <th class="header col-1" scope="col">Reviews</th>
                       <th class="header col-1" scope="col">Edit</th>
                   </tr>
-              </thead>
+            </thead>
               <tbody  >
                 {users.map((user, index) => {
                   return <tr key={index}  >
@@ -303,7 +275,7 @@ Swal.fire({
                             <td>{user.createdAt.slice(0, 10)}</td>
                             <td> <a onClick={(e) => viewReviews(user.id)} className='reviews12345'>Reviews</a> </td> {}
                             <td  abbr={user.id} class="bi bi-pencil"  onClick={(e) => handleBanUser(e)} style={{cursor: 'pointer'}}></td>
-                        </tr>
+                          </tr>
                 })} 
               </tbody>
           </table>
@@ -312,5 +284,3 @@ Swal.fire({
     </div>
   )
 };
-
-
