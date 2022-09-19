@@ -52,7 +52,6 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
     orders.forEach(e => {if(e === name){setAdquiridos(true)}})
     console.log(localStorage.getItem("cart"))      
   }, [cart]);
-    
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -178,8 +177,6 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
          </div> */
       }
 
-
-
       <div class="card-body headerContainer " style={{ width: '35rem', height: '15rem' }}>
 
         <div class="d-flex  justify-content-between mt-2 headerMatrics   ">
@@ -188,7 +185,7 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
           </div>
 
           <div class="">
-            <FavouriteButton class="heartButton" id={id} />
+            {user?.user?.id && <FavouriteButton class="heartButton" id={id} />}
           </div>
         </div>
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState  } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import SearchBar from "../SearchBar/SearchBar"
 import logo from "../../images/logo/sin fondo/logo.png"
@@ -12,7 +12,7 @@ import profilePic from "../../images/profile21.png"
 
 const NavBar = () => {
   let location = useLocation();
-
+  const [show, setShow] = useState(false);
   const { user } = useSelector(state => state.users);
   const cart = useSelector(state => state.cart);
   let dispatch = useDispatch();
@@ -43,6 +43,10 @@ const NavBar = () => {
     isAdmin = true;
   }
 
+  function handleClick() {
+    show ? setShow(false) : setShow(true)
+  }
+
   return (
     <nav className="navbar navbar-expand-md navbar-dark bg-dark " style={{ backgroundColor: "#191D2A", borderRadius: '0' }}>
 
@@ -51,10 +55,10 @@ const NavBar = () => {
           <img class="logo " src={logo} />
           <span class="titleLogo">   GAM<span class="letraE">E</span>-COMMERCE</span>
         </NavLink>
-        <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button onClick={() => handleClick()} class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class={show ? "collapse navbar-collapse show " : "collapse navbar-collapse"} id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
 
             <NavLink to="/home" className='link' activeStyle={{
