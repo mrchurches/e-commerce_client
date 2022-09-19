@@ -211,20 +211,20 @@ export default function PostGame() {
                             </div>
                         )}
                         {/* //botón cloudinary */}
-                        <div class="relative z-0 mb-6 w-full group">
+                        {/* <div class="relative z-0 mb-6 w-full group">
                             {screenshots?.map(s => {
                                 <button class={'form-control'} > Upload Image </button>
                                 // <img src={s} id={s} alt={"selectedPic"} onClick={() => s=""} />
 
                             })}
-                        </div>
+                        </div> */}
                         <br></br>
                         {/* <button type="submit" disabled={activeSubmit}>Create!!</button> */}
-                        <Link to="/home">
                             <button type="submit" class="btn btn-primary" disabled={activeSubmit}>
                                 Create
                             </button>
-                        </Link>
+{/*                         <Link to="/home">
+                        </Link> */}
                     </form>
                 </div>
             </div>

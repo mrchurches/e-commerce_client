@@ -42,10 +42,28 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
             messages:[...prev.messages, botMessage]
         }))
     };
+    const handlecomandos = () =>{
+        const botMessage = createChatBotMessage(
+            "estos son algunos comandos basicos: -.comprar  -.pagar   -.ayuda  -.contraseña  -.contacto "
+        )
+        setState((prev)=>({
+            ...prev,
+            messages:[...prev.messages, botMessage]
+        }))
+    }
 
     const handleAboutus = () =>{
         const botMessage = createChatBotMessage(
             "Mi nombre es E-robb y represento a este E-commerce de videojuegos, desarrollado por un grupo de estudiantes del Bootcamp SoyHenry. La propuesta de esta pagina es la de ofrecer un servicio de administracion y venta de videojuegos digitales"
+        )
+        setState((prev)=>({
+            ...prev,
+            messages:[...prev.messages, botMessage]
+        }))
+    };
+    const handleLibrary= () =>{
+        const botMessage = createChatBotMessage(
+            "Todos los productos que hayas adquirido en tu cuenta, apareceran en la Libreria, como asi tambien tu historial de compras, asegurate de estar logeado para poder ver tu libreria!."
         )
         setState((prev)=>({
             ...prev,
@@ -136,7 +154,7 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
         }));
     };
     const handleContacto = () =>{
-        const botMessage = createChatBotMessage("puedes escribirnos al siguiente email. videogamesmarket@mailing.com. O tambien llamar al siguiente numero (0800) 333 4888")
+        const botMessage = createChatBotMessage("escríbenos al siguiente email. e-market@gmail.com. O tambien llamar al siguiente numero (0800) 333 4888")
         setState((prev)=>({
             ...prev,
             messages:[...prev.messages, botMessage]
@@ -144,6 +162,13 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
     }
     const handleRepeat = () =>{
         const botMessage = createChatBotMessage("Disculpa, no te entendí, intenta nuevamente.")
+        setState((prev)=>({
+            ...prev,
+            messages:[...prev.messages, botMessage]
+        }))
+    }
+    const handleRegistro = ()=>{
+        const botMessage= createChatBotMessage("registrate para acceder a todas las funcionalidades de la tienda.",{widget:"NoAccount1"})
         setState((prev)=>({
             ...prev,
             messages:[...prev.messages, botMessage]
@@ -169,7 +194,10 @@ const ActionProvider = ({ createChatBotMessage, setState, children }) => {
                     handleCatalog,
                     handleForgottenPassword,
                     handleContacto,
-                    handleRepeat
+                    handleRepeat,
+                    handlecomandos,
+                    handleLibrary,
+                    handleRegistro
                 },
             });
         })}
