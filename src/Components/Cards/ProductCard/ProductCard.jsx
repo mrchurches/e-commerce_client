@@ -53,7 +53,7 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
           icon: 'warning',
           text: 'You already own this game!',
         })
-      }else if (fC.length > 0) {
+      } else if (fC.length > 0) {
         Swal.fire({
           icon: 'warning',
           text: 'Game is already in cart!',
@@ -114,10 +114,10 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
     platformsSet.forEach(e => platformsArr.push(e))
   }
 
-  let userOrders = useSelector(state=>state.userOrders);
+  let userOrders = useSelector(state => state.userOrders);
   let owned = false;
   if (userOrders) {
-    let gam = userOrders.filter((e)=> e.game_id === id)
+    let gam = userOrders.filter((e) => e.game_id === id)
     if (gam.length > 0) {
       owned = true;
     }
@@ -211,7 +211,7 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
                     <span>No stock</span> :
 
                     (<h6 class="card-text  titleBg pt-4 pl-3">
-                      Only: ${price}
+                      ARS${price}
 
                       <div name="cart" onClick={(e) => handleClick(e)}>
 

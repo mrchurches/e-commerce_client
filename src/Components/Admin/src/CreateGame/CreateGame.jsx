@@ -184,6 +184,9 @@ export default function PostGame() {
                             {/* <label  class="form-label">Image</label> */}
                             <input type="text" class="form-control" placeholder="an image url..." onChange={handleChange} value={input.background_image} name="background_image" />
                             {error.background_image ? <label className={style.labelError}>{error.background_image}</label> : null}
+                            <br />{
+                                input.background_image && (<img src={input.background_image} id={input.background_image} />)
+                            }
                         </div>
                         <div class="mb-3">
                             {/* <label  class="form-label">Release Date</label> */}
@@ -237,7 +240,7 @@ export default function PostGame() {
                         <button type="submit" class="btn btn-primary" disabled={activeSubmit}>
                             Create
                         </button><br />
-                    </form>
+                    </form><br />
                     <div class="relative z-0 mb-6 w-full group">
                         <button class={'form-control'} onClick={showWidget} > Upload Screenshot </button>
                         {screenshots?.map(s => {

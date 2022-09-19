@@ -122,12 +122,12 @@ export default function ProductDetails() {
               </div>
               <div class="carousel-inner">
                 <div class='carousel-item active'>
-                  <img src={game.background_image} class="d-block w-100 rounded" alt="..." />
+                  <img src={game.background_image} class="d-block w-100 rounded h-50" alt="..." />
                 </div>
                 {game.Screenshots?.map((e) => {
                   return (
-                    <div class="carousel-item">
-                      <img src={e?.image} class="d-block w-100 rounded" alt="..." />
+                    <div class="carousel-item" style={{ height: "25rem" }}>
+                      <img src={e?.image} class="d-block w-100 rounded h-100" alt="..." />
                     </div>
                   )
                 })
@@ -151,9 +151,9 @@ export default function ProductDetails() {
             <div className='verticalScrollable1'>
               {reviews && reviews.map((e) => {
 
-               // return (<ReviewCard username={e.username} rating={e.rating} description={e.description} userImg={e.profile_pic} />)
+                // return (<ReviewCard username={e.username} rating={e.rating} description={e.description} userImg={e.profile_pic} />)
 
-                return(<ReviewCard username={e.username} rating={e.rating} description={e.description} userImg={e.profile_pic} id={e.id} reviews={reviews} setReviews={setReviews}/>)
+                return (<ReviewCard username={e.username} rating={e.rating} description={e.description} userImg={e.profile_pic} id={e.id} reviews={reviews} setReviews={setReviews} />)
 
               })}
             </div>
