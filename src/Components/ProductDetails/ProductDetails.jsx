@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { useParams, NavLink } from 'react-router-dom'
+import { useParams, NavLink, Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
 
 import { addToCart, addWish } from '../../redux/actions';
@@ -12,6 +12,8 @@ import FavouriteButton from '../FavouriteButton/FavouriteBurron';
 import Review_box from '../Review/Review';
 import './details.css'
 const { REACT_APP_URL } = process.env;
+
+
 export default function ProductDetails() {
 
   const [game, setGame] = useState({});
@@ -22,6 +24,8 @@ export default function ProductDetails() {
   let user = useSelector(state => state.users); // se trae el usuario logueado para permitir agregar a wishlist
   let { id } = useParams();
   let dispatch = useDispatch();
+  let orders = useSelector(state=> state.userOrders);
+  let [orderFound, setOrderFound] = useState(false);
 
   useEffect(() => {
     if (user.length) setDisabled(false); //si cuando se monta el componente hay usuario logueado habilita el addwish
@@ -36,13 +40,18 @@ export default function ProductDetails() {
         .catch(err => console.log(err))
     }, "500");
   }, [id, user])
+
   function handleClick(e) { // eso se ejecuta cuando se le hace click al boton de add to cart o wishlist
     e.preventDefault();
     if (e.target.value === "cart") {
       console.log(cart[0], id)
       let fC = cart.filter(e => e === id);
       if (fC.length > 0) {
-        alert("Juego ya agregado al carrito anteriormente!")
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Already in cart!',
+        })
       } else {
         dispatch(addToCart(game.id)) // dispacha al carrito de compras con el id del game en la db
         Swal.fire({
@@ -61,6 +70,10 @@ export default function ProductDetails() {
 
     }
   }
+  useEffect(()=>{
+    orders.forEach(e=>{
+      if(id=== e.game_id) setOrderFound(true) })
+  }, [id, orders])
 
   return (
     <div class="container">
@@ -89,14 +102,23 @@ export default function ProductDetails() {
               <p className='p2'><b>Released:</b> {game.released}</p>
             </div>
 
+                {orderFound && (
+                <div class="w-100 project-info-box">
+                  <h4>You already own this game!</h4>
+                  <Link to="/my_store"><h4>Go to your games library to check it out</h4></Link>
+                </div>)}
+
             <div class="project-info-box mt-0 mb-0 d-flex flex-row justify-content-center align-items-center">
               <div class="pt-2">
                 <h4>${game.price}</h4>
               </div>
               <div >
-                <button value="cart" onClick={handleClick} type="button" class="btn btn-info">
+              { orderFound? 
+                <button type="button" class="btn btn-info" disabled>Owned</button>
+                :
+              <button value="cart" onClick={handleClick} type="button" class="btn btn-info">
                   Add to cart
-                </button>
+                </button>}
               </div>
               <div class="m-2">
                 <FavouriteButton id={id} />

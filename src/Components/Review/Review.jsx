@@ -118,6 +118,7 @@ export default function Review_box({productId, reviews, setReviews}){
             'Review Posted Succesfully!',
             'success'
             )
+            .then(()=>window.location.reload())
             setInput({
                 rating:"",
                 description:"",
