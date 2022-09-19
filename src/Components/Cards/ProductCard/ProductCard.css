@@ -23,7 +23,10 @@ h6 {
     margin-bottom: 5%;
 
 }
-
+.button{
+    background-color: rgb(206, 5, 5);
+    color: blue
+}
 .card-body {
     border-radius: 7px;
     display: flex;
