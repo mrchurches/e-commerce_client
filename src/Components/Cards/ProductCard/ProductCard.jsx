@@ -19,9 +19,12 @@ import shoppingCard from '../../../images/shopping-cart.png'
 
 export default function ProductCard({ id, id_api, name, img, rating, platforms, price, fromApi, isDisabled, genres }) {
   let cart = useSelector(state => state.cart);
+  const {user} = useSelector(state => state.users);
   /* let screenShots = useSelector(state => state.screenShots) */
   let foundCart = false;   //aca encontraria el juego si esta agregado al carrito
-  const dispatch = useDispatch()
+  const [isRemove, setIsRemove] = useState(false)
+  const dispatch = useDispatch(),
+  token = sessionStorage.getItem('token');
 
 
   const swalWithBootstrapButtons = Swal.mixin({
@@ -38,8 +41,15 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
     console.log(localStorage.getItem("cart"))
 
   }, [cart]);
+ /*  useEffect(() => {
+    cart?.length && localStorage.setItem('cart', JSON.stringify(cart));
+    // console.log(localStorage.getItem("cart"))
+  }, [cart]);
 
-
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [isRemove]);
+ */
   const handleClick = (e) => {
     e.preventDefault();
     console.log("HICISTE CLICK")
@@ -171,7 +181,7 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
           </div>
 
           <div class="">
-            <FavouriteButton class="heartButton" id={id} />
+            {user?.id && <FavouriteButton class="heartButton" id={id} />}
           </div>
         </div>
 
