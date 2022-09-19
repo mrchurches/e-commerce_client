@@ -115,29 +115,30 @@ export default function PostGame() {
 
     ////////////////////////////
     // //botón cloudinary
-    let [screenshots, setScreenshots] = useState("");
-    // let [path, setPath] = useState("");
-    // function showWidget() {
+    let [screenshots, setScreenshots] = useState([]);
+    let [path, setPath] = useState("");
+    function showWidget() {
 
-    //     let widget = window.cloudinary.openUploadWidget({
-    //         cloudName: `vgpf`,
-    //         uploadPreset: `videogamespf`,
-    //         sources: ['local', 'url']
-    //     }, (error, result) => {
-    //         // console.log("----------------------------------------ERROR")
-    //         // console.log(error)
-    //         // console.log("----------------------------------------RESULT")
-    //         // console.log(result.event)
-    //         // console.log(result.info)
-    //         if (!error && result.event === "success") {
-    //             // setPath(result.info.url)
-    //             // user.profile_pic = path
-    //             setScreenshots((i) => ([ ...i, result.info.url ]))
-    //         }
-    //     });
+        let widget = window.cloudinary.openUploadWidget({
+            cloudName: `vgpf`,
+            uploadPreset: `videogamespf`,
+            sources: ['local', 'url']
+        }, (error, result) => {
+            // console.log("----------------------------------------ERROR")
+            // console.log(error)
+            // console.log("----------------------------------------RESULT")
+            // console.log(result.event)
+            // console.log(result.info)
+            if (!error && result.event === "success") {
+                // setPath(result.info.url)
+                // user.profile_pic = path+
+                setScreenshots((i) => ([...i, result.info.url]))
+            }
+        });
 
-    //     widget.open()
-    // };
+        widget.open()
+    };
+
 
     /////////////////////////////
 
@@ -210,15 +211,16 @@ export default function PostGame() {
                                 <p id={pos} onClick={() => handleDeletePlat(plataforma)}>{plataforma}</p>
                             </div>
                         )}
-                        {/* //botón cloudinary */}
+
                         <div class="relative z-0 mb-6 w-full group">
+                            <button class={'form-control'} onClick={showWidget} > Upload Screenshot </button>
                             {screenshots?.map(s => {
-                                <button class={'form-control'} > Upload Image </button>
-                                // <img src={s} id={s} alt={"selectedPic"} onClick={() => s=""} />
+                                return <img src={s} id={s} alt={"selectedPic"} onClick={() => {
+                                    setScreenshots(screenshots.filter((scr) => scr != s))
+                                }} />
 
                             })}
-                        </div>
-                        <br></br>
+                        </div>    <br></br>
                         {/* <button type="submit" disabled={activeSubmit}>Create!!</button> */}
                         <Link to="/home">
                             <button type="submit" class="btn btn-primary" disabled={activeSubmit}>
@@ -226,6 +228,7 @@ export default function PostGame() {
                             </button>
                         </Link>
                     </form>
+                    {/* //botón cloudinary */}
                 </div>
             </div>
         </div>

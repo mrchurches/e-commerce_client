@@ -4,7 +4,7 @@ export async function postUsers({username, password}){
     var options = {
         method: 'POST',
         url: `${REACT_APP_URL}login`,
-        withCredentials: true,
+        // withCredentials: true,
         data: {username, password}
       };
     try {     
