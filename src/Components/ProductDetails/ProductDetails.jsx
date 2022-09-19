@@ -4,6 +4,8 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useParams, NavLink } from 'react-router-dom'
+import Swal from 'sweetalert2'
+
 import { addToCart, addWish } from '../../redux/actions';
 import ReviewCard from '../Cards/Reviews/ReviewCard';
 import FavouriteButton from '../FavouriteButton/FavouriteBurron';
@@ -43,6 +45,13 @@ export default function ProductDetails() {
         alert("Juego ya agregado al carrito anteriormente!")
       } else {
         dispatch(addToCart(game.id)) // dispacha al carrito de compras con el id del game en la db
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Succesfully added to your cart',
+          showConfirmButton: false,
+          timer: 1500
+        })
       }
 
       // if(fC.length>0){
@@ -141,7 +150,11 @@ export default function ProductDetails() {
 
             <div className='verticalScrollable1'>
               {reviews && reviews.map((e) => {
-                return (<ReviewCard username={e.username} rating={e.rating} description={e.description} userImg={e.profile_pic} />)
+
+               // return (<ReviewCard username={e.username} rating={e.rating} description={e.description} userImg={e.profile_pic} />)
+
+                return(<ReviewCard username={e.username} rating={e.rating} description={e.description} userImg={e.profile_pic} id={e.id} reviews={reviews} setReviews={setReviews}/>)
+
               })}
             </div>
 

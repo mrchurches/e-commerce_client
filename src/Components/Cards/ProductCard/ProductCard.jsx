@@ -48,8 +48,16 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
     if (e.target.name === "cart") {
 
       let fC = cart.filter(e => e === id);
-      if (fC.length > 0) {
-        alert("Juego ya agregado al carrito anteriormente!")
+      if (owned) {
+        Swal.fire({
+          icon: 'warning',
+          text: 'You already own this game!',
+        })
+      }else if (fC.length > 0) {
+        Swal.fire({
+          icon: 'warning',
+          text: 'Game is already in cart!',
+        })
       } else {
         dispatch(addToCart(id)) // dispacha al carrito de compras con el id del game en la db
         Swal.fire({
@@ -106,7 +114,14 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
     platformsSet.forEach(e => platformsArr.push(e))
   }
 
-
+  let userOrders = useSelector(state=>state.userOrders);
+  let owned = false;
+  if (userOrders) {
+    let gam = userOrders.filter((e)=> e.game_id === id)
+    if (gam.length > 0) {
+      owned = true;
+    }
+  }
 
 
   cart.forEach(e => { if (e === id) { foundCart = true } })

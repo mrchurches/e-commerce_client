@@ -1,5 +1,5 @@
 .container{
-    background-color: rgb(238, 245, 246);
+    background-color: #212529;
 	overflow: hidden;
 	min-height: 120px;
 	font-size: 13px;
@@ -32,6 +32,35 @@
 }
 .name b {
 	text-transform: uppercase;
-	color: #525d85;
+	color: #b4b9cd;
     margin-right: 10px;
+}
+
+.iconContainer1{
+	height: 20px;
+    cursor: pointer;
+    margin-top: 10px;
+	margin-left: 10px;
+    font-size: 15px;
+	color: #cccccc;
+}
+
+.labelError{
+    font-size: 0.8rem;
+    color: #ff0606;
+    max-width: 200px;
+}
+
+.postButton{
+    margin-bottom: 15px;
+}
+
+.form{
+	width: 30%;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+.description{
+	color: #cccccc;
 }

@@ -1,13 +1,28 @@
 import React, { useState } from 'react'
 import "./Restore.css"
+import axios from 'axios';
+import Swal from 'sweetalert2'
+import { useHistory } from 'react-router-dom'
 
 function Restore() {
+    let history = useHistory();
+    let [email, setEmail] = useState()
 
     function handleChange(e) {
         e.preventDefault()
+        setEmail(e.target.value)
     }
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault()
+        await axios.get(`${process.env.REACT_APP_URL}restore/?email=${email}`)
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Please, check you e-mail and Follow the Link.',
+            showConfirmButton: true,
+            timer: 1500
+        })
+        history.push("/home")
     }
 
 
@@ -20,7 +35,7 @@ function Restore() {
     return (
         <div class="d-flex justify-content-center align-items-center restoreContainer mt-5 pb-5">
             {/* {isSubmit && <Redirect to={'/login'} />} */}
-            <div class="mt-5 card shadow-lg p-3 mb-5 bg-body rounded"
+            <div class="mt-5 card shadow-lg p-3 mb-5 rounded cardProperties"
                 style={{ width: '18rem' }}
             >
                 <h3 id="pleaseLogIn"
@@ -39,7 +54,7 @@ function Restore() {
 
                         <input type="email"
                             onChange={e => handleChange(e)}
-                            // value={}
+                            value={email}
                             name="email"
                             id="email"
                             class={`form-control`}

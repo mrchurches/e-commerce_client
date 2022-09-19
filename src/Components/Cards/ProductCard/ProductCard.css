@@ -119,9 +119,9 @@ h6 {
     /* flex-direction: column; */
 }
 
-@media (max-width:375px) {
+@media screen and (max-width:375px) {
     .cardBigContainer {
-        flex-direction: column;
+        /* flex-direction: column; */
         /* max-height: 370px; */
         /* align-items: center; */
         /* justify-content: center; */
