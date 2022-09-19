@@ -85,6 +85,7 @@ export default function ReviewCard({username, rating, description, userImg, id, 
         )
       }
     })
+    .then(()=>window.location.reload())
   }
 
   function handlerSubmit(e){
@@ -96,7 +97,8 @@ export default function ReviewCard({username, rating, description, userImg, id, 
         'Good job!',
         'Review Edited Succesfully!',
         'success'
-    );
+    )
+    .then(()=>window.location.reload())
 };
 
   return (

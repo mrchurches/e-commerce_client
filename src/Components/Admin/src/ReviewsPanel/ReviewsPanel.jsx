@@ -24,6 +24,7 @@ function ReviewsPanel({setRender, render}) {
     const enabledRev = useSelector((state) => state.reviewsUser);
     
     var username = render.username;
+    var username1 = render.username1;
     var color = 'white'
 
     useEffect(() => {
@@ -65,7 +66,7 @@ function ReviewsPanel({setRender, render}) {
 
             <div class='d-flex justify-content-between'>
                 <div></div>
-                <h2 class='mb-4'>{username.charAt(0).toUpperCase() + username.slice(1)}'s Reviews</h2>
+                <h2 class='mb-4' style={{color: 'black'}}>{username1.charAt(0).toUpperCase() + username1.slice(1)}'s Reviews</h2>
                 <input value={reviews.button} class="btn btn-secondary" type="button" aria-expanded="false" onClick={(e)=>viewDisabled(e)} className={style.view} ></input>
             </div>
 
