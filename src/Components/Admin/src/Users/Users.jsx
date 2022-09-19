@@ -23,7 +23,12 @@ export default function Users({setRender}) {
     e.preventDefault()
 
     let id = e.target.abbr
-    const banUser = users.find(e => e.id === parseInt(id))
+    //id = parseInt(id)
+    const banUser = users.find(e => parseInt(e.id) === parseInt(id))
+
+    console.log(typeof id)
+    console.log(users)
+    console.log(banUser)
 
     let adminEdit = banUser.isAdmin
     
@@ -83,7 +88,9 @@ export default function Users({setRender}) {
         }).then((result) => {
   
           if (result.isConfirmed /* ADMIN */) {
+            console.log(typeof id)
             dispatch(makeAdmin(id))
+            //console.log(id)
             
           
             
