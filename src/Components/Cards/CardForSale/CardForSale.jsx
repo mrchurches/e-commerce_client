@@ -6,7 +6,7 @@ import styles from './CardForSale.module.css'
 
 function CardForSale({ forSale }) {
   return (
-    <div className={styles.containerCarr} class="d-flex justify-content-center align-items-center mt-3">
+    <div className={styles.containerCarr} class="d-flex justify-content-center align-items-center mt-3 w-100">
 
       <div class="m-2">
         <button className={styles.button} type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
@@ -15,7 +15,7 @@ function CardForSale({ forSale }) {
       </div>
 
 
-      <div id="carouselExampleCaptions" class="carousel slide w-50" data-bs-ride="false">
+      <div id="carouselExampleCaptions" class="carousel slide w-75 carousel-fade" data-bs-ride="false">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
           <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -27,12 +27,11 @@ function CardForSale({ forSale }) {
           <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="7" aria-label="Slide 8"></button>
           <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="8" aria-label="Slide 9"></button>
         </div>
-        <div class="carousel-inner w-100" className={styles.container}>
-          {console.log(forSale)}
+        <div class="carousel-inner" className={styles.container}>
           {
             forSale?.map((e, i) => {
               return (
-                <div class={`carousel-item ${i === 0 ? "active" : ""}`} >
+                <div class={`carousel-item ${i === 0 ? "active" : ""} w-100`} >
                   <Link to={`/detail/${e.id}`}>
                     <img className={styles.image} src={e?.background_image} class="d-block w-100 rounded" style={{ maxHeight: '40rem', maxWidth: '100vw' }} alt="..." />
                   </Link>
@@ -57,7 +56,7 @@ function CardForSale({ forSale }) {
       </button> */}
       </div>
 
-      <div>
+      <div >
         <button className={styles.button} type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
         </button>
