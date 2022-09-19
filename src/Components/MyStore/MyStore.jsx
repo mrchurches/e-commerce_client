@@ -19,12 +19,14 @@ const MyStore = () => {
   }
   let filteredGames=[];
   useEffect(()=>{
+
     dispatch(getAllProducts())
     dispatch(getUserOrders(user_id))
   },[dispatch, user_id])
   
-
-
+  console.log(userOrders)
+  
+  
   userOrders.forEach(e=> games.forEach(f=>{
     if(e.game_id === f.id){
       filteredGames.push(f)
