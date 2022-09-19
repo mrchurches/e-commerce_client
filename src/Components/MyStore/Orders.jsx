@@ -2,8 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 function Orders({orders, games}) {
-  console.log(games)
-  console.log(orders)
   return  (
 
     <div className='testAdminUser m-5 p-5'>
