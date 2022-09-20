@@ -272,7 +272,8 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
                           {!adquiridos ? <div name="cart" onClick={(e) => handleClick(e)}>
 
                             <button disabled={fromApi || isDisabled ? true : false} class=" text1 buttonCart">
-                              <img src={shoppingCard} name="cart" alt="" style={{ maxWidth: '2rem', maxHeight: '2rem' }} /></button>
+                              <img src={shoppingCard} name="cart" alt="" style={{ maxWidth: '2rem', maxHeight: '2rem' }} />
+                              </button>
                           </div> : null}
                     </div>
                     )
