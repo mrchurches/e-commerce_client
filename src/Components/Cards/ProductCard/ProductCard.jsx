@@ -249,6 +249,7 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
                           class="platformPic"
                           style={{ maxWidth: '1.5rem', maxHeight: '1.5rem', marginRight: "15px", marginLeft: "15px" }}
                           src={img}
+                          alt="imggg"
                         />
                       )
                     })
@@ -263,15 +264,17 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
                   {isDisabled || fromApi ?
                     <span>No stock</span> :
 
-                    (<h6 class="card-text  titleBg pt-4 pl-3">
-                      ARS$ {price}
+                    (
+                    <div class="d-flex align-items-center">
+                        <h6 class="titleBg pt-2">
+                          ARS$ {price} </h6>
 
-                      {!adquiridos ? <div name="cart" onClick={(e) => handleClick(e)}>
+                          {!adquiridos ? <div name="cart" onClick={(e) => handleClick(e)}>
 
-                        <button disabled={fromApi || isDisabled ? true : false} class=" text1 buttonCart">
-                          <img src={shoppingCard} name="cart" alt="" style={{ maxWidth: '2rem', maxHeight: '2rem' }} /></button>
-                      </div> : null}
-                    </h6>
+                            <button disabled={fromApi || isDisabled ? true : false} class=" text1 buttonCart">
+                              <img src={shoppingCard} name="cart" alt="" style={{ maxWidth: '2rem', maxHeight: '2rem' }} /></button>
+                          </div> : null}
+                    </div>
                     )
                   }
                   {/* </div> */}
@@ -287,7 +290,6 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
             {
               foundCart && <button onClick={(e) => handleClick(e)} type="button" class="btn-close bg-info mt-2" style={{ maxWidth: '0.8rem', maxHeight: '0.8rem' }} value="remove" aria-label="Close"></button>}
           </div>
-{/* //////////////////////// */}
         </div>
 
       </div>
