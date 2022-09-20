@@ -39,7 +39,7 @@ function CardSlider({platforms, i}) {
                             price={platforms[i].price}
                         />
                     </div>
-                    { i+1 < platforms.length ? 
+                    {window.screen.width > 1200 && i+1 < platforms.length ? 
                     <div className={styles.slideCard}>
                         <CardLanding
                             key={i+1}
@@ -52,7 +52,7 @@ function CardSlider({platforms, i}) {
                     </div>
                     : ''
                     }
-                    { i+2 < platforms.length ? 
+                    {window.screen.width > 720 && i+2 < platforms.length ? 
                     <div className={styles.slideCard}>
                         <CardLanding
                             key={i+2}
