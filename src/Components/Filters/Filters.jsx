@@ -76,7 +76,7 @@ function Filters() {
     <div class="d-flex justify-content-end" style={{marginTop: '15px', marginBottom: '15px'}}>
       <div className={styles.posicion}>
         {/* Sort by: */}
-        <select class="form-select" style={{backgroundColor:"#212529", color: "white"}} onChange={(e) => handlerChange(e)}> {/* propuesta rango de precio */}
+        <select class="form-select" style={{ fontSize:"12px",backgroundColor:"#212529", color: "white"}} onChange={(e) => handlerChange(e)}> {/* propuesta rango de precio */}
         <option disabled={false} value="default">Order by...</option>
           <option  value="Highest_Price">Price: Higher to lower</option>
           <option value="Lowest_Price">Price: Lower to Higher</option>
