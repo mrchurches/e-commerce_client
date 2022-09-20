@@ -54,6 +54,7 @@ let users = useSelector(state=>state.users);
         <Route path="/admin/create" component={PostGame}/>
         <Route path="/verify/:email" component={Verify} />
         <Route path="/oauth2/:token" component={VerifyAuth} />
+        <Route path="/oauth2/" component={VerifyAuth} />
         <Route path="/success" component={Success} />
         {/* <Route path="/checkout/:id" component={Checkout}/> */}
         { users && users.user && users.user.isAdmin ? <Route path="/admin" component={Admin}/> : null }

@@ -1,27 +1,24 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
 import { Redirect, useParams } from 'react-router-dom';
-import { getUsers } from '../../redux/actions';
 
 export default function VerifyAuth() {
     const { token } = useParams();
-    const { user } = useSelector((state) => state.users);
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        window.sessionStorage.setItem('token', token);
-        dispatch(getUsers(token));
-    }, []);
+    
+    window.sessionStorage.setItem('token', token);
 
     return (
-        <div class="container text-center">
-            { user && user?.isBanned && (<div class="card w-75">
-                <div class="card-body" style={{backGroundColor: 'rgb(40, 141, 224)'}}>
-                    <p class="card-text">Your account is banned!</p>
-                    <a href="/home" class="btn btn-primary">Go Home</a>
-                </div>
-            </div>)}
-            {user && !user?.isBanned && <Redirect to={'/home'} />}
+        <div>
+            {
+                token ? (<Redirect to='/home' />) :
+                    (<div class="container text-center align-items-center justify-content-center d-flex">
+                        <div class="card">
+                            <div class="card-body" >
+                                <p class="card-text text-white">Your account is banned!</p>
+                                <a href="/home" style={{ backgroundColor: '#0dcaf0' }} class="btn ">Go Home</a>
+                            </div>
+                        </div>
+                    </div>)
+            }
         </div>
     )
 };
