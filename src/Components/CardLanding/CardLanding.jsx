@@ -40,7 +40,7 @@ export default function CardLanding({ id, name, img, price, fromApi, isDisabled}
 
 
   const handleClick = (e) => {
-    e.preventDefault();
+    e.preventDefault() ;
     if (e.target.value === "cart") {
        let fC = cart.filter(e=>e===id);
        if(fC.length>0){
