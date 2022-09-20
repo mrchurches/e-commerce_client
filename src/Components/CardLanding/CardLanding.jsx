@@ -90,7 +90,7 @@ export default function CardLanding({ id, name, img, price, fromApi, isDisabled 
   cart.forEach(e => { if (e === id) { foundCart = true } })
 
   return (
-    <div class=''>
+    <div >
 
       <div class="card hover-overlay image" style={{ maxWidth: "18rem", marginBottom: '25px', maxHeight: '18rem' }}>
         <Link to={fromApi || isDisabled ? `/home` : `/detail/${id}`}>

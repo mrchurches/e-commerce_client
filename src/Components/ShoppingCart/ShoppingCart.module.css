@@ -1,0 +1,7 @@
+.container10{
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: vh100;
+}
