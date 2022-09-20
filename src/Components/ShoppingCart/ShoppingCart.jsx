@@ -6,7 +6,7 @@ import { addToCart, getAllProducts, removeFromCart } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import CartCard from "./CartCard";
 import { RandomHelper } from "./RandomHelper";
-
+import styles from "./ShoppingCart.module.css"
 export default function ShoppingCart() {
     let cart = useSelector(state => state.cart);
     let games = useSelector(state => state.products2);
@@ -112,7 +112,7 @@ export default function ShoppingCart() {
     console.log(filterGames)
     return (
 
-        <div class="d-flex flex-column vh-100 align-items-center " >
+        <div className={styles.container10} >
             <div class="alert alert-dark w-50 m-3 createUserContainer ">
 
                 <h1>My shopping cart</h1>
@@ -129,7 +129,7 @@ export default function ShoppingCart() {
                                     id={e.id} name={e.name} img={e.background_image}
                                     rating={e.rating} platforms={e.platforms} price={e.price}
                                 />
-                            </div>
+                         My shopping cart   </div>
                         ))) : <div class="w-100 m-3 createUserContainer" style={{ backgroundColor: "#212529" }}> <h4>No products yet... </h4> </div>
                     }
                 </div>
@@ -171,7 +171,7 @@ export default function ShoppingCart() {
                     <button onClick={(e) => handleAllRemove(e)} type="button" class="btn btn-info">Remove all items</button>
                 </div>
             </div>
-            <div class="d-flex flex-column justify-content-center align-items-center vw100 w-100">
+            <div class="d-flex flex-column justify-content-center align-items-center w-75">
                 <div class="p-4">
                     <h4>Maybe you're interested in...</h4>
                 </div>
