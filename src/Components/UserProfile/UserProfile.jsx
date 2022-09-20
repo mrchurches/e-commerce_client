@@ -36,15 +36,17 @@ import { Cloudinary } from "@cloudinary/url-gen";
 import React from 'react'
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
+import Swal from 'sweetalert2'
 
 import { existsUsername, userFormat, validatedFormat, validatedFunctions, findEmail, editUser } from "./UserProfileHelper";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import NoWorkResult from "postcss/lib/no-work-result";
 import { getUsers, putUser } from "../../redux/actions";
 
 const CreateUser = () => {
     let actualUser = useSelector(state => state.users.user)
     let dispatch = useDispatch();
+    let history = useHistory();
     // let actualUser = {
     //     id: 1,
     //     username: "prueba1",
@@ -142,8 +144,22 @@ const CreateUser = () => {
 
     async function handleSubmit(e) {
         e.preventDefault()
+        //manda "user" al back
         await editUser(user)
+
+        //manda "user" a redux
         dispatch(putUser(user))
+
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Profile Edited!',
+            showConfirmButton: true,
+            timer: 1500
+        })
+        history.push("/home");
+
+        // window.location.reload()
     }
 
 
@@ -180,20 +196,23 @@ const CreateUser = () => {
     let [confirmNewPassword, setConfirmNewPassword] = useState("")
 
     async function handlePasswordChange(e) {
-        // setOldPassword(e.target.value)
-        let oldPass = await bcrypt.compare(e.target.value, user.password)
-        console.log(" 🚀 ~ file: UserProfile.jsx ~ line 164 ~ handlePasswordChange ~ oldPass", oldPass)
 
+        let oldPass = await bcrypt.compare(oldPassword, user.password)
+        console.log(" 🚀 ~ file: UserProfile.jsx ~ line 164 ~ handlePasswordChange ~ oldPass", oldPass)
+        let confirmation = validatedFunctions.password(newPassword)
+        let newConfirmedPass = "";
         if (oldPass === true) {
             if (newPassword !== "" && confirmNewPassword !== "") {
-                let confirmation = validatedFunctions.password(newPassword)
                 if (confirmation) {
                     if (newPassword === confirmNewPassword) {
                         let hashedPassword = bcrypt.hashSync(newPassword, process.env.REACT_APP_KEY_SALT)
-                        user.password = hashedPassword
+                        newConfirmedPass = hashedPassword
                     }
                 }
             }
+        }
+        if (confirmation && newConfirmedPass !== "") {
+            user.password = newConfirmedPass
         }
     }
     let [disabledEmail, setDisabledEmail] = useState(true)
@@ -207,22 +226,24 @@ const CreateUser = () => {
 
 
     return (
-        <div class="d-flex justify-content-center align-items-center">
+        <div class="d-flex justify-content-center align-items-center ">
             {isSubmit && <Redirect to={'/login'} />}
-            <div class="mt-5 card shadow-lg p-3 mb-5 bg-body rounded" style={{ width: '18rem' }}>
-                <h3>Edit Your Profile</h3>
+/////
+            <div class="mt-5 card shadow-lg p-3 mb-5 rounded createUserContainer btp" style={{ width: '18rem' }}>
+                <h3 class="text-info">Edit Your Profile</h3>
+                <button class={'form-control '} onClick={showWidget}> Upload Image </button><br />
                 <form onSubmit={(e) => handleSubmit(e)} method='post'>
                     <div class="relative z-0 mb-6 w-full group">
 
-                        <button class={'form-control'} onClick={showWidget}> Upload Image </button>
                         <img src={user.profile_pic} id={"uploadedImage"} alt={"selectedPic"} onClick={() => setPath("")} />
                     </div>
+//////
 
                     {/* E-MAIL */}
-                    <div class="relative z-0 mb-6 w-full group">
+                    <div class="relative z-0 mb-6 w-full group"><br />
                         <small onClick={(e) => setDisabledEmail(!disabledEmail)}
                             for="exampleInputEmail1"
-                            class="form-label">E-Mail:
+                            class="inputLabel form-label">Click Here to edit E-Mail
                         </small>
 
                         <input type="email"
@@ -241,7 +262,7 @@ const CreateUser = () => {
                     </div>
 
                     {/* OLD PASSWORD */}
-                    <div class="relative z-0 mb-6 w-full group">
+                    {/* <div class="relative z-0 mb-6 w-full group">
                         <small onClick={(e) => setDisabledOldPassword(!disabledOldPassword)} for="password" class="form-label">Old Password</small><br />
 
                         <input type="password"
@@ -254,10 +275,10 @@ const CreateUser = () => {
                             disabled={disabledOldPassword} />
 
                         {isChange.password && !validate.password && <small>Password Must be Contain: number, symbol, uppercase and 8 digits</small>}
-                    </div>
+                    </div> */}
 
                     {/* NEW PASSWORD */}
-                    <div class="relative z-0 mb-6 w-full group">
+                    {/* <div class="relative z-0 mb-6 w-full group">
                         <small onClick={(e) => setDisabledNewPassword(!disabledNewPassword)} for="password" class="form-label">New Password</small><br />
 
                         <input type="password"
@@ -265,16 +286,16 @@ const CreateUser = () => {
                             value={newPassword}
                             name="password"
                             id="password"
-                            class={`form-control ${isChange.password && !validate.password && "is-invalid"}`}
+                            class={`form-control ${isChange.password && !validate.password(newPassword) && "is-invalid"}`}
                             placeholder="New Password"
                             required=""
                             disabled={disabledNewPassword} />
 
                         {isChange.password && !validate.password && <small>Password Must be Contain: number, symbol, uppercase and 8 digits</small>}
-                    </div>
+                    </div> */}
 
                     {/* CONFIRM NEW PASSWORD */}
-                    <div class="relative z-0 mb-6 w-full group">
+                    {/* <div class="relative z-0 mb-6 w-full group">
                         <small onClick={(e) => setDisabledConfirmNewPassword(!disabledConfirmNewPassword)} for="confirm password" class="form-label">Confirm New Password</small>
 
                         <input class={`form-control ${isChange.cPassword && user.cPassword !== user.password && "is-invalid"}`}
@@ -288,12 +309,12 @@ const CreateUser = () => {
                             disabled={disabledConfirmNewPassword} />
 
                         {isChange.cPassword && user.cPassword !== user.password && <small>Passwords don't match</small>}
-                    </div>
+                    </div> */}
 
                     {/* NAME */}
                     <div class="grid md:grid-cols-2 md:gap-6">
-                        <div class="relative z-0 mb-6 w-full group">
-                            <small onClick={(e) => setDisabledName(!disabledName)} for="name" class="form-label">Name</small><br />
+                        <div class="relative z-0 mb-6 w-full group"><br />
+                            <small onClick={(e) => setDisabledName(!disabledName)} for="name" class="inputLabel form-label">Click Here to edit Name</small><br />
 
                             <input class={`form-control ${isChange.name && !validate.name && "is-invalid"}`}
                                 type="text"
@@ -309,8 +330,8 @@ const CreateUser = () => {
                         </div>
 
                         {/* LASTNAME */}
-                        <div class="relative z-0 mb-6 w-full group">
-                            <small onClick={(e) => setDisabledLastname(!disabledLastname)} for="lastname" class="form-label">Lastname</small><br />
+                        <div class="relative z-0 mb-6 w-full group"><br />
+                            <small onClick={(e) => setDisabledLastname(!disabledLastname)} for="lastname" class="inputLabel form-label"> Click Here to edit Lastname</small><br />
 
                             <input class={`form-control ${isChange.lastname && !validate.lastname && "is-invalid"}`}
                                 type="text"
@@ -326,8 +347,8 @@ const CreateUser = () => {
                         </div>
 
                         {/* USERNAME */}
-                        <div class="relative z-0 mb-6 w-full group">
-                            <small onClick={(e) => setDisabledUsername(!disabledUsername)} for="username" class="form-label">Username:  </small>
+                        <div class="relative z-0 mb-6 w-full group"><br />
+                            <small onClick={(e) => setDisabledUsername(!disabledUsername)} for="username" class="form-label inputLabel">Click Here to edit Username</small>
 
                             <input type="text"
                                 onChange={(e) => handleChange(e)}
@@ -342,11 +363,11 @@ const CreateUser = () => {
                             {isChange.username && !validate.username && <small>Username Invalid</small>}
                             {userGet.usernameExists && <small>Username already exists</small>}
                         </div>
-                    </div>
+                    </div><br />
                     {/* <div>All fields are required</div> */}
 
                     {/* SUBMIT BUTTON */}
-                    <button type="submit" class="btn btn-primary" >Submit</button>
+                    <button type="submit" class=" btn-info btn" >Submit</button>
                 </form>
             </div>
         </div>

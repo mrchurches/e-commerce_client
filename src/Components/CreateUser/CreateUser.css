@@ -1,0 +1,7 @@
+.createUserContainer {
+    color: rgb(250, 238, 151);
+    background-color: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 6px 10px rgba(3, 43, 44, 0.7),
+        0 0 6px rgb(40, 141, 224);
+    border: none;
+}

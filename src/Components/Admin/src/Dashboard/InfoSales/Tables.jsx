@@ -5,7 +5,7 @@ export default function Tables() {
   return (
     <div>
 
-<h4> Total sales genres </h4>
+<h4 style={{color: "black"}}> Total sales genres </h4>
         <div class='container-sm' className ={style.tablefixed}>
   <div  class='row'>  
   <table  class="table table-striped tabled-striped table-condensend table-fixed table-bordered text-sm">
@@ -42,7 +42,7 @@ export default function Tables() {
 </div>
 </div>   
 
-<h4>Total sales platforms</h4>
+<h4 style={{color: "black"}}>Total sales platforms</h4>
 
 <div class='container' className ={style.tablefixed}>
 <div  class='row'>  

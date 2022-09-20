@@ -3,48 +3,66 @@ import React, { useState } from 'react'
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { useParams, NavLink } from 'react-router-dom'
+import { useParams, NavLink, Link } from 'react-router-dom'
+import Swal from 'sweetalert2'
+
 import { addToCart, addWish } from '../../redux/actions';
 import ReviewCard from '../Cards/Reviews/ReviewCard';
 import FavouriteButton from '../FavouriteButton/FavouriteBurron';
 import Review_box from '../Review/Review';
 import './details.css'
-const {REACT_APP_URL} = process.env;
+const { REACT_APP_URL } = process.env;
+
+
 export default function ProductDetails() {
 
   const [game, setGame] = useState({});
   const [disabled, setDisabled] = useState(true); // si no esta logueado desabilita addwish
-  let cart = useSelector(state=>state.cart);
+  let cart = useSelector(state => state.cart);
   const [reviews, setReviews] = useState();
-  
+
   let user = useSelector(state => state.users); // se trae el usuario logueado para permitir agregar a wishlist
   let { id } = useParams();
   let dispatch = useDispatch();
+  let orders = useSelector(state => state.userOrders);
+  let [orderFound, setOrderFound] = useState(false);
 
   useEffect(() => {
     if (user.length) setDisabled(false); //si cuando se monta el componente hay usuario logueado habilita el addwish
     setTimeout(() => {
       axios.get(`${REACT_APP_URL}videogames/${id}`)
-      .then(res => {
-        setGame(res.data)
-        axios.get(`${REACT_APP_URL}reviews/${id}`)
-        .then(res => setReviews(res.data.filter((e)=> !e.reported)))
+        .then(res => {
+          setGame(res.data)
+          axios.get(`${REACT_APP_URL}reviews/${id}`)
+            .then(res => setReviews(res.data.filter((e) => !e.reported)))
+            .catch(err => console.log(err))
+        })
         .catch(err => console.log(err))
-      })
-      .catch(err => console.log(err))
     }, "500");
   }, [id, user])
+
   function handleClick(e) { // eso se ejecuta cuando se le hace click al boton de add to cart o wishlist
     e.preventDefault();
     if (e.target.value === "cart") {
       console.log(cart[0], id)
-       let fC = cart.filter(e=>e===id);
-       if(fC.length>0){
-        alert("Juego ya agregado al carrito anteriormente!")
-       }else{
-         dispatch(addToCart(game.id)) // dispacha al carrito de compras con el id del game en la db
-       }
-       
+      let fC = cart.filter(e => e === id);
+      if (fC.length > 0) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Already in cart!',
+        })
+      } else {
+        dispatch(addToCart(game.id)) // dispacha al carrito de compras con el id del game en la db
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Succesfully added to your cart',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+
       // if(fC.length>0){
       // }else{
       //   alert("Juego ya agregado al carrito!")
@@ -52,11 +70,16 @@ export default function ProductDetails() {
 
     }
   }
+  useEffect(() => {
+    orders.forEach(e => {
+      if (id === e.game_id) setOrderFound(true)
+    })
+  }, [id, orders])
 
   return (
     <div class="container">
       {
-        !game.name &&(
+        !game.name && (
           <div class="spinner-border" role="status">
             <span class="visually-hidden">Loading...</span>
           </div>
@@ -80,14 +103,23 @@ export default function ProductDetails() {
               <p className='p2'><b>Released:</b> {game.released}</p>
             </div>
 
+            {orderFound && (
+              <div class="w-100 project-info-box">
+                <h4>You already own this game!</h4>
+                <Link to="/my_store"><h4>Go to your games library to check it out</h4></Link>
+              </div>)}
+
             <div class="project-info-box mt-0 mb-0 d-flex flex-row justify-content-center align-items-center">
               <div class="pt-2">
-              <h4>${game.price}</h4>
+                <h4>${game.price}</h4>
               </div>
               <div >
-              <button value="cart" onClick={handleClick} type="button" class="btn btn-info">
-                  Add to cart
-                </button>
+                {orderFound ?
+                  <button type="button" class="btn btn-info" disabled>Owned</button>
+                  :
+                  <button value="cart" onClick={handleClick} type="button" class="btn btn-info">
+                    Add to cart
+                  </button>}
               </div>
               <div class="m-2">
                 <FavouriteButton id={id} />
@@ -95,12 +127,12 @@ export default function ProductDetails() {
               </div>
             </div>
             <div className='reviewContainer'>
-              <Review_box productId={id} reviews={reviews} setReviews={setReviews}/>
+              <Review_box productId={id} reviews={reviews} setReviews={setReviews} />
             </div>
-            <div style={{height: '15px'}}></div>
+            <div style={{ height: '15px' }}></div>
 
           </div>
-          
+
 
           <div class="col-md-7">
 
@@ -113,12 +145,12 @@ export default function ProductDetails() {
               </div>
               <div class="carousel-inner">
                 <div class='carousel-item active'>
-                  <img src={game.background_image} class="d-block w-100 rounded" alt="..." />
+                  <img src={game.background_image} class="d-block w-100 rounded h-50" alt="..." />
                 </div>
                 {game.Screenshots?.map((e) => {
                   return (
-                    <div class="carousel-item">
-                      <img src={e?.image} class="d-block w-100 rounded" alt="..." />
+                    <div class="carousel-item" style={{ height: "25rem" }}>
+                      <img src={e?.image} class="d-block w-100 rounded h-100" alt="..." />
                     </div>
                   )
                 })
@@ -135,13 +167,17 @@ export default function ProductDetails() {
             </div>
 
             <div class="project-info-box">
-              <p className='p3'u><b>Platforms:</b>{game.platforms?.map(e => (<span> {e.name}</span>))} </p>
+              <p className='p3' u><b>Platforms:</b>{game.platforms?.map(e => (<span> {e.name}</span>))} </p>
               <p className='p3'><b>Genres:</b> {game.genres?.map(e => (<span> {e.name} </span>))} </p>
             </div>
-            
+
             <div className='verticalScrollable1'>
               {reviews && reviews.map((e) => {
-                return(<ReviewCard username={e.username} rating={e.rating} description={e.description} userImg={e.profile_pic}/>)
+
+                // return (<ReviewCard username={e.username} rating={e.rating} description={e.description} userImg={e.profile_pic} />)
+
+                return (<ReviewCard username={e.username} rating={e.rating} description={e.description} userImg={e.profile_pic} id={e.id} reviews={reviews} setReviews={setReviews} />)
+
               })}
             </div>
 

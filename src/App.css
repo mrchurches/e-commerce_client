@@ -1,9 +1,14 @@
 .App {
   text-align: center;
-  background: #141E30;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to bottom, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to bottom, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+  background: #141E30;
+  background-color: #00acfc;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #243B55, #141E30);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #416997, #141E30);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-image: url('../src/images/textures/grungeblue.jpg');
+  background-size: 100% 100%;
   /* background-image: linear-gradient(
   0deg,
   hsl(227deg 28% 51%) 0%,
@@ -21,6 +26,23 @@ background: linear-gradient(to bottom, #243B55, #141E30); /* W3C, IE 10+/ Edge, 
   margin: 0;
   position: relative;
   border-radius: 0;
+
+  /* font-family: 'Flamenco', cursive; */
+  font-family: 'Josefin Sans', sans-serif;
+  color: azure;
+}
+
+.App::after {
+  content: '';
+  display: block;
+  height: 163px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 163px;
 }
 
 .App-link {
@@ -31,6 +53,7 @@ background: linear-gradient(to bottom, #243B55, #141E30); /* W3C, IE 10+/ Edge, 
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

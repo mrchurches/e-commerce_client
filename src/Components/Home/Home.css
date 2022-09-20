@@ -1,7 +1,28 @@
 .allCardsConteiner {
+    background-color: transparent;
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
-    /* background-color: black; */
-    width: 90vw;
+    flex-direction: row;
+    /* justify-content: left; */
+    /* width: 30%; */
+    margin-left: 10rem;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
 }
+
+/* @media screen and (max-width:375px) {
+
+    .cardsAndFilter {
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    .allCardsConteiner {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+
+} */

@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import styles from './CardSlider.module.css'
 import ProductCard from '../ProductCard/ProductCard'
-
+import CardLanding from '../../CardLanding/CardLanding.jsx'
 
 
 function CardSlider({platforms, i}) {
@@ -30,9 +30,9 @@ function CardSlider({platforms, i}) {
                   <span style={{display: 'none'}}>{i === 1 ? i*=3 : ''}{i === 2 ? i*=3 : ''}</span>
                     <div className={styles.slideCardContainer}>
                     <div className={styles.slideCard}>
-                        <ProductCard
+                        <CardLanding
                             key={i}
-                            id={platforms[i].id}
+                            id={platforms[i]?.id}
                             name={platforms[i].name}
                             img={platforms[i].background_image}
                             rating={platforms[i].rating}
@@ -41,9 +41,9 @@ function CardSlider({platforms, i}) {
                     </div>
                     { i+1 < platforms.length ? 
                     <div className={styles.slideCard}>
-                        <ProductCard
+                        <CardLanding
                             key={i+1}
-                            id={platforms[i+1].id}
+                            id={platforms[i+1]?.id}
                             name={platforms[i+1].name}
                             img={platforms[i+1].background_image}
                             rating={platforms[i+1].rating}
@@ -54,9 +54,9 @@ function CardSlider({platforms, i}) {
                     }
                     { i+2 < platforms.length ? 
                     <div className={styles.slideCard}>
-                        <ProductCard
+                        <CardLanding
                             key={i+2}
-                            id={platforms[i+2].id}
+                            id={platforms[i+2]?.id}
                             name={platforms[i+2].name}
                             img={platforms[i+2].background_image}
                             rating={platforms[i+2].rating}

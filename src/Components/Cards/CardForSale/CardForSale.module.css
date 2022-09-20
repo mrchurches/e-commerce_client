@@ -1,16 +1,27 @@
 .containerCarr {
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: 20px;
-    max-width: 1200px;
-  }
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 20px;
+  max-width: 1200px;
+}
 
-  .button{
-    background-color: transparent;
-    border: none;
-    
-  }
+.button {
+  background-color: transparent;
+  border: none;
 
-  .button :hover{
+}
 
-  }
+.button :hover {}
+
+.container img {
+  height: 40rem;
+  width: 50vh;
+  object-fit: cover;
+}
+
+.spanLanding {
+  text-shadow: 1px 1px 2px rgb(255, 217, 2);
+  background-color: rgb(2, 169, 175);
+  color: rgb(63, 62, 62);
+
+}
