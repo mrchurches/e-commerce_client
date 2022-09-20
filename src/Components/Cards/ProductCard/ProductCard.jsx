@@ -221,7 +221,7 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
                   {genres.slice(0,3).map((e, index) => <p key={index} class=" bg-transparent text1 d-flex p-1 justify-content-center  ">{e.name === "Massively Multiplayer"? "Massive mult.." : e.name}</p>)}
                   {genres.length > 3 ? <p class=" bg-transparent text1 d-flex p-1 justify-content-center  ">, And more... </p> : null}
                 </p>
-                <div class="align-items-center">
+                <div class="d-flex align-items-center justify-content-center">
                   {isDisabled || fromApi ?
                     <span>No stock</span> :
 
