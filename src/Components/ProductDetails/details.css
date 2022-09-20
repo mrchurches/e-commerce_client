@@ -36,7 +36,8 @@
 img {
   width: 100%;
   max-width: 100%;
-  height: auto;
+  height: 40.5rem;
+  object-fit: cover;
   -webkit-backface-visibility: hidden;
 }
 
@@ -103,4 +104,8 @@ strong {
   background-color: rgba(0, 0, 0, 0.8);
   box-shadow: 0 6px 10px rgba(3, 43, 44, 0.7),
     0 0 6px rgb(40, 141, 224);
+}
+
+.screenshots{
+  height: 25rem;
 }
