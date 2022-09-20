@@ -140,14 +140,12 @@ h6 {
     filter: drop-shadow(0 2px 5px rgb(0, 0, 0));
 }
 
-@media screen and (max-width:614px) {
+@media screen and (max-width:375px) {
     .cardBigContainer {
-        flex-direction: column;
+        /* flex-direction: column; */
         /* max-height: 370px; */
         /* align-items: center; */
         /* justify-content: center; */
-        max-height: 370px;
-        /* height: 30%; */
     }
 
 }
@@ -164,5 +162,19 @@ h6 {
         margin-top: 0px;
         align-items: center;
     }
+}
+
+
+.conteinerimg {
+    background-size: 20rem auto;
+    background-repeat: cover;
+    height: 10rem;
+    width: 18rem;
+    text-decoration: none;
+    /* color: #ffbb007a */
+}
+
+.starshadow {
+    filter: drop-shadow(0 2px 5px rgb(0, 0, 0));
 
 }

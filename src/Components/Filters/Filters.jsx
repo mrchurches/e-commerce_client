@@ -116,13 +116,11 @@ export default Filters
               <option onClick={(e) => orderPrice(e)}> Price: high to low </option>
               <option onClick={(e) => orderPrice(e)}> Price: Low to high </option>
             </select>
-
             <select  name="" id="">
                 <option> By ERSB...</option>
                   {esrbMock.map((ersb, index) => {
                   return <option onClick={(e) => esrbContent(e)} key={index}> {ersb} </option>
                  })}
             </select>
-
         </div>
     </div> */}
