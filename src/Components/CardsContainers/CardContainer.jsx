@@ -9,6 +9,7 @@ import { getAllProducts, getUsedGenres, getUsedPlatforms } from '../../redux/act
 import { Link } from 'react-router-dom'
 import Spinner from '../Spinner/Spinner.jsx'
 import CardLanding from '../CardLanding/CardLanding.jsx'
+import banner2 from "../../images/banner2.png"
 
 const CardContainer = () => {
 
@@ -87,17 +88,17 @@ const CardContainer = () => {
 
           {Allproducts.length>0?<CardForSale forSale={forSale.slice(0,8)}/>:<Spinner />}
           
-          {/* Plataforms */}
-           {platforms.length>0?(<div className={styles.box} >
-          <h5 className="text-light"> Recomended: ({randomPlat}) </h5>
-            <CardSlider platforms={platforms} i={1}/>
-          </div>): <Spinner />}
-          
-          {/* Genres */}
-          {genres.length>0?(<div className={styles.box}>
-          <div ><h5 className="text-light"> Recomended: ({randomGen}) </h5></div>
-            <CardSlider platforms={genres} i={2}/>
-          </div>) : <Spinner />}
+              {/* Plataforms */}
+              {platforms.length>0?(<div className={styles.box} >
+              <h5 className="text-light"> Recomended: ({randomPlat}) </h5>
+                <CardSlider platforms={platforms} i={1}/>
+              </div>): <Spinner />}
+              
+              {/* Genres */}
+              {genres.length>0?(<div className={styles.box}>
+              <div ><h5 className="text-light"> Recomended: ({randomGen}) </h5></div>
+                <CardSlider platforms={genres} i={2}/>
+              </div>) : <Spinner />}
 
       </div>
   )

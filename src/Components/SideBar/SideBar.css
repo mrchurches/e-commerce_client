@@ -26,3 +26,33 @@
     border: 1px rgb(18, 49, 58) solid;
 
 }
+
+.sideBarContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@media screen and (max-width: 1032px) {
+    .sideBarContainer {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: around;
+        /* background-color: yellow; */
+        gap: 2rem;
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+    .sideBarContainer {
+        /* display: flex;
+        flex-direction: column; */
+        /* flex-wrap: wrap; */
+        /* justify-content: around;
+        background-color: rgb(30, 255, 0);
+        gap: 2rem; */
+    }
+
+}
