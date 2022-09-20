@@ -145,12 +145,12 @@ export default function ProductDetails() {
               </div>
               <div class="carousel-inner">
                 <div class='carousel-item active'>
-                  <img src={game.background_image}  alt="..." />
+                  <img src={game.background_image} className='imagenDetails' alt="..." />
                 </div>
                 {game.Screenshots?.map((e) => {
                   return (
                     <div class="carousel-item" >
-                      <img src={e?.image}  alt="..." />
+                      <img className='imagenDetails' src={e?.image}  alt="..." />
                     </div>
                   )
                 })

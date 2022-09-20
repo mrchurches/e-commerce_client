@@ -33,7 +33,7 @@
   text-justify: inter-character;
 }
 
-img {
+.imagenDetails {
   width: 100%;
   max-width: 100%;
   height: 40.5rem;
