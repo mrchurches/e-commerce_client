@@ -21,7 +21,7 @@ const SearchBar = ({button}) => {
   function handleClick(e) {
     dispatch(clear())
   }
-  var buttonStyle = 'btn-outline-success'
+  var buttonStyle = 'btn-secondary'
   if(button === 'admin'){
     buttonStyle = 'btn-secondary'
   }

@@ -141,13 +141,13 @@ h6 {
 }
 
 @media screen and (max-width:375px) {
-    .cardBigContainer {
-        /* flex-direction: column; */
-        /* max-height: 370px; */
-        /* align-items: center; */
-        /* justify-content: center; */
+  /*   .cardBigContainer {
+        flex-direction: column;
+        max-height: 370px;
+        align-items: center;
+        justify-content: center;
     }
-
+ */
 }
 
 @media screen and (max-width:600px) {

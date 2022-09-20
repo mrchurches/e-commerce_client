@@ -26,8 +26,8 @@
 
 }
 
-.banner{
-  height: auto;
-  width: 20rem;
+.banner img{
+  height: 40rem;
+  width: auto;
   margin: 2rem;
 }

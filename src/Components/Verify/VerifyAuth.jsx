@@ -8,7 +8,6 @@ export default function VerifyAuth() {
 
     return (
         <div>
-
             {
                 token ? (<Redirect to='/home' />) :
                     (<div class="container text-center align-items-center justify-content-center d-flex">

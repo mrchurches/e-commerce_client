@@ -12,7 +12,7 @@ import MyChatBot from '../Chatbot/chatbot';
 import config from '../Chatbot/Config/config';
 import MessageParser from '../Chatbot/MessageParser/MessageParser';
 import ActionProvider from '../Chatbot/ActionProvider/ActionProvider';
-
+import Spinner from "../Spinner/Spinner"
 
 function Home() {
     let games = useSelector(state => state.products);
@@ -26,12 +26,16 @@ function Home() {
 
     const user = useSelector((state) => state.users),
         token = window.sessionStorage.getItem('token');
-    // const [show, setShow] = useState(false);
+     const [show, setShow] = useState(false);
 
     const paginado = (number) => {
         dispatch(setCurrentPage(number))
         setTimeout(() => window.scroll({ top: 0 }), 500)
     };
+
+    useEffect(()=>{
+        setTimeout(()=> setShow(true),1000)
+    },[searchered])
 
     useEffect(() => {
         token && dispatch(getUsers(token));
@@ -61,9 +65,11 @@ function Home() {
                             <ProductCard name={e.name} id_api={e.id_api} id={e.id} img={e.background_image} /* Screenshots={screenshots} */ rating={e.rating} genres={e.genres} platforms={e.platforms} price={e.price} fromApi={e.fromApi} isDisabled={e.isDisabled} />
                         </div>
                     ))}
-
                     {
-                        (currentGames.length < 1) && <div class="spinner-border" role="status">
+                        !show && <Spinner />
+                    }
+                    {
+                       show && (currentGames.length < 1) && <div class="spinner-border" role="status">
                             <span class="visually-hidden">Loading...</span>
                         </div>
                     }
