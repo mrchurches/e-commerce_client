@@ -177,9 +177,9 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
          </div> */
       }
 
-      <div class="card-body headerContainer " style={{ width: '35rem', height: '15rem' }}>
+      <div class="card-body headerContainer flex-xl-wrap " style={{ width: '35rem', height: '15rem' }}>
 
-        <div class="d-flex  justify-content-between mt-2 headerMatrics   ">
+        <div class="d-flex  justify-content-between mt-2 headerMatrics flex-xl-wrap  ">
           <div class="mt-2 ">
             <h6 class="card-title fs-5 ">{name} </h6>
           </div>
@@ -218,7 +218,7 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
 
                 </div>
                 <p class='d-flex justify-content-around pt-4 flex-wrap w-100'>
-                  {genres.slice(0,3).map((e, index) => <p key={index} class=" bg-transparent text1 d-flex p-1 justify-content-center  ">{e.name === "Massively Multiplayer"? "Massive mult.." : e.name}</p>)}
+                  {genres.slice(0, 3).map((e, index) => <p key={index} class=" bg-transparent text1 d-flex p-1 justify-content-center  ">{e.name === "Massively Multiplayer" ? "Massive mult.." : e.name}</p>)}
                   {genres.length > 3 ? <p class=" bg-transparent text1 d-flex p-1 justify-content-center  ">, And more... </p> : null}
                 </p>
                 <div class="d-flex align-items-center justify-content-center">

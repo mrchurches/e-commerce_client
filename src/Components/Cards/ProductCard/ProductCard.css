@@ -23,10 +23,12 @@ h6 {
     margin-bottom: 5%;
 
 }
-.button{
+
+.button {
     background-color: rgb(206, 5, 5);
     color: blue
 }
+
 .card-body {
     border-radius: 7px;
     display: flex;
@@ -124,12 +126,18 @@ h6 {
     /* flex-direction: column; */
 }
 
-@media screen and (max-width:375px) {
+@media screen and (max-width:614px) {
     .cardBigContainer {
-        /* flex-direction: column; */
+        flex-direction: column;
         /* max-height: 370px; */
         /* align-items: center; */
         /* justify-content: center; */
+        max-height: 370px;
+        /* height: 30%; */
     }
+
+    /* .headerContainer{
+        flex-xl-wrap
+    } */
 
 }

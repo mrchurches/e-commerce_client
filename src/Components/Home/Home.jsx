@@ -34,23 +34,23 @@ function Home() {
     }, []);
 
     useEffect(() => {
-        user.products?.length !== 0 ? user.products?.map(e => dispatch(addWish(e.id))):
-        dispatch(resetWish());
-    },[user]);
+        user.products?.length !== 0 ? user.products?.map(e => dispatch(addWish(e.id))) :
+            dispatch(resetWish());
+    }, [user]);
 
     return (
         <div class="d-sm-flex container-fluid cardsAndFilter">
-            <div style={{ marginRight: '15px', marginLeft: '30px', marginTop: '46px', width: '122px' }}>
+            <div >
                 <SideBar />
             </div>
 
-            <div style={{ width: '1300px' }}>
+            <div style={{ width: '100%' }}>
 
-                <div class='ml-2'>
+                <div class='d-flex justify-content-center  pl-2'>
                     <Filters />
                 </div>
 
-                <div class="row pb-1 mb-1" className="allCardsConteiner" >
+                <div class="row pb-1 mb-1 flex-xl-wrap" className="allCardsConteiner" >
                     {currentGames.length > 0 && currentGames.map(e => (
                         <div /* class="col-lg-4 col-md-2 mb-1 mb-lg-0" */>
                             <ProductCard name={e.name} id_api={e.id_api} id={e.id} img={e.background_image} /* Screenshots={screenshots} */ rating={e.rating} genres={e.genres} platforms={e.platforms} price={e.price} fromApi={e.fromApi} isDisabled={e.isDisabled} />
