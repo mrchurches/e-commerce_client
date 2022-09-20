@@ -114,9 +114,9 @@ export default function SideBar() {
         </select>
       </div>
 
-      <div style={{ width: "160px" }}>
+      <div  >
         {maxPrice > 1 ? <label for='rangeMax' class='text-white form label fs-6 pt-3'> Under ${maxPrice - 1} </label> : <label for='rangeMax' class='text-white form label'> ${minPrice}</label>}
-        <input id='rangeMax' class='form-range' disabled={false} value={maxPrice} onChange={(e) => hanleChange(e)} type="range" min={min} max={max} step='10' />
+        <br /><input id='rangeMax' style={{ marginTop: '15px', marginRight: 'auto', marginLeft: 'auto' }} class='form-range texto btp justify-content-center' disabled={false} value={maxPrice} onChange={(e) => hanleChange(e)} type="range" min={min} max={max} step='10' />
       </div>
 
       {/* <div>

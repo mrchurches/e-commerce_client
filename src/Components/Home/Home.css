@@ -5,13 +5,13 @@
     flex-direction: row;
     /* justify-content: left; */
     /* width: 30%; */
-    margin-left: 10rem;
+    /* margin-left: 0.1rem; */
     gap: 1rem;
     align-items: center;
     justify-content: center;
 }
 
-/* @media screen and (max-width:375px) {
+@media screen and (max-width:1033px) {
 
     .cardsAndFilter {
         display: flex;
@@ -25,4 +25,4 @@
         flex-direction: column;
     }
 
-} */
+}
