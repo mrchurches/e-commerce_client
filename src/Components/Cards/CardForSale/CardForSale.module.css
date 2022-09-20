@@ -25,3 +25,9 @@
   color: rgb(63, 62, 62);
 
 }
+
+.banner{
+  height: auto;
+  width: 20rem;
+  margin: 2rem;
+}
