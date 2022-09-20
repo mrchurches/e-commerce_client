@@ -2,7 +2,7 @@ import React, {useEffect} from "react"
 import {useState} from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import {getGenres, getPlatforms, Edit_Game}  from "../../../../redux/actions";
+import {getGenres, getPlatforms, Edit_Game, getAllProducts}  from "../../../../redux/actions";
 import style from './editForm.module.css'
 import Swal from 'sweetalert2'
 
@@ -24,6 +24,7 @@ function getPayload(game,input){
     let payload = {}
     payload.id = game.id
     if (input.name !== game.name) payload.name =  input.name;
+    if(input.name !== game.name) payload.slug = input.name.toLowerCase(); 
     if (input.isDisabled !== game.isDisabled) payload.isDisabled =  input.isDisabled;
     if (input.released !== game.released) payload.released =  input.released;
     if (input.description !== game.description) payload.description =  input.description;
@@ -73,6 +74,7 @@ export default function EditForm({setRender, game}) {
     const [error, setError] = useState({});
     const [input, setInput] = useState({
         name:game.name,
+        slug:game.name,
         description:game.description,
         background_image:game.background_image,
         released:game.released,
@@ -113,6 +115,7 @@ export default function EditForm({setRender, game}) {
             'Videogame Edited Succesfully!',
             'success'
         ).then(()=>setRender({edit: true}))
+        dispatch(getAllProducts())
     };
     function handleSwitch(e){
         setInput({
@@ -126,6 +129,7 @@ export default function EditForm({setRender, game}) {
         setInput({
             ...input,
             [e.target.name]: e.target.value,
+            slug:input.name.toLowerCase()
         });
         setError(validate({
             ...input,
