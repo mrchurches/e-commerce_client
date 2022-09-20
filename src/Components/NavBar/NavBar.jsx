@@ -30,7 +30,7 @@ const NavBar = () => {
 
   useEffect(() => {
     const token = window.sessionStorage.getItem('token');
-    token && dispatch(getUsers(token));
+    token &&  dispatch(getUsers(token));
   }, [])
 
   useEffect(() => {
