@@ -133,3 +133,17 @@ h6 {
     }
 
 }
+
+
+.conteinerimg{
+ background-size: 20rem auto;
+ background-repeat:cover;
+ height: 10rem;
+ width: 18rem;
+ text-decoration: none;
+ /* color: #ffbb007a */
+}
+
+.starshadow{
+    filter: drop-shadow(0 2px 5px rgb(0, 0, 0));
+}

@@ -1,13 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styles from './CardForSale.module.css'
-
-
+import banner from "../../../images/banner.png"
+import banner2 from "../../../images/banner2.png"
 
 function CardForSale({ forSale }) {
   return (
     <div className={styles.containerCarr} class="d-flex justify-content-center align-items-center mt-3 w-100">
-
+      <div class={styles.banner}>
+        <Link to="/detail/a4bdf7ef-38e9-4b7d-8bc8-9dbc83a64dcd">
+          <img src={banner} alt="banner" />
+        </Link>
+      </div>
       <div class="m-2">
         <button className={styles.button} type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" ></span>
@@ -60,6 +64,9 @@ function CardForSale({ forSale }) {
         <button className={styles.button} type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
         </button>
+      </div>
+      <div class={styles.banner}>
+        <img src={banner2} alt="banner2" />
       </div>
     </div>
   )
