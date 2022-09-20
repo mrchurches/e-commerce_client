@@ -290,6 +290,7 @@ export function Post_Game(payload) {
 
 export function Edit_Game(payload) {
     return async function (dispatch) {
+        //console.log(payload)
         try {
             let json = await axios.put(`${REACT_APP_URL}videogames/edit`, payload)
             console.log(json)
