@@ -8,6 +8,10 @@ import Pagination from '../Pagination/Pagination';
 import SideBar from '../SideBar/SideBar';
 import Filters from "../Filters/Filters"
 import "./Home.css"
+import MyChatBot from '../Chatbot/chatbot';
+import config from '../Chatbot/Config/config';
+import MessageParser from '../Chatbot/MessageParser/MessageParser';
+import ActionProvider from '../Chatbot/ActionProvider/ActionProvider';
 
 
 function Home() {
@@ -26,6 +30,7 @@ function Home() {
 
     const paginado = (number) => {
         dispatch(setCurrentPage(number))
+        setTimeout(()=> window.scroll({top: 0}),500)
     };
 
     useEffect(() => {
@@ -72,6 +77,12 @@ function Home() {
                         ? searchered.length
                         : games.length} paginado={paginado}
                 />
+                <div className='chatbot'>
+                    <MyChatBot 
+                    config={config}
+                    messageParser={MessageParser}
+                    actionProvider={ActionProvider}/>
+                </div>
             </div>
         </div>
 

@@ -24,5 +24,9 @@
         flex-wrap: wrap;
         flex-direction: column;
     }
-
+} */
+.chatbot{
+    position: fixed;
+    right: 1rem;
+    top: 17rem;
 }

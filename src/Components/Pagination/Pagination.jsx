@@ -9,9 +9,15 @@ export default function Pagination({ gamesPerPage, games, paginado, currentPage 
     }
     function previous() {
         paginado(currentPage - 1)
+        setTimeout(()=> window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+          }),500)
     }
     function next() {
         paginado(currentPage + 1)
+        setTimeout(()=> window.scroll({top: 0}),500)
     }
 
     return (
@@ -22,7 +28,7 @@ export default function Pagination({ gamesPerPage, games, paginado, currentPage 
                     pageNums && pageNums.map(e => {
                         return (
                             <li key={e} className={currentPage === e ? "actual" : "non"}>
-                                <span onClick={() => paginado(e)}>{e}</span>
+                                <span onClick={() => paginado(e) }>{e}</span>
                             </li>
                         )
                     })

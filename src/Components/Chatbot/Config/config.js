@@ -16,11 +16,14 @@ const config = {
     },
     customStyles:{
         botMessageBox:{ //color del recuador de texto del bot
-            backgroundColor:"blue"
+            backgroundColor:"#212529"
         },
         chatButton:{ //boton del chat
-            backgroundColor:"black"
+            backgroundColor:"#212529"
         },
+        chatContainer:{
+            backgroundColor: "black"
+        }
     },
     widgets:[
         {
