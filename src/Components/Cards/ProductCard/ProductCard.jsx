@@ -177,9 +177,9 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
          </div> */
       }
 
-      <div class="card-body headerContainer flex-xl-wrap " style={{ width: '35rem', height: '15rem' }}>
+      <div class="card-body headerContainer " style={{ width: '35rem', height: '15rem' }}>
 
-        <div class="d-flex  justify-content-between mt-2 headerMatrics flex-xl-wrap  ">
+        <div class="d-flex  justify-content-between mt-2 headerMatrics   ">
           <div class="mt-2 ">
             <h6 class="card-title fs-5 ">{name} </h6>
           </div>
