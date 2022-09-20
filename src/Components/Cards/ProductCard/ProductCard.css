@@ -23,12 +23,10 @@ h6 {
     margin-bottom: 5%;
 
 }
-
-.button {
+.button{
     background-color: rgb(206, 5, 5);
     color: blue
 }
-
 .card-body {
     border-radius: 7px;
     display: flex;
@@ -126,18 +124,26 @@ h6 {
     /* flex-direction: column; */
 }
 
-@media screen and (max-width:614px) {
+@media screen and (max-width:375px) {
     .cardBigContainer {
-        flex-direction: column;
+        /* flex-direction: column; */
         /* max-height: 370px; */
         /* align-items: center; */
         /* justify-content: center; */
-        max-height: 370px;
-        /* height: 30%; */
     }
+}
+.conteinerimg{
+ background-size: 20rem auto;
+ background-repeat:cover;
+ height: 10rem;
+ width: 18rem;
+ text-decoration: none;
+ /* color: #ffbb007a */
+}
 
-    /* .headerContainer{
-        flex-xl-wrap
-    } */
+.starshadow{
+    filter: drop-shadow(0 2px 5px rgb(0, 0, 0));
 
+.starshadow{
+    filter: drop-shadow(0 2px 5px rgb(0, 0, 0));
 }

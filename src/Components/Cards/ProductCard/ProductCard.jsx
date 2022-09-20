@@ -28,16 +28,16 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
   let foundCart = false;   //aca encontraria el juego si esta agregado al carrito
   const dispatch = useDispatch()
   let user_id = null;
-  console.log(user)
-  console.log(games)
+  // console.log(user)
+  // console.log(games)
   if (user.user) {
     user_id = user.user.id
     console.log(user_id)
   } else {
-    console.log("hola")
+    // console.log("hola")
   }
 
-
+  // console.log(rating)
   const swalWithBootstrapButtons = Swal.mixin({
     customClass: {
       confirmButton: 'btn btn-success',
@@ -50,14 +50,14 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
     localStorage.setItem('cart', JSON.stringify(cart));
     dispatch(getUserOrders(user_id))
     orders.forEach(e => { if (e === name) { setAdquiridos(true) } })
-    console.log(localStorage.getItem("cart"))
+    // console.log(localStorage.getItem("cart"))
   }, [cart]);
 
   const handleClick = (e) => {
     e.preventDefault();
-    console.log("HICISTE CLICK")
-    console.log(e.target)
-    console.log(e.target.name)
+    // console.log("HICISTE CLICK")
+    // console.log(e.target)
+    // console.log(e.target.name)
     if (e.target.name === "cart") {
 
       let fC = cart.filter(e => e === id);
@@ -141,8 +141,22 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
 
   //orders.forEach(e => {if(e === name){setAdquiridos(true)}})
 
-
-
+  rating = Math.floor(rating / 10)
+  console.log(rating)
+  
+  let arr = []
+  for(let i = 0; i<rating; i++){
+    arr.push(1)
+  }
+  // if(rating<6){
+  //   let resto = 6 - rating;
+  //   let restoArr = 
+  // }
+  let blackstars = []
+  if(rating<6){
+  for(let i = 0; i<6-rating; i++){
+    blackstars.push(1)
+  }}
 
   return (
     <div class='bg-transparent cardBigContainer'>
@@ -192,7 +206,31 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
         <div /*class="card-body "*/>
           <Link class='decoration' to={fromApi || isDisabled ? `/home` : `/detail/${id}`}>
             <div class=" d-flex justify-content-around mt-2 cardBigContainer">
-              <img class=" card-img-top d-flex justify-content-start align-items-center max-height-5" style={{ maxWidth: '50%', maxHeight: '9rem' }} src={img} alt="product img" />
+              <div class="d-flex flex-column conteinerimg" style={{backgroundImage: `url(${img})`}}>
+                    {/* <img class=" card-img-top d-flex justify-content-start align-items-center max-height-5 img-fluid" style={{ maxWidth: '50%', maxHeight: '9rem' }} src={img} alt="product img" /> */}
+
+              <div class="d-flex p-2 w-auto">
+            {
+              arr.map(e=>(
+                <div class="starshadow">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffbb00" class="bi bi-star-fill" viewBox="0 0 16 16">
+  <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+</svg>
+                </div>
+              ))
+            }
+            {
+              rating<6? blackstars.map(e=>(
+                <div class="starshadow">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffbb00" class="bi bi-star" viewBox="0 0 16 16">
+  <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+</svg>
+                </div>
+              )) : null
+            }
+          </div>
+
+              </div>
               <div>
 
                 {/* <span class="card-text bg-secondary m-2 p-2 text-light">
@@ -211,6 +249,7 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
                           class="platformPic"
                           style={{ maxWidth: '1.5rem', maxHeight: '1.5rem', marginRight: "15px", marginLeft: "15px" }}
                           src={img}
+                          alt="imggg"
                         />
                       )
                     })
@@ -218,22 +257,24 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
 
                 </div>
                 <p class='d-flex justify-content-around pt-4 flex-wrap w-100'>
-                  {genres.slice(0, 3).map((e, index) => <p key={index} class=" bg-transparent text1 d-flex p-1 justify-content-center  ">{e.name === "Massively Multiplayer" ? "Massive mult.." : e.name}</p>)}
+                  {genres.slice(0,3).map((e, index) => <p key={index} class=" bg-transparent text1 d-flex p-1 justify-content-center  ">{e.name === "Massively Multiplayer"? "Massive mult.." : e.name}</p>)}
                   {genres.length > 3 ? <p class=" bg-transparent text1 d-flex p-1 justify-content-center  ">, And more... </p> : null}
                 </p>
                 <div class="d-flex align-items-center justify-content-center">
                   {isDisabled || fromApi ?
                     <span>No stock</span> :
 
-                    (<h6 class="card-text  titleBg pt-4 pl-3">
-                      ARS$ {price}
+                    (
+                    <div class="d-flex align-items-center">
+                        <h6 class="titleBg pt-2">
+                          ARS$ {price} </h6>
 
-                      {!adquiridos ? <div name="cart" onClick={(e) => handleClick(e)}>
+                          {!adquiridos ? <div name="cart" onClick={(e) => handleClick(e)}>
 
-                        <button disabled={fromApi || isDisabled ? true : false} class=" text1 buttonCart">
-                          <img src={shoppingCard} name="cart" alt="" style={{ maxWidth: '2rem', maxHeight: '2rem' }} /></button>
-                      </div> : null}
-                    </h6>
+                            <button disabled={fromApi || isDisabled ? true : false} class=" text1 buttonCart">
+                              <img src={shoppingCard} name="cart" alt="" style={{ maxWidth: '2rem', maxHeight: '2rem' }} /></button>
+                          </div> : null}
+                    </div>
                     )
                   }
                   {/* </div> */}
