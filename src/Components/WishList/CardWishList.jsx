@@ -1,3 +1,4 @@
+import styles from './CardWishList.module.css'
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -5,9 +6,8 @@ import { removeWish, addToCart, removeFromCart, getUsers } from '../../redux/act
 import { deleteFavorite } from '../FavouriteButton/FavoriteButton';
 import Swal from 'sweetalert2';
 
-export default function CardWhishList({ id, name, price }) {
-    const wishList = useSelector(state => state.wishlist),
-        token = sessionStorage.getItem('token'),
+export default function CardWhishList({ id, name, price, background_image }) {
+    const token = sessionStorage.getItem('token'),
         [inShopCart, setInShopCart] = useState(false),
         [isClose, setIsClose] = useState(false),
         cart = useSelector(state => state.cart),
@@ -77,15 +77,19 @@ export default function CardWhishList({ id, name, price }) {
     }
 
     return (
-        <div class="list-group-item list-group-item-action gap-3 createUserContainer" aria-current="true">
+        <div class="list-group-item  gap-3 createUserContainer" aria-current="true">
             <div class="d-flex w-100 justify-content-between">
-                <button onClick={() => handleClose()} type="button" class="btn-close " aria-label="Close"></button>
+                <button onClick={() => handleClose()} type="button" class="btn-close btn-close-white " aria-label="Close"></button>
             </div>
-            <Link to={'/detail/' + id} class="list-group-item createUserContainer" aria-current="true" >
-                <h5 class="mb-1">{name}</h5>
-                {/* <p class="mb-1">Some placeholder content in a paragraph.</p> */}
-                <small class="text-muted">${price}</small>
-            </Link><br />
+            <div>
+                <Link to={'/detail/' + id} class="createUserContainer" style={{ textDecoration: 'none' }} aria-current="true" >
+                    <img className={styles.imgCard} src={background_image} alt={name} />
+                    <h5 class="mb-1" >{name}</h5>
+                    {/* <p class="mb-1">Some placeholder content in a paragraph.</p> */}
+                </Link>
+                <small class="tex-muted">${price}</small>
+                <br />
+            </div>
             {inShopCart ?
                 <small id='deleteShop' class="btn btn-danger btn" onClick={(e) => handleShopCart(e)}>Delete to Shopping Cart.</small> :
                 <small id='addShop' class="btn btn-info btn" onClick={(e) => handleShopCart(e)}>Add to Shopping Cart.</small>}
