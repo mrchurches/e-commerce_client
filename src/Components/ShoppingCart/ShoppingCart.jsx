@@ -113,7 +113,7 @@ export default function ShoppingCart() {
     return (
 
         <div className={styles.container10} >
-            <div class="alert alert-dark w-50 m-3 createUserContainer ">
+            <div class=" w-50 m-3 p-2" style={{backgroundColor: "#212529"}}>
 
                 <h1>My shopping cart</h1>
             </div>
@@ -130,7 +130,7 @@ export default function ShoppingCart() {
                                     rating={e.rating} platforms={e.platforms} price={e.price}
                                 />
                          My shopping cart   </div>
-                        ))) : <div class="w-100 m-3 createUserContainer" style={{ backgroundColor: "#212529" }}> <h4>No products yet... </h4> </div>
+                        ))) : <div class="w-100 m-3 p-2" style={{ backgroundColor: "#212529" }}> <h4>No products yet... </h4> </div>
                     }
                 </div>
                 <div>
@@ -164,11 +164,11 @@ export default function ShoppingCart() {
             <div class="d-flex p-2">
                 <div>
                     <Link to="/home">
-                        <button type="button" class="btn btn-info">Continue shopping!</button>
+                        <button type="button" class="btn btn-dark">Continue shopping!</button>
                     </Link>
                 </div>
                 <div>
-                    <button onClick={(e) => handleAllRemove(e)} type="button" class="btn btn-info">Remove all items</button>
+                    <button onClick={(e) => handleAllRemove(e)} type="button" class="btn btn-dark">Remove all items</button>
                 </div>
             </div>
             <div class="d-flex flex-column justify-content-center align-items-center w-75">

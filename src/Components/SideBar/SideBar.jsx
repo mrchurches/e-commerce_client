@@ -90,7 +90,7 @@ export default function SideBar() {
   return (
     <div >
       <div>
-        <select class="texto btp" aria-label="Default select example" style={{ marginTop: '15px', marginRight: 'auto', marginLeft: 'auto' }} onChange={(e) => handleFilterByGenre(e)}>
+        <select class="form-select" aria-label="Default select example" style={{ fontSize:"12px", marginTop: '15px', marginRight: 'auto', marginLeft: 'auto', backgroundColor:"#212529", color: "white"}} onChange={(e) => handleFilterByGenre(e)}>
           <option value="default">Genres</option>
           {genres.length && genres.map(e => (
             <option key={e.name} value={e}>{e}</option>
@@ -98,7 +98,7 @@ export default function SideBar() {
         </select>
       </div>
       <div>
-        <select class="texto btp" aria-label="Default select example" style={{ marginTop: '15px', marginRight: 'auto', marginLeft: 'auto' }} onChange={(e) => handleFilterByPlatforms(e)}>
+        <select class="form-select" aria-label="Default select example" style={{ fontSize:"12px",marginTop: '15px', marginRight: 'auto', marginLeft: 'auto', backgroundColor:"#212529", color: "white"}} onChange={(e) => handleFilterByPlatforms(e)}>
           <option value="default">Platforms</option>
           {platforms.length && platforms.map(e => (
             <option key={e.name} value={e}>{e}</option>
@@ -106,7 +106,7 @@ export default function SideBar() {
         </select>
       </div>
       <div>
-        <select class="select texto btp" aria-label="Default select example" style={{ marginTop: '15px', marginRight: 'auto', marginLeft: 'auto' }} onChange={(e) => esrbContent(e)}>
+        <select class="form-select" aria-label="Default select example" style={{fontSize:"12px", marginTop: '15px', marginRight: 'auto', marginLeft: 'auto', backgroundColor:"#212529", color: "white" }} onChange={(e) => esrbContent(e)}>
           <option value="default">ESRB Rating</option>
           {esrb?.map((esrb, index) => (
             <option key={index} value={esrb}> {esrb} </option>
@@ -114,9 +114,9 @@ export default function SideBar() {
         </select>
       </div>
 
-      <div style={{ width: "160px" }}>
-        {maxPrice > 1 ? <label for='rangeMax' class='text-white form label fs-6 pt-3'> Under ${maxPrice - 1} </label> : <label for='rangeMax' class='text-white form label'> ${minPrice}</label>}
-        <input id='rangeMax' class='form-range' disabled={false} value={maxPrice} onChange={(e) => hanleChange(e)} type="range" min={min} max={max} step='10' />
+      <div  style={{ width: "160px" }}>
+        {maxPrice > 1 ? <label  for='rangeMax' class='text-white form-label fs-6 pt-3'> Under ${maxPrice - 1} </label> : <label for='rangeMax' class='text-white form label'> ${minPrice}</label>}
+        <input  class="form-range" id='rangeMax' disabled={false} value={maxPrice} onChange={(e) => hanleChange(e)} type="range" min={min} max={max} step='10' />
       </div>
 
       {/* <div>
@@ -124,11 +124,11 @@ export default function SideBar() {
           <input id='rangeMin' class='form-range' onChange={(e) => minprice(e)} type="range" min={min} max={maxPrice} step='1'/>
         </div> */}
 
-      <button class="texto btp" style={{ marginTop: '15px', marginRight: 'auto', marginLeft: 'auto' }} onClick={applyPrice}>Apply Price</button>
+      <button class="btn btn-dark w-100" style={{ fontSize:"12px",marginTop: '15px', marginRight: 'auto', marginLeft: 'auto' }} onClick={applyPrice}>Apply Price</button>
 
 
       <div className="clear">
-        <button class="texto btp" style={{ marginTop: '15px', marginRight: 'auto', marginLeft: 'auto' }} onClick={handleClick}>Reset Filters</button>
+        <button class="btn btn-dark w-100" style={{ fontSize:"12px",marginTop: '15px', marginRight: 'auto', marginLeft: 'auto' }} onClick={handleClick}>Reset Filters</button>
       </div>
       <br></br>
       {/* <br />
