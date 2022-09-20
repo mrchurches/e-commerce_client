@@ -131,12 +131,12 @@ export default function SideBar() {
         <button class="texto btp" style={{ marginTop: '15px', marginRight: 'auto', marginLeft: 'auto' }} onClick={handleClick}>Reset Filters</button>
       </div>
       <br></br>
-      <br />
+      {/* <br />
       <MyChatBot
         config={config}
         messageParser={MessageParser}
         actionProvider={ActionProvider}
-      />
+      /> */}
     </div>
   )
 }
