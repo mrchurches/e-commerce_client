@@ -91,6 +91,7 @@ h6 {
     box-shadow: 0 6px 10px rgba(3, 43, 44, 0.7),
         0 0 6px rgb(255, 251, 5);
     border: 1.5px rgb(0, 200, 255) solid;
+    transition: 0.7s;
 }
 
 .text1 {
