@@ -30,10 +30,14 @@ const NavBar = () => {
 
   useEffect(() => {
     const token = window.sessionStorage.getItem('token');
-    const cart = JSON.parse(localStorage.getItem("cart"));
     token && dispatch(getUsers(token));
-    cart && cart.length && cart.map(e=>dispatch(addToCart(e)));
-  }, [])
+  }, []);
+
+  useEffect(() => {
+    const shopCart = JSON.parse(localStorage.getItem("cart"));
+    console.log(cart);
+    cart && shopCart?.length && shopCart.map(e=> !cart.includes(e) && dispatch(addToCart(e)));
+  }, [cart])
 
   useEffect(() => {
     user && dispatch(getUserOrders(user.id));
