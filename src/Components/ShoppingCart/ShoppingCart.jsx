@@ -177,8 +177,6 @@ export default function ShoppingCart() {
                 </div>
 
                 <div class="d-flex flex-row flex-wrap justify-content-center">
-                    <RandomHelper games={games} />
-
                 </div>
             </div>
         </div>
