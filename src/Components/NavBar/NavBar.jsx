@@ -35,7 +35,6 @@ const NavBar = () => {
 
   useEffect(() => {
     const shopCart = JSON.parse(localStorage.getItem("cart"));
-    console.log(cart);
     cart && shopCart?.length && shopCart.map(e=> !cart.includes(e) && dispatch(addToCart(e)));
   }, [cart])
 
