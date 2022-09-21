@@ -146,7 +146,7 @@ const NavBar = () => {
           {user && (<NavLink to="/userprofile" className='link' activeStyle={{
             fontWeight: "bold",
           }}>
-            <li class="nav-item">
+            <li class="nav-item m-2">
               <small class={"navbar-brand text-light username"}>{user.username}</small>
               <img class="logo" src={user.profile_pic} />
             </li>

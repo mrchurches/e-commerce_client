@@ -2,7 +2,7 @@ import React, {useEffect} from "react"
 import {useState} from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import {getGenres, getPlatforms, Edit_Game, getAllProducts}  from "../../../../redux/actions";
+import {getGenres, getPlatforms, Edit_Game, getAllProducts, clear}  from "../../../../redux/actions";
 import style from './editForm.module.css'
 import Swal from 'sweetalert2'
 
@@ -23,13 +23,14 @@ function validate(input){
 function getPayload(game,input){
     let payload = {}
     payload.id = game.id
+    //slug : game.name.split(' ').join('-').toLowerCase(),
     if (input.name !== game.name) payload.name =  input.name;
-    if(input.name !== game.name) payload.slug = input.name.toLowerCase(); 
+    if(input.name !== game.name) payload.slug = input.name.split(' ').join('-').toLowerCase(); 
     if (input.isDisabled !== game.isDisabled) payload.isDisabled =  input.isDisabled;
     if (input.released !== game.released) payload.released =  input.released;
     if (input.description !== game.description) payload.description =  input.description;
     if (input.background_image !== game.background_image) payload.background_image =  input.background_image;
-    if (''+input.rating !== ''+game.rating) payload.rating =  input.rating;
+    //if (''+input.rating !== ''+game.rating) payload.rating =  input.rating;
     if (''+input.price !== ''+game.price) payload.price =  input.price;
     let gameGenres = game.genres.map(e => e.name);
     const array2Sorted = gameGenres.slice().sort();
@@ -68,13 +69,13 @@ export default function EditForm({setRender, game}) {
     //console.log(game);
     const dispatch = useDispatch();
     //const navigate = useNavigate();
-    const [activeSubmit, SetactiveSubmit] = useState(true);
+    const [activeSubmit, setActiveSubmit] = useState(true);
     const genres = useSelector((state)=>state.genres);
     const platform = useSelector((state)=>state.platforms);
     const [error, setError] = useState({});
     const [input, setInput] = useState({
         name:game.name,
-        slug:game.name,
+        slug : game.name.split(' ').join('-').toLowerCase(),
         description:game.description,
         background_image:game.background_image,
         released:game.released,
@@ -95,14 +96,18 @@ export default function EditForm({setRender, game}) {
                 continue;
             }
             if (input[key] && !error[key]) { //si hay input y no hay errores --false
-                SetactiveSubmit(false)
+                console.log("entre al if")
+                setActiveSubmit(false)
+                console.log(activeSubmit)
             }else {
-                SetactiveSubmit(true)
+                setActiveSubmit(true)
                 break;
             };
         };
-        console.log(getPayload(game,input))
-        if (Object.keys(getPayload(game,input)).length === 1) SetactiveSubmit(true);
+        console.log(Object.keys(getPayload(game,input)).length)
+        if (Object.keys(getPayload(game,input)).length === 1){
+            setActiveSubmit(true);
+        }
     }, [input, error])
 
     function handlersubmit (e){
@@ -116,6 +121,7 @@ export default function EditForm({setRender, game}) {
             'success'
         ).then(()=>setRender({edit: true}))
         dispatch(getAllProducts())
+        dispatch(clear())
     };
     function handleSwitch(e){
         setInput({
@@ -129,7 +135,7 @@ export default function EditForm({setRender, game}) {
         setInput({
             ...input,
             [e.target.name]: e.target.value,
-            slug:input.name.toLowerCase()
+            slug : game.name.split(' ').join('-').toLowerCase(),
         });
         setError(validate({
             ...input,

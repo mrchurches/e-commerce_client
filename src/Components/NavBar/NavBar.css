@@ -32,14 +32,12 @@ ul li small img {
 }
 
 .logo {
-    width: 5rem;
+    width: 3rem;
     margin-bottom: 8px;
     padding: 0px;
-    transform: scale(1.4);
-}
-
-.logo:hover {
-    transform: scale(1.7);
+    transform: scale(1.2);
+    border-radius: 50px;
+    
 }
 
 .title {

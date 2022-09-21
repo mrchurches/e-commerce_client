@@ -31,7 +31,7 @@ const [logged, setLogged] = useState(false);
   return (
     <div class="d-flex p-2 justify-content-center">
       {logged && user === undefined &&<Redirect to="/Login"/>}
-      <div class="list-group align-self-center d-grid gap-3">
+      <div class="d-flex flex-wrap m-1 justify-content-center">
         {user === undefined ? <Spinner /> :
           products.length ? products?.map(e => {
             return <CardWhishList key={e.id} id={e['wishList.ProductId'] ? e['wishList.ProductId'] : e['Favorites.ProductId']} name={e.name} price={e.price} background_image={e.background_image} />
