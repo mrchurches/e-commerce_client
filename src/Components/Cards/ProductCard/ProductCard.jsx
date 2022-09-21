@@ -232,12 +232,12 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
                 </div>
 
               </div>
-              <div>
+              <div class="displayNone">
 
                 {/* <span class="card-text bg-secondary m-2 p-2 text-light">
                   {rating}
                   </span> */}
-                <div class="d-flex justify-content-around" >
+                <div class="d-flex justify-content-around displayNone" >
 
                   {
                     platformsArr.map((e, i) => {
@@ -247,7 +247,7 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
                       if (e === 'PlayStation') img = playStation
                       return (
                         <img
-                          class="platformPic"
+                          class="platformPic displayNone"
                           style={{ maxWidth: '1.5rem', maxHeight: '1.5rem', marginRight: "15px", marginLeft: "15px" }}
                           src={img}
                           alt="imggg"
@@ -257,11 +257,11 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
                   }
 
                 </div>
-                <p class='d-flex justify-content-around pt-4 flex-wrap w-100'>
+                <p class='d-flex justify-content-around pt-4 flex-wrap w-100 displayNone'>
                   {genres.slice(0, 3).map((e, index) => <p key={index} class=" bg-transparent text1 d-flex p-1 justify-content-center  ">{e.name === "Massively Multiplayer" ? "Massive mult.." : e.name}</p>)}
                   {genres.length > 3 ? <p class=" bg-transparent text1 d-flex p-1 justify-content-center  ">, And more... </p> : null}
                 </p>
-                <div class="d-flex align-items-center justify-content-center">
+                <div class="d-flex align-items-center justify-content-center ">
                   {isDisabled || fromApi ?
                     <span>No stock</span> :
 

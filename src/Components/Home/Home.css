@@ -26,11 +26,13 @@
 
     .allCardsConteiner {
         display: flex;
-        flex-wrap: wrap;
+
         flex-direction: column;
         flex-wrap: wrap;
         overflow-wrap: wrap;
         padding: 1rem;
+        gap: 2rem;
+        box-sizing: content-box;
     }
 
 }

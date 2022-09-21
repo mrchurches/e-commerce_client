@@ -52,13 +52,14 @@ h6 {
     box-sizing: content-box;
     /* width: 100%; */
     padding: 1rem;
+    max-height: 15rem;
 
 }
 
 .fatherCard {
     width: '35rem';
     height: '15rem';
-
+    max-height: 15rem;
 
 }
 
@@ -172,7 +173,8 @@ h6 {
 
 }
 
-@media screen and (max-width:375px) {
+@media screen and (max-width:575px) {
+
     /*   .cardBigContainer {
         flex-direction: column;
         max-height: 370px;
@@ -180,6 +182,13 @@ h6 {
         justify-content: center;
     }
  */
+    .containerimg {
+        padding-top: 0;
+    }
+
+    .displayNone {
+        display: none;
+    }
 }
 
 @media screen and (max-width:600px) {
@@ -188,12 +197,13 @@ h6 {
         /* max-height: 370px; */
         /* align-items: center; */
         justify-content: stretch;
-        height: 30rem;
-        width: 10rem;
+        height: 20rem;
+        width: 20rem;
         /* height: 30%; */
         flex-wrap: column;
         margin-top: 0px;
         align-items: center;
+
     }
 
     .headerContainer {
