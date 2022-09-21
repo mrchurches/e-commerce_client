@@ -478,3 +478,14 @@ export function editReview(payload) {
         };
     };
 };
+
+export function deleteReview(id) {
+    return async function (dispatch) {
+        try {
+            let res = await axios.delete(`${REACT_APP_URL}reviews/delete/${id}`)
+            console.log(res)
+        } catch (e) {
+            console.log(e);
+        };
+    };
+};
