@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom'
 import { Dispatch } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import style from './ReviewCard.module.css'
-import { addRemoveReview, editReview, getUserReviews } from '../../../redux/actions'
+import { addRemoveReview, deleteReview, editReview, getUserReviews } from '../../../redux/actions'
 import Swal from 'sweetalert2'
 
 function validate(input) {
@@ -76,7 +76,7 @@ export default function ReviewCard({ username, rating, description, userImg, id,
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        dispatch(addRemoveReview({ typeOfEdit: 'remove', id: id }));
+        dispatch(deleteReview(id));
         setReviews(reviews.filter(e => id != e.id));
         Swal.fire(
           'Deleted!',
