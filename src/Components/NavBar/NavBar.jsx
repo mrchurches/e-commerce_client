@@ -6,7 +6,7 @@ import "./NavBar.css"
 import { logout } from './NavBarHelper'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-import { getUsers, resetUser, addWish, removeFromCart, getUserOrders } from '../../redux/actions'
+import { getUsers, resetUser, addToCart, removeFromCart, getUserOrders } from '../../redux/actions'
 
 import profilePic from "../../images/profile21.png"
 
@@ -30,7 +30,9 @@ const NavBar = () => {
 
   useEffect(() => {
     const token = window.sessionStorage.getItem('token');
+    const cart = JSON.parse(localStorage.getItem("cart"));
     token && dispatch(getUsers(token));
+    cart && cart.length && cart.map(e=>dispatch(addToCart(e)));
   }, [])
 
   useEffect(() => {
