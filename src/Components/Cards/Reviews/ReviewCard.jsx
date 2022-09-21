@@ -31,6 +31,11 @@ export default function ReviewCard({ username, rating, description, userImg, id,
 
   useEffect(() => {
     const llaves = Object.keys(input)
+    console.log("primer id")
+    console.log(input.id)
+    if(!input.id){
+      dispatch(getUserReviews())
+    }
     for (const key of llaves) {
       if (input[key] && !error[key]) { //si hay input y no hay errores --false
         SetactiveSubmit(false)
@@ -76,6 +81,7 @@ export default function ReviewCard({ username, rating, description, userImg, id,
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
+        console.log(id)
         dispatch(addRemoveReview({ typeOfEdit: 'remove', id: id }));
         setReviews(reviews.filter(e => id != e.id));
         Swal.fire(
@@ -85,7 +91,7 @@ export default function ReviewCard({ username, rating, description, userImg, id,
         )
       }
     })
-      .then(() => window.location.reload())
+    .then(() => window.location.reload())
   }
 
   function handlerSubmit(e) {
