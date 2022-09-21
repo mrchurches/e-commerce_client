@@ -77,22 +77,22 @@ export default function CardWhishList({ id, name, price, background_image }) {
     }
 
     return (
-        <div class="list-group-item  gap-3 createUserContainer" aria-current="true">
-            <div class="d-flex w-100 justify-content-between">
-                <button onClick={() => handleClose()} type="button" class="btn-close btn-close-white " aria-label="Close"></button>
+            <div class=" list-group-item  gap-3 createUserContainer m-2" aria-current="true">
+                <div class="d-flex w-100 justify-content-between">
+                    <button onClick={() => handleClose()} type="button" class="btn-close btn-close-white " aria-label="Close"></button>
+                </div>
+                <div>
+                    <Link to={'/detail/' + id} class="createUserContainer" style={{ textDecoration: 'none' }} aria-current="true" >
+                        <img className={styles.imgCard} src={background_image} alt={name} />
+                        <h5 class="mb-1" >{name}</h5>
+                        {/* <p class="mb-1">Some placeholder content in a paragraph.</p> */}
+                    </Link>
+                    <small class="tex-muted">${price}</small>
+                    <br />
+                </div>
+                {inShopCart ?
+                    <small id='deleteShop' class="btn btn-danger btn" onClick={(e) => handleShopCart(e)}>Delete to Shopping Cart.</small> :
+                    <small id='addShop' class="btn btn-info btn" onClick={(e) => handleShopCart(e)}>Add to Shopping Cart.</small>}
             </div>
-            <div>
-                <Link to={'/detail/' + id} class="createUserContainer" style={{ textDecoration: 'none' }} aria-current="true" >
-                    <img className={styles.imgCard} src={background_image} alt={name} />
-                    <h5 class="mb-1" >{name}</h5>
-                    {/* <p class="mb-1">Some placeholder content in a paragraph.</p> */}
-                </Link>
-                <small class="tex-muted">${price}</small>
-                <br />
-            </div>
-            {inShopCart ?
-                <small id='deleteShop' class="btn btn-danger btn" onClick={(e) => handleShopCart(e)}>Delete to Shopping Cart.</small> :
-                <small id='addShop' class="btn btn-info btn" onClick={(e) => handleShopCart(e)}>Add to Shopping Cart.</small>}
-        </div>
     );
 };

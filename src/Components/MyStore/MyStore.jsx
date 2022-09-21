@@ -42,7 +42,9 @@ const MyStore = () => {
         <input class="btn bg-info" onClick={()=> setOrders(!orders)} type="button" value="Show my orders"/>
       </div>
       {!orders && <div class="list-group align-self-center d-grid gap-3">
-        <h4>Adentro de lista de juegos comprados....</h4>
+        <h4></h4>
+        <h4></h4>
+        <h4></h4>
       {
         userOrders.length>0 && filteredGames.map(e=>(
           <ProductCard id={e.id} id_api={e.id_api} name={e.name} img={e.background_image
