@@ -21,9 +21,10 @@ import style from "./ProductCard.css";
 export default function ProductCard({ id, id_api, name, img, rating, platforms, price, fromApi, isDisabled, genres }) {
   let cart = useSelector(state => state.cart);
   let user = useSelector(state => state.users);
-  let games = useSelector(state => state.products2).map(e => e.name) //140 --
-  let orders = useSelector(state => state.userOrders).map(e => e.game_name) //horizon y thiswar
-  let [adquiridos, setAdquiridos] = useState(false)
+  let games = useSelector(state => state.products2).map(e => e.name); //140 --
+  let orders = useSelector(state => state.userOrders).map(e => e.game_name); //horizon y thiswar
+  let [adquiridos, setAdquiridos] = useState(false);
+  const [remove, setRemove] = useState(false);
   /* let screenShots = useSelector(state => state.screenShots) */
   let foundCart = false;   //aca encontraria el juego si esta agregado al carrito
   const dispatch = useDispatch()
@@ -47,11 +48,15 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
   })
 
   useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart));
+   cart?.length && localStorage.setItem('cart', JSON.stringify(cart));
     dispatch(getUserOrders(user_id))
     orders.forEach(e => { if (e === name) { setAdquiridos(true) } })
     // console.log(localStorage.getItem("cart"))
   }, [cart]);
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [remove])
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -98,7 +103,8 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
             'Your product has been deleted from the cart.',
             'success'
           );
-          dispatch(removeFromCart(id))
+          dispatch(removeFromCart(id));
+          setRemove(true);
         } else if (
           /* Read more about handling dismissals below */
           result.dismiss === Swal.DismissReason.cancel
@@ -142,7 +148,7 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
   //orders.forEach(e => {if(e === name){setAdquiridos(true)}})
 
   rating = Math.floor(rating / 10)
-  console.log(rating)
+  // console.lograting)
   
   let arr = []
   for(let i = 0; i<rating; i++){
