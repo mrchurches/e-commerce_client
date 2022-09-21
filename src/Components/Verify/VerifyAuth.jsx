@@ -3,12 +3,11 @@ import { Redirect, useParams } from 'react-router-dom';
 
 export default function VerifyAuth() {
     const { token } = useParams();
-    
+
     window.sessionStorage.setItem('token', token);
 
     return (
         <div>
-
             {
                 token ? (<Redirect to='/home' />) :
                     (<div class="container text-center align-items-center justify-content-center d-flex">

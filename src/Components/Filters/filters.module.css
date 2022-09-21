@@ -15,6 +15,13 @@ select {
 }
 
 .posicion {
-    display: flex;
+    display: flex-end;
     color: black
+}
+
+@media screen and (max-width:765px) {
+    .posicion {
+        justify-content: center;
+        /* background-color: blue; */
+    }
 }
