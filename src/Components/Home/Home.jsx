@@ -26,16 +26,16 @@ function Home() {
 
     const user = useSelector((state) => state.users),
         token = window.sessionStorage.getItem('token');
-     const [show, setShow] = useState(false);
+    const [show, setShow] = useState(false);
 
     const paginado = (number) => {
         dispatch(setCurrentPage(number))
         setTimeout(() => window.scroll({ top: 0 }), 500)
     };
 
-    useEffect(()=>{
-        setTimeout(()=> setShow(true),1000)
-    },[searchered])
+    useEffect(() => {
+        setTimeout(() => setShow(true), 1000)
+    }, [searchered])
 
     useEffect(() => {
         token && dispatch(getUsers(token));
@@ -55,7 +55,7 @@ function Home() {
 
             <div style={{ width: '100%' }}>
 
-                <div class='d-flex justify-content-center pl-2'>
+                <div class='d-flex justify-content-end pl-2 orderSelect'>
                     <Filters />
                 </div>
 
@@ -69,7 +69,7 @@ function Home() {
                         !show && <Spinner />
                     }
                     {
-                       show && (currentGames.length < 1) && <div class="spinner-border" role="status">
+                        show && (currentGames.length < 1) && <div class="spinner-border" role="status">
                             <span class="visually-hidden">Loading...</span>
                         </div>
                     }

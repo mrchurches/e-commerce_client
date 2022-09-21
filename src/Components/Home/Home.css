@@ -5,23 +5,60 @@
     flex-direction: row;
     /* justify-content: left; */
     /* width: 30%; */
-    margin-left: 10rem;
+    /* margin-left: 1rem; */
+    padding-left: 0.5rem;
     gap: 1rem;
     align-items: center;
     justify-content: center;
 }
 
-/* @media screen and (max-width:375px) {
+.orderSelect {
+    justify-content: flex-end;
+}
+
+@media screen and (max-width:375px) {
     .cardsAndFilter {
         display: flex;
         flex-direction: column;
+        overflow-wrap: wrap;
+        padding: 1rem;
     }
+
     .allCardsConteiner {
         display: flex;
-        flex-wrap: wrap;
+
         flex-direction: column;
+        flex-wrap: wrap;
+        overflow-wrap: wrap;
+        padding: 1rem;
+        gap: 2rem;
+        box-sizing: content-box;
     }
-} */
+
+}
+
+@media screen and (max-width:765px) {
+    .cardsAndFilter {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .sideBarContainer {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        /* background-color: yellow; */
+    }
+
+    /* .orderSelect {
+        justify-content: flex-end;
+        background-color: blue;
+    } */
+
+
+}
+
 .chatbot {
     position: fixed;
     right: 1rem;

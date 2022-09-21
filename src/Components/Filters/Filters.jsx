@@ -73,7 +73,7 @@ function Filters() {
   };
 
   return (
-    <div class="d-flex justify-content-end" style={{ marginTop: '15px', marginBottom: '15px' }}>
+    <div class="d-flex " style={{ marginTop: '15px', marginBottom: '15px' }}>
       <div className={styles.posicion}>
         {/* Sort by: */}
         <select class="form-select" style={{ fontSize: "12px", backgroundColor: "#212529", color: "white" }} onChange={(e) => handlerChange(e)}> {/* propuesta rango de precio */}

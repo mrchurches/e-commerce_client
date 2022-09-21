@@ -210,6 +210,12 @@ export default function PostGame() {
                                 {genres && genres.map((e, pos) => { return <option id={pos} key={e.id} value={e.genres}>{e.name}</option> })}
                             </select>
                             {error.genres ? <label className={style.labelError}>Select a Genre</label> : null}
+                            {input.genres.map((genre, pos) =>
+                                <div className={style.flex}>
+                                    <p id={pos} onClick={() => handleDeleteGenre(genre)} class="font-family: fantasy">˟{genre}</p>
+                                    {/* <button onClick={()=>handleDeleteGenre(genre)}>X</button> */}
+                                </div>
+                            )}
                         </div>
 
                         <div class="mb-3">
@@ -221,19 +227,12 @@ export default function PostGame() {
                                 })}
                             </select>
                             {error.platforms ? <label className={style.labelError}>{error.platforms}</label> : null}
+                            {input.platforms.map((plataforma, pos) =>
+                                <div className={style.flex}>
+                                    <p id={pos} onClick={() => handleDeletePlat(plataforma)}>˟{plataforma}</p>
+                                </div>
+                            )}
                         </div>
-                        <br></br>
-                        {input.genres.map((genre, pos) =>
-                            <div className={style.flex}>
-                                <p id={pos} onClick={() => handleDeleteGenre(genre)} class="font-family: fantasy">{genre}</p>
-                                {/* <button onClick={()=>handleDeleteGenre(genre)}>X</button> */}
-                            </div>
-                        )}
-                        {input.platforms.map((plataforma, pos) =>
-                            <div className={style.flex}>
-                                <p id={pos} onClick={() => handleDeletePlat(plataforma)}>{plataforma}</p>
-                            </div>
-                        )}
 
                         {/* <button type="submit" disabled={activeSubmit}>Create!!</button> */}
                         {/* <Link to="/home"> */}

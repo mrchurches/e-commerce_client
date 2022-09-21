@@ -3,7 +3,7 @@ import { Redirect, useParams } from 'react-router-dom';
 
 export default function VerifyAuth() {
     const { token } = useParams();
-    
+
     window.sessionStorage.setItem('token', token);
 
     return (
