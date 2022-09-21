@@ -20,13 +20,19 @@
     .cardsAndFilter {
         display: flex;
         flex-direction: column;
+        overflow-wrap: wrap;
+        padding: 1rem;
     }
 
     .allCardsConteiner {
         display: flex;
         flex-wrap: wrap;
         flex-direction: column;
+        flex-wrap: wrap;
+        overflow-wrap: wrap;
+        padding: 1rem;
     }
+
 }
 
 @media screen and (max-width:765px) {
