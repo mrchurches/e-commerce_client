@@ -56,6 +56,7 @@ export default function ReviewCard({ username, rating, description, userImg, id,
 
 
   useEffect(() => {
+    console.log(id)
     if (user) {
       if (user.username === username) {
         setMyReview(true)
@@ -78,14 +79,41 @@ export default function ReviewCard({ username, rating, description, userImg, id,
       if (result.isConfirmed) {
         dispatch(deleteReview(id));
         setReviews(reviews.filter(e => id != e.id));
-        Swal.fire(
-          'Deleted!',
-          'Your review has been deleted.',
-          'success'
-        )
+
+
+        let timerInterval
+        Swal.fire({
+          title: 'Deleting review!',
+          html: 'I will close in <b></b> milliseconds.',
+          timer: 2000,
+          timerProgressBar: true,
+          didOpen: () => {
+            Swal.showLoading()
+            const b = Swal.getHtmlContainer().querySelector('b')
+            timerInterval = setInterval(() => {
+              b.textContent = Swal.getTimerLeft()
+            }, 100)
+          },
+          willClose: () => {
+            clearInterval(timerInterval)
+          }
+        }).then((result) => {
+          /* Read more about handling dismissals below */
+          if (result.dismiss === Swal.DismissReason.timer) {
+            console.log('I was closed by the timer')
+          }
+        }).then(() => {
+          setTimeout(() => {
+            dispatch(deleteReview(id))
+          }, 500)
+        })
+        .then(() => window.location.reload())
       }
     })
-      .then(() => window.location.reload())
+
+
+
+      
   }
 
   function handlerSubmit(e) {
