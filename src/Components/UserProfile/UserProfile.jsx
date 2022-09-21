@@ -226,15 +226,15 @@ const CreateUser = () => {
 
 
     return (
-        <div class="d-flex justify-content-center align-items-center ">
+        <div class="d-flex justify-content-center align-items-center">
             {isSubmit && <Redirect to={'/login'} />}
-            <div class="mt-5 card shadow-lg p-3 mb-5 rounded createUserContainer btp" style={{ width: '18rem' }}>
+            <div class="mt-5 card shadow-lg p-3 mb-5 rounded createUserContainer btp w-25" style={{ width: '18rem' }}>
                 <h3 class="text-info">Edit Your Profile</h3>
                 <button class={'form-control '} onClick={showWidget}> Upload Image </button><br />
                 <form onSubmit={(e) => handleSubmit(e)} method='post'>
-                    <div class="relative z-0 mb-6 w-full group">
+                    <div class="relative z-0 mb-6 w-full group imgprofile">
 
-                        <img src={user.profile_pic} id={"uploadedImage"} alt={"selectedPic"} onClick={() => setPath("")} />
+                        <img src={user?.profile_pic} id={"uploadedImage"} alt={"selectedPic"} onClick={() => setPath("")} />
                     </div>
                     {/* E-MAIL */}
                     <div class="relative z-0 mb-6 w-full group"><br />
