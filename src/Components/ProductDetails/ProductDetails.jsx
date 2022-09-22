@@ -117,12 +117,12 @@ export default function ProductDetails() {
                 {orderFound ?
                   <button type="button" class="btn btn-info" disabled>Owned</button>
                   :
-                  <button value="cart" onClick={handleClick} type="button" class="btn btn-info">
+                  (!user?.user?.isAdmin &&  <button value="cart" onClick={handleClick} type="button" class="btn btn-info">
                     Add to cart
-                  </button>}
+                  </button>)}
               </div>
               <div class="m-2">
-                <FavouriteButton id={id} />
+                {!user?.user?.isAdmin && <FavouriteButton id={id} />}
 
               </div>
             </div>
@@ -140,16 +140,16 @@ export default function ProductDetails() {
               <div class="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                 {game.Screenshots?.map((e, i) => {
-                  return (<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to={`${i + 1}`} aria-label={`Slide ${i + 2}`}></button>)
+                  return (<button key={i} type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to={`${i + 1}`} aria-label={`Slide ${i + 2}`}></button>)
                 })}
               </div>
               <div class="carousel-inner">
                 <div class='carousel-item active'>
                   <img src={game.background_image} className='imagenDetails' alt="..." />
                 </div>
-                {game.Screenshots?.map((e) => {
+                {game.Screenshots?.map((e,i) => {
                   return (
-                    <div class="carousel-item" >
+                    <div key={i} class="carousel-item" >
                       <img className='imagenDetails' src={e?.image}  alt="..." />
                     </div>
                   )
@@ -167,8 +167,8 @@ export default function ProductDetails() {
             </div>
 
             <div class="project-info-box">
-              <p className='p3' u><b>Platforms:</b>{game.platforms?.map(e => (<span> {e.name}</span>))} </p>
-              <p className='p3'><b>Genres:</b> {game.genres?.map(e => (<span> {e.name} </span>))} </p>
+              <p className='p3' u><b>Platforms:</b>{game.platforms?.map((e,i) => (<span key={i}> {e.name}</span>))} </p>
+              <p className='p3'><b>Genres:</b> {game.genres?.map((e,i) => (<span key={i}> {e.name} </span>))} </p>
             </div>
 
             <div className='verticalScrollable1'>
@@ -176,7 +176,7 @@ export default function ProductDetails() {
 
                 // return (<ReviewCard username={e.username} rating={e.rating} description={e.description} userImg={e.profile_pic} />)
 
-                return (<ReviewCard username={e.username} rating={e.rating} description={e.description} userImg={e.profile_pic} id={e.id} reviews={reviews} setReviews={setReviews} />)
+                return (<ReviewCard key={e.i} username={e.username} rating={e.rating} description={e.description} userImg={e.profile_pic} id={e.id} reviews={reviews} setReviews={setReviews} />)
 
               })}
             </div>

@@ -205,7 +205,7 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
           </div>
 
           <div class="">
-            {user?.user?.id && <FavouriteButton class="heartButton" id={id} />}
+            {user?.user?.id && !user?.user?.isAdmin && <FavouriteButton class="heartButton" id={id} />}
           </div>
         </div>
 
@@ -275,7 +275,7 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
                         <h6 class="titleBg pt-2">
                           ARS$ {price} </h6>
 
-                          {!adquiridos ? <div name="cart" onClick={(e) => handleClick(e)}>
+                          {!adquiridos && !user?.user?.isAdmin ? <div name="cart" onClick={(e) => handleClick(e)}>
 
                             <button disabled={fromApi || isDisabled ? true : false} class=" text1 buttonCart">
                               <img src={shoppingCard} name="cart" alt="" style={{ maxWidth: '2rem', maxHeight: '2rem' }} />
