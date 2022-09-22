@@ -92,7 +92,7 @@ const NavBar = () => {
                 fontWeight: "bold",
               }}>
                 <li class="nav-item">
-                  <span class="nav-link active text-light title" aria-current="page" >  🏪 My store</span>
+                  <span class="nav-link active text-light title" aria-current="page" >  🏪 Library</span>
                 </li>
               </NavLink>)}
 
