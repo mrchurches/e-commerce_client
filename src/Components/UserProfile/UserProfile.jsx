@@ -223,7 +223,11 @@ const CreateUser = () => {
     let [disabledLastname, setDisabledLastname] = useState(true)
     let [disabledUsername, setDisabledUsername] = useState(true)
 
-
+    // let [image, setImage] = useState(false)
+    // let imagen;
+    // useEffect(()=>{
+    //     setImage(true)
+    // },[user.profile_pic])
 
     return (
         <div class="d-flex justify-content-center align-items-center">

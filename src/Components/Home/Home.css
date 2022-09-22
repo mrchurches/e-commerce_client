@@ -5,7 +5,7 @@
     flex-direction: row;
     /* justify-content: left; */
     /* width: 30%; */
-    margin-left: 10rem;
+    margin-left: 3rem;
     gap: 1rem;
     align-items: center;
     justify-content: center;
@@ -31,4 +31,9 @@
     position: fixed;
     right: 1rem;
     top: 17rem;
+}
+
+.bannerhome{
+    padding-top: 4.1rem;
+    padding-left: 2rem;
 }

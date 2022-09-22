@@ -36,12 +36,14 @@ const NavBar = () => {
 
   useEffect(() => {
     const shopCart = JSON.parse(localStorage.getItem("cart"));
+
     const data = new Set(shopCart);
     [...data].length && [...data].map(e => {
       if(!cart.includes(e))
       dispatch(addToCart(e));
     })
   }, [])
+
 
   useEffect(() => {
     user && dispatch(getUserOrders(user.id));
