@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState } from 'react'
 import Checkout from '../Checkout/Checkout'
 import { addToCart, getAllProducts, removeFromCart } from "../../redux/actions";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import CartCard from "./CartCard";
 import { RandomHelper } from "./RandomHelper";
 import styles from "./ShoppingCart.module.css"
@@ -109,17 +109,16 @@ export default function ShoppingCart() {
         window.localStorage.clear();
         window.location.reload();
     }
-
-    // console.log(filterGames)
     return (
 
         <div className={styles.container10} >
+            {users?.user?.isAdmin && <Redirect to='/*' />}    
             <div class=" w-50 m-3 p-2" style={{backgroundColor: "#212529"}}>
 
                 <h1>My shopping cart</h1>
             </div>
 
-            {/* Contendio del medio */}
+            {/* Contendio del medio */} 
             <div class="d-flex flex-row w-50  justify-content-center">
                 {/* <div class="d-flex flex-row justify-content-evenly flex-wrap"> */}
                 <div class="d-flex flex-column">
