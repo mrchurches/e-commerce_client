@@ -36,7 +36,7 @@ const NavBar = () => {
   useEffect(() => {
     const shopCart = JSON.parse(localStorage.getItem("cart"));
     cart && shopCart?.length && shopCart.map(e=> !cart.includes(e) && dispatch(addToCart(e)));
-  }, [cart])
+  }, [dispatch])
 
   useEffect(() => {
     user && dispatch(getUserOrders(user.id));

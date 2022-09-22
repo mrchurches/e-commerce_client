@@ -13,6 +13,9 @@ import config from '../Chatbot/Config/config';
 import MessageParser from '../Chatbot/MessageParser/MessageParser';
 import ActionProvider from '../Chatbot/ActionProvider/ActionProvider';
 import Spinner from "../Spinner/Spinner"
+import banner from "../../images/banner.png"
+import banner2 from "../../images/banner2.png"
+import { Link } from 'react-router-dom';
 
 function Home() {
     let games = useSelector(state => state.products);
@@ -83,12 +86,12 @@ function Home() {
                         ? searchered.length
                         : games.length} paginado={paginado}
                 />
-                <div className='chatbot'>
-                    <MyChatBot 
-                    config={config}
-                    messageParser={MessageParser}
-                    actionProvider={ActionProvider}/>
-                </div>
+
+            </div>
+            <div className='bannerhome'>
+                <Link to={user.user?"/detail/2aa2198c-bbba-4e74-9726-a886cd1cda75":"/login"}>
+                    <img style={{width:"20rem", height: "auto"}} src={user.user? banner : banner2} alt="banner"/>
+                </Link>
             </div>
         </div>
 
