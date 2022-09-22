@@ -38,7 +38,7 @@ const MyStore = () => {
   
   return (
     <div class="d-flex p-2  justify-content-center">
-      {!user?.user?.isAdmin && <Redirect to='/*' />}    
+      {user?.user?.isAdmin && <Redirect to='/*' />}    
       <div>
         <input class="btn bg-info" onClick={()=> setOrders(!orders)} type="button" value="Show my orders"/>
       </div>
