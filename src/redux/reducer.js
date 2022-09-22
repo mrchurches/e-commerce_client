@@ -171,7 +171,6 @@ switch(action.type){
    case ADD_TO_CART:
 
             const newCart = new Set([...state.cart, action.payload]);
-            console.log(newCart)
             return{
                 ...state,
                 cart: [...newCart]
