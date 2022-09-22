@@ -6,12 +6,12 @@ import Fade from "react-reveal/Fade";
 import Flip from "react-reveal/Flip";
 import { useState } from "react";
 import { useEffect } from "react";
-
+import styles from "./chatbot.module.css"
 
 const MyChatBot = () => {
     const [showBot, setShowBot] = useState(false)
     return (
-        <div>
+        <div className={styles.chatbot}>
             {showBot && (
                 <Fade big>
                     <div>

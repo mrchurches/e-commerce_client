@@ -288,8 +288,8 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
           <div class="d-flex flex-row align-items-center justify-content-center">
 
 
-            {
-              foundCart && <button onClick={(e) => handleClick(e)} type="button" class="btn-close bg-info mt-2" style={{ maxWidth: '0.8rem', maxHeight: '0.8rem' }} value="remove" aria-label="Close"></button>}
+            {/* {
+              foundCart && <button onClick={(e) => handleClick(e)} type="button" class="btn-close bg-info mt-2" style={{ maxWidth: '0.8rem', maxHeight: '0.8rem' }} value="remove" aria-label="Close"></button>} */}
           </div>
         </div>
 
