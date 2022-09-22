@@ -89,24 +89,27 @@ export default function SideBar() {
 
   return (
     <div >
-      <div>
-        <select class="form-select" aria-label="Default select example" style={{ fontSize:"12px", marginTop: '15px', marginRight: 'auto', marginLeft: 'auto', backgroundColor:"#212529", color: "white"}} onChange={(e) => handleFilterByGenre(e)}>
+      <div >
+        <small>Genres</small>
+        <select class="form-select" aria-label="Default select example" style={{ fontSize:"15px",marginRight: 'auto', marginLeft: 'auto', backgroundColor:"#212529", color: "white"}} onChange={(e) => handleFilterByGenre(e)}>
           <option value="default">Genres</option>
           {genres.length && genres.map(e => (
             <option key={e.name} value={e}>{e}</option>
           ))}
         </select>
       </div>
-      <div>
-        <select class="form-select" aria-label="Default select example" style={{ fontSize:"12px",marginTop: '15px', marginRight: 'auto', marginLeft: 'auto', backgroundColor:"#212529", color: "white"}} onChange={(e) => handleFilterByPlatforms(e)}>
+      <div style={{marginTop: "0.6rem"}}>
+        <small>Platforms</small>
+        <select class="form-select" aria-label="Default select example" style={{ fontSize:"15px", marginRight: 'auto', marginLeft: 'auto', backgroundColor:"#212529", color: "white"}} onChange={(e) => handleFilterByPlatforms(e)}>
           <option value="default">Platforms</option>
           {platforms.length && platforms.map(e => (
             <option key={e.name} value={e}>{e}</option>
           ))}
         </select>
       </div>
-      <div>
-        <select class="form-select" aria-label="Default select example" style={{fontSize:"12px", marginTop: '15px', marginRight: 'auto', marginLeft: 'auto', backgroundColor:"#212529", color: "white" }} onChange={(e) => esrbContent(e)}>
+      <div style={{marginTop: "0.6rem"}}>
+        <small>ESRB</small>
+        <select class="form-select" aria-label="Default select example" style={{fontSize:"15px", marginRight: 'auto', marginLeft: 'auto', backgroundColor:"#212529", color: "white" }} onChange={(e) => esrbContent(e)}>
           <option value="default">ESRB Rating</option>
           {esrb?.map((esrb, index) => (
             <option key={index} value={esrb}> {esrb} </option>
@@ -124,19 +127,19 @@ export default function SideBar() {
           <input id='rangeMin' class='form-range' onChange={(e) => minprice(e)} type="range" min={min} max={maxPrice} step='1'/>
         </div> */}
 
-      <button class="btn btn-dark w-100" style={{ fontSize:"12px",marginTop: '15px', marginRight: 'auto', marginLeft: 'auto' }} onClick={applyPrice}>Apply Price</button>
+      <button class="btn btn-dark w-100" style={{ fontSize:"15px",marginTop: '15px', marginRight: 'auto', marginLeft: 'auto' }} onClick={applyPrice}>Apply Price</button>
 
 
       <div className="clear">
-        <button class="btn btn-dark w-100" style={{ fontSize:"12px",marginTop: '15px', marginRight: 'auto', marginLeft: 'auto' }} onClick={handleClick}>Reset Filters</button>
+        <button class="btn btn-dark w-100" style={{ fontSize:"15px",marginTop: '15px', marginRight: 'auto', marginLeft: 'auto' }} onClick={handleClick}>Reset Filters</button>
       </div>
       <br></br>
-      {/* <br />
+      <br />
       <MyChatBot
         config={config}
         messageParser={MessageParser}
         actionProvider={ActionProvider}
-      /> */}
+      />
     </div>
   )
 }

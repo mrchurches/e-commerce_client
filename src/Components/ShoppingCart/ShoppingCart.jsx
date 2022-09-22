@@ -28,7 +28,8 @@ export default function ShoppingCart() {
             cartLS2.forEach(e => dispatch(addToCart(e)));
         }
         if (cartLS2) {
-            setCartLS(cartLS2)
+            
+           setCartLS(cartLS2)
         }
     }, [dispatch])
 

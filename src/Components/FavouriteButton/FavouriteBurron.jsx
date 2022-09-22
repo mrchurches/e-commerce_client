@@ -12,11 +12,11 @@ function FavouriteButton({ id }) {
   const [brigthness, setBrigthness] = useState("brightness(0.5)")
 
   const token = sessionStorage.getItem('token');
-
+  
   useEffect(() => {
     let fW = wishlist?.filter(e => e === id) 
     if (fW.length > 0 ) { setBrigthness("") };
-  }, [wishlist,products]);
+  }, [wishlist ,products, id]);
 
   async function handleClick() {
     if (wishlist.includes(id)) {
