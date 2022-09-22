@@ -5,6 +5,7 @@ import {getAllProducts, getUserOrders} from "../../redux/actions";
 import { useSelector } from 'react-redux';
 import Orders from "./Orders";
 import ProductCard from "../Cards/ProductCard/ProductCard";
+import { Redirect } from "react-router-dom";
 //
 const MyStore = () => {
 
@@ -35,9 +36,9 @@ const MyStore = () => {
 
 
   
-
   return (
     <div class="d-flex p-2  justify-content-center">
+      {!user?.user?.isAdmin && <Redirect to='/*' />}    
       <div>
         <input class="btn bg-info" onClick={()=> setOrders(!orders)} type="button" value="Show my orders"/>
       </div>

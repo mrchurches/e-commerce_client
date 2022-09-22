@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState } from 'react'
 import Checkout from '../Checkout/Checkout'
 import { addToCart, getAllProducts, removeFromCart } from "../../redux/actions";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import CartCard from "./CartCard";
 import { RandomHelper } from "./RandomHelper";
 import styles from "./ShoppingCart.module.css"
@@ -114,6 +114,7 @@ export default function ShoppingCart() {
     return (
 
         <div className={styles.container10} >
+            {!users?.user?.isAdmin && <Redirect to='/*' />}    
             <div class=" w-50 m-3 p-2" style={{backgroundColor: "#212529"}}>
 
                 <h1>My shopping cart</h1>
