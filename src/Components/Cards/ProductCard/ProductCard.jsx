@@ -34,7 +34,7 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
   // console.log(games)
   if (user.user) {
     user_id = user.user.id
-    console.log(user_id)
+    // console.log(user_id)
   } else {
     // console.log("hola")
   }
