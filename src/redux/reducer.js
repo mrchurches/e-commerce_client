@@ -169,7 +169,7 @@ switch(action.type){
            searchered: filtered_searchered_plat
        }
    case ADD_TO_CART:
-
+       
    
             return{
                 ...state,
