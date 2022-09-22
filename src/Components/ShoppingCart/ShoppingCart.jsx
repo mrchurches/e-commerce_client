@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState } from 'react'
 import Checkout from '../Checkout/Checkout'
 import { addToCart, getAllProducts, removeFromCart } from "../../redux/actions";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import CartCard from "./CartCard";
 import { RandomHelper } from "./RandomHelper";
 import styles from "./ShoppingCart.module.css"
@@ -24,11 +24,12 @@ export default function ShoppingCart() {
         let cartLS2 = JSON.parse(localStorage.getItem("cart"));
         //localStorage.setItem('cart',JSON.stringify(cart));
         if (cart.length < 1 && cartLS2 !== null) {
-            console.log(cartLS2)
+            // console.log(cartLS2)
             cartLS2.forEach(e => dispatch(addToCart(e)));
         }
         if (cartLS2) {
-            setCartLS(cartLS2)
+            
+           setCartLS(cartLS2)
         }
     }, [dispatch])
 
@@ -108,17 +109,16 @@ export default function ShoppingCart() {
         window.localStorage.clear();
         window.location.reload();
     }
-
-    console.log(filterGames)
     return (
 
         <div className={styles.container10} >
+            {users?.user?.isAdmin && <Redirect to='/*' />}    
             <div class=" w-50 m-3 p-2" style={{backgroundColor: "#212529"}}>
 
                 <h1>My shopping cart</h1>
             </div>
 
-            {/* Contendio del medio */}
+            {/* Contendio del medio */} 
             <div class="d-flex flex-row w-50  justify-content-center">
                 {/* <div class="d-flex flex-row justify-content-evenly flex-wrap"> */}
                 <div class="d-flex flex-column">
@@ -129,7 +129,7 @@ export default function ShoppingCart() {
                                     id={e.id} name={e.name} img={e.background_image}
                                     rating={e.rating} platforms={e.platforms} price={e.price}
                                 />
-                         My shopping cart   </div>
+                        </div>
                         ))) : <div class="w-100 m-3 p-2" style={{ backgroundColor: "#212529" }}> <h4>No products yet... </h4> </div>
                     }
                 </div>

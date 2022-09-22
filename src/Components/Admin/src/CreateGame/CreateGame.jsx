@@ -185,7 +185,7 @@ export default function PostGame() {
                             <input type="text" class="form-control" placeholder="an image url..." onChange={handleChange} value={input.background_image} name="background_image" />
                             {error.background_image ? <label className={style.labelError}>{error.background_image}</label> : null}
                             <br />{
-                                input.background_image && (<img src={input.background_image} id={input.background_image} />)
+                                input.background_image && (<img style={{width:"15rem" , height:"auto"}} src={input.background_image} id={input.background_image} />)
                             }
                         </div>
                         <div class="mb-3">

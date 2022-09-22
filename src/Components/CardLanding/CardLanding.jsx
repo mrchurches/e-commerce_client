@@ -12,6 +12,7 @@ import { isDisabled } from '@testing-library/user-event/dist/utils/index.js'
 export default function CardLanding({ id, name, img, price, fromApi, isDisabled }) {
   let cart = useSelector(state => state.cart);
   const { user } = useSelector(state => state.users);
+  const [remove, setRemove] = useState(false);
   /* let screenShots = useSelector(state => state.screenShots) */
   let foundCart = false;   //aca encontraria el juego si esta agregado al carrito
   const dispatch = useDispatch()
@@ -27,15 +28,18 @@ export default function CardLanding({ id, name, img, price, fromApi, isDisabled 
 
   useEffect(() => {
 
-    localStorage.setItem('cart', JSON.stringify(cart));
-    console.log(localStorage.getItem("cart"))
+    cart?.length && localStorage.setItem('cart', JSON.stringify(cart));
 
   }, [cart]);
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [remove]);
 
   /*  useEffect(() => {
      dispatch(getScreenShots(id_api))
    },[])
- 
+
    console.log(screenShots) */
 
 
@@ -72,7 +76,8 @@ export default function CardLanding({ id, name, img, price, fromApi, isDisabled 
             'Your product has been deleted from the cart.',
             'success'
           );
-          dispatch(removeFromCart(id))
+          dispatch(removeFromCart(id));
+          setRemove(true);
         } else if (
           /* Read more about handling dismissals below */
           result.dismiss === Swal.DismissReason.cancel
@@ -94,13 +99,13 @@ export default function CardLanding({ id, name, img, price, fromApi, isDisabled 
 
       <div class="card  image" style={{ maxWidth: "18rem", marginBottom: '25px', maxHeight: '18rem' }}>
         <div class="image">
-            <Link to={fromApi || isDisabled ? `/home` : `/detail/${id}`}>
-              <img class="card-img-top" src={img} alt="product img" />
-            </Link>
+          <Link to={fromApi || isDisabled ? `/home` : `/detail/${id}`}>
+            <img class="card-img-top" src={img} alt="product img" />
+          </Link>
         </div>
         <div class="card-body" >
           <Link to={fromApi || isDisabled ? `/home` : `/detail/${id}`} style={{ textDecoration: "none" }}>
-            <h6 class="card-title">{name.slice(0,25)} {name.length>25? "..." : ""}</h6>
+            <h6 class="card-title">{name.slice(0, 25)} {name.length > 25 ? "..." : ""}</h6>
           </Link>
 
           <div class="d-flex flex-row align-items-center justify-content-center">

@@ -266,6 +266,7 @@ export default function Users({ setRender }) {
             </thead>
             <tbody  >
               {users.map((user, index) => {
+                if(user.email==="admin@admin.com") return ;
                 return <tr key={index}  >
                   <td>{user.id}</td>
                   <td>{user.username}</td>

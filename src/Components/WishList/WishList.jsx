@@ -26,11 +26,12 @@ const [logged, setLogged] = useState(false);
 
   setTimeout(() => {
     user === undefined && setLogged(true)
-  }, 600);
+  }, 700);
 
   return (
     <div class="d-flex p-2 justify-content-center">
-      {logged && user === undefined &&<Redirect to="/Login"/>}
+      {user?.user?.isAdmin && <Redirect to='/*' />}
+      {user === undefined && logged && <Redirect to="/Login"/>}
       <div class="d-flex flex-wrap m-1 justify-content-center">
         {user === undefined ? <Spinner /> :
           products.length ? products?.map(e => {

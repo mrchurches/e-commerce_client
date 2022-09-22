@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import { Dispatch } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -21,9 +21,11 @@ import style from "./ProductCard.css";
 export default function ProductCard({ id, id_api, name, img, rating, platforms, price, fromApi, isDisabled, genres }) {
   let cart = useSelector(state => state.cart);
   let user = useSelector(state => state.users);
-  let games = useSelector(state => state.products2).map(e => e.name) //140 --
-  let orders = useSelector(state => state.userOrders).map(e => e.game_name) //horizon y thiswar
-  let [adquiridos, setAdquiridos] = useState(false)
+  let games = useSelector(state => state.products2).map(e => e.name); //140 --
+  let orders = useSelector(state => state.userOrders).map(e => e.game_name); //horizon y thiswar
+  let [adquiridos, setAdquiridos] = useState(false);
+  const [remove, setRemove] = useState(false);
+  let location = useLocation();
   /* let screenShots = useSelector(state => state.screenShots) */
   let foundCart = false;   //aca encontraria el juego si esta agregado al carrito
   const dispatch = useDispatch()
@@ -32,7 +34,7 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
   // console.log(games)
   if (user.user) {
     user_id = user.user.id
-    console.log(user_id)
+    // console.log(user_id)
   } else {
     // console.log("hola")
   }
@@ -47,11 +49,15 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
   })
 
   useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cart));
+   cart?.length && localStorage.setItem('cart', JSON.stringify(cart));
     dispatch(getUserOrders(user_id))
     orders.forEach(e => { if (e === name) { setAdquiridos(true) } })
     // console.log(localStorage.getItem("cart"))
   }, [cart]);
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [remove])
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -80,6 +86,7 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
           showConfirmButton: false,
           timer: 1500
         })
+        if(location.pathname === "/shopping_cart"){window.location.reload()}
       }
     } else if (e.target.value === "remove") {
 
@@ -98,7 +105,8 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
             'Your product has been deleted from the cart.',
             'success'
           );
-          dispatch(removeFromCart(id))
+          dispatch(removeFromCart(id));
+          setRemove(true);
         } else if (
           /* Read more about handling dismissals below */
           result.dismiss === Swal.DismissReason.cancel
@@ -142,7 +150,7 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
   //orders.forEach(e => {if(e === name){setAdquiridos(true)}})
 
   rating = Math.floor(rating / 10)
-  console.log(rating)
+  // console.lograting)
   
   let arr = []
   for(let i = 0; i<rating; i++){
@@ -199,7 +207,7 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
           </div>
 
           <div class="">
-            {user?.user?.id && <FavouriteButton class="heartButton" id={id} />}
+            {user?.user?.id && !user?.user?.isAdmin && <FavouriteButton class="heartButton" id={id} />}
           </div>
         </div>
 
@@ -269,7 +277,7 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
                         <h6 class="titleBg pt-2">
                           ARS$ {price} </h6>
 
-                          {!adquiridos ? <div name="cart" onClick={(e) => handleClick(e)}>
+                          {!adquiridos && !user?.user?.isAdmin ? <div name="cart" onClick={(e) => handleClick(e)}>
 
                             <button disabled={fromApi || isDisabled ? true : false} class=" text1 buttonCart">
                               <img src={shoppingCard} name="cart" alt="" style={{ maxWidth: '2rem', maxHeight: '2rem' }} />
@@ -288,8 +296,8 @@ export default function ProductCard({ id, id_api, name, img, rating, platforms, 
           <div class="d-flex flex-row align-items-center justify-content-center">
 
 
-            {
-              foundCart && <button onClick={(e) => handleClick(e)} type="button" class="btn-close bg-info mt-2" style={{ maxWidth: '0.8rem', maxHeight: '0.8rem' }} value="remove" aria-label="Close"></button>}
+            {/* {
+              foundCart && <button onClick={(e) => handleClick(e)} type="button" class="btn-close bg-info mt-2" style={{ maxWidth: '0.8rem', maxHeight: '0.8rem' }} value="remove" aria-label="Close"></button>} */}
           </div>
         </div>
 
