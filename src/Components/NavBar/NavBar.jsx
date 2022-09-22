@@ -1,4 +1,4 @@
-import React, { useEffect, useState  } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import SearchBar from "../SearchBar/SearchBar"
 import logo from "../../images/logo/sin fondo/logo.png"
@@ -31,12 +31,19 @@ const NavBar = () => {
   useEffect(() => {
     const token = window.sessionStorage.getItem('token');
     token && dispatch(getUsers(token));
+    dispatch(removeFromCart());
   }, []);
 
   useEffect(() => {
     const shopCart = JSON.parse(localStorage.getItem("cart"));
-    cart && shopCart?.length && shopCart.map(e=> !cart.includes(e) && dispatch(addToCart(e)));
-  }, [dispatch])
+
+    const data = new Set(shopCart);
+    [...data].length && [...data].map(e => {
+      if(!cart.includes(e))
+      dispatch(addToCart(e));
+    })
+  }, [])
+
 
   useEffect(() => {
     user && dispatch(getUserOrders(user.id));
@@ -60,7 +67,7 @@ const NavBar = () => {
           <img class="logo " src={logo} />
           <span class="titleLogo">   GAM<span class="letraE">E</span>-COMMERCE</span>
         </NavLink>
-        <button onClick={() => handleClick()} class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button onClick={() => handleClick()} class="navbar-toggler " type="button" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class={show ? "collapse navbar-collapse show " : "collapse navbar-collapse"} id="navbarSupportedContent">

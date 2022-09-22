@@ -24,7 +24,7 @@ export default function ShoppingCart() {
         let cartLS2 = JSON.parse(localStorage.getItem("cart"));
         //localStorage.setItem('cart',JSON.stringify(cart));
         if (cart.length < 1 && cartLS2 !== null) {
-            console.log(cartLS2)
+            // console.log(cartLS2)
             cartLS2.forEach(e => dispatch(addToCart(e)));
         }
         if (cartLS2) {
@@ -110,7 +110,7 @@ export default function ShoppingCart() {
         window.location.reload();
     }
 
-    console.log(filterGames)
+    // console.log(filterGames)
     return (
 
         <div className={styles.container10} >
