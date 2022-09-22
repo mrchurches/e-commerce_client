@@ -283,7 +283,6 @@ export function Post_Game(payload) {
             return json;
         } catch (e) {
             console.error(e);
-            alert(e.message)
         };
     };
 };

@@ -8,7 +8,7 @@ function CardForSale({ forSale }) {
   return (
     <div className={styles.containerCarr} class="d-flex justify-content-center align-items-center mt-3 w-100">
       <div class={styles.banner}>
-        <Link to="/detail/a4bdf7ef-38e9-4b7d-8bc8-9dbc83a64dcd">
+        <Link to="/detail/2aa2198c-bbba-4e74-9726-a886cd1cda75">
           <img src={banner} alt="banner" />
         </Link>
       </div>
@@ -66,7 +66,9 @@ function CardForSale({ forSale }) {
         </button>
       </div>
       <div class={styles.banner}>
-        <img src={banner2} alt="banner2" />
+        <Link to="/login">
+          <img src={banner2} alt="banner2" />
+        </Link>
       </div>
     </div>
   )

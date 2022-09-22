@@ -169,11 +169,12 @@ switch(action.type){
            searchered: filtered_searchered_plat
        }
    case ADD_TO_CART:
-       
-   
+
+            const newCart = new Set([...state.cart, action.payload]);
+            console.log(newCart)
             return{
                 ...state,
-                cart: [...state.cart, action.payload]
+                cart: [...newCart]
             }
    case ADD_WISH:
        return{

@@ -24,11 +24,12 @@ export default function ShoppingCart() {
         let cartLS2 = JSON.parse(localStorage.getItem("cart"));
         //localStorage.setItem('cart',JSON.stringify(cart));
         if (cart.length < 1 && cartLS2 !== null) {
-            console.log(cartLS2)
+            // console.log(cartLS2)
             cartLS2.forEach(e => dispatch(addToCart(e)));
         }
         if (cartLS2) {
-            setCartLS(cartLS2)
+            
+           setCartLS(cartLS2)
         }
     }, [dispatch])
 
@@ -109,7 +110,7 @@ export default function ShoppingCart() {
         window.location.reload();
     }
 
-    console.log(filterGames)
+    // console.log(filterGames)
     return (
 
         <div className={styles.container10} >
@@ -129,7 +130,7 @@ export default function ShoppingCart() {
                                     id={e.id} name={e.name} img={e.background_image}
                                     rating={e.rating} platforms={e.platforms} price={e.price}
                                 />
-                         My shopping cart   </div>
+                        </div>
                         ))) : <div class="w-100 m-3 p-2" style={{ backgroundColor: "#212529" }}> <h4>No products yet... </h4> </div>
                     }
                 </div>
