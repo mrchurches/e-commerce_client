@@ -10,6 +10,8 @@ import { Link } from 'react-router-dom'
 import Spinner from '../Spinner/Spinner.jsx'
 import CardLanding from '../CardLanding/CardLanding.jsx'
 import banner2 from "../../images/banner2.png"
+import downArrow from '../Footer/downArrow.png'
+import { shadow } from '@cloudinary/url-gen/actions/effect.js'
 
 const CardContainer = () => {
 
@@ -100,6 +102,7 @@ const CardContainer = () => {
                 <CardSlider platforms={genres} i={2}/>
               </div>) : <Spinner />}
 
+              {/* <img src={downArrow} alt="" width='80' className={styles.btnDown}/> */}
       </div>
   )
 }

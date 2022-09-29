@@ -50,3 +50,9 @@
   height: auto;
   width: 20rem;
 }
+
+.btnDown {
+  position: fixed;
+  flex-direction: end;
+  
+}
