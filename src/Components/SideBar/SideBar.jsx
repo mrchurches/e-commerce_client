@@ -88,7 +88,7 @@ export default function SideBar() {
   };
 
   return (
-    <div >
+    <div class='container'>
       <div >
         <small>Genres</small>
         <select class="form-select" aria-label="Default select example" style={{ fontSize:"15px",marginRight: 'auto', marginLeft: 'auto', backgroundColor:"#212529", color: "white"}} onChange={(e) => handleFilterByGenre(e)}>
@@ -117,9 +117,9 @@ export default function SideBar() {
         </select>
       </div>
 
-      <div  style={{ width: "160px" }}>
-        {maxPrice > 1 ? <label  for='rangeMax' class='text-white form-label fs-6 pt-3'> Under ${maxPrice - 1} </label> : <label for='rangeMax' class='text-white form label'> ${minPrice}</label>}
-        <input  class="form-range" id='rangeMax' disabled={false} value={maxPrice} onChange={(e) => hanleChange(e)} type="range" min={min} max={max} step='10' />
+      <div  style={{ width: "185px" }}>
+        {maxPrice > 1 ? <label  for='rangeMax' class='text-white form-label fs-6 pt-4'> Under ${maxPrice - 1} </label> : <label for='rangeMax' class='text-white form-label fs-6 pt-4'> {" "}${minPrice}</label>}
+        <input  class="form-range" id='rangeMax' value={maxPrice} onChange={(e) => hanleChange(e)} type="range" min={min} max={max} step='10' />
       </div>
 
       {/* <div>
@@ -135,11 +135,11 @@ export default function SideBar() {
       </div>
       <br></br>
       <br />
-      <MyChatBot
+     {/*  <MyChatBot
         config={config}
         messageParser={MessageParser}
         actionProvider={ActionProvider}
-      />
+      /> */}
     </div>
   )
 }

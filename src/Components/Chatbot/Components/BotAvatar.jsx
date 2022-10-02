@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./BotAvatar.modules.css"
+import imgBot from './chatbotIMG.png'
 
 export default function Botavatar (){
-    return <div>
-            {/* <img className={styles.botAvatar} src="https://hellomybot.io/wp-content/uploads/2018/05/logotype_hellomybot-1-300x300.png" alt="?"></img> */}
-            <img className={styles.botAvatar} src="https://uploads.commoninja.com/searchengine/wordpress/chatbot-lazy-loader.png" alt="?"></img>
+    return <div style={{ marginRight: '1rem' }}>
+            <img style={{ marginLeft: '0.3rem', backgroundColor: '#3fa3b9d0', borderRadius: '50px', padding: '2px'}} className={styles.botAvatar} src={imgBot} alt="?" width='50px'></img>
     </div>
 };

@@ -90,8 +90,16 @@ function Home() {
             </div>
             <div className='bannerhome'>
                 <Link to={user.user?"/detail/2aa2198c-bbba-4e74-9726-a886cd1cda75":"/login"}>
-                    <img style={{width:"20rem", height: "auto"}} src={user.user? banner : banner2} alt="banner"/>
+                    <img style={{width:"17rem", height: "auto", marginBottom: "50px"}} src={user.user? banner : banner2} alt="banner"/>
                 </Link>
+                <div style={{marginLeft: '4rem'}}>
+                <MyChatBot
+                    config={config}
+                    messageParser={MessageParser}
+                    actionProvider={ActionProvider}
+
+                />
+                </div>
             </div>
         </div>
 
