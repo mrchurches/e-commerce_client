@@ -1,11 +1,6 @@
 import React from "react";
 import styles from "./Footer.module.css";
 import { useLocation } from "react-router-dom";
-import { info } from './personalInfo.js'
-import github from './github.png'
-import linkedin from './linkedin.png'
-import email from './mail.png'
-
 
 export default function About() {
     let location = useLocation()
@@ -15,47 +10,33 @@ export default function About() {
         display = 'none'
     }
     return (
-        <div>
-        <nav className={styles.mainFooter} style={{ display: display, borderRadius: '0' }}>
-            <h1 class='p-4'>Development team</h1>
-            <div className={styles.footer}>
-             {info.map((profile, index) => {
-                return (
-                    <div classkey={index} style={{width: "34rem"}} className={styles.cards}>
-                            <div class=" p-2 d-flex m-3">
-                                <div>
-                                    <img src={profile.img} class="card-body "  alt="..." className={styles.profilePic}  />
-                                </div>
-                                
-                                <div class='m-4'>
-                                    <h1 class="card-title" style={{fontSize: "1.5rem"}}>{profile.name}</h1>
-                                            <p class="card-text" style={{fontSize: "0.9rem"}}>{profile.location}</p>
-                                        <p class="card-text mt-5" style={{fontSize: "1.2rem"}}>{profile.title}</p>
-                                        <div class='d-flex' style={{justifyContent: 'center'}}>
-                                        <a target='_blank' href={profile.linkedin} class='m-2' ><img className={styles.icons} src={linkedin} alt="" width="30" /> </a>
-                                        <a target='_blank' href={profile.github} class='m-2' ><img className={styles.icons} src={github} width="30" /></a>
-                                        <a href={(profile.icon_mail)} class='m-2' ><img className={styles.icons} src={email} width="30" height="32"/></a>
-                                    </div>
-                                </div>
+        <nav className={styles.footer} style={{ display: display, borderRadius: '0' }}>
+            {location.pathname === "/admin" ? <div></div> :
+                <div class="d-flex w-100 justify-content-center p-5">
+                    <div class={`p-2 ${styles.footerBlocks}`}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-envelope" viewBox="0 0 16 16">
+                            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
+                        </svg>
+                        <h6 class={`text-light ${styles.footerText}`}>videogamesmarket@mailing.com</h6>
                     </div>
-
+                    <div class={`p-2 ${styles.footerBlocks}`}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-headset" viewBox="0 0 16 16">
+                            <path d="M8 1a5 5 0 0 0-5 5v1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a6 6 0 1 1 12 0v6a2.5 2.5 0 0 1-2.5 2.5H9.366a1 1 0 0 1-.866.5h-1a1 1 0 1 1 0-2h1a1 1 0 0 1 .866.5H11.5A1.5 1.5 0 0 0 13 12h-1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1V6a5 5 0 0 0-5-5z" />
+                        </svg>
+                        <h6 class={`text-light ${styles.footerText}`}>(0800) 333 4888</h6>
                     </div>
-                    )})
-                
-           }
-           </div >
-                <div className={styles.tech} > 
-                    <img className={styles.imge} style={{width: '18rem', height: '12rem'}} src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/1200px-Node.js_logo.svg.png" alt="" /> 
-                    <img className={styles.imge} style={{width: '10rem', height: '10rem'}} src="https://miro.medium.com/max/384/1*To2H39eauxaeYxYMtV1afQ.png" alt="" /> 
-                    <img className={styles.imge} style={{width: '16rem', height: '12rem'}} src="https://lh4.googleusercontent.com/BhaBIBHhT_czDE-0mQrO5KA3T7b06XMbN0WC487QjdTlreORD59wdlOkMQ41f4XId9j5cjPnxW0bFSrEskZdL-_sDt50E1UGU0a1Q-RMAcTj5PJ2xjDBd02gnwslJETQAmraXflM" alt="" /> 
-                    <img className={styles.imge} style={{width: '14rem', height: '12rem'}} src="https://www.am-design.es/Content/img/Bootstrap1.png" alt="" /> 
-                    <img className={styles.imge} style={{width: '14rem', height: '12rem'}} src="https://media.geeksforgeeks.org/wp-content/uploads/javascript-36f5949a45.png" alt="" /> 
-                    <img className={styles.imge} style={{width: '24rem', height: '12rem'}} src="https://images.g2crowd.com/uploads/product/image/social_landscape/social_landscape_21a537a2f60ea582bd213cab0722cb1a/express-js.png" alt="" /> 
-                    <img  className={styles.imge}style={{width: '14rem', height: '14rem'}} src="https://i3.wp.com/www.bacula.lat/wp-content/uploads/2019/05/postgresql-logo.png" alt="" />
+                    <div class={`p-2 ${styles.footerBlocks}`}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-building" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694 1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z" />
+                            <path d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z" />
+                        </svg>
+                        <h6 class={`text-light ${styles.footerText}`}>Scalabrini Ortiz 1822
+                            Buenas Aires, Argentina</h6>
+                    </div>
                 </div>
+            }
         </nav>
 
-        </div>
 
     )
 }

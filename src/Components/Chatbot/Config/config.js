@@ -9,7 +9,7 @@ import MyChatBot from '../chatbot.jsx';
 
 let botname = "E-robb";
 const config = {
-    initialMessages: [createChatBotMessage(`Bienvenido a Games E-commerce!. yo soy ${botname}`), createChatBotMessage("Mi mision es la de responder a tus preguntas, si no sabes por donde comenzar, prueba escribiendo `ayuda`.")],
+    initialMessages: [createChatBotMessage(`Welcome to Games E-commerce!. i'm ${botname}`), createChatBotMessage(`My mission is to answer your questions, if you don't know where to start, try typing "Help"`)],
     botName:`${botname}`,
     customComponents:{
         botAvatar:(props)=><Botavatar {...props}/>,
@@ -22,7 +22,7 @@ const config = {
             backgroundColor:"#212529"
         },
         chatContainer:{
-            backgroundColor: "black"
+            backgroundColor: "red"
         }
     },
     widgets:[

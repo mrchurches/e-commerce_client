@@ -1,58 +1,6 @@
-.mainFooter {
-    margin-top:10rem ;
-    background-color: #212529;
-    align-items: center;
-    text-align: center;
-}
-
-
 .footer {
-
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: center;
-  /*   width: 110rem; */
-    justify-content: center
+    background-color: #191D2A;
 }
-
-.tech {
-    background-color: #212529;
-    margin-top: 10rem;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: center;
-    width: 100rem;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.imge {
-    margin-right: 10rem;
-    box-shadow: inherit;
-}
-
-.profilePic {
-    border-radius: 13em;
-    width: 13rem;
-    margin-right: 2.1rem;
- }
-
- 
- .cards {
-     margin-top: 2rem;
-     margin-left: 2rem;
-     background-color: #050C18;
-    }
-    
-    .icons {
-      
-    }
-
- .icons:hover {
-    transform: scale(1.1)
- }
-
 
 @media screen and (max-width: 631px) {
     .footerText {
@@ -67,7 +15,9 @@
         /* background-color: yellow; */
     }
 
+    .footer {
 
- 
+        justify-content: space-around;
 
+    }
 }

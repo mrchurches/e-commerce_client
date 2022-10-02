@@ -75,6 +75,21 @@ const NavBar = () => {
 
             <NavLink to="/home" className='link' activeStyle={{
               fontWeight: "bold",
+              fontSize: "2rem"
+            }}>
+
+              <li class="nav-item active">
+                <span class="nav-link active text-light title" aria-current="page"
+                  activeStyle={{
+                    fontWeight: "bold",
+
+                  }} > Home</span>
+              </li>
+            </NavLink>
+
+
+            <NavLink to="/about" className='link' activeStyle={{
+              fontWeight: "bold",
               fontSize: "1rem"
             }}>
 
@@ -83,7 +98,7 @@ const NavBar = () => {
                   activeStyle={{
                     fontWeight: "bold",
 
-                  }} >  🕹️ Home</span>
+                  }} > About</span>
               </li>
             </NavLink>
 
@@ -92,24 +107,23 @@ const NavBar = () => {
                 fontWeight: "bold",
               }}>
                 <li class="nav-item">
-                  <span class="nav-link active text-light title" aria-current="page" >  🏪 Library</span>
+                  <span class="nav-link active text-light title" aria-current="page" > Library</span>
                 </li>
               </NavLink>)}
 
-            {
-              user && !user.isAdmin && (<NavLink to="/wish_list" className='link' activeStyle={{
+            {user && !user.isAdmin && (<NavLink to="/wish_list" className='link' activeStyle={{
                 fontWeight: "bold",
               }}>
 
                 <li class="nav-item">
-                  <span class="nav-link active text-light" aria-current="page" >   🤞 Wishlist</span>
+                  <span class="nav-link active text-light" aria-current="page" >  Wishlist</span>
                 </li>
               </NavLink>)}
             {user && user.isAdmin ? <NavLink to="/admin" className='link' activeStyle={{
               fontWeight: "bold",
             }}>
               <li class="nav-item">
-                <span class="nav-link active text-light" aria-current="page" >   🤳 Admin</span>
+                <span class="nav-link active text-light" aria-current="page" >   Admin</span>
               </li>
             </NavLink> : null}
 
@@ -119,7 +133,7 @@ const NavBar = () => {
                 fontWeight: "bold",
               }}>
                 <li class="nav-item">
-                  <span class="nav-link text-light title">   🛒  Shopping Cart</span>
+                  <span class="nav-link text-light title"> Shopping Cart</span>
                 </li>
               </Link>
               : null}
@@ -130,7 +144,7 @@ const NavBar = () => {
                 fontWeight: "bold",
               }}>
                 <li class="nav-item">
-                  <span onClick={() => handleLogout()} class="nav-link text-light">   🔄️ Logout</span>
+                  <span onClick={() => handleLogout()} class="nav-link text-light">  Logout</span>
                 </li>
               </NavLink>
               ) :
@@ -138,9 +152,10 @@ const NavBar = () => {
                 fontWeight: "bold",
               }}>
                 <li class="nav-item">
-                  <span class="nav-link text-light title">   ☑️ Login</span>
+                  <span class="nav-link text-light title"> Login</span>
                 </li>
               </NavLink>)
+              
             }
 
             {/* <li class="nav-item dropdown">

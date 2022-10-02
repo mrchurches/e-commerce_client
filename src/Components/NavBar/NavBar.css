@@ -22,7 +22,7 @@ ul li small img {
 }
 
 .btn {
-    border-color: rgb(19, 149, 201);
+    border-color: rgb(0, 0, 0);
 }
 
 .btn:hover {
@@ -32,17 +32,17 @@ ul li small img {
 }
 
 .logo {
-    width: 3rem;
+    width: 2rem;
     margin-bottom: 8px;
     padding: 0px;
-    transform: scale(1.2);
+    transform: scale(1.4);
     border-radius: 50px;
     
 }
 
 .title {
     /* font-size: 0.9vw; */
-    font-size: 0.9rem;
+    font-size: 1rem;
     /* border-bottom-color: #05ffb0; */
 
     /* active-style: {
@@ -51,15 +51,16 @@ ul li small img {
 }
 
 .title:hover {
-    font-size: 0.9rem;
-    text-shadow: 1px 1px 2px rgb(217, 255, 0);
+    font-size: 1rem;
+    text-shadow: 1px 1px 2px rgb(10, 10, 9);
     color: rgb(3, 3, 3);
     padding-left: 1rem;
 }
 
 .titleLogo {
     /* font-size: 0.9vw; */
-    font-size: 1.1rem;
+    font-size: 1.3rem;
+    padding-right: 1rem;
     color: rgb(255, 187, 0);
     text-shadow: 1px 1px 5px rgb(208, 255, 0);
     -webkit-text-stroke: 0.002px rgb(0, 0, 0);

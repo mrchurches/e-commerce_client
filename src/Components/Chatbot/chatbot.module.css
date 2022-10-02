@@ -1,4 +1,15 @@
-.chatbot img{
-    width: 5rem;
-    height: auto;
+.robot {
+    height: 6rem;
+    width: 6rem;
+    border-radius: 50px;
+    border: none;
+    background-color: #3fa3b9d0;
+    position: fixed;
+    transition: all .3s ease-in-out;
 }
+
+
+.robot:hover {
+    transform: scale(1.1);
+}
+

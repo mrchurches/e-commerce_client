@@ -56,3 +56,12 @@
   flex-direction: end;
   
 }
+
+.sVideo {
+  width: 100%;
+}
+
+.s2Video {
+  width: 100%;
+  height: 5%;
+}

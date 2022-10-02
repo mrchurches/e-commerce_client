@@ -73,17 +73,17 @@ function Filters() {
 };
 
   return (
-    <div class="d-flex justify-content-end" style={{marginTop: '15px', marginBottom: '15px'}}>
+    <div class="d-flex justify-content-end" style={{marginTop: '15px', marginBottom: '15px', border: "none"}}>
       <div className={styles.posicion}>
         {/* Sort by: */}
-        <select class="form-select" style={{ fontSize:"12px",backgroundColor:"#212529", color: "white"}} onChange={(e) => handlerChange(e)}> {/* propuesta rango de precio */}
+        <select /* class="form-select" */ style={{ fontSize:"13px",backgroundColor:"#212529", color: "white", border: "none", padding: '0.3rem'}} onChange={(e) => handlerChange(e)}> {/* propuesta rango de precio */}
         <option disabled={false} value="default">Order by...</option>
-          <option  value="Highest_Price">Price: Higher to lower</option>
-          <option value="Lowest_Price">Price: Lower to Higher</option>
-          <option value="higher">Rating: Higher to lower</option>
-          <option value="lower">Rating: Lower to Higher</option>
-          <option value="A-Z">A-Z</option>
-          <option value="Z-A">Z-A</option>
+          <option style={{ fontSize:"14px",backgroundColor:"#212529", color: "white", border: "none"}} value="Highest_Price">Price: Higher to lower</option>
+          <option style={{ fontSize:"14px",backgroundColor:"#212529", color: "white", border: "none"}} value="Lowest_Price">Price: Lower to Higher</option>
+          <option style={{ fontSize:"14px",backgroundColor:"#212529", color: "white", border: "none"}} value="higher">Rating: Higher to lower</option>
+          <option style={{ fontSize:"14px",backgroundColor:"#212529", color: "white", border: "none"}} value="lower">Rating: Lower to Higher</option>
+          <option style={{ fontSize:"14px",backgroundColor:"#212529", color: "white", border: "none"}} value="A-Z">A-Z</option>
+          <option style={{ fontSize:"14px",backgroundColor:"#212529", color: "white", border: "none"}} value="Z-A">Z-A</option>
         </select>
       </div>
       <div>

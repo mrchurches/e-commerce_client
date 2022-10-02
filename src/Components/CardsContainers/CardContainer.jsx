@@ -12,6 +12,7 @@ import CardLanding from '../CardLanding/CardLanding.jsx'
 import banner2 from "../../images/banner2.png"
 import downArrow from '../Footer/downArrow.png'
 import { shadow } from '@cloudinary/url-gen/actions/effect.js'
+import video from './video.mp4'
 
 const CardContainer = () => {
 
@@ -86,7 +87,15 @@ const CardContainer = () => {
   const platforms = Allproducts.filter((c) => c.platforms.find((c) => c.name === randomPlat))
   
   return (
-        <div className='d-flex flex-column mb-3'>
+        <div className='d-flex flex-column mb-3 '>
+          
+          {/*   <header className={styles.s2Video}>
+              <div >
+              <video   className={styles.sVideo} onLoadedMetadata="this.muted=true" autoPlay loop  >
+                <source src={video} />
+              </video>
+              </div>
+            </header> */}
 
           {Allproducts.length>0?<CardForSale forSale={forSale.slice(0,8)}/>:<Spinner />}
           
