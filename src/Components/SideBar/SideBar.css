@@ -26,3 +26,9 @@
     border: 1px rgb(18, 49, 58) solid;
 
 }
+
+.container {
+    padding: 1rem;
+    background-color: #212529;
+    width: 14rem;
+}

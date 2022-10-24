@@ -14,6 +14,7 @@ import Account from './Components/Account/Account';
 import WishList from "./Components/WishList/WishList.jsx";
 import UserProfile from "./Components/UserProfile/UserProfile.jsx";
 import NotFound from "./Components/NotFound/NotFound.jsx";
+import About from './Components/About/About.jsx'
 import Pasarela from "./Components/Checkout/Checkout";
 import "react-chatbot-kit/build/main.css"
 import Admin from './Components/Admin/Admin';
@@ -42,6 +43,7 @@ let users = useSelector(state=>state.users);
         <Route path="/detail/:id" component={ProductDetails} />
         <Route path="/shopping_cart" component={ShoppingCart} />
         <Route path="/my_store" component={MyStore} />
+        <Route path="/about" component={About} />
         <Route path="/create_user"component={CreateUser} />
         <Route path="/wish_list" component={WishList}/>
         <Route path="/account" component={Account}/>

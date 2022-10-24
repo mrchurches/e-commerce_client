@@ -55,9 +55,14 @@ h6 {
 }
 
 .card-title {
-    color: rgb(255, 187, 0);
-    text-shadow: 0px 4px 23px rgba(255, 255, 255, 0.911);
+    flex-direction: end;
+    color: #FAB700;
+    text-shadow: 0px 1px 10px rgba(74, 73, 73, 0.911);
     /* border-radius: 50%; */
+    width: fit-content;
+    position: inherit;
+    padding: 0.3rem;
+    background-color: rgba(0, 0, 0, 0.508);
 
 
 }
@@ -82,6 +87,7 @@ h6 {
 }
 
 .buttonCart {
+    margin-left: 2rem;
     background-color: rgb(43, 187, 156);
     border: 1px rgb(18, 49, 58) solid;
 }
@@ -136,14 +142,18 @@ h6 {
 
 
 .conteinerimg{
- background-size: 20rem auto;
+ background-size: 23rem auto;
  background-repeat:cover;
- height: 10rem;
- width: 18rem;
+ height: 12rem;
+ width: 20rem;
  text-decoration: none;
  /* color: #ffbb007a */
 }
 
 .starshadow{
     filter: drop-shadow(0 2px 5px rgb(0, 0, 0));
+}
+
+.marginTitle {
+    margin-bottom: 7rem;
 }
