@@ -1,8 +1,6 @@
-.containerDetails {
+.container{
   margin-top: 20px;
-  max-width: 100%;
-  padding: 1.5rem;
-
+  max-width: 1700px;
 }
 
 .project-info-box {
