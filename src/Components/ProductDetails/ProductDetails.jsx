@@ -77,7 +77,7 @@ export default function ProductDetails() {
   }, [id, orders])
 
   return (
-    <div class="container">
+    <div class="containerDetails">
       {
         !game.name && (
           <div class="spinner-border" role="status">
