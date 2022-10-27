@@ -88,7 +88,7 @@ export default function SideBar() {
   };
 
   return (
-    <div class='container'>
+    <div class='container_sideBar'>
       <div >
         <small>Genres</small>
         <select class="form-select" aria-label="Default select example" style={{ fontSize:"15px",marginRight: 'auto', marginLeft: 'auto', backgroundColor:"#212529", color: "white"}} onChange={(e) => handleFilterByGenre(e)}>
