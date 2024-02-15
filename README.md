@@ -29,12 +29,12 @@ As a team, we created a video game e-commerce where games are acquired through a
 - **Administrator**: Can ban users, view purchase statistics, assign user privileges, view available games, modify game information, create new games, disable games, and view the catalog.
 ## Images
 
-![Image 1](https://drive.google.com/uc?export=view&id=19kg0hXAecPH0MMlHuungIof-N22pbEpf){ width=200px }
-![Image 2](https://drive.google.com/uc?export=view&id=1BHWZfZf7sgcc42_8yzawC9LhrbRBoBVL){ width=200px }
-![Image 3](https://drive.google.com/uc?export=view&id=1QbVsVSkrbgU9aC68UV6yCzHk2BGta08D){ width=200px }
-![Image 4](https://drive.google.com/uc?export=view&id=1a9AmAjgPh9bSL4yCckxjIOlPxUAdcZO6){ width=200px }
-![Image 5](https://drive.google.com/uc?export=view&id=1aic7xu6lVhQW6VlktX6CES4kMV6LHz39){ width=200px }
-![Image 6](https://drive.google.com/uc?export=view&id=1cIhbLj_XZO-yScndfrm3mo2Tm518H76u){ width=200px }
-![Image 7](https://drive.google.com/uc?export=view&id=1ceyHZqlkk-RuEt3IzT4qJ0DrugIXvqJu){ width=200px }
-![Image 8](https://drive.google.com/uc?export=view&id=1qw864dg3-QiG6SAbAMBvvtyMs3PBOgkR){ width=200px }
-![Image 9](https://drive.google.com/uc?export=view&id=1zmjdNznjP82OFt66kQfMB8yMvegFG1IK){ width=200px }
+![Image 1](https://drive.google.com/uc?export=view&id=19kg0hXAecPH0MMlHuungIof-N22pbEpf)
+![Image 2](https://drive.google.com/uc?export=view&id=1BHWZfZf7sgcc42_8yzawC9LhrbRBoBVL)
+![Image 3](https://drive.google.com/uc?export=view&id=1QbVsVSkrbgU9aC68UV6yCzHk2BGta08D)
+![Image 4](https://drive.google.com/uc?export=view&id=1a9AmAjgPh9bSL4yCckxjIOlPxUAdcZO6)
+![Image 5](https://drive.google.com/uc?export=view&id=1aic7xu6lVhQW6VlktX6CES4kMV6LHz39)
+![Image 6](https://drive.google.com/uc?export=view&id=1cIhbLj_XZO-yScndfrm3mo2Tm518H76u)
+![Image 7](https://drive.google.com/uc?export=view&id=1ceyHZqlkk-RuEt3IzT4qJ0DrugIXvqJu)
+![Image 8](https://drive.google.com/uc?export=view&id=1qw864dg3-QiG6SAbAMBvvtyMs3PBOgkR)
+![Image 9](https://drive.google.com/uc?export=view&id=1zmjdNznjP82OFt66kQfMB8yMvegFG1IK)
